@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Socialite</title>
+    <title>Laravel Clean Slate</title>
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('css/libs.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Socialite</a>
+            <a class="navbar-brand" href="/">Laravel Clean Slate</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
