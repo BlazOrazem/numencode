@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Utils\AppMailer;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -29,7 +28,17 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'nickname', 'email', 'password', 'avatar', 'avatar_thumbnail', 'is_verified'];
+    protected $fillable = [
+        'name',
+        'nickname',
+        'email',
+        'password',
+        'avatar',
+        'avatar_thumbnail',
+        'social_provider_type',
+        'social_provider_id',
+        'is_verified',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -46,7 +55,7 @@ class User extends Model implements AuthenticatableContract,
         parent::boot();
 
         /**
-         * Set token for email address verification if user is not registered via social app.
+         * Set token for email address verification if user is not registered via social provider.
          */
         static::creating(function ($user) {
             if ($user->is_verified) return;

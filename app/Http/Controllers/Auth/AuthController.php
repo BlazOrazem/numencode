@@ -6,7 +6,6 @@ use Validator;
 use App\Models\User;
 use App\Utils\AppMailer;
 use Illuminate\Http\Request;
-use App\AuthenticateUserListener;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
@@ -16,7 +15,7 @@ use App\Http\Requests\RegistrationRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller implements AuthenticateUserListener
+class AuthController extends Controller
 {
     /**
      * Where to redirect after successful registration or login.
@@ -103,17 +102,6 @@ class AuthController extends Controller implements AuthenticateUserListener
             $mailer->sendEmailVerificationTo($user);
         }
 
-        return redirect('/');
-    }
-
-    /**
-     * Handle user when logged in.
-     *
-     * @param $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function userHasLoggedIn($user)
-    {
         return redirect('/');
     }
 

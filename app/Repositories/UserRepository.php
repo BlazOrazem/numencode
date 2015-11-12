@@ -6,6 +6,7 @@ use Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Laravel\Socialite\AbstractUser as SocialUser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 
@@ -36,29 +37,6 @@ class UserRepository
     }
 
     /**
-     * Find an existing user or create a new one.
-     *
-     * @param $userData
-     * @return User instance
-     */
-    public function getByEmailOrCreate($userData)
-    {
-        // Check if user exists.
-        $user = $this->getByEmail($userData->email);
-
-        // Update missing user data.
-        if ($user){
-            $user->nickname         = $user->nickname ?: $userData->nickname;
-            $user->avatar           = $user->avatar ?: $this->makeAvatarFromUrl($userData->avatar);
-            $user->avatar_thumbnail = $user->avatar_thumbnail ?: $this->makeAvatarFromUrl($userData->avatar, true);
-            $user->save();
-            return $user;
-        }
-
-        return $this->create((array)$userData, true);
-    }
-
-    /**
      * Find a user by email address.
      *
      * @param $email
@@ -86,36 +64,7 @@ class UserRepository
     }
 
     /**
-     * Make avatar from given image URL.
-     *
-     * @param $avatarUrl
-     * @param bool $isThumbnail
-     * @return string
-     */
-    protected function makeAvatarFromUrl($avatarUrl, $isThumbnail = false)
-    {
-        $avatarUrl = fix_avatar_url($avatarUrl);
-
-        $image = Image::make(file_get_contents($avatarUrl));
-
-        $this->avatar = sha1($avatarUrl);
-
-        return $this->saveAvatarFile($image, $isThumbnail);
-    }
-
-
-
-
-
-    /**
-     * DONE
-     */
-
-
-
-
-    /**
-     * Authenticate user.
+     * Login user.
      *
      * @param User $user
      * @param bool $remember
@@ -147,6 +96,67 @@ class UserRepository
     }
 
     /**
+     * Find an existing user or create a new one.
+     *
+     * @param SocialUser $socialUser
+     * @param $socialProvider
+     * @return User object
+     */
+    public function createSocialUser(SocialUser $socialUser, $socialProvider)
+    {
+        if ($user = $this->getByEmail($socialUser->email)) {
+            $this->mergeSocialUser($user, $socialUser, $socialProvider);
+
+            return $user;
+        }
+
+        return $this->createFromSocialUser($socialUser, $socialProvider);
+    }
+
+
+    /**
+     * Merge social user with an existing user.
+     *
+     * @param User $user
+     * @param SocialUser $socialUser
+     * @param $provider
+     */
+    protected function mergeSocialUser(User $user, SocialUser $socialUser, $provider)
+    {
+        $user->nickname             = $user->nickname ?: $socialUser->nickname;
+        $user->avatar               = $user->avatar ?: $this->makeAvatarFromUrl($socialUser->avatar);
+        $user->avatar_thumbnail     = $user->avatar_thumbnail ?: $this->makeAvatarFromUrl($socialUser->avatar, true);
+        $user->social_provider_type = $provider;
+        $user->social_provider_id   = $socialUser->getId();
+        $user->is_verified          = true;
+        $user->save();
+
+        event('user.merged', [$user, $provider]);
+    }
+
+    /**
+     * Create a new user from social provider.
+     *
+     * @param SocialUser $socialUser
+     * @param $socialProvider
+     * @return object
+     */
+    protected function createFromSocialUser(SocialUser $socialUser, $socialProvider)
+    {
+        return $this->create([
+            'name'                 => $socialUser->name,
+            'nickname'             => $socialUser->nickname,
+            'email'                => $socialUser->email,
+            'password'             => '',
+            'avatar'               => $this->makeAvatarFromUrl($socialUser->avatar),
+            'avatar_thumbnail'     => $this->makeAvatarFromUrl($socialUser->avatar, true),
+            'social_provider_type' => $socialProvider,
+            'social_provider_id'   => $socialUser->getId(),
+            'is_verified'          => true,
+        ]);
+    }
+
+    /**
      * Create a new user object.
      *
      * @param array $data
@@ -155,13 +165,15 @@ class UserRepository
     public function create(array $data)
     {
         $user = User::create([
-            'name'             => $data['name'],
-            'nickname'         => $data['nickname'],
-            'email'            => $data['email'],
-            'password'         => bcrypt($data['password']),
-            'avatar'           => $data['avatar'],
-            'avatar_thumbnail' => $data['avatar_thumbnail'],
-            'is_verified'      => $data['is_verified'],
+            'name'                 => $data['name'],
+            'nickname'             => $data['nickname'],
+            'email'                => $data['email'],
+            'password'             => bcrypt($data['password']),
+            'avatar'               => $data['avatar'],
+            'avatar_thumbnail'     => $data['avatar_thumbnail'],
+            'social_provider_type' => isset($data['social_provider_type']) ? $data['social_provider_type'] : null,
+            'social_provider_id'   => isset($data['social_provider_id']) ? $data['social_provider_id'] : null,
+            'is_verified'          => $data['is_verified'],
         ]);
 
         event('user.registered', $user);
@@ -170,7 +182,7 @@ class UserRepository
     }
 
     /**
-     * Make avatar from uploaded file.
+     * Create avatar image from uploaded file.
      *
      * @param UploadedFile $file
      * @param bool $isThumbnail
@@ -186,7 +198,25 @@ class UserRepository
     }
 
     /**
-     * Save avatar file.
+     * Create avatar image from given image URL.
+     *
+     * @param $avatarUrl
+     * @param bool $isThumbnail
+     * @return string
+     */
+    protected function makeAvatarFromUrl($avatarUrl, $isThumbnail = false)
+    {
+        $avatarUrl = fix_avatar_url($avatarUrl);
+
+        $image = Image::make(file_get_contents($avatarUrl));
+
+        $this->avatar = sha1($avatarUrl);
+
+        return $this->saveAvatarFile($image, $isThumbnail);
+    }
+
+    /**
+     * Save avatar image file.
      *
      * @param $image
      * @param bool $isThumbnail

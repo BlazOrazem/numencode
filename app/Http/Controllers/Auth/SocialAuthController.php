@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\AuthenticateUser;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
+    /**
+     * Supported social providers.
+     *
+     * @var array
+     */
     protected $supportedProviders = [
         'facebook',
         'twitter',
@@ -18,29 +21,45 @@ class SocialAuthController extends Controller
         'github',
     ];
 
+    /**
+     * Where to redirect after success.
+     *
+     * @var null
+     */
     protected $redirect = null;
 
-    protected $users;
-
-    protected $guard;
-
-    public function __construct(UserRepository $users, Guard $guard)
-    {
-        $this->users = $users;
-        $this->guard = $guard;
-    }
-
-    public function getLogin(Request $request, $provider)
+    /**
+     * Login / Register user via social provider.
+     *
+     * @param Request $request
+     * @param UserRepository $repository
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getLogin(Request $request, UserRepository $repository, $provider)
     {
         $this->assertProvider($provider);
 
-        if($request->redirect) {
-            session(['redirect' => $request->redirect]);
+        $providerCode = $request->has('code') || $request->has('oauth_token');
+
+        if (!$providerCode) {
+            return $this->getAuthorizationFirst($provider);
         }
 
-        return Socialite::driver($provider)->redirect();
+        $user = $repository->createSocialUser($this->getSocialUser($provider), $provider);
+
+        $repository->login($user, true);
+
+        flash()->success("Welcome " . $user->name . "!", "You have successfully logged in.");
+
+        return redirect('/');
     }
 
+    /**
+     * Validate given provider.
+     *
+     * @param $provider
+     */
     protected function assertProvider($provider)
     {
         if(!in_array($provider, $this->supportedProviders)) {
@@ -49,20 +68,25 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * Register/login user via social network app.
+     * Authorize user on social provider.
      *
-     * @param AuthenticateUser $authenticateUser
-     * @param SocialiteProvider $socialiteProvider
-     * @param Request $request
-     * @param $provider Socialite provider name.
+     * @param $provider
      * @return mixed
      */
-    public function loginWithProvider(AuthenticateUser $authenticateUser, Request $request, $provider)
+    private function getAuthorizationFirst($provider)
     {
-        if (!$socialiteProvider->isValid($provider)) {
-            abort(404);
-        }
-
-        return $authenticateUser->execute($request->has('code') || $request->has('oauth_token'), $provider, $this);
+        return Socialite::driver($provider)->redirect();
     }
+
+    /**
+     * Obtain the user information from social provider.
+     *
+     * @param $provider
+     * @return mixed
+     */
+    public function getSocialUser($provider)
+    {
+        return Socialite::driver($provider)->user();
+    }
+
 }

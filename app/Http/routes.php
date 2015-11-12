@@ -14,7 +14,7 @@ Route::post('auth/register', ['as' => 'register_action', 'uses' => 'Auth\AuthCon
 Route::get('auth/register/verify/{token}', 'Auth\AuthController@verifyEmail');
 
 // Socialite authentication routes
-Route::get('auth/{provider}', 'Auth\SocialAuthController@loginWithProvider');
+Route::get('auth/social/{provider?}', ['as' => 'login_social', 'uses' => 'Auth\SocialAuthController@getLogin']);
 
 // Password reset link request routes
 Route::get('password/email',  ['as' => 'password_forget', 'uses' => 'Auth\PasswordController@getEmail']);
