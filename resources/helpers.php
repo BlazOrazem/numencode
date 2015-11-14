@@ -7,15 +7,18 @@
  * @param string|null $message
  * @return App\Utils\Flash
  */
-function flash($title = null, $message = null)
+if (!function_exists('flash'))
 {
-    $flash = app('App\Utils\Flash');
+    function flash($title = null, $message = null)
+    {
+        $flash = app('App\Utils\Flash');
 
-    if (func_num_args() == 0) {
-        return $flash;
+        if (func_num_args() == 0) {
+            return $flash;
+        }
+
+        return $flash->info($title, $message);
     }
-
-    return $flash->info($title, $message);
 }
 
 /**
@@ -24,22 +27,25 @@ function flash($title = null, $message = null)
  * @param string $avatarUrl
  * @return string
  */
-function fix_avatar_url($avatarUrl)
+if (!function_exists('fix_avatar_url'))
 {
-    // Facebook
-    if(preg_match("/(graph.facebook.com)/i", $avatarUrl)){
-        $avatarUrl = str_replace('?type=normal', '?width=1920', $avatarUrl);
-    }
+    function fix_avatar_url($avatarUrl)
+    {
+        // Facebook
+        if(preg_match("/(graph.facebook.com)/i", $avatarUrl)){
+            $avatarUrl = str_replace('?type=normal', '?width=1920', $avatarUrl);
+        }
 
-    // Twitter
-    if(preg_match("/(pbs.twimg.com)/i", $avatarUrl)){
-        $avatarUrl = str_replace('_normal.jpg', '.jpg', $avatarUrl);
-    }
+        // Twitter
+        if(preg_match("/(pbs.twimg.com)/i", $avatarUrl)){
+            $avatarUrl = str_replace('_normal.jpg', '.jpg', $avatarUrl);
+        }
 
-    // Google
-    if(preg_match("/(googleusercontent.com)/i", $avatarUrl)){
-        $avatarUrl = rtrim($avatarUrl, '?sz=50');
-    }
+        // Google
+        if(preg_match("/(googleusercontent.com)/i", $avatarUrl)){
+            $avatarUrl = rtrim($avatarUrl, '?sz=50');
+        }
 
-    return $avatarUrl;
+        return $avatarUrl;
+    }
 }
