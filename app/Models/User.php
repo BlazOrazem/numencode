@@ -58,16 +58,18 @@ class User extends Model implements AuthenticatableContract,
          * Set token for email address verification if user is not registered via social provider.
          */
         static::creating(function ($user) {
-            if ($user->is_verified) return;
+            if ($user->is_verified) {
+                return;
+            }
 
             $user->token = str_random(30);
         });
     }
 
     /**
-     * Confirm user's email address.
+     * Verify user's email address.
      */
-    public function confirmEmail()
+    public function verifyEmail()
     {
         $this->is_verified = true;
         $this->token = null;

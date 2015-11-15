@@ -25,11 +25,15 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         $events->listen(
-            'auth.login', 'App\Listeners\UserEventListener@onUserLogin'
+            'user.logged_in', 'App\Listeners\UserEventListener@onUserLogin'
         );
 
         $events->listen(
             'auth.logout', 'App\Listeners\UserEventListener@onUserLogout'
+        );
+
+        $events->listen(
+            'user.reset_password', 'App\Listeners\UserEventListener@onPasswordReset'
         );
     }
 }

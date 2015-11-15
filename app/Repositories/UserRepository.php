@@ -240,4 +240,17 @@ class UserRepository
         return $filePath;
     }
 
+    /**
+     * Reset user's password.
+     *
+     * @param User $user
+     * @return array|null
+     */
+    public function resetPassword(User $user)
+    {
+        $token = $this->tokens->create($user);
+
+        return event('user.reset_password', [$user, $token]);
+    }
+
 }

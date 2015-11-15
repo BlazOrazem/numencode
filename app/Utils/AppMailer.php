@@ -43,6 +43,22 @@ class AppMailer {
     }
 
     /**
+     * Send password reset link to given user.
+     *
+     * @param User $user
+     * @param $token
+     */
+    public function sendPasswordResetTo(User $user, $token)
+    {
+        $this->subject = 'Password Reset';
+        $this->to = $user->email;
+        $this->view = 'emails.password';
+        $this->data = compact('user', 'token');
+
+        return $this->deliver();
+    }
+
+    /**
      * Send email.
      */
     public function deliver()
@@ -53,5 +69,4 @@ class AppMailer {
                 ->subject($this->subject);
         });
     }
-
 }

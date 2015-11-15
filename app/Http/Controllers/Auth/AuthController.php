@@ -109,18 +109,21 @@ class AuthController extends Controller
      * Verify user's email address.
      *
      * @param $token
+     * @param UserRepository $repository
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function verifyEmail($token)
+    public function verifyEmail($token, UserRepository $repository)
     {
         $user = User::whereToken($token)->first();
 
         if ($user) {
-            $user->confirmEmail();
+            $user->verifyEmail();
+
             flash()->overlay("Email verified", "You successfully verified your email address {$user->email}.", "success");
-            Auth::login($user, $remember = false);
+
+            $repository->login($user);
         } else {
-            flash()->overlay("Error", "This email address has been already confirmed.", "error");
+            flash()->overlay("Error", "This email address has been already verified.", "error");
         }
 
         return redirect('/');
