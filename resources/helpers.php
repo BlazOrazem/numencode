@@ -1,5 +1,7 @@
 <?php
 
+use App\Utils\Flash;
+
 /**
  * Flash message handler.
  *
@@ -11,7 +13,7 @@ if (!function_exists('flash'))
 {
     function flash($title = null, $message = null)
     {
-        $flash = app('App\Utils\Flash');
+        $flash = app(Flash::class);
 
         if (func_num_args() == 0) {
             return $flash;

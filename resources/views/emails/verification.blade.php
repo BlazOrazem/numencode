@@ -1,12 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Verify Your E-mail Address</title>
-</head>
-<body>
-    <h1>Verify Your E-mail Address</h1>
-    <p>We just need you to <a href="{{ url("auth/register/verify/{$user->token}") }}">verify your email address</a> real quick!</p>
-    <p><small>If you cannot click on the link, please copy and paste this into your browser: {{ url("auth/register/verify/{$user->token}") }}</small></p>
-</body>
-</html>
+@extends('emails._layout')
+
+@section('title')
+    Verify Your E-mail Address
+@endsection
+
+@section('content')
+    <table>
+        <tr>
+            <td>
+                <h1>Verify Your E-mail Address</h1>
+                <p>We just need you to verify your email address real quick!</p>
+                <!-- button -->
+                <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td>
+                            <a href='{{ url("auth/register/verify/{$user->token}") }}'>Verify My Email Address</a>
+                        </td>
+                    </tr>
+                </table>
+                <!-- /button -->
+                <p>Thanks, have a lovely day.</p>
+                <p><a href="http://twitter.com/">Follow @CleanSlate on Twitter</a></p>
+            </td>
+        </tr>
+    </table>
+@endsection
