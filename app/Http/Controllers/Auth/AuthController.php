@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         $this->auth = $auth;
 
-        $this->middleware('guest', ['except' => ['getLogout', 'verifyEmail']]);
+        $this->middleware('guest', ['except' => ['getLogout']]);
     }
 
     /**
@@ -106,6 +106,22 @@ class AuthController extends Controller
     }
 
     /**
+     * User logout.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getLogout()
+    {
+        $this->auth->logout();
+
+        flash()->success("Logged out", "You have successfully logged out.\\nWe hope to see you again soon.");
+
+        event('user.logged_out');
+
+        return redirect('/');
+    }
+
+    /**
      * Verify user's email address.
      *
      * @param $token
@@ -121,6 +137,8 @@ class AuthController extends Controller
 
             flash()->overlay("Email verified", "You successfully verified your email address {$user->email}.", "success");
 
+            event('user.email_verified');
+
             $repository->login($user);
         } else {
             flash()->overlay("Error", "This email address has been already verified.", "error");
@@ -128,5 +146,4 @@ class AuthController extends Controller
 
         return redirect('/');
     }
-
 }

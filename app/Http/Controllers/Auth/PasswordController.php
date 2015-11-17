@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\ResetRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
@@ -30,19 +30,10 @@ class PasswordController extends Controller
     }
 
     /**
-     * TODO not working properly
-     * Send password reset link.
+     * Show password reset page.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-//    public function postEmailPassword(Request $request)
-//    {
-//        flash()->overlay("Forgotten password", "Password reset link was sent to your email address {$request->email}.\\nPlease check your inbox.", "success");
-//
-//        return $this->postEmail($request);
-//    }
-
     public function getEmail()
     {
         return view('auth.password');
@@ -67,17 +58,31 @@ class PasswordController extends Controller
     }
 
     /**
-     * TODO not working properly
-     * Reset password.
+     * Display the password reset view for the given token.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @param string $token
+     * @return \Illuminate\View\View
      */
-//    public function postResetPassword(Request $request)
-//    {
-//        flash()->overlay("Password reset", "Your password was successfully changed.", "success");
-//
-//        return $this->postReset($request);
-//    }
+    public function getPassword($token)
+    {
+        return view('auth.reset')->with('token', $token);
+    }
 
+    /**
+     * Change password.
+     *
+     * @param ResetPasswordRequest $request
+     * @param UserRepository $repository
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postPassword(ResetPasswordRequest $request, UserRepository $repository)
+    {
+        $repository->changePassword($request->resolvedUser(), $request->password);
+
+        $repository->login($request->resolvedUser());
+
+        flash()->overlay("Password reset", "Your password was successfully changed.", "success");
+
+        return redirect('/');
+    }
 }

@@ -33,11 +33,11 @@
                             <span class="help-block">{!! $errors->first('password', ':message') !!}</span>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <div class="input-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                            <div class="input-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Password again">
                             </div>
-                            <span class="help-block"></span>
+                            <span class="help-block">{!! $errors->first('password_confirmation', ':message') !!}</span>
                         </div>
                     </div>
                     <button class="btn btn-lg btn-success btn-block" type="submit">Reset Password</button>

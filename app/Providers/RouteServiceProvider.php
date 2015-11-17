@@ -40,10 +40,26 @@ class RouteServiceProvider extends ServiceProvider
         $router->group(['namespace' => $this->namespace], function ($router) {
 
             $this->authorizedRoutes($router);
-
             $this->guestRoutes($router);
+            $this->publicRoutes($router);
 
             require app_path('Http/routes.php');
+        });
+    }
+
+    /**
+     * Public routes.
+     *
+     * @param Router $router
+     */
+    protected function publicRoutes(Router $router)
+    {
+        $router->group([
+            'namespace' => 'Auth',
+            'prefix' => 'auth'
+        ], function () {
+            // User email verification
+            $this->get('register/verify/{token}', 'AuthController@verifyEmail');
         });
     }
 
@@ -55,13 +71,12 @@ class RouteServiceProvider extends ServiceProvider
     protected function authorizedRoutes(Router $router)
     {
         $router->group([
-            'middleware' => IsAuthenticated::class, 'namespace' => 'Auth', 'prefix' => 'auth'
+            'middleware' => IsAuthenticated::class,
+            'namespace' => 'Auth',
+            'prefix' => 'auth'
         ], function () {
             // Authentication logout
             $this->get('logout', 'AuthController@getLogout')->name('logout');
-
-            // User email verification
-            $this->get('register/verify/{token}', 'AuthController@verifyEmail');
 
             // User profile
             $this->get('profile',           'ProfileController@index')->name('profile');
@@ -78,7 +93,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function guestRoutes(Router $router)
     {
         $router->group([
-            'middleware' => IsGuest::class, 'namespace' => 'Auth', 'prefix' => 'auth'
+            'middleware' => IsGuest::class,
+            'namespace' => 'Auth',
+            'prefix' => 'auth'
         ], function () {
             // Authentication login
             $this->get('login',  'AuthController@getLogin')->name('login');
@@ -94,8 +111,8 @@ class RouteServiceProvider extends ServiceProvider
             // Password reset
             $this->get('password/email',         'PasswordController@getEmail')->name('password_forget');
             $this->post('password/email',        'PasswordController@postEmail')->name('password_send');
-            $this->get('password/reset/{token}', 'PasswordController@getReset')->name('password_token');
-            $this->post('password/reset',        'PasswordController@postReset')->name('password_reset');
+            $this->get('password/reset/{token}', 'PasswordController@getPassword')->name('password_token');
+            $this->post('password/reset',        'PasswordController@postPassword')->name('password_reset');
         });
     }
 }

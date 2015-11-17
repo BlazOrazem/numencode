@@ -26,8 +26,18 @@ class UserRepository
      */
     protected $avatar;
 
+    /**
+     * Authentication guard.
+     *
+     * @var object
+     */
     private $auth;
 
+    /**
+     * User tokens.
+     *
+     * @var object
+     */
     private $tokens;
 
     public function __construct(Guard $auth, TokenRepositoryInterface $tokens)
@@ -73,6 +83,8 @@ class UserRepository
     {
         $this->auth->login($user, $remember);
 
+        flash()->success("Welcome " . $user->name . "!", "You have successfully logged in.");
+
         event('user.logged_in', $user);
     }
 
@@ -100,7 +112,7 @@ class UserRepository
      *
      * @param SocialUser $socialUser
      * @param $socialProvider
-     * @return User object
+     * @return object
      */
     public function createSocialUser(SocialUser $socialUser, $socialProvider)
     {
@@ -143,7 +155,7 @@ class UserRepository
      */
     protected function createFromSocialUser(SocialUser $socialUser, $socialProvider)
     {
-        return $this->create([
+        $user = $this->create([
             'name'                 => $socialUser->name,
             'nickname'             => $socialUser->nickname,
             'email'                => $socialUser->email,
@@ -154,6 +166,10 @@ class UserRepository
             'social_provider_id'   => $socialUser->getId(),
             'is_verified'          => true,
         ]);
+
+        event('user.registered', $user);
+
+        return $user;
     }
 
     /**
@@ -244,7 +260,7 @@ class UserRepository
      * Reset user's password.
      *
      * @param User $user
-     * @return array|null
+     * @return null
      */
     public function resetPassword(User $user)
     {
@@ -253,4 +269,18 @@ class UserRepository
         return event('user.reset_password', [$user, $token]);
     }
 
+    /**
+     * Change user's password.
+     *
+     * @param User $user
+     * @param $password
+     * @return null
+     */
+    public function changePassword(User $user, $password)
+    {
+        $user->password = $password;
+        $user->save();
+
+        return event('user.reset_password_changed', [$user]);
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use App\Repositories\UserRepository;
 
 class LoginRequest extends Request
@@ -55,5 +54,4 @@ class LoginRequest extends Request
     {
         return $this->resolvedUser;
     }
-
 }

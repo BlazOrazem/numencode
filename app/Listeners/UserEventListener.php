@@ -28,24 +28,6 @@ class UserEventListener
     }
 
     /**
-     * Event on user login.
-     *
-     * @param User $user
-     */
-    public function onUserLogin(User $user)
-    {
-        flash()->success("Welcome " . $user->name . "!", "You have successfully logged in.");
-    }
-
-    /**
-     * Event on user logout.
-     */
-    public function onUserLogout()
-    {
-        flash()->success("Logged out", "You have successfully logged out.\\nWe hope to see you again soon.");
-    }
-
-    /**
      * Event on user's password reset request.
      *
      * @param User $user
@@ -55,5 +37,4 @@ class UserEventListener
     {
         $this->mailer->sendPasswordResetTo($user, $token);
     }
-
 }

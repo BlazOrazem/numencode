@@ -12,6 +12,11 @@ abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Authenticated user.
+     *
+     * @var
+     */
     protected $user;
 
     /**
@@ -22,7 +27,6 @@ abstract class Controller extends BaseController
         $this->user = Auth::user();
 
         view()->share('user', $this->user);
-        view()->share('signedIn', Auth::check());
+        view()->share('signedIn', (bool)Auth::check());
     }
-
 }

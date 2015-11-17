@@ -8,7 +8,7 @@
     <table>
         <tr>
             <td>
-                <h1>Reset Your Password</h1>
+                <h2>Reset Your Password</h2>
                 <p>Click here to reset your password:</p>
                 <!-- button -->
                 <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">

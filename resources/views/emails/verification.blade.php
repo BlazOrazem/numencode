@@ -8,7 +8,7 @@
     <table>
         <tr>
             <td>
-                <h1>Verify Your E-mail Address</h1>
+                <h2>Verify Your E-mail Address</h2>
                 <p>We just need you to verify your email address real quick!</p>
                 <!-- button -->
                 <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">

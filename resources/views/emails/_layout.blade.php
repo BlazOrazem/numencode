@@ -122,13 +122,13 @@
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 30px;
         }
         h2 {
-            font-size: 28px;
+            font-size: 24px;
         }
         h3 {
-            font-size: 22px;
+            font-size: 20px;
         }
 
         p,
