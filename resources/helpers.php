@@ -1,13 +1,13 @@
 <?php
 
-use App\Utils\Flash;
+use Numencode\Utils\Flash;
 
 /**
  * Flash message handler.
  *
  * @param string|null $title
  * @param string|null $message
- * @return App\Utils\Flash
+ * @return Numencode\Utils\Flash
  */
 if (!function_exists('flash'))
 {

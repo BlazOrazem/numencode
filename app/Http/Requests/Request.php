@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Numencode\Http\Requests;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Http\FormRequest;

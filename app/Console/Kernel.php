@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace Numencode\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Inspire::class,
-        \App\Console\Commands\TruncateTable::class,
+        \Numencode\Console\Commands\Inspire::class,
+        \Numencode\Console\Commands\TruncateTable::class,
     ];
 
     /**

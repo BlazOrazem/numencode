@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Numencode\Http\Requests;
 
-use App\Repositories\UserRepository;
+use Numencode\Repositories\UserRepository;
 
 class ResetRequest extends Request
 {

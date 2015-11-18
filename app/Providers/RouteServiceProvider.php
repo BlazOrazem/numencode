@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Providers;
+namespace Numencode\Providers;
 
 use Illuminate\Routing\Router;
-use App\Http\Middleware\IsGuest;
-use App\Http\Middleware\IsAuthenticated;
+use Numencode\Http\Middleware\IsGuest;
+use Numencode\Http\Middleware\IsAuthenticated;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -16,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = 'Numencode\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

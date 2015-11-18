@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Numencode\Http\Controllers\Auth;
 
-use App\Utils\AppMailer;
+use Numencode\Utils\AppMailer;
 use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
-use App\Http\Controllers\Controller;
+use Numencode\Repositories\UserRepository;
+use Numencode\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {

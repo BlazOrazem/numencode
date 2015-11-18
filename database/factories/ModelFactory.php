@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+$factory->define(Numencode\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'nickname' => $faker->name,

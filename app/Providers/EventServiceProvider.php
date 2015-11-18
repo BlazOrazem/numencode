@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Numencode\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         $events->listen(
-            'user.reset_password', 'App\Listeners\UserEventListener@onPasswordReset'
+            'user.reset_password', 'Numencode\Listeners\UserEventListener@onPasswordReset'
         );
     }
 }

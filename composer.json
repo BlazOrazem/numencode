@@ -27,7 +27,7 @@
           "resources/helpers.php"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "Numencode\\": "app/"
         }
     },
     "autoload-dev": {

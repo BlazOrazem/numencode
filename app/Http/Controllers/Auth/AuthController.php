@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Numencode\Http\Controllers\Auth;
 
 use Validator;
-use App\Models\User;
-use App\Utils\AppMailer;
+use Numencode\Models\User;
+use Numencode\Utils\AppMailer;
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
-use App\Http\Controllers\Controller;
+use Numencode\Http\Requests\LoginRequest;
+use Numencode\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\UserRepository;
-use App\Http\Requests\RegistrationRequest;
+use Numencode\Repositories\UserRepository;
+use Numencode\Http\Requests\RegistrationRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

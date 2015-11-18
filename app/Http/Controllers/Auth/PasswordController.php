@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Numencode\Http\Controllers\Auth;
 
-use App\Http\Requests\ResetRequest;
-use App\Repositories\UserRepository;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ResetPasswordRequest;
+use Numencode\Http\Requests\ResetRequest;
+use Numencode\Repositories\UserRepository;
+use Numencode\Http\Controllers\Controller;
+use Numencode\Http\Requests\ResetPasswordRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

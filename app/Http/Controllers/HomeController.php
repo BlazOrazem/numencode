@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Numencode\Http\Controllers;
 
-use App\Http\Requests;
+use Numencode\Http\Requests;
 
 class HomeController extends Controller
 {

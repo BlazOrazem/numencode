@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace Numencode\Repositories;
 
 use Image;
-use App\Models\User;
+use Numencode\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Laravel\Socialite\AbstractUser as SocialUser;
@@ -17,7 +17,7 @@ class UserRepository
      *
      * @var string
      */
-    protected $avatarPath = 'uploads/avatars';
+    protected $avatarPath = '/uploads/avatars';
 
     /**
      * Avatar file name.
@@ -283,7 +283,7 @@ class UserRepository
      */
     public function changePassword(User $user, $password)
     {
-        $user->password = $password;
+        $user->password = bcrypt($password);
         $user->save();
 
         return event('user.reset_password_changed', [$user]);

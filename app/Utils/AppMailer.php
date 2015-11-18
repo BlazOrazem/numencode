@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Utils;
+namespace Numencode\Utils;
 
-use App\Models\User;
+use Numencode\Models\User;
 use Illuminate\Contracts\Mail\Mailer;
 
 class AppMailer

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace Numencode\Listeners;
 
-use App\Models\User;
-use App\Utils\AppMailer;
+use Numencode\Models\User;
+use Numencode\Utils\AppMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

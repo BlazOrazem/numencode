@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace Numencode\Providers;
 
-use App\Models\User;
+use Numencode\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
