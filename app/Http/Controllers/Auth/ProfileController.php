@@ -80,10 +80,10 @@ class ProfileController extends Controller
 
         if (!$this->user->is_verified) {
             $mailer->sendEmailVerificationTo($this->user);
-            flash()->overlay("Profile updated",
-                "Email verification link has been sent to your email address.\\nPlease check your inbox and click on the link.", "success");
+            flash()->overlay(trans('messages.user_profile.title'),
+                trans('messages.user_profile.verification_sent', ['email' => $this->user->email]), 'success');
         } else {
-            flash()->success("Success", "Your profile was successfully updated.");
+            flash()->success(trans('messages.success'), trans('messages.user_profile.profile_success'));
         }
 
         return redirect()->back();
@@ -105,7 +105,7 @@ class ProfileController extends Controller
         $this->user->password = bcrypt($userData['password']);
         $this->user->save();
 
-        flash()->success("Success", "Your password was successfully updated.");
+        flash()->success(trans('messages.success'), trans('messages.user_profile.password_success'));
 
         return redirect()->back();
     }

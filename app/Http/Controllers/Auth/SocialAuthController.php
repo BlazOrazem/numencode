@@ -50,8 +50,6 @@ class SocialAuthController extends Controller
 
         $repository->login($user, true);
 
-        flash()->success("Welcome " . $user->name . "!", "You have successfully logged in.");
-
         return redirect('/');
     }
 

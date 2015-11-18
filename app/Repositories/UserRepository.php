@@ -89,28 +89,9 @@ class UserRepository
     {
         $this->auth->login($user, $remember);
 
-        flash()->success("Welcome " . $user->name . "!", "You have successfully logged in.");
+        flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
 
         event('user.logged_in', $user);
-    }
-
-    /**
-     * Create a new user form request.
-     *
-     * @param Request $request
-     * @return object
-     */
-    public function createFromRequest(Request $request)
-    {
-        return $this->create([
-            'name' => $request->name,
-            'nickname' => $request->nickname,
-            'email' => $request->email,
-            'password' => $request->password,
-            'avatar' => $this->makeAvatarFromFile($request->avatar),
-            'avatar_thumbnail' => $this->makeAvatarFromFile($request->avatar, true),
-            'is_verified' => false,
-        ]);
     }
 
     /**
@@ -175,6 +156,25 @@ class UserRepository
         event('user.registered', $user);
 
         return $user;
+    }
+
+    /**
+     * Create a new user form request.
+     *
+     * @param Request $request
+     * @return object
+     */
+    public function createFromRequest(Request $request)
+    {
+        return $this->create([
+            'name' => $request->name,
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+            'password' => $request->password,
+            'avatar' => $request->avatar ? $this->makeAvatarFromFile($request->avatar) : null,
+            'avatar_thumbnail' => $request->avatar ? $this->makeAvatarFromFile($request->avatar, true) : null,
+            'is_verified' => false,
+        ]);
     }
 
     /**

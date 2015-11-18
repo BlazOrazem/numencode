@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         $this->auth = $auth;
 
-        $this->middleware('guest', ['except' => ['getLogout']]);
+        $this->middleware('guest', ['except' => ['getLogout', 'verifyEmail']]);
     }
 
     /**
@@ -71,7 +71,7 @@ class AuthController extends Controller
 
         $repository->login($user, $request->remember);
 
-        flash()->success("Welcome " . $user->name . "!", "You have successfully logged in.");
+        flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
 
         return redirect('/');
     }
@@ -117,7 +117,7 @@ class AuthController extends Controller
     {
         $this->auth->logout();
 
-        flash()->success("Logged out", "You have successfully logged out.\\nWe hope to see you again soon.");
+        flash()->success(trans('messages.logout.title'), trans('messages.logout.content'));
 
         event('user.logged_out');
 
@@ -138,13 +138,14 @@ class AuthController extends Controller
         if ($user) {
             $user->verifyEmail();
 
-            flash()->overlay("Email verified", "You successfully verified your email address {$user->email}.", "success");
+            flash()->overlay(trans('messages.email_verified.title'),
+                trans('messages.email_verified.success', ['email' => $user->email]), 'success');
 
             event('user.email_verified');
 
             $repository->login($user);
         } else {
-            flash()->overlay("Error", "This email address has already been verified.", "error");
+            flash()->overlay(trans('messages.error'), trans('messages.email_verified.error'), 'error');
         }
 
         return redirect('/');

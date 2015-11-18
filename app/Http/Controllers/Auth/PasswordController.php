@@ -52,8 +52,8 @@ class PasswordController extends Controller
 
         $repository->resetPassword($user);
 
-        flash()->overlay("Forgotten password",
-            "Password reset link was sent to your email address {$request->email}.\\nPlease check your inbox.", "success");
+        flash()->overlay(trans('messages.password_reset.forgotten'),
+            trans('messages.password_reset.link_sent', ['email' => $request->email]), 'success');
 
         return redirect('/');
     }
@@ -82,7 +82,7 @@ class PasswordController extends Controller
 
         $repository->login($request->resolvedUser());
 
-        flash()->overlay("Password reset", "Your password was successfully changed.", "success");
+        flash()->overlay(trans('messages.password_reset.title'), trans('messages.password_reset.success'), 'success');
 
         return redirect('/');
     }
