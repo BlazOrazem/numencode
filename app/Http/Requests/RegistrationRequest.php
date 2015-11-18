@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 class RegistrationRequest extends Request
 {
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the registration request.
      *
      * @return array
      */

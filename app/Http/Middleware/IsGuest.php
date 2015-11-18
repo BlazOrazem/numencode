@@ -8,20 +8,25 @@ use Illuminate\Http\Request;
 
 class IsGuest
 {
-    private $guard;
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
 
     /**
      * Create a new IsGuest middleware instance.
      *
-     * @param Guard $guard
+     * @param Guard $auth
      */
-    public function __construct(Guard $guard)
+    public function __construct(Guard $auth)
     {
-        $this->guard = $guard;
+        $this->auth = $auth;
     }
 
     /**
-     * Check if user is a guest or else redirect to a homepage.
+     * Check if user is guest or else redirect to a homepage.
      *
      * @param Request $request
      * @param callable $next
@@ -29,7 +34,7 @@ class IsGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if($this->guard->check()) {
+        if ($this->auth->check()) {
             return redirect('/');
         }
 

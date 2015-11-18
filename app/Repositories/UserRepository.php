@@ -27,11 +27,11 @@ class UserRepository
     protected $avatar;
 
     /**
-     * Authentication guard.
+     * The Guard implementation.
      *
-     * @var object
+     * @var Guard
      */
-    private $auth;
+    protected $auth;
 
     /**
      * User tokens.
@@ -40,6 +40,12 @@ class UserRepository
      */
     private $tokens;
 
+    /**
+     * Create a new user repository instance.
+     *
+     * @param Guard $auth
+     * @param TokenRepositoryInterface $tokens
+     */
     public function __construct(Guard $auth, TokenRepositoryInterface $tokens)
     {
         $this->auth = $auth;
@@ -66,7 +72,7 @@ class UserRepository
      */
     public function getByLogin($email, $password)
     {
-        if($user = $this->getByEmail($email)) {
+        if ($user = $this->getByEmail($email)) {
             return password_verify($password, $user['password']) ? $user : null;
         }
 
@@ -89,7 +95,7 @@ class UserRepository
     }
 
     /**
-     * Create a new user from request.
+     * Create a new user form request.
      *
      * @param Request $request
      * @return object
@@ -97,18 +103,18 @@ class UserRepository
     public function createFromRequest(Request $request)
     {
         return $this->create([
-            'name'             => $request->name,
-            'nickname'         => $request->nickname,
-            'email'            => $request->email,
-            'password'         => $request->password,
-            'avatar'           => $this->makeAvatarFromFile($request->avatar),
+            'name' => $request->name,
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+            'password' => $request->password,
+            'avatar' => $this->makeAvatarFromFile($request->avatar),
             'avatar_thumbnail' => $this->makeAvatarFromFile($request->avatar, true),
-            'is_verified'      => false,
+            'is_verified' => false,
         ]);
     }
 
     /**
-     * Find an existing user or create a new one.
+     * Find an existing user or create a new one with social provider.
      *
      * @param SocialUser $socialUser
      * @param $socialProvider
@@ -125,7 +131,6 @@ class UserRepository
         return $this->createFromSocialUser($socialUser, $socialProvider);
     }
 
-
     /**
      * Merge social user with an existing user.
      *
@@ -135,12 +140,12 @@ class UserRepository
      */
     protected function mergeSocialUser(User $user, SocialUser $socialUser, $provider)
     {
-        $user->nickname             = $user->nickname ?: $socialUser->nickname;
-        $user->avatar               = $user->avatar ?: $this->makeAvatarFromUrl($socialUser->avatar);
-        $user->avatar_thumbnail     = $user->avatar_thumbnail ?: $this->makeAvatarFromUrl($socialUser->avatar, true);
+        $user->nickname = $user->nickname ?: $socialUser->nickname;
+        $user->avatar = $user->avatar ?: $this->makeAvatarFromUrl($socialUser->avatar);
+        $user->avatar_thumbnail = $user->avatar_thumbnail ?: $this->makeAvatarFromUrl($socialUser->avatar, true);
         $user->social_provider_type = $provider;
-        $user->social_provider_id   = $socialUser->getId();
-        $user->is_verified          = true;
+        $user->social_provider_id = $socialUser->getId();
+        $user->is_verified = true;
         $user->save();
 
         event('user.merged', [$user, $provider]);
@@ -156,15 +161,15 @@ class UserRepository
     protected function createFromSocialUser(SocialUser $socialUser, $socialProvider)
     {
         $user = $this->create([
-            'name'                 => $socialUser->name,
-            'nickname'             => $socialUser->nickname,
-            'email'                => $socialUser->email,
-            'password'             => '',
-            'avatar'               => $this->makeAvatarFromUrl($socialUser->avatar),
-            'avatar_thumbnail'     => $this->makeAvatarFromUrl($socialUser->avatar, true),
+            'name' => $socialUser->name,
+            'nickname' => $socialUser->nickname,
+            'email' => $socialUser->email,
+            'password' => '',
+            'avatar' => $this->makeAvatarFromUrl($socialUser->avatar),
+            'avatar_thumbnail' => $this->makeAvatarFromUrl($socialUser->avatar, true),
             'social_provider_type' => $socialProvider,
-            'social_provider_id'   => $socialUser->getId(),
-            'is_verified'          => true,
+            'social_provider_id' => $socialUser->getId(),
+            'is_verified' => true,
         ]);
 
         event('user.registered', $user);
@@ -181,15 +186,15 @@ class UserRepository
     public function create(array $data)
     {
         $user = User::create([
-            'name'                 => $data['name'],
-            'nickname'             => $data['nickname'],
-            'email'                => $data['email'],
-            'password'             => bcrypt($data['password']),
-            'avatar'               => $data['avatar'],
-            'avatar_thumbnail'     => $data['avatar_thumbnail'],
+            'name' => $data['name'],
+            'nickname' => $data['nickname'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'avatar' => $data['avatar'],
+            'avatar_thumbnail' => $data['avatar_thumbnail'],
             'social_provider_type' => isset($data['social_provider_type']) ? $data['social_provider_type'] : null,
-            'social_provider_id'   => isset($data['social_provider_id']) ? $data['social_provider_id'] : null,
-            'is_verified'          => $data['is_verified'],
+            'social_provider_id' => isset($data['social_provider_id']) ? $data['social_provider_id'] : null,
+            'is_verified' => $data['is_verified'],
         ]);
 
         event('user.registered', $user);

@@ -24,8 +24,11 @@ class AuthController extends Controller
      */
     protected $redirectPath = '/';
 
-    protected $users;
-
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
     protected $auth;
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
@@ -56,11 +59,11 @@ class AuthController extends Controller
     }
 
     /**
-     * Login user.
+     * Create user login.
      *
      * @param LoginRequest $request
      * @param UserRepository $repository
-     * @return array
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(LoginRequest $request, UserRepository $repository)
     {
@@ -106,7 +109,7 @@ class AuthController extends Controller
     }
 
     /**
-     * User logout.
+     * Logout user.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -141,7 +144,7 @@ class AuthController extends Controller
 
             $repository->login($user);
         } else {
-            flash()->overlay("Error", "This email address has been already verified.", "error");
+            flash()->overlay("Error", "This email address has already been verified.", "error");
         }
 
         return redirect('/');

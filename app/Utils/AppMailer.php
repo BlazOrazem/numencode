@@ -5,7 +5,8 @@ namespace App\Utils;
 use App\Models\User;
 use Illuminate\Contracts\Mail\Mailer;
 
-class AppMailer {
+class AppMailer
+{
 
     protected $mailer;
     protected $from;
@@ -16,7 +17,7 @@ class AppMailer {
     protected $data = [];
 
     /**
-     * Create a new AppMailer instance.
+     * Create a new app mailer instance.
      *
      * @param Mailer $mailer
      */
@@ -28,7 +29,7 @@ class AppMailer {
     }
 
     /**
-     * Send email verification to given user.
+     * Send email verification to a given user.
      *
      * @param User $user
      */
@@ -43,7 +44,7 @@ class AppMailer {
     }
 
     /**
-     * Send password reset link to given user.
+     * Send password reset link to a given user.
      *
      * @param User $user
      * @param $token
@@ -63,7 +64,7 @@ class AppMailer {
      */
     public function deliver()
     {
-        $this->mailer->send($this->view, $this->data, function($message) {
+        $this->mailer->send($this->view, $this->data, function ($message) {
             $message->from($this->from, $this->fromName)
                 ->to($this->to)
                 ->subject($this->subject);

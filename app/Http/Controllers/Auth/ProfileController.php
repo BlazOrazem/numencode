@@ -6,17 +6,21 @@ use App\Utils\AppMailer;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     /**
-     * User Repository.
+     * The User Repository implementation.
      *
      * @var UserRepository
      */
-    private $users;
+    protected $users;
 
+    /**
+     * Create a new profile controller instance.
+     *
+     * @param UserRepository $users
+     */
     public function __construct(UserRepository $users)
     {
         parent::__construct();
@@ -27,9 +31,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display a profile update page.
+     * Page with profile update form.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -39,7 +43,7 @@ class ProfileController extends Controller
     /**
      * Display the specified user profile.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,9 +63,9 @@ class ProfileController extends Controller
         $userData = $request->all();
 
         $this->validate($request, [
-            'name'     => 'required|max:255',
+            'name' => 'required|max:255',
             'nickname' => $userData['nickname'] != $this->user->nickname ? 'max:255|unique:users' : '',
-            'email'    => $userData['email'] != $this->user->email ? 'required|email|max:255|unique:users' : '',
+            'email' => $userData['email'] != $this->user->email ? 'required|email|max:255|unique:users' : '',
         ]);
 
         if ($userData['email'] != $this->user->email) {
@@ -76,7 +80,8 @@ class ProfileController extends Controller
 
         if (!$this->user->is_verified) {
             $mailer->sendEmailVerificationTo($this->user);
-            flash()->overlay("Profile updated", "Email verification link has been sent to your email address.\\nPlease check your inbox and click on the link.", "success");
+            flash()->overlay("Profile updated",
+                "Email verification link has been sent to your email address.\\nPlease check your inbox and click on the link.", "success");
         } else {
             flash()->success("Success", "Your profile was successfully updated.");
         }
@@ -104,5 +109,4 @@ class ProfileController extends Controller
 
         return redirect()->back();
     }
-
 }

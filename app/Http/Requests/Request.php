@@ -36,9 +36,8 @@ abstract class Request extends FormRequest
      */
     public function customRule($rule, $method)
     {
-        Validator::extend($rule, function($attribute, $value, $parameters) use ($method) {
+        Validator::extend($rule, function ($attribute, $value, $parameters) use ($method) {
             return app()->call([$this, $method], compact('attribute', 'value', 'parameters'));
         });
     }
-
 }

@@ -11,11 +11,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class UserEventListener
 {
     /**
-     * App Mailer
+     * The app mailer implementation.
      *
-     * @var Mailer
+     * @var AppMailer
      */
-    private $mailer;
+    protected $mailer;
 
     /**
      * Create a new user event listener instance.
@@ -28,7 +28,7 @@ class UserEventListener
     }
 
     /**
-     * Event on user's password reset request.
+     * Send password reset link to given user.
      *
      * @param User $user
      * @param $token

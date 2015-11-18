@@ -7,14 +7,14 @@ use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 class ResetPasswordRequest extends ResetRequest
 {
     /**
-     * Login post resolved user.
+     * Existing user.
      *
-     * @var
+     * @var User
      */
     protected $resolvedUser;
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the reset password request.
      *
      * @return array
      */

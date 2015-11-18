@@ -29,6 +29,6 @@ class TruncateTable extends Command
     public function handle()
     {
         DB::table($this->argument('table_name'))->truncate();
-        $this->comment(PHP_EOL.'Database table "'.$this->argument('table_name').'" successfully truncated.'.PHP_EOL);
+        $this->comment(PHP_EOL . 'Database table "' . $this->argument('table_name') . '" successfully truncated.' . PHP_EOL);
     }
 }

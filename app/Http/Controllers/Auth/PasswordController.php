@@ -30,7 +30,7 @@ class PasswordController extends Controller
     }
 
     /**
-     * Show password reset page.
+     * Page with password reset request form.
      *
      * @return \Illuminate\View\View
      */
@@ -52,13 +52,14 @@ class PasswordController extends Controller
 
         $repository->resetPassword($user);
 
-        flash()->overlay("Forgotten password", "Password reset link was sent to your email address {$request->email}.\\nPlease check your inbox.", "success");
+        flash()->overlay("Forgotten password",
+            "Password reset link was sent to your email address {$request->email}.\\nPlease check your inbox.", "success");
 
         return redirect('/');
     }
 
     /**
-     * Display the password reset view for the given token.
+     * Page with password reset form.
      *
      * @param string $token
      * @return \Illuminate\View\View
@@ -69,7 +70,7 @@ class PasswordController extends Controller
     }
 
     /**
-     * Change password.
+     * Change user's password.
      *
      * @param ResetPasswordRequest $request
      * @param UserRepository $repository

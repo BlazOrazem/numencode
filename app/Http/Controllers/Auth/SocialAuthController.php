@@ -29,7 +29,7 @@ class SocialAuthController extends Controller
     protected $redirect = null;
 
     /**
-     * Login / Register user via social provider.
+     * Login or register a user with social provider.
      *
      * @param Request $request
      * @param UserRepository $repository
@@ -62,13 +62,13 @@ class SocialAuthController extends Controller
      */
     protected function assertProvider($provider)
     {
-        if(!in_array($provider, $this->supportedProviders)) {
+        if (!in_array($provider, $this->supportedProviders)) {
             abort(404, 'Unsupported provider [' . $provider . ']');
         }
     }
 
     /**
-     * Authorize user on social provider.
+     * Get user authorization from social provider.
      *
      * @param $provider
      * @return mixed
@@ -88,5 +88,4 @@ class SocialAuthController extends Controller
     {
         return Socialite::driver($provider)->user();
     }
-
 }

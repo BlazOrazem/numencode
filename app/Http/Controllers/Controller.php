@@ -13,9 +13,9 @@ abstract class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * Authenticated user.
+     * Authenticated user implementation.
      *
-     * @var
+     * @var User
      */
     protected $user;
 

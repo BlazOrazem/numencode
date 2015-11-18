@@ -7,14 +7,14 @@ use App\Repositories\UserRepository;
 class ResetRequest extends Request
 {
     /**
-     * Login post resolved user.
+     * Existing user.
      *
-     * @var
+     * @var User
      */
     protected $resolvedUser;
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the reset request.
      *
      * @return array
      */
@@ -35,7 +35,7 @@ class ResetRequest extends Request
      */
     public function checkEmail(UserRepository $repository)
     {
-        if($this->email) {
+        if ($this->email) {
             $this->resolvedUser = $repository->getByEmail($this->email);
 
             return !empty($this->resolvedUser);
@@ -45,7 +45,7 @@ class ResetRequest extends Request
     }
 
     /**
-     * Logged in user.
+     * Return existing user.
      *
      * @return object
      */

@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
@@ -79,8 +79,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->get('logout', 'AuthController@getLogout')->name('logout');
 
             // User profile
-            $this->get('profile',           'ProfileController@index')->name('profile');
-            $this->post('profile/update',   'ProfileController@updateProfile')->name('profile_update');
+            $this->get('profile', 'ProfileController@index')->name('profile');
+            $this->post('profile/update', 'ProfileController@updateProfile')->name('profile_update');
             $this->post('profile/password', 'ProfileController@updatePassword')->name('password_update');
         });
     }
@@ -98,21 +98,21 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'auth'
         ], function () {
             // Authentication login
-            $this->get('login',  'AuthController@getLogin')->name('login');
+            $this->get('login', 'AuthController@getLogin')->name('login');
             $this->post('login', 'AuthController@postLogin')->name('login_action');
 
             // Registration
-            $this->get('register',  'AuthController@getRegister')->name('register');
+            $this->get('register', 'AuthController@getRegister')->name('register');
             $this->post('register', 'AuthController@postRegister')->name('register_action');
 
             // Social authentication
             $this->get('social/{provider?}', 'SocialAuthController@getLogin')->name('login_social');
 
             // Password reset
-            $this->get('password/email',         'PasswordController@getEmail')->name('password_forget');
-            $this->post('password/email',        'PasswordController@postEmail')->name('password_send');
+            $this->get('password/email', 'PasswordController@getEmail')->name('password_forget');
+            $this->post('password/email', 'PasswordController@postEmail')->name('password_send');
             $this->get('password/reset/{token}', 'PasswordController@getPassword')->name('password_token');
-            $this->post('password/reset',        'PasswordController@postPassword')->name('password_reset');
+            $this->post('password/reset', 'PasswordController@postPassword')->name('password_reset');
         });
     }
 }

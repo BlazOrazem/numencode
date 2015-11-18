@@ -2,8 +2,8 @@
 
 namespace App\Utils;
 
-class Flash {
-
+class Flash
+{
     /**
      * Create a flash message.
      *
@@ -16,10 +16,10 @@ class Flash {
     public function create($title, $message, $level, $key = 'flash_message', $button = null)
     {
         session()->flash($key, [
-            'title'   => $title,
+            'title' => $title,
             'message' => $message,
-            'level'   => $level,
-            'button'  => $button
+            'level' => $level,
+            'button' => $button
         ]);
     }
 
@@ -82,5 +82,4 @@ class Flash {
     {
         return $this->create($title, $message, $level, 'flash_message_overlay', $button);
     }
-
 }

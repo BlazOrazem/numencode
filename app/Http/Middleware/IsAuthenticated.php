@@ -8,16 +8,21 @@ use Illuminate\Http\Request;
 
 class IsAuthenticated
 {
-    private $guard;
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
 
     /**
      * Create a new IsAuthenticated middleware instance.
      *
-     * @param Guard $guard
+     * @param Guard $auth
      */
-    public function __construct(Guard $guard)
+    public function __construct(Guard $auth)
     {
-        $this->guard = $guard;
+        $this->auth = $auth;
     }
 
     /**
@@ -29,7 +34,7 @@ class IsAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!$this->guard->check()) {
+        if (!$this->auth->check()) {
             return view('auth.login');
         }
 

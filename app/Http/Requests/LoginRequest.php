@@ -7,14 +7,14 @@ use App\Repositories\UserRepository;
 class LoginRequest extends Request
 {
     /**
-     * Login post resolved user.
+     * Existing user.
      *
-     * @var
+     * @var User
      */
     protected $resolvedUser;
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the login request.
      *
      * @return array
      */
@@ -23,7 +23,7 @@ class LoginRequest extends Request
         $this->customRule('login', 'checkLogin');
 
         return [
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required|login'
         ];
     }
@@ -36,7 +36,7 @@ class LoginRequest extends Request
      */
     public function checkLogin(UserRepository $repository)
     {
-        if($this->email && $this->password) {
+        if ($this->email && $this->password) {
             $this->resolvedUser = $repository->getByLogin($this->email, $this->password);
 
             return !empty($this->resolvedUser);
@@ -46,7 +46,7 @@ class LoginRequest extends Request
     }
 
     /**
-     * Logged in user.
+     * Return existing user.
      *
      * @return object
      */
