@@ -31,7 +31,6 @@ return [
     ],
     'password_reset' => [
         'title'     => 'Password reset',
-        'success'   => 'Your password was successfully changed.',
         'forgotten' => 'Forgotten password',
         'link_sent' => "Password reset link was sent to your email address :email.\\nPlease check your inbox.",
     ],

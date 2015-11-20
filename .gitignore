@@ -3,5 +3,6 @@
 /notes
 /vendor
 .env
+_ide_helper.php
 Homestead.yaml
 Homestead.json

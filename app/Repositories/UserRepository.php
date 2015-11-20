@@ -17,7 +17,7 @@ class UserRepository
      *
      * @var string
      */
-    protected $avatarPath = '/uploads/avatars';
+    protected $avatarPath = 'uploads/avatars';
 
     /**
      * Avatar file name.
@@ -203,6 +203,40 @@ class UserRepository
     }
 
     /**
+     * Update user's profile.
+     *
+     * @param User $user
+     * @param Request $request
+     */
+    public function updateUser(User $user, Request $request)
+    {
+        if ($request->email != $user->email) {
+            $user->email = $request->email;
+            $user->token = str_random(30);
+            $user->is_verified = false;
+        }
+        
+        if ($request->avatar) {
+            if ($user->avatar) {
+                $this->deleteAvatarFile($user);
+            }
+
+            $user->avatar = $this->makeAvatarFromFile($request->avatar);
+            $user->avatar_thumbnail = $this->makeAvatarFromFile($request->avatar, true);
+        }
+
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->name = $request->name;
+        $user->nickname = $request->nickname;
+        $user->save();
+
+        event('user.update_profile', $user);
+    }
+
+    /**
      * Create avatar image from uploaded file.
      *
      * @param UploadedFile $file
@@ -259,6 +293,17 @@ class UserRepository
         $image->save($filePath);
 
         return $filePath;
+    }
+
+    /**
+     * Delete user's avatar files.
+     *
+     * @param User $user
+     */
+    protected function deleteAvatarFile(User $user)
+    {
+        unlink($user->avatar);
+        unlink($user->avatar_thumbnail);
     }
 
     /**

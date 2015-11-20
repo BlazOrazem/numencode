@@ -2,10 +2,10 @@
 
 namespace Numencode\Http\Controllers\Auth;
 
-use Numencode\Utils\AppMailer;
 use Illuminate\Http\Request;
 use Numencode\Repositories\UserRepository;
 use Numencode\Http\Controllers\Controller;
+use Numencode\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -54,58 +54,14 @@ class ProfileController extends Controller
     /**
      * Update the user profile.
      *
-     * @param Request $request
-     * @param AppMailer $mailer
+     * @param ProfileRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateProfile(Request $request, AppMailer $mailer)
+    public function updateProfile(ProfileRequest $request)
     {
-        $userData = $request->all();
+        $this->users->updateUser($this->user, $request);
 
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'nickname' => $userData['nickname'] != $this->user->nickname ? 'max:255|unique:users' : '',
-            'email' => $userData['email'] != $this->user->email ? 'required|email|max:255|unique:users' : '',
-        ]);
-
-        if ($userData['email'] != $this->user->email) {
-            $this->user->email = $userData['email'];
-            $this->user->token = str_random(30);
-            $this->user->is_verified = false;
-        }
-
-        $this->user->name = $userData['name'];
-        $this->user->nickname = $userData['nickname'];
-        $this->user->save();
-
-        if (!$this->user->is_verified) {
-            $mailer->sendEmailVerificationTo($this->user);
-            flash()->overlay(trans('messages.user_profile.title'),
-                trans('messages.user_profile.verification_sent', ['email' => $this->user->email]), 'success');
-        } else {
-            flash()->success(trans('messages.success'), trans('messages.user_profile.profile_success'));
-        }
-
-        return redirect()->back();
-    }
-
-    /**
-     * Update the user password.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function updatePassword(Request $request)
-    {
-        $this->validate($request, [
-            'password' => 'required|confirmed|min:6',
-        ]);
-
-        $userData = $request->all();
-        $this->user->password = bcrypt($userData['password']);
-        $this->user->save();
-
-        flash()->success(trans('messages.success'), trans('messages.user_profile.password_success'));
+        flash()->success(trans('messages.success'), trans('messages.user_profile.profile_success'));
 
         return redirect()->back();
     }

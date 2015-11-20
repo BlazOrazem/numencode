@@ -27,5 +27,9 @@ class EventServiceProvider extends ServiceProvider
         $events->listen(
             'user.reset_password', 'Numencode\Listeners\UserEventListener@onPasswordReset'
         );
+
+        $events->listen(
+            'user.update_profile', 'Numencode\Listeners\UserEventListener@onProfileUpdate'
+        );
     }
 }

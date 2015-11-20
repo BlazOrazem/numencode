@@ -81,7 +81,6 @@ class RouteServiceProvider extends ServiceProvider
             // User profile
             $this->get('profile', 'ProfileController@index')->name('profile');
             $this->post('profile/update', 'ProfileController@updateProfile')->name('profile_update');
-            $this->post('profile/password', 'ProfileController@updatePassword')->name('password_update');
         });
     }
 

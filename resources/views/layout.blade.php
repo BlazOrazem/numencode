@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Laravel Clean Slate</title>
+    <base href="http://cleanslate.app/">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('css/libs.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -36,7 +37,7 @@
                     Logged in as {{ $user->name }} @if ($user->nickname)<small>({{ $user->nickname }})</small>@endif
                 </p>
                 @if ($user->avatar)
-                    <img src="{{ $user->avatar_thumbnail }}" class="navbar-right user-avatar">
+                    <img src="{{ $user->avatar_thumbnail }}" class="navbar-right user-avatar-small">
                 @endif
             @endif
         </div><!--/.nav-collapse -->

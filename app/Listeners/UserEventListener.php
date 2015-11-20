@@ -37,4 +37,16 @@ class UserEventListener
     {
         $this->mailer->sendPasswordResetTo($user, $token);
     }
+
+    /**
+     * Send email verification link if given user is not verified.
+     *
+     * @param User $user
+     */
+    public function onProfileUpdate(User $user)
+    {
+        if ($user->is_verified) return;
+
+        $this->mailer->sendEmailVerificationTo($user);
+    }
 }
