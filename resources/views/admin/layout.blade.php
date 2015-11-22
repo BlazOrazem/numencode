@@ -34,7 +34,7 @@
 
 <script src="js/libs.js"></script>
 
-@include('flash')
+@include('admin.flash')
 
 </body>
 </html>

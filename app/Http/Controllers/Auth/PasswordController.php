@@ -36,7 +36,7 @@ class PasswordController extends Controller
      */
     public function getEmail()
     {
-        return view('auth.password');
+        return view('theme.auth.password');
     }
 
     /**
@@ -66,7 +66,7 @@ class PasswordController extends Controller
      */
     public function getPassword($token)
     {
-        return view('auth.reset')->with('token', $token);
+        return view('theme.auth.reset')->with('token', $token);
     }
 
     /**

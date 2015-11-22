@@ -55,7 +55,7 @@ class AuthController extends Controller
      */
     public function getLogin(Request $request)
     {
-        return view('auth.login');
+        return view('theme.auth.login');
     }
 
     /**
@@ -84,7 +84,7 @@ class AuthController extends Controller
      */
     public function getRegister(Request $request)
     {
-        return view('auth.register');
+        return view('theme.auth.register');
     }
 
     /**

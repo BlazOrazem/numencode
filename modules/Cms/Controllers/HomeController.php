@@ -15,9 +15,9 @@ class HomeController extends Controller
     public function index()
     {
         if ($this->user) {
-            return view('pages.home');
+            return view('theme.pages.home');
         }
 
-        return view('auth.login');
+        return view('theme.auth.login');
     }
 }
