@@ -27,7 +27,9 @@
           "resources/helpers.php"
         ],
         "psr-4": {
-            "Numencode\\": "app/"
+            "Numencode\\": "app/",
+            "Admin\\": "modules/Admin",
+            "Cms\\": "modules/Cms"
         }
     },
     "autoload-dev": {

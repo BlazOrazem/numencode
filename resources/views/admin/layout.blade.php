@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Laravel Clean Slate</title>
+    <title>Admin DashBoard</title>
     <base href="{{ env('app_url') }}">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('css/libs.css') }}" rel="stylesheet" type="text/css">
@@ -18,28 +18,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Laravel Clean Slate</a>
+            <a class="navbar-brand" href="/">Admin</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                @if ($signedIn)
-                    <li><a href="{{ route('profile') }}">My Profile</a></li>
-                @else
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                @endif
+                <li class="active"><a href="/">Dashboard</a></li>
             </ul>
-            @if ($signedIn)
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
-                </ul>
-                <p class="navbar-text navbar-right">
-                    Logged in as {{ $user->name }} @if ($user->nickname)<small>({{ $user->nickname }})</small>@endif
-                </p>
-                @if ($user->avatar)
-                    <img src="{{ $user->avatar_thumbnail }}" class="navbar-right user-avatar-small">
-                @endif
-            @endif
         </div><!--/.nav-collapse -->
     </div>
 </nav>
@@ -48,7 +32,7 @@
     @yield('content')
 </div>
 
-<script src="/js/libs.js"></script>
+<script src="js/libs.js"></script>
 
 @include('flash')
 

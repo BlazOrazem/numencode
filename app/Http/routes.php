@@ -1,4 +1,7 @@
 <?php
 
 // Homepage route
-Route::resource('/', 'HomeController@index');
+Route::resource('/', '\Cms\Controllers\HomeController@index');
+
+// Admin routes
+Route::resource('admin', '\Admin\Controllers\DashboardController@index');
