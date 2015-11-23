@@ -28,8 +28,8 @@
         ],
         "psr-4": {
             "Numencode\\": "app/",
-            "Admin\\": "modules/Admin",
-            "Cms\\": "modules/Cms"
+            "Admin\\": "modules/admin",
+            "Cms\\": "modules/cms"
         }
     },
     "autoload-dev": {

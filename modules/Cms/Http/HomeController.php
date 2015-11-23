@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Controllers;
+namespace Cms\Http;
 
 use Numencode\Http\Requests;
 use Numencode\Http\Controllers\Controller;

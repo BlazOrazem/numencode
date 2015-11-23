@@ -49,6 +49,7 @@
 </div>
 
 <script src="/js/libs.js"></script>
+<script src="/js/app.js"></script>
 
 @include('theme.flash')
 

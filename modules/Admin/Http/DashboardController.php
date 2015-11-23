@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controllers;
+namespace Admin\Http;
 
 use Numencode\Http\Controllers\Controller;
 
@@ -13,6 +13,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.home');
+        return view('pages.home');
     }
 }

@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Admin DashBoard</title>
+    <title>Admin Dashboard</title>
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('css/libs.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('css/admin-app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('css/admin-libs.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -32,9 +32,10 @@
     @yield('content')
 </div>
 
-<script src="js/libs.js"></script>
+<script src="js/admin-libs.js"></script>
+<script src="js/admin-app.js"></script>
 
-@include('admin.flash')
+@include('flash')
 
 </body>
 </html>

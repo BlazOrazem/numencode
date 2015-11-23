@@ -4,16 +4,19 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class BasicTest extends TestCase
 {
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
-    public function testBasicExample()
+    /** @test */
+    public function visitHomepage()
     {
         $this->visit('/')
              ->see('Laravel Clean Slate');
+    }
+
+    /** @test */
+    public function visitAdminDashboard()
+    {
+        $this->visit('/admin')
+            ->see('Admin Dashboard');
     }
 }
