@@ -28,14 +28,13 @@ elixir.config.css.less.folder = '';
 elixir.config.js.folder = '';
 
 /**
- * Admin assets (styles and scripts)
+ * Mix Elixir
  */
-
-// Set the admin Assets path
-var adminResources = 'modules/admin/Resources/assets/';
-
-// Gulp watcher for admin assets, trigger with "gulp watch".
 elixir(function(mix) {
+    /**
+     *  Gulp watcher for admin assets, trigger with "gulp watch".
+     */
+    var adminResources = 'modules/admin/Resources/assets/';
     mix.less([
         adminResources + 'styles/app.less'
     ], './public/css/admin-app.css')
@@ -50,17 +49,11 @@ elixir(function(mix) {
     .scripts([
         adminResources + 'scripts/libs/sweetalert.min.js'
     ], './public/js/admin-libs.js');
-});
 
-/**
- * Cms assets (styles and scripts)
- */
-
-// Set the cms Assets path
-var cmsResources = 'modules/cms/Resources/assets/';
-
-// Gulp watcher for cms assets, trigger with "gulp watch".
-elixir(function(mix) {
+    /**
+     *  Gulp watcher for cms assets, trigger with "gulp watch".
+     */
+    var cmsResources = 'modules/cms/Resources/assets/';
     mix.less([
         cmsResources + 'styles/app.less'
     ], './public/css/app.css')
@@ -75,23 +68,19 @@ elixir(function(mix) {
     .scripts([
         cmsResources + 'scripts/libs/sweetalert.min.js'
     ], './public/js/libs.js');
-});
 
-/**
- * Version the Css files (avoid caching issues)
- */
-elixir(function(mix) {
+    /**
+     * Version the Css files (avoid caching issues).
+     */
     mix.version([
         'public/css/admin-app.css',
         'public/css/admin-libs.css',
         'public/css/app.css',
         'public/css/libs.css'
     ]);
-});
 
-/**
- * Gulp watcher for tests, trigger with "gulp tdd".
- */
-elixir(function(mix) {
+    /**
+     * Gulp watcher for tests, trigger with "gulp tdd".
+     */
     mix.phpUnit();
 });
