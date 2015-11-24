@@ -35,7 +35,7 @@
 <script src="js/admin-libs.js"></script>
 <script src="js/admin-app.js"></script>
 
-@include('flash')
+@include('admin::flash')
 
 </body>
 </html>
