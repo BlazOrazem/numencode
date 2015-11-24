@@ -14,6 +14,13 @@ class BasicTest extends TestCase
     }
 
     /** @test */
+    public function visitRegisterPage()
+    {
+        $this->visit('/auth/register')
+            ->see('Please Sign Up');
+    }
+
+    /** @test */
     public function visitAdminDashboard()
     {
         $this->visit('/admin')
