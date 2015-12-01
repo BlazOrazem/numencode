@@ -30,6 +30,13 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	protected $cmsNamespace = '\Cms\Http\\';
 
+    /**
+     * Authentication controller name.
+     *
+     * @var
+     */
+    protected $authController;
+
 	/**
 	 * Define your route model bindings, pattern filters, etc.
 	 *
@@ -49,6 +56,12 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	public function map(Router $router)
 	{
+        $this->authController = 'AuthController';
+
+        if (config('login.throttle')) {
+            $this->authController = 'AuthPlusController';
+        }
+
 		$router->group(['namespace' => $this->namespace], function ($router) {
 			$this->publicRoutes($router);
 
@@ -108,7 +121,7 @@ class RouteServiceProvider extends ServiceProvider
 			'prefix' => 'auth'
 		], function () {
 			// Authentication login
-			$this->get('login', 'AuthController@getLogin')->name('login');
+			$this->get('login', $this->authController . '@getLogin')->name('login');
 			$this->post('login', 'AuthController@postLogin')->name('login_action');
 
 			// Registration
