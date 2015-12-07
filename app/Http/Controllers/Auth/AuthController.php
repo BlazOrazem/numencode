@@ -4,15 +4,14 @@ namespace Numencode\Http\Controllers\Auth;
 
 use Validator;
 use Numencode\Models\User;
-use Numencode\Utils\AppMailer;
 use Illuminate\Http\Request;
-use Numencode\Http\Requests\LoginRequest;
-use Numencode\Http\Controllers\Controller;
+use Numencode\Utils\AppMailer;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
+use Numencode\Http\Requests\LoginRequest;
+use Numencode\Http\Controllers\Controller;
 use Numencode\Repositories\UserRepository;
 use Numencode\Http\Requests\RegistrationRequest;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
@@ -31,7 +30,7 @@ class AuthController extends Controller
      */
     protected $auth;
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers;
 
     /**
      * Create a new authentication controller instance.
