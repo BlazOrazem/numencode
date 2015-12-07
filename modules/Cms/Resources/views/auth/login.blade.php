@@ -1,4 +1,4 @@
-@extends('theme.layout')
+@extends('cms::layout')
 
 @section('content')
 

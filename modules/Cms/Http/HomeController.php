@@ -2,10 +2,7 @@
 
 namespace Cms\Http;
 
-use Numencode\Http\Requests;
-use Numencode\Http\Controllers\Controller;
-
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     /**
      * Display the homepage.
@@ -15,9 +12,9 @@ class HomeController extends Controller
     public function index()
     {
         if ($this->user) {
-            return view('theme.pages.home');
+            return view('cms::pages.home');
         }
 
-        return view('theme.auth.login');
+        return view('cms::auth.login');
     }
 }

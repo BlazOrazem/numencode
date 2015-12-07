@@ -14,21 +14,21 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Numencode\Http\Controllers';
+//    protected $namespace = 'Numencode\Http\Controllers';
 
     /**
      * This namespace is applied to the admin controller routes in your routes file.
      *
      * @var string
      */
-    protected $adminNamespace = '\Admin\Http\\';
+    protected $adminNamespace = 'Admin\Http\\';
 
     /**
      * This namespace is applied to the cms controller routes in your routes file.
      *
      * @var string
      */
-    protected $cmsNamespace = '\Cms\Http\\';
+    protected $cmsNamespace = 'Cms\Http\\';
 
     /**
      * Authentication controller name.
@@ -56,10 +56,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $this->authController = 'AuthController';
+        $this->authController = 'Auth\AuthController';
 
         if (config('login.throttle')) {
-            $this->authController = 'AuthWithLoginThrottleController';
+            $this->authController = 'Auth\AuthWithLoginThrottleController';
         }
 
         $router->group(['namespace' => $this->namespace], function ($router) {
@@ -117,16 +117,16 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group([
             'middleware' => IsGuest::class,
-            'namespace' => 'Auth',
+            'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
         ], function () {
             // Authentication login
             $this->get('login', $this->authController . '@getLogin')->name('login');
-            $this->post('login', 'AuthController@postLogin')->name('login_action');
+            $this->post('login', $this->authController . '@postLogin')->name('login_action');
 
             // Registration
-            $this->get('register', 'AuthController@getRegister')->name('register');
-            $this->post('register', 'AuthController@postRegister')->name('register_action');
+            $this->get('register', $this->authController . '@getRegister')->name('register');
+            $this->post('register', $this->authController . '@postRegister')->name('register_action');
 
             // Social authentication
             $this->get('social/{provider?}', 'SocialAuthController@getLogin')->name('login_social');
@@ -148,11 +148,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group([
 //			'middleware' => IsAdmin::class,
-//			'namespace' => $this->adminNamespace,
+			'namespace' => $this->adminNamespace,
             'prefix' => 'admin'
         ], function () {
             // Admin dashboard
-            $this->get('/', '\Admin\Http\DashboardController@index')->name('admin_home');
+            $this->get('/', 'DashboardController@index')->name('admin_home');
         });
     }
 }

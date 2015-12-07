@@ -1,4 +1,4 @@
-@extends('theme.layout')
+@extends('resources.views.theme.layout')
 
 @section('content')
 
