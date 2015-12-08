@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Http\Controllers;
+namespace Numencode\Http;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

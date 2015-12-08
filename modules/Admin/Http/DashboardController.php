@@ -2,12 +2,10 @@
 
 namespace Admin\Http;
 
-use Numencode\Http\Controllers\Controller;
-
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
     /**
-     * Display the homepage.
+     * Display the admin dashboard.
      *
      * @return \Illuminate\View\View
      */

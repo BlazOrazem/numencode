@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Http;
+namespace Admin\Http;
 
 use Numencode\Http\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +22,5 @@ class BaseController extends Controller
         $this->user = Auth::user();
 
         view()->share('user', $this->user);
-        view()->share('signedIn', (bool)Auth::check());
     }
 }
