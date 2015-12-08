@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Http\Controllers\Auth;
+namespace Cms\Http\Auth;
 
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 

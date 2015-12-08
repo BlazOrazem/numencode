@@ -7,18 +7,18 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Admin namespace title.
+     * Admin namespace.
      *
      * @var string
      */
     protected $adminNamespace = 'admin';
 
     /**
-     * Cms namespace title.
+     * Cms namespace.
      *
      * @var string
      */
-    protected $cmsNamespace = 'cms';
+    protected $cmsNamespace = 'theme';
 
     /**
      * Bootstrap any application services.

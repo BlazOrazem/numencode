@@ -51,7 +51,7 @@
 <script src="/js/libs.js"></script>
 <script src="/js/app.js"></script>
 
-@include('cms::flash')
+@include('theme::flash')
 
 </body>
 </html>

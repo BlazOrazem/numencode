@@ -1,14 +1,14 @@
 <?php
 
-namespace Numencode\Http\Controllers\Auth;
+namespace Cms\Http\Auth;
 
+use Cms\Http\BaseController;
 use Numencode\Http\Requests\ResetRequest;
 use Numencode\Repositories\UserRepository;
-use Numencode\Http\Controllers\Controller;
 use Numencode\Http\Requests\ResetPasswordRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class PasswordController extends Controller
+class PasswordController extends BaseController
 {
     /**
      * Where to redirect after successful password reset.
@@ -36,7 +36,7 @@ class PasswordController extends Controller
      */
     public function getEmail()
     {
-        return view('theme.auth.password');
+        return view('theme::auth.password');
     }
 
     /**
@@ -66,7 +66,7 @@ class PasswordController extends Controller
      */
     public function getPassword($token)
     {
-        return view('theme.auth.reset')->with('token', $token);
+        return view('theme::auth.reset')->with('token', $token);
     }
 
     /**

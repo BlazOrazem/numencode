@@ -1,13 +1,13 @@
 <?php
 
-namespace Numencode\Http\Controllers\Auth;
+namespace Cms\Http\Auth;
 
+use Cms\Http\BaseController;
 use Illuminate\Http\Request;
-use Numencode\Repositories\UserRepository;
-use Numencode\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
+use Numencode\Repositories\UserRepository;
 
-class SocialAuthController extends Controller
+class SocialAuthController extends BaseController
 {
     /**
      * Supported social providers.

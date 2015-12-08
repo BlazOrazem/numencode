@@ -12,9 +12,9 @@ class HomeController extends BaseController
     public function index()
     {
         if ($this->user) {
-            return view('cms::pages.home');
+            return view('theme::pages.home');
         }
 
-        return view('cms::auth.login');
+        return view('theme::auth.login');
     }
 }

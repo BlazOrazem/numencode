@@ -1,20 +1,20 @@
 <?php
 
-namespace Numencode\Http\Controllers\Auth;
+namespace Cms\Http\Auth;
 
 use Validator;
 use Numencode\Models\User;
+use Cms\Http\BaseController;
 use Illuminate\Http\Request;
 use Numencode\Utils\AppMailer;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
 use Numencode\Http\Requests\LoginRequest;
-use Numencode\Http\Controllers\Controller;
 use Numencode\Repositories\UserRepository;
 use Numencode\Http\Requests\RegistrationRequest;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     /**
      * Where to redirect after successful registration or login.
@@ -54,7 +54,7 @@ class AuthController extends Controller
      */
     public function getLogin(Request $request)
     {
-        return view('theme.auth.login');
+        return view('theme::auth.login');
     }
 
     /**
@@ -83,7 +83,7 @@ class AuthController extends Controller
      */
     public function getRegister(Request $request)
     {
-        return view('theme.auth.register');
+        return view('theme::auth.register');
     }
 
     /**
