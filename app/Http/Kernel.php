@@ -28,6 +28,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \Numencode\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \Numencode\Http\Middleware\RedirectIfAuthenticated::class,
+        'isGuest' => \Numencode\Http\Middleware\IsGuest::class,
+        'isAuthenticated' => \Numencode\Http\Middleware\IsAuthenticated::class,
     ];
 }

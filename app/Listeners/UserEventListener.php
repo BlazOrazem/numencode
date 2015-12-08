@@ -2,7 +2,7 @@
 
 namespace Numencode\Listeners;
 
-use Numencode\Models\User;
+use Cms\Models\User;
 use Numencode\Utils\AppMailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\InteractsWithQueue;

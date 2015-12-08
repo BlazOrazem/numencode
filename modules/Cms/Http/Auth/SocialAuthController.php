@@ -4,8 +4,8 @@ namespace Cms\Http\Auth;
 
 use Cms\Http\BaseController;
 use Illuminate\Http\Request;
+use Cms\Repositories\UserRepository;
 use Laravel\Socialite\Facades\Socialite;
-use Numencode\Repositories\UserRepository;
 
 class SocialAuthController extends BaseController
 {

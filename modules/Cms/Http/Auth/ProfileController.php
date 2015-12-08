@@ -3,9 +3,8 @@
 namespace Cms\Http\Auth;
 
 use Cms\Http\BaseController;
-use Illuminate\Http\Request;
-use Numencode\Repositories\UserRepository;
-use Numencode\Http\Requests\ProfileRequest;
+use Cms\Repositories\UserRepository;
+use Cms\Http\Requests\ProfileRequest;
 
 class ProfileController extends BaseController
 {
@@ -25,7 +24,7 @@ class ProfileController extends BaseController
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('isAuthenticated');
 
         $this->users = $users;
     }

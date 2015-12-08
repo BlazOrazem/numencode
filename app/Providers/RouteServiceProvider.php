@@ -88,7 +88,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function authorizedRoutes(Router $router)
     {
         $router->group([
-            'middleware' => IsAuthenticated::class,
+            'middleware' => 'isAuthenticated',
             'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
         ], function () {
@@ -109,7 +109,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function guestRoutes(Router $router)
     {
         $router->group([
-            'middleware' => IsGuest::class,
+            'middleware' => 'isGuest',
             'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
         ], function () {

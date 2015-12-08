@@ -30,7 +30,7 @@ class IsGuest
      *
      * @param Request $request
      * @param callable $next
-     * @return \Illuminate\Http\RedirectResponse
+     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {

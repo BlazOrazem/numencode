@@ -1,9 +1,9 @@
 <?php
 
-namespace Numencode\Repositories;
+namespace Cms\Repositories;
 
 use Image;
-use Numencode\Models\User;
+use Cms\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Laravel\Socialite\AbstractUser as SocialUser;

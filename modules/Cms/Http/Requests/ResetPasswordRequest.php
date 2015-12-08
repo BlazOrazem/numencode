@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Http\Requests;
+namespace Cms\Http\Requests;
 
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 

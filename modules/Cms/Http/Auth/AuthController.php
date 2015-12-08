@@ -2,16 +2,15 @@
 
 namespace Cms\Http\Auth;
 
-use Validator;
-use Numencode\Models\User;
+use Cms\Models\User;
 use Cms\Http\BaseController;
 use Illuminate\Http\Request;
 use Numencode\Utils\AppMailer;
+use Cms\Http\Requests\LoginRequest;
+use Cms\Repositories\UserRepository;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
-use Numencode\Http\Requests\LoginRequest;
-use Numencode\Repositories\UserRepository;
-use Numencode\Http\Requests\RegistrationRequest;
+use Cms\Http\Requests\RegistrationRequest;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends BaseController
@@ -43,7 +42,7 @@ class AuthController extends BaseController
 
         $this->auth = $auth;
 
-        $this->middleware('guest', ['except' => ['getLogout', 'verifyEmail']]);
+        $this->middleware('isGuest', ['except' => ['getLogout', 'verifyEmail']]);
     }
 
     /**

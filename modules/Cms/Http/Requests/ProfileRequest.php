@@ -1,7 +1,8 @@
 <?php
 
-namespace Numencode\Http\Requests;
+namespace Cms\Http\Requests;
 
+use Numencode\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileRequest extends Request

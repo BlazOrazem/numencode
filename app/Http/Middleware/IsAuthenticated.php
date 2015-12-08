@@ -30,12 +30,12 @@ class IsAuthenticated
      *
      * @param Request $request
      * @param callable $next
-     * @return \Illuminate\View\View
+     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
         if (!$this->auth->check()) {
-            return view('auth.login');
+            return view('theme::auth.login');
         }
 
         return $next($request);

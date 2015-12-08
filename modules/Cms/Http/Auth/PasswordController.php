@@ -3,9 +3,9 @@
 namespace Cms\Http\Auth;
 
 use Cms\Http\BaseController;
-use Numencode\Http\Requests\ResetRequest;
-use Numencode\Repositories\UserRepository;
-use Numencode\Http\Requests\ResetPasswordRequest;
+use Cms\Http\Requests\ResetRequest;
+use Cms\Repositories\UserRepository;
+use Cms\Http\Requests\ResetPasswordRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends BaseController
@@ -26,7 +26,7 @@ class PasswordController extends BaseController
     {
         parent::__construct();
 
-        $this->middleware('guest');
+        $this->middleware('isGuest');
     }
 
     /**

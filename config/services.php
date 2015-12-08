@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => Numencode\Models\User::class,
+        'model'  => Cms\Models\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

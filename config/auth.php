@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Numencode\Models\User::class,
+    'model' => Cms\Models\User::class,
 
     /*
     |--------------------------------------------------------------------------

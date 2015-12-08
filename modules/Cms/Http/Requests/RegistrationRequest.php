@@ -1,6 +1,8 @@
 <?php
 
-namespace Numencode\Http\Requests;
+namespace Cms\Http\Requests;
+
+use Numencode\Http\Request;
 
 class RegistrationRequest extends Request
 {
