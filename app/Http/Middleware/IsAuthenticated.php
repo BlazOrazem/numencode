@@ -35,7 +35,7 @@ class IsAuthenticated
     public function handle(Request $request, Closure $next)
     {
         if (!$this->auth->check()) {
-            return view('theme::auth.login');
+            return redirect(route('login') . '?ref=profile');
         }
 
         return $next($request);

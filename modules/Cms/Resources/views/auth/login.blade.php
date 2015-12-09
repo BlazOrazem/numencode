@@ -42,6 +42,9 @@
 
         <form method="POST" action="{{ route('login_action') }}" class="omb_loginForm">
             {!! csrf_field() !!}
+            @if (isset($ref))
+                <input type="hidden" name="ref" value="{{ $ref }}">
+            @endif
             <div class="row omb_row-sm-offset-2">
                 <div class="col-xs-12 col-sm-12 col-md-8">
                     <div class="row">

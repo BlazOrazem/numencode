@@ -53,7 +53,13 @@ class AuthController extends BaseController
      */
     public function getLogin(Request $request)
     {
-        return view('theme::auth.login');
+        $view = view('theme::auth.login');
+
+        if (isset($_GET['ref'])) {
+            $view->with('ref', strip_tags($_GET['ref']));
+        }
+
+        return $view;
     }
 
     /**
@@ -71,7 +77,7 @@ class AuthController extends BaseController
 
         flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
 
-        return redirect('/');
+        return isset($request->ref) ? redirect(route($request->ref)) : redirect('/');
     }
 
     /**
