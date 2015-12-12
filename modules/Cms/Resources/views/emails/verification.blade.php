@@ -1,4 +1,4 @@
-@extends('emails._layout')
+@extends('theme::emails.partials.layout')
 
 @section('title')
     Verify Your E-mail Address

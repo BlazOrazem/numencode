@@ -197,7 +197,7 @@
 </table>
 <!-- /body -->
 
-@include('emails._footer')
+@include('theme::emails.partials.footer')
 
 </body>
 </html>

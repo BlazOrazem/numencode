@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Laravel Clean Slate</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Numencode Demo App">
+    <meta name="author" content="Numencode.com">
+
+    <title>Numencode Demo App</title>
+
     <base href="{{ env('app_url') }}">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('css/libs.css') }}" rel="stylesheet" type="text/css">
+
 </head>
+
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -18,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Laravel Clean Slate</a>
+            <a class="navbar-brand" href="/">Numencode</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

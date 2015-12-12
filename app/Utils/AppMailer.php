@@ -37,7 +37,7 @@ class AppMailer
     {
         $this->subject = 'Please, verify your e-mail!';
         $this->to = $user->email;
-        $this->view = 'emails.verification';
+        $this->view = 'theme::emails.verification';
         $this->data = compact('user');
 
         return $this->deliver();
@@ -53,7 +53,7 @@ class AppMailer
     {
         $this->subject = 'Password Reset';
         $this->to = $user->email;
-        $this->view = 'emails.password';
+        $this->view = 'theme::emails.password';
         $this->data = compact('user', 'token');
 
         return $this->deliver();

@@ -77,7 +77,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->get('/', $this->cmsNamespace . 'HomeController@index');
 
         // User email verification
-        $router->get('auth/register/verify/{token}', 'Auth\AuthController@verifyEmail');
+        $router->get('auth/register/verify/{token}', $this->cmsNamespace . $this->authController . '@verifyEmail');
     }
 
     /**
