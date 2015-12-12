@@ -37,7 +37,7 @@
                     Logged in as {{ $user->name }} @if ($user->nickname)<small>({{ $user->nickname }})</small>@endif
                 </p>
                 @if ($user->avatar)
-                    <img src="{{ $user->avatar_thumbnail }}" class="navbar-right user-avatar-small">
+                    <img src="/{{ $user->avatar_thumbnail }}" class="navbar-right user-avatar-small">
                 @endif
             @endif
         </div><!--/.nav-collapse -->

@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             @if ($user->avatar)
-                                <img src="{{ $user->avatar }}" class="img-responsive user-avatar-update">
+                                <img src="/{{ $user->avatar }}" class="img-responsive user-avatar-update">
                             @endif
                         </div>
                         <div class="col-sm-6 col-md-6">
