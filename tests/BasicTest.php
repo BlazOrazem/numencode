@@ -10,7 +10,7 @@ class BasicTest extends TestCase
     public function visitHomepage()
     {
         $this->visit('/')
-             ->see('Laravel Clean Slate');
+             ->see('Numencode');
     }
 
     /** @test */
