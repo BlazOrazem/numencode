@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Http\Middleware;
+namespace Cms\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\Guard;
