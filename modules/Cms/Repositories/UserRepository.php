@@ -173,7 +173,7 @@ class UserRepository
             'password' => $request->password,
             'avatar' => $request->avatar ? $this->makeAvatarFromFile($request->avatar) : null,
             'avatar_thumbnail' => $request->avatar ? $this->makeAvatarFromFile($request->avatar, true) : null,
-            'is_verified' => false,
+            'is_verified' => config('login.verification') ? false : true,
         ]);
     }
 

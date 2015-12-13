@@ -105,7 +105,7 @@ class AuthController extends BaseController
 
         $repository->login($user);
 
-        if (Auth::attempt($this->getCredentials($request))) {
+        if (Auth::attempt($this->getCredentials($request)) && config('login.verification')) {
             $mailer->sendEmailVerificationTo($user);
         }
 

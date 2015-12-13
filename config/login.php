@@ -7,8 +7,8 @@ return [
     | Login With Socialite
     |--------------------------------------------------------------------------
     |
-    | Enable or disable authentication with socialite.
-    | Available Socialite providers are Facebook, Twitter, Google+ and Github.
+    | Enable authentication with Socialite providers.
+    | Available providers are Facebook, Twitter, Google+ and Github.
     |
     | Supported: "true", "false"
     |
@@ -18,10 +18,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | User Email Verification
+    |--------------------------------------------------------------------------
+    |
+    | Enable user email verification.
+    |
+    | Supported: "true", "false"
+    |
+    */
+
+    'verification' => true,
+    
+    /*
+    |--------------------------------------------------------------------------
     | Login Throttling
     |--------------------------------------------------------------------------
     |
-    | This is used to throttle login attempts to your application.
+    | Throttle login attempts to your application.
     |
     | Supported: "true", "false"
     |
