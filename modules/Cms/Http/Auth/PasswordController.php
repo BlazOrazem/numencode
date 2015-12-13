@@ -52,10 +52,13 @@ class PasswordController extends BaseController
 
         $repository->resetPassword($user);
 
-        flash()->overlay(trans('messages.password_reset.forgotten'),
-            trans('messages.password_reset.link_sent', ['email' => $request->email]), 'success');
+        flash()->overlay(
+            trans('messages.password_reset.forgotten'),
+            trans('messages.password_reset.link_sent', ['email' => $request->email]),
+            'success'
+        );
 
-        return redirect('/');
+            return redirect('/');
     }
 
     /**

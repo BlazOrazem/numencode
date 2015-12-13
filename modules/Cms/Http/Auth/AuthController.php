@@ -142,12 +142,15 @@ class AuthController extends BaseController
         if ($user) {
             $user->verifyEmail();
 
-            flash()->overlay(trans('messages.email_verified.title'),
-                trans('messages.email_verified.success', ['email' => $user->email]), 'success');
+            flash()->overlay(
+                trans('messages.email_verified.title'),
+                trans('messages.email_verified.success', ['email' => $user->email]),
+                'success'
+            );
 
-            event('user.email_verified');
+                event('user.email_verified');
 
-            $repository->login($user);
+                $repository->login($user);
         } else {
             flash()->overlay(trans('messages.error'), trans('messages.email_verified.error'), 'error');
         }

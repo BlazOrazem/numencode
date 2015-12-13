@@ -141,7 +141,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group([
 //			'middleware' => IsAdmin::class,
-			'namespace' => $this->adminNamespace,
+            'namespace' => $this->adminNamespace,
             'prefix' => 'admin'
         ], function () {
             // Admin dashboard

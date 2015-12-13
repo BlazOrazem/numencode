@@ -25,11 +25,13 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         $events->listen(
-            'user.reset_password', 'Numencode\Listeners\UserEventListener@onPasswordReset'
+            'user.reset_password',
+            'Numencode\Listeners\UserEventListener@onPasswordReset'
         );
 
         $events->listen(
-            'user.update_profile', 'Numencode\Listeners\UserEventListener@onProfileUpdate'
+            'user.update_profile',
+            'Numencode\Listeners\UserEventListener@onProfileUpdate'
         );
     }
 }

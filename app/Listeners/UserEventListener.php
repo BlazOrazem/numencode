@@ -45,7 +45,9 @@ class UserEventListener
      */
     public function onProfileUpdate(User $user)
     {
-        if ($user->is_verified) return;
+        if ($user->is_verified) {
+            return;
+        }
 
         $this->mailer->sendEmailVerificationTo($user);
     }
