@@ -62,6 +62,10 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->guestRoutes($router);
 
+            if (config('login.socialite')) {
+                $this->socialiteRoutes($router);
+            }
+
             $this->adminRoutes($router);
         });
     }
@@ -121,14 +125,27 @@ class RouteServiceProvider extends ServiceProvider
             $this->get('register', $this->authController . '@getRegister')->name('register');
             $this->post('register', $this->authController . '@postRegister')->name('register_action');
 
-            // Social authentication
-            $this->get('social/{provider?}', 'Auth\SocialAuthController@getLogin')->name('login_social');
-
             // Password reset
             $this->get('password/email', 'Auth\PasswordController@getEmail')->name('password_forget');
             $this->post('password/email', 'Auth\PasswordController@postEmail')->name('password_send');
             $this->get('password/reset/{token}', 'Auth\PasswordController@getPassword')->name('password_token');
             $this->post('password/reset', 'Auth\PasswordController@postPassword')->name('password_reset');
+        });
+    }
+
+    /**
+     * Socialite routes.
+     *
+     * @param Router $router
+     */
+    protected function socialiteRoutes(Router $router)
+    {
+        $router->group([
+            'middleware' => 'isGuest',
+            'namespace' => $this->cmsNamespace,
+            'prefix' => 'auth'
+        ], function () {
+            $this->get('social/{provider?}', 'Auth\SocialAuthController@getLogin')->name('login_social');
         });
     }
 

@@ -35,28 +35,36 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    // https://developers.facebook.com/apps
+    /**
+     * Facebook App Dashboard @ https://developers.facebook.com/apps
+     */
     'facebook' => [
         'client_id'     => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect'      => env('APP_URL') . 'auth/social/facebook',
     ],
 
-    // https://apps.twitter.com
+    /**
+     * Twitter App Dashboard @ https://apps.twitter.com
+     */
     'twitter' => [
         'client_id'     => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect'      => env('APP_URL') . 'auth/social/twitter',
     ],
 
-    // https://console.developers.google.com
+    /**
+     * Google App Dashboard @ https://console.developers.google.com
+     */
     'google' => [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect'      => env('APP_URL') . 'auth/social/google',
     ],
 
-    // https://github.com/settings/applications
+    /**
+     * Github App Dashboard @ https://github.com/settings/applications
+     */
     'github' => [
         'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
