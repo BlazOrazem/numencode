@@ -2,6 +2,7 @@
 
 namespace Cms\Models;
 
+use Cms\Traits\UserRoles;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -15,7 +16,7 @@ class User extends Model implements
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, UserRoles;
 
     /**
      * The database table used by the model.

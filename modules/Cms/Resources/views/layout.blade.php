@@ -35,6 +35,9 @@
                 <li class="active"><a href="/">Home</a></li>
                 @if ($signedIn)
                     <li><a href="{{ route('profile') }}">My Profile</a></li>
+                    @can('post_comments')
+                        <li><a href="#">My comments</a></li>
+                    @endcan
                 @else
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @endif
