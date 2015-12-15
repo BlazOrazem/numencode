@@ -24,7 +24,7 @@
             "database"
         ],
         "files": [
-          "resources/helpers.php"
+            "resources/helpers.php"
         ],
         "psr-4": {
             "Numencode\\": "app/",
