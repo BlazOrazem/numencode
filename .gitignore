@@ -8,3 +8,4 @@ Homestead.yaml
 Homestead.json
 Envoy.blade.php
 composer.lock
+deploy.php
