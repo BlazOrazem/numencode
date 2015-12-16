@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->cleanDatabase();
         $this->command->info('Database truncated.');
 
-        $this->call('UserTableSeeder::class');
+        $this->call(UserTableSeeder::class);
         $this->command->info('Users table seeded.');
 
         // $this->call(UserTableSeeder::class);
