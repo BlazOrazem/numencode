@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DatabaseSeeder extends Seeder
 {
+    use DatabaseTransactions;
     /**
      * Database tables.
      *
@@ -30,10 +32,11 @@ class DatabaseSeeder extends Seeder
         $this->cleanDatabase();
         $this->command->info('Database truncated.');
 
-        $this->call(UserTableSeeder::class);
-        $this->command->info('Users table seeded.');
-
-        // $this->call(UserTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(PermissionRoleTableSeeder::class);
+        $this->call(RoleUserTableSeeder::class);
 
         Model::reguard();
     }
@@ -45,8 +48,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
-        foreach($this->tables as $tableName)
-        {
+        foreach ($this->tables as $tableName) {
             DB::table($tableName)->truncate();
         }
 
