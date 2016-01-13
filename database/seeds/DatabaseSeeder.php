@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DatabaseSeeder extends Seeder
@@ -27,8 +26,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
         $this->cleanDatabase();
         $this->command->info('Database truncated.');
 
@@ -37,8 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
-
-        Model::reguard();
     }
 
     /**

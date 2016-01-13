@@ -3,6 +3,7 @@
 namespace Numencode\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Numencode\Http\Middleware\IsGuest;
 use Numencode\Http\Middleware\IsAuthenticated;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -97,11 +98,11 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'auth'
         ], function () {
             // Authentication logout
-            $this->get('logout', $this->authController . '@getLogout')->name('logout');
+            Route::get('logout', $this->authController . '@getLogout')->name('logout');
 
             // User profile
-            $this->get('profile', 'Auth\ProfileController@index')->name('profile');
-            $this->post('profile/update', 'Auth\ProfileController@updateProfile')->name('profile_update');
+            Route::get('profile', 'Auth\ProfileController@index')->name('profile');
+            Route::post('profile/update', 'Auth\ProfileController@updateProfile')->name('profile_update');
         });
     }
 
@@ -118,18 +119,18 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'auth'
         ], function () {
             // Authentication login
-            $this->get('login', $this->authController . '@getLogin')->name('login');
-            $this->post('login', $this->authController . '@postLogin')->name('login_action');
+            Route::get('login', $this->authController . '@getLogin')->name('login');
+            Route::post('login', $this->authController . '@postLogin')->name('login_action');
 
             // Registration
-            $this->get('register', $this->authController . '@getRegister')->name('register');
-            $this->post('register', $this->authController . '@postRegister')->name('register_action');
+            Route::get('register', $this->authController . '@getRegister')->name('register');
+            Route::post('register', $this->authController . '@postRegister')->name('register_action');
 
             // Password reset
-            $this->get('password/email', 'Auth\PasswordController@getEmail')->name('password_forget');
-            $this->post('password/email', 'Auth\PasswordController@postEmail')->name('password_send');
-            $this->get('password/reset/{token}', 'Auth\PasswordController@getPassword')->name('password_token');
-            $this->post('password/reset', 'Auth\PasswordController@postPassword')->name('password_reset');
+            Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password_forget');
+            Route::post('password/email', 'Auth\PasswordController@postEmail')->name('password_send');
+            Route::get('password/reset/{token}', 'Auth\PasswordController@getPassword')->name('password_token');
+            Route::post('password/reset', 'Auth\PasswordController@postPassword')->name('password_reset');
         });
     }
 
@@ -145,7 +146,7 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
         ], function () {
-            $this->get('social/{provider?}', 'Auth\SocialAuthController@getLogin')->name('login_social');
+            Route::get('social/{provider?}', 'Auth\SocialAuthController@getLogin')->name('login_social');
         });
     }
 
@@ -162,7 +163,7 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'admin'
         ], function () {
             // Admin dashboard
-            $this->get('/', 'DashboardController@index')->name('admin_home');
+            Route::get('/', 'DashboardController@index')->name('admin_home');
         });
     }
 }

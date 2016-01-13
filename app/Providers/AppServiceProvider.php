@@ -3,6 +3,8 @@
 namespace Numencode\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Passwords\TokenRepositoryInterface;
+use Illuminate\Auth\Passwords\DatabaseTokenRepository as DbRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +45,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(TokenRepositoryInterface::class, function ($app) {
+            $connection = $app['db']->connection();
+            $table = $app['config']['auth.password.table'];
+            $key = $app['config']['app.key'];
+            $expire = $app['config']->get('auth.password.expire', 60);
+            return new DbRepository($connection, $table, $key, $expire);
+        });
     }
 }
