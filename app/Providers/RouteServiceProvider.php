@@ -4,8 +4,9 @@ namespace Numencode\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use Numencode\Http\Middleware\IsGuest;
-use Numencode\Http\Middleware\IsAuthenticated;
+//use Numencode\Http\Middleware\IsGuest;
+//use Numencode\Http\Middleware\IsGuest;
+//use Numencode\Http\Middleware\IsAuthenticated;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -158,12 +159,24 @@ class RouteServiceProvider extends ServiceProvider
     protected function adminRoutes(Router $router)
     {
         $router->group([
-//			'middleware' => IsAdmin::class,
             'namespace' => $this->adminNamespace,
-            'prefix' => 'admin'
+            'prefix' => 'admin',
+        ], function () {
+            // Admin authentication login
+            Route::get('login', 'Auth\AuthController@getLogin')->name('admin_login');
+            Route::post('login', 'Auth\AuthController@postLogin')->name('admin_login_action');
+        });
+
+        $router->group([
+			'middleware' => 'isAdmin',
+            'namespace' => $this->adminNamespace,
+            'prefix' => 'admin',
         ], function () {
             // Admin dashboard
             Route::get('/', 'DashboardController@index')->name('admin_home');
+
+            // Authentication logout
+            Route::get('logout', 'Auth\AuthController@getLogout')->name('admin_logout');
         });
     }
 }

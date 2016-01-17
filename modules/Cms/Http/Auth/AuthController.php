@@ -77,7 +77,7 @@ class AuthController extends BaseController
 
         flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
 
-        return isset($request->ref) ? redirect(route($request->ref)) : redirect('/');
+        return isset($request->ref) ? redirect(route($request->ref)) : redirect($this->redirectPath);
     }
 
     /**
@@ -109,7 +109,7 @@ class AuthController extends BaseController
             $mailer->sendEmailVerificationTo($user);
         }
 
-        return redirect('/');
+        return redirect($this->redirectPath);
     }
 
     /**
@@ -125,7 +125,7 @@ class AuthController extends BaseController
 
         event('user.logged_out');
 
-        return redirect('/');
+        return redirect($this->redirectPath);
     }
 
     /**
@@ -155,6 +155,6 @@ class AuthController extends BaseController
             flash()->overlay(trans('messages.error'), trans('messages.email_verified.error'), 'error');
         }
 
-        return redirect('/');
+        return redirect($this->redirectPath);
     }
 }

@@ -18,12 +18,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Admin</a>
+            <a class="navbar-brand" href="{{ route('admin_home') }}">Admin</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Dashboard</a></li>
+                <li class="active"><a href="{{ route('admin_home') }}">Dashboard</a></li>
+                <li><a href="/" target="_blank">App home</a></li>
             </ul>
+            @if ($signedIn)
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ route('admin_logout') }}">Logout</a></li>
+                </ul>
+                <p class="navbar-text navbar-right">
+                    Logged in as {{ $manager->name }}
+                </p>
+            @endif
         </div><!--/.nav-collapse -->
     </div>
 </nav>
