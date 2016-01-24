@@ -36,7 +36,8 @@ elixir(function(mix) {
      */
     var adminResources = 'modules/Admin/Resources/assets/';
     mix.less([
-        adminResources + 'styles/app.less'
+        adminResources + 'styles/app.less',
+        adminResources + 'styles/jstree/default/style.less'
     ], './public/css/admin-app.css')
     .styles([
         '/node_modules/font-awesome/css/font-awesome.min.css',
@@ -55,7 +56,8 @@ elixir(function(mix) {
         '/node_modules/sweetalert/dist/sweetalert.min.js',
         '/node_modules/metismenu/dist/metisMenu.min.js',
         '/node_modules/raphael/raphael-min.js',
-        '/node_modules/morris.js/morris.min.js'
+        '/node_modules/morris.js/morris.min.js',
+        '/node_modules/jstree/dist/jstree.min.js'
     ], './public/js/admin-libs.js');
 
     /**

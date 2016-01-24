@@ -12,6 +12,7 @@
     "sweetalert": "^1.1.0",
     "metismenu": "^2.2.0",
     "morris.js": "^0.5.0",
-    "raphael": "^2.1.4"
+    "raphael": "^2.1.4",
+    "jstree": "^3.2.1"
   }
 }

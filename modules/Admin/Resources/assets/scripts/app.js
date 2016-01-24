@@ -1,9 +1,20 @@
-/**
- * MetisMenu
- */
-
 $(function() {
     $('#side-menu').metisMenu();
+
+    $("#jstree").jstree({
+        "types" : {
+            "default" : {
+                "icon" : "jt jt-page"
+            },
+            "folder" : {
+                "icon" : "jt jt-folder"
+            },
+            "new" : {
+                "icon" : "jt jt-new"
+            }
+        },
+        "plugins" : [ "types" ]
+    });
 });
 
 // Loads the correct sidebar on window load,

@@ -177,6 +177,9 @@ class RouteServiceProvider extends ServiceProvider
 
             // Authentication logout
             Route::get('logout', 'Auth\AuthController@getLogout')->name('admin_logout');
+
+            // Managers list
+            Route::get('managers', 'ManagerController@index')->name('admin_managers');
         });
     }
 }

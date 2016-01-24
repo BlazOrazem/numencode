@@ -30,6 +30,14 @@ body {
 
 // Navigation
 // --Topbar
+.navbar-brand {
+  line-height: 28px;
+  padding: 10px 15px 15px 15px;
+
+  img {
+    margin-right: 10px;
+  }
+}
 .navbar-top-links {
   margin-right: 0;
 
@@ -98,6 +106,8 @@ body {
   ul li {
     border-bottom: 1px solid darken(@gray-lightest, 6.5%);
     a {
+      outline: none;
+
       &.active {
         background-color: @gray-lighter;
       }
@@ -125,6 +135,22 @@ body {
   }
   .nav-third-level li a {
     padding-left: 52px;
+  }
+  #jstree {
+    > ul {
+      margin: 0 0 10px 13px;
+    }
+    ul li {
+      span {
+        font-size: 11px;
+      }
+      a {
+        padding-left: 0px !important;
+      }
+    }
+    .jstree-node {
+      overflow: hidden;
+    }
   }
 }
 @media(min-width:768px) {
