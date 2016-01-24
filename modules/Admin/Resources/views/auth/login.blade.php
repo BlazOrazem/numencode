@@ -1,52 +1,64 @@
-@extends('admin::layout')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NumencodeCMS">
+    <meta name="author" content="Numencode.com">
+    <title>Admin Dashboard</title>
+    <base href="{{ env('app_url') }}">
+    <link href="{{ elixir('css/admin-app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('css/admin-libs.css') }}" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
 
-@section('content')
-
-    <div class="omb_login">
-
-        <h3 class="omb_authTitle">Admin Login</h3>
-
-        <form method="POST" action="{{ route('admin_login_action') }}" class="omb_loginForm">
-            {!! csrf_field() !!}
-            @if (isset($ref))
-                <input type="hidden" name="ref" value="{{ $ref }}">
-            @endif
-            <div class="row omb_row-sm-offset-2">
-                <div class="col-xs-12 col-sm-12 col-md-8">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="input-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <form method="POST" action="{{ route('admin_login_action') }}" role="form">
+                        {!! csrf_field() !!}
+                        @if (isset($ref))
+                            <input type="hidden" name="ref" value="{{ $ref }}">
+                        @endif
+                        <fieldset>
+                            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address" autofocus>
+                                <span class="help-block">{!! $errors->first('email', ':message') !!}</span>
                             </div>
-                            <span class="help-block">{!! $errors->first('email', ':message') !!}</span>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="input-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                                <input type="password" class="form-control" name="password" placeholder="Password" value="">
+                                <span class="help-block">{!! $errors->first('password', ':message') !!}</span>
                             </div>
-                            <span class="help-block">{!! $errors->first('password', ':message') !!}</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
-            <div class="row omb_row-sm-offset-2">
-                <div class="col-xs-6 col-sm-6 col-md-4">
-                    <div class="checkbox">
-                        <div class="form-group">
-                            <input type="checkbox" name="remember" id="checkboxRemember">
-                            <label for="checkboxRemember" class="control-label">
-                                Remember me
-                            </label>
-                            <span class="form-error"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
+        </div>
     </div>
+</div>
 
-@stop
+<script src="js/admin-libs.js"></script>
+<script src="js/admin-app.js"></script>
+
+@include('admin::flash')
+
+</body>
+</html>

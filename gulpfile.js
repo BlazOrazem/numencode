@@ -34,39 +34,49 @@ elixir(function(mix) {
     /**
      *  Gulp watcher for admin assets, trigger with "gulp watch".
      */
-    var adminResources = 'modules/admin/Resources/assets/';
+    var adminResources = 'modules/Admin/Resources/assets/';
     mix.less([
         adminResources + 'styles/app.less'
     ], './public/css/admin-app.css')
     .styles([
-        adminResources + 'styles/libs/font-awesome.css',
-        adminResources + 'styles/libs/awesome-bootstrap-checkbox.css',
-        adminResources + 'styles/libs/sweetalert.css'
+        '/node_modules/font-awesome/css/font-awesome.min.css',
+        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+        '/node_modules/sweetalert/dist/sweetalert.css',
+        '/node_modules/metismenu/dist/metisMenu.min.css',
+        '/node_modules/morris.js/morris.css'
     ], 'public/css/admin-libs.css')
     .scripts([
-        adminResources + 'scripts/app.js'
+        adminResources + 'scripts/app.js',
+        adminResources + 'scripts/morris-data.js'
     ], './public/js/admin-app.js')
     .scripts([
-        adminResources + 'scripts/libs/sweetalert.min.js'
+        '/node_modules/jquery/dist/jquery.min.js',
+        '/node_modules/bootstrap-less/js/bootstrap.min.js',
+        '/node_modules/sweetalert/dist/sweetalert.min.js',
+        '/node_modules/metismenu/dist/metisMenu.min.js',
+        '/node_modules/raphael/raphael-min.js',
+        '/node_modules/morris.js/morris.min.js'
     ], './public/js/admin-libs.js');
 
     /**
      *  Gulp watcher for cms assets, trigger with "gulp watch".
      */
-    var cmsResources = 'modules/cms/Resources/assets/';
+    var cmsResources = 'modules/Cms/Resources/assets/';
     mix.less([
         cmsResources + 'styles/app.less'
     ], './public/css/app.css')
     .styles([
-        cmsResources + 'styles/libs/font-awesome.css',
-        cmsResources + 'styles/libs/awesome-bootstrap-checkbox.css',
-        cmsResources + 'styles/libs/sweetalert.css'
+        '/node_modules/font-awesome/css/font-awesome.min.css',
+        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+        '/node_modules/sweetalert/dist/sweetalert.css'
     ], 'public/css/libs.css')
     .scripts([
         cmsResources + 'scripts/app.js'
     ], './public/js/app.js')
     .scripts([
-        cmsResources + 'scripts/libs/sweetalert.min.js'
+        '/node_modules/jquery/dist/jquery.min.js',
+        '/node_modules/bootstrap-less/js/bootstrap.min.js',
+        '/node_modules/sweetalert/dist/sweetalert.min.js'
     ], './public/js/libs.js');
 
     /**

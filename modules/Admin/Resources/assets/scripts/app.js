@@ -1,41 +1,38 @@
-var SampleModule = (function () {
-    // Let's initialize a public variable
-    var sampleVariable = 42;
-    
-    // We can operate with public variables
-    sampleVariable *= 2.0;
+/**
+ * MetisMenu
+ */
 
-    // This is a private method
-    var _doSomethingPrivately = function () {
-        // We can use public variables in the private method
-        var privateVariable = sampleVariable * 2;
-        console.log('Private variable: ' + privateVariable);
-        
-        
-        // Use function.apply to pass the called parameters along
-        //GoogleAnalytics.pushOrSomething.apply(this, arguments);
-    };
+$(function() {
+    $('#side-menu').metisMenu();
+});
 
-    var simplePublicMethod = function () {
-        _doSomethingPrivately('simple_action');
-    };
+// Loads the correct sidebar on window load,
+// collapses the sidebar on window resize.
+// Sets the min-height of #page-wrapper to window size.
+$(function() {
+    $(window).bind("load resize", function() {
+        topOffset = 50;
+        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
 
-    var publicMethod = function (sampleVariable) {
-        _doSomethingPrivately('action', sampleVariable);
-    };
+        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
 
-    var getSampleVariable = function () {
-        return sampleVariable;
-    };
-
-    return {
-        sampleVariable: sampleVariable,
-        simplePublicMethod: simplePublicMethod,
-        getSampleVariable: getSampleVariable,
-        publicMethod: publicMethod
-    };
-})();
-
-// Let's call our variables and methods
-//console.log('Public variable: ' + SampleModule.sampleVariable);
-//console.log('Public variable getter: ' + SampleModule.getSampleVariable());
+    var url = window.location;
+    var element = $('ul.nav a').filter(function() {
+        return this.href == url || url.href.indexOf(this.href) == 0;
+    }).addClass('active').parent().parent().addClass('in').parent();
+    if (element.is('li')) {
+        element.addClass('active');
+    }
+});
