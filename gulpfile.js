@@ -44,11 +44,13 @@ elixir(function(mix) {
         '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
         '/node_modules/sweetalert/dist/sweetalert.css',
         '/node_modules/metismenu/dist/metisMenu.min.css',
-        '/node_modules/morris.js/morris.css'
+        '/node_modules/morris.js/morris.css',
+        '/node_modules/drmonty-datatables/css/jquery.dataTables.min.css',
+        '/node_modules/drmonty-datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+        '/node_modules/drmonty-datatables-responsive/css/dataTables.responsive.min.css'
     ], 'public/css/admin-libs.css')
     .scripts([
-        adminResources + 'scripts/app.js',
-        adminResources + 'scripts/morris-data.js'
+        adminResources + 'scripts/app.js'
     ], './public/js/admin-app.js')
     .scripts([
         '/node_modules/jquery/dist/jquery.min.js',
@@ -57,7 +59,10 @@ elixir(function(mix) {
         '/node_modules/metismenu/dist/metisMenu.min.js',
         '/node_modules/raphael/raphael-min.js',
         '/node_modules/morris.js/morris.min.js',
-        '/node_modules/jstree/dist/jstree.min.js'
+        '/node_modules/jstree/dist/jstree.min.js',
+        '/node_modules/drmonty-datatables/js/jquery.dataTables.min.js',
+        '/node_modules/drmonty-datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js',
+        '/node_modules/drmonty-datatables-responsive/js/dataTables.responsive.min.js'
     ], './public/js/admin-libs.js');
 
     /**
