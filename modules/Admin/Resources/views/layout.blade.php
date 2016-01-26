@@ -405,5 +405,7 @@
 
 @include('admin::flash')
 
+@yield('scripts')
+
 </body>
 </html>
