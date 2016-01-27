@@ -16,20 +16,8 @@ $(function() {
         "plugins" : [ "types" ]
     });
 
-    //$('#dataTables-example').DataTable({
-    //    responsive: true
-    //});
-
-    $('#dataTables-example').DataTable( {
-        responsive: {
-            breakpoints: [
-                { name: 'desktop',  width: Infinity },
-                { name: 'tablet-l', width: 1024 },
-                { name: 'tablet-p', width: 768 },
-                { name: 'mobile-l', width: 480 },
-                { name: 'mobile-p', width: 320 }
-            ]
-        }
+    $('table.data-table').DataTable({
+        responsive: true
     });
 });
 
