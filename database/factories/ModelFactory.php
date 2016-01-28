@@ -11,6 +11,17 @@
 |
 */
 
+$factory->define(Admin\Models\Manager::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'password' => bcrypt(str_random(10)),
+        'phone' => $faker->phoneNumber,
+        'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+        'remember_token' => str_random(10),
+    ];
+});
+
 $factory->define(Cms\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,

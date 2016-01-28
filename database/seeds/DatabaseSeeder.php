@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     private $tables = [
+        'managers',
         'users',
         'roles',
         'permissions',
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->cleanDatabase();
         $this->command->info('Database truncated.');
 
+        $this->call(ManagersTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);

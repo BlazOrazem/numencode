@@ -1,12 +1,15 @@
 <?php
 
+use Cms\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class UsersTableSeeder extends Seeder
 {
     public function run()
     {
+        $faker = Faker::create();
+
         $items = [
             [
                 'id' => '1',
@@ -14,6 +17,8 @@ class UsersTableSeeder extends Seeder
                 'nickname' => 'JohnDoe',
                 'email' => 'john@numencode.com',
                 'password' => '$2y$10$5QYFCfkd5lSOxX20i0w2p.hwSupOP.YcJxRRoL8073FzXQXADTDZy',
+                'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'avatar_thumbnail' => $faker->imageUrl($width = 40, $height = 40, 'people'),
                 'is_verified' => true,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
@@ -24,6 +29,8 @@ class UsersTableSeeder extends Seeder
                 'nickname' => 'JaneDoe',
                 'email' => 'jane@numencode.com',
                 'password' => '$2y$10$5QYFCfkd5lSOxX20i0w2p.hwSupOP.YcJxRRoL8073FzXQXADTDZy',
+                'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'avatar_thumbnail' => $faker->imageUrl($width = 40, $height = 40, 'people'),
                 'is_verified' => true,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
@@ -34,6 +41,8 @@ class UsersTableSeeder extends Seeder
                 'nickname' => 'JackDoe',
                 'email' => 'jack@numencode.com',
                 'password' => '$2y$10$5QYFCfkd5lSOxX20i0w2p.hwSupOP.YcJxRRoL8073FzXQXADTDZy',
+                'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'avatar_thumbnail' => $faker->imageUrl($width = 40, $height = 40, 'people'),
                 'is_verified' => true,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
@@ -44,6 +53,8 @@ class UsersTableSeeder extends Seeder
                 'nickname' => 'JillDoe',
                 'email' => 'jill@numencode.com',
                 'password' => '$2y$10$5QYFCfkd5lSOxX20i0w2p.hwSupOP.YcJxRRoL8073FzXQXADTDZy',
+                'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'avatar_thumbnail' => $faker->imageUrl($width = 40, $height = 40, 'people'),
                 'is_verified' => true,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
@@ -51,5 +62,7 @@ class UsersTableSeeder extends Seeder
         ];
 
         DB::table('users')->insert($items);
+
+        factory(User::class, 46)->create();
     }
 }

@@ -31,6 +31,8 @@ class Manager extends Model implements
         'name',
         'email',
         'password',
+        'phone',
+        'avatar',
     ];
 
     /**
