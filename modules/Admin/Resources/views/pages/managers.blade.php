@@ -18,34 +18,36 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table class="table data-table table-striped table-hover">
+                        <table class="table data-table table-striped table-hover" data-paging='false' data-order='[[ 1, "asc" ]]'>
                             <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
+                                <tr>
+                                    <th class="no-sort" width="50"></th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Created at</th>
+                                    <th class="no-sort text-center" width="30">Edit</th>
+                                    <th class="no-sort text-center" width="30">Delete</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                                @foreach ($managers as $manager)
+                                    <tr>
+                                        <td class="text-center"><img src="{{ $manager->avatar }}" width="50" height="50" class="img-circle"></td>
+                                        <td>{{ $manager->name }}</td>
+                                        <td>{{ $manager->email }}</td>
+                                        <td>{{ $manager->phone }}</td>
+                                        <td>{{ $manager->created_at->format('F j, Y') }}</td>
+                                        <td class="text-center">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($admin->id != $manager->id)
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

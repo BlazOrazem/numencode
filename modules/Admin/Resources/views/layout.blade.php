@@ -32,9 +32,9 @@
             </button>
             <a class="navbar-brand" href="{{ route('admin_home') }}">
                 <span class="chat-img">
-                    <img src="http://placehold.it/30/55C1E7/fff" alt="User Avatar" class="img-circle pull-left" />
+                    <img src="{{ $admin->avatar }}" width="30" height="30" alt="User Avatar" class="img-circle pull-left" />
                 </span>
-                {{ $manager->name }}
+                {{ $admin->name }}
             </a>
         </div>
         <!-- /.navbar-header -->

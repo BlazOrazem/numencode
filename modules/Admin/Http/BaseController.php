@@ -12,16 +12,16 @@ class BaseController extends Controller
      *
      * @var Manager
      */
-    protected $manager;
+    protected $admin;
 
     /**
      * Create a new controller instance.
      */
     public function __construct()
     {
-        $this->manager = Auth::guard('admin')->user();
+        $this->admin = Auth::guard('admin')->user();
 
-        view()->share('manager', $this->manager);
+        view()->share('admin', $this->admin);
         view()->share('signedIn', (bool)Auth::guard('admin')->check());
     }
 }

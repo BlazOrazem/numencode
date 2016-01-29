@@ -8240,6 +8240,10 @@ table.dataTable thead .sorting:after {
   color: rgba(50, 50, 50, 0.5);
 }
 
+table.dataTable tbody td {
+  vertical-align: middle;
+}
+
 .btn-circle {
   width: 30px;
   height: 30px;

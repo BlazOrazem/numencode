@@ -17,7 +17,13 @@ $(function() {
     });
 
     $('table.data-table').DataTable({
-        responsive: true
+        dom: '<"top"if>rt<"bottom"lp><"clear">',
+        responsive: true,
+        order: [],
+        columnDefs: [{
+            targets  : 'no-sort',
+            orderable: false
+        }]
     });
 });
 

@@ -2,6 +2,8 @@
 
 namespace Admin\Http;
 
+use Admin\Models\Manager;
+
 class ManagerController extends BaseController
 {
     /**
@@ -11,6 +13,8 @@ class ManagerController extends BaseController
      */
     public function index()
     {
-        return view('admin::pages.managers');
+        $managers = Manager::all();
+
+        return view('admin::pages.managers', compact('managers'));
     }
 }
