@@ -163,8 +163,8 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'admin',
         ], function () {
             // Admin authentication login
-            Route::get('login', 'Auth\AuthController@getLogin')->name('admin_login');
-            Route::post('login', 'Auth\AuthController@postLogin')->name('admin_login_action');
+            Route::get('login', 'Auth\AuthController@getLogin')->name('admin.login');
+            Route::post('login', 'Auth\AuthController@postLogin')->name('admin.login.action');
         });
 
         $router->group([
@@ -173,13 +173,13 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'admin',
         ], function () {
             // Admin dashboard
-            Route::get('/', 'DashboardController@index')->name('admin_home');
+            Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
             // Authentication logout
-            Route::get('logout', 'Auth\AuthController@getLogout')->name('admin_logout');
+            Route::get('logout', 'Auth\AuthController@getLogout')->name('admin.logout');
 
-            // Managers list
-            Route::get('managers', 'ManagerController@index')->name('admin_managers');
+            // Managers
+            Route::resource('manager', 'ManagerController');
         });
     }
 }

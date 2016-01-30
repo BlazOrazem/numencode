@@ -43,7 +43,13 @@
                                         </td>
                                         <td class="text-center">
                                             @if ($admin->id != $manager->id)
-                                                <i class="glyphicon glyphicon-trash"></i>
+                                                <form method="POST" action="{{ route('admin.manager.destroy', [$manager->id]) }}">
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    {!! csrf_field() !!}
+                                                    <button type="submit" class="btn btn-link btn-confirmation">
+                                                        <i class="glyphicon glyphicon-trash"></i>
+                                                    </button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>

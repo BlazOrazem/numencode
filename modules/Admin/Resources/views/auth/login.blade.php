@@ -27,7 +27,7 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form method="POST" action="{{ route('admin_login_action') }}" role="form">
+                    <form method="POST" action="{{ route('admin.login.action') }}" role="form">
                         {!! csrf_field() !!}
                         @if (isset($ref))
                             <input type="hidden" name="ref" value="{{ $ref }}">

@@ -20,3 +20,49 @@
         });
     </script>
 @endif
+
+<script>
+//    $('.link-confirmation').click(function(e) {
+//        e.preventDefault();
+//        var linkURL = $(this).attr("href");
+//        warnBeforeRedirect(linkURL);
+//    });
+//
+//    function warnBeforeRedirect(linkURL) {
+//        swal({
+//            title: "Leave this site?",
+//            text: "If you click 'OK', you will be redirected to " + linkURL,
+//            type: "warning",
+//            showCancelButton: true
+//        }, function() {
+//            window.location.href = linkURL;
+//        });
+//    }
+
+    $('.btn-confirmation').click(function(e) {
+        e.preventDefault();
+
+        var form = $(this).closest('form');
+
+        swal({
+            title: "Are you sure?",
+            text: "This action is irreversible!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: false
+        }, function() {
+            swal({
+                title: "Deleted",
+                type: "success",
+                timer: 1000,
+                showConfirmButton: false
+            });
+            setTimeout(function () {
+                form[0].submit();
+            }, 800);
+        });
+    });
+</script>

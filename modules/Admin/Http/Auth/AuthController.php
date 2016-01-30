@@ -75,6 +75,6 @@ class AuthController extends BaseController
 
         event('manager.logged_out');
 
-        return redirect(route('admin_login'));
+        return redirect(route('admin.login'));
     }
 }

@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('admin_home') }}">
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
                 <span class="chat-img">
                     <img src="{{ $admin->avatar }}" width="30" height="30" alt="User Avatar" class="img-circle pull-left" />
                 </span>
@@ -240,7 +240,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{ route('admin_logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -264,10 +264,10 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="{{ route('admin_home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin_managers') }}"><i class="fa fa-user-secret fa-fw"></i> Managers</a>
+                        <a href="{{ route('admin.manager.index') }}"><i class="fa fa-user-secret fa-fw"></i> Managers</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-list-alt fa-fw"></i> Page Structure<span class="fa arrow"></span></a>
