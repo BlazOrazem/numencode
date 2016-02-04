@@ -2,7 +2,7 @@
 
 @section('title')
     Verify Your E-mail Address
-@endsection
+@stop
 
 @section('content')
     <table>
@@ -24,4 +24,4 @@
             </td>
         </tr>
     </table>
-@endsection
+@stop

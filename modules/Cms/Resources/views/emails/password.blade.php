@@ -2,7 +2,7 @@
 
 @section('title')
     Reset Your Password
-@endsection
+@stop
 
 @section('content')
     <table>
@@ -25,4 +25,4 @@
             </td>
         </tr>
     </table>
-@endsection
+@stop

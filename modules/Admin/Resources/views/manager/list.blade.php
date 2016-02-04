@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($managers as $manager)
+                                @foreach($managers as $manager)
                                     <tr>
                                         <td class="text-center"><img src="{{ $manager->avatar }}" width="50" height="50" class="img-circle"></td>
                                         <td>{{ $manager->name }}</td>
@@ -43,10 +43,17 @@
                                         </td>
                                         <td class="text-center">
                                             @if ($admin->id != $manager->id)
-                                                <form method="POST" action="{{ route('admin.manager.destroy', [$manager->id]) }}">
-                                                    <input name="_method" type="hidden" value="DELETE">
-                                                    {!! csrf_field() !!}
-                                                    <button type="submit" class="btn btn-link btn-confirmation">
+                                                <form method="POST"
+                                                      action="{{ route('admin.manager.destroy', [$manager->id]) }}"
+                                                      v-ajax
+                                                      title="Are you sure?"
+                                                      notification="This action is irreversible."
+                                                      completeTitle="Deleted"
+                                                      completeText="The manager has been deleted."
+                                                >
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-link">
                                                         <i class="glyphicon glyphicon-trash"></i>
                                                     </button>
                                                 </form>
@@ -67,4 +74,4 @@
     </div>
     <!-- /.row -->
 
-@endsection
+@stop

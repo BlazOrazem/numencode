@@ -91,7 +91,5 @@ class ManagerController extends BaseController
     public function destroy(Manager $manager)
     {
         $manager->delete();
-
-        return redirect(route('admin.manager.index'));
     }
 }

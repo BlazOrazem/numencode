@@ -22,23 +22,6 @@
 @endif
 
 <script>
-//    $('.link-confirmation').click(function(e) {
-//        e.preventDefault();
-//        var linkURL = $(this).attr("href");
-//        warnBeforeRedirect(linkURL);
-//    });
-//
-//    function warnBeforeRedirect(linkURL) {
-//        swal({
-//            title: "Leave this site?",
-//            text: "If you click 'OK', you will be redirected to " + linkURL,
-//            type: "warning",
-//            showCancelButton: true
-//        }, function() {
-//            window.location.href = linkURL;
-//        });
-//    }
-
     $('.btn-confirmation').click(function(e) {
         e.preventDefault();
 

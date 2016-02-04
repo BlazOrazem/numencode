@@ -738,4 +738,4 @@
     </div>
     <!-- /.row -->
 
-@endsection
+@stop

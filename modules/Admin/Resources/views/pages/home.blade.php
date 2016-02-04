@@ -193,7 +193,7 @@
                                 });
                             });
                         </script>
-                    @endsection
+                    @stop
                 </div>
                 <!-- /.panel-body -->
             </div>
@@ -416,4 +416,4 @@
     </div>
     <!-- /.row -->
 
-@endsection
+@stop

@@ -2,38 +2,44 @@ var elixir = require('laravel-elixir');
 
 /*
  |--------------------------------------------------------------------------
+ | Configuration
+ |--------------------------------------------------------------------------
+ |
+ | Override some of the Elixir default configuration.
+ |
+ */
+
+/* Set the Assets path to project root folder */
+elixir.config.assetsPath = "./";
+
+/* Set the Css source folder */
+elixir.config.css.folder = '';
+
+/* Set the Less source folder */
+elixir.config.css.less.folder = '';
+
+/* Set the JavaScripts source folder */
+elixir.config.js.folder = '';
+
+/*
+ |--------------------------------------------------------------------------
  | Elixir Asset Management
  |--------------------------------------------------------------------------
  |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
+ | Mix the Elixir.
  |
  */
-
-/**
- * Override some of the Elixir default configuration
- */
-
-// Set the Assets path to project root folder
-elixir.config.assetsPath = "./";
-
-// Set the Css source folder
-elixir.config.css.folder = '';
-
-// Set the Less source folder
-elixir.config.css.less.folder = '';
-
-// Set the JavaScripts source folder
-elixir.config.js.folder = '';
-
-/**
- * Mix Elixir
- */
 elixir(function(mix) {
-    /**
-     *  Gulp watcher for admin assets, trigger with "gulp watch".
+
+    /*
+     |--------------------------------------------------------------------------
+     | Admin Assets
+     |--------------------------------------------------------------------------
+     |
+     | Gulp watcher for admin assets, trigger with "gulp watch".
+     |
      */
+
     var adminResources = 'modules/Admin/Resources/assets/';
     mix.less([
         adminResources + 'styles/app.less',
@@ -50,11 +56,15 @@ elixir(function(mix) {
         '/node_modules/datatables-lite/css/responsive.dataTables.min.css'
     ], 'public/css/admin-libs.css')
     .scripts([
-        adminResources + 'scripts/app.js'
+        adminResources + 'scripts/app.js',
+        adminResources + 'scripts/vue.ajax.js',
+        adminResources + 'scripts/vue.init.js'
     ], './public/js/admin-app.js')
     .scripts([
         '/node_modules/jquery/dist/jquery.min.js',
         '/node_modules/bootstrap-less/js/bootstrap.min.js',
+        '/node_modules/vue/dist/vue.js',
+        '/node_modules/vue-resource/dist/vue-resource.js',
         '/node_modules/sweetalert/dist/sweetalert.min.js',
         '/node_modules/metismenu/dist/metisMenu.min.js',
         '/node_modules/raphael/raphael-min.js',
@@ -66,9 +76,15 @@ elixir(function(mix) {
         '/node_modules/datatables-lite/js/dataTables.responsive.min.js'
     ], './public/js/admin-libs.js');
 
-    /**
-     *  Gulp watcher for cms assets, trigger with "gulp watch".
+    /*
+     |--------------------------------------------------------------------------
+     | CMS Assets
+     |--------------------------------------------------------------------------
+     |
+     | Gulp watcher for cms assets, trigger with "gulp watch".
+     |
      */
+
     var cmsResources = 'modules/Cms/Resources/assets/';
     mix.less([
         cmsResources + 'styles/app.less'
@@ -87,9 +103,15 @@ elixir(function(mix) {
         '/node_modules/sweetalert/dist/sweetalert.min.js'
     ], './public/js/libs.js');
 
-    /**
-     * Version the Css files (avoid caching issues).
+    /*
+     |--------------------------------------------------------------------------
+     | Version the Assets
+     |--------------------------------------------------------------------------
+     |
+     | Version the CSS and JS files to avoid caching issues.
+     |
      */
+
     mix.version([
         'public/css/admin-app.css',
         'public/css/admin-libs.css',
@@ -97,8 +119,14 @@ elixir(function(mix) {
         'public/css/libs.css'
     ]);
 
-    /**
-     * Gulp watcher for tests, trigger with "gulp tdd".
+    /*
+     |--------------------------------------------------------------------------
+     | Testing
+     |--------------------------------------------------------------------------
+     |
+     | Gulp watcher for tests, trigger with "gulp tdd".
+     |
      */
+
     mix.phpUnit();
 });
