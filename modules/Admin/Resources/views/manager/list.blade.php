@@ -11,9 +11,13 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <datatable title="Managers" :data.sync="managers" admin-id="{{ $admin->id }}"></datatable>
+
+            <template id="managers-list">
+
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Managers
+                    @{{ title }}
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -31,36 +35,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($managers as $manager)
-                                    <tr>
-                                        <td class="text-center"><img src="{{ $manager->avatar }}" width="50" height="50" class="img-circle"></td>
-                                        <td>{{ $manager->name }}</td>
-                                        <td>{{ $manager->email }}</td>
-                                        <td>{{ $manager->phone }}</td>
-                                        <td>{{ $manager->created_at->format('F j, Y') }}</td>
-                                        <td class="text-center">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                        </td>
-                                        <td class="text-center">
-                                            @if ($admin->id != $manager->id)
-                                                <form method="POST"
-                                                      action="{{ route('admin.manager.destroy', [$manager->id]) }}"
-                                                      v-ajax
-                                                      title="Are you sure?"
-                                                      notification="This action is irreversible."
-                                                      completeTitle="Deleted"
-                                                      completeText="The manager has been deleted."
-                                                >
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-link">
-                                                        <i class="glyphicon glyphicon-trash"></i>
-                                                    </button>
-                                                </form>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tr v-for="manager in data">
+                                    <td class="text-center"><img :src="manager.avatar" width="50" height="50" class="img-circle"></td>
+                                    <td>@{{ manager.name }}</td>
+                                    <td>@{{ manager.email }}</td>
+                                    <td>@{{ manager.phone }}</td>
+                                    <td>@{{ manager.created_at }}</td>
+                                    <td class="text-center">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <form v-if="adminId != manager.id" method="POST"
+                                              action="/admin/manager/@{{ manager.id }}"
+                                              @submit.prevent="submit"
+                                              title="Are you sure?"
+                                              notification="This action is irreversible."
+                                              completeTitle="Deleted"
+                                              completeText="The manager has been deleted."
+                                              data-id="@{{ manager.id }}"
+                                        >
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-link">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -69,6 +70,11 @@
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
+
+                <pre>@{{ data | json }}</pre>
+
+            </template>
+
         </div>
         <!-- /.col-lg-6 -->
     </div>

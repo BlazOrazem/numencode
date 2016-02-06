@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="NumencodeCMS">
     <meta name="author" content="Numencode.com">
+    <meta name="_token" content="{{ csrf_token() }}">
     <title>Admin Dashboard</title>
     <base href="{{ env('app_url') }}">
     <link href="{{ elixir('css/admin-app.css') }}" rel="stylesheet" type="text/css">
@@ -400,12 +401,7 @@
 </div>
 <!-- /#wrapper -->
 
-<script src="js/admin-libs.js"></script>
-<script src="js/admin-app.js"></script>
-
-@include('admin::flash')
-
-@yield('scripts')
+@include('admin::footer')
 
 </body>
 </html>

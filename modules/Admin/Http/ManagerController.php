@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use JavaScript;
 use Admin\Models\Manager;
 
 class ManagerController extends BaseController
@@ -13,9 +14,11 @@ class ManagerController extends BaseController
      */
     public function index()
     {
-        $managers = Manager::all();
+        $managers = Manager::all()->keyBy('id');
 
-        return view('admin::manager.list', compact('managers'));
+        $this->js(compact('managers'));
+
+        return view('admin::manager.list');
     }
 
     /**

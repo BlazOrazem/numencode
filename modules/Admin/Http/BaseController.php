@@ -4,6 +4,7 @@ namespace Admin\Http;
 
 use Numencode\Http\Controller;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class BaseController extends Controller
 {
@@ -23,5 +24,10 @@ class BaseController extends Controller
 
         view()->share('admin', $this->admin);
         view()->share('signedIn', (bool)Auth::guard('admin')->check());
+    }
+
+    protected function js($data)
+    {
+        JavaScriptFacade::put($data);
     }
 }
