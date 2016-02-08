@@ -90,11 +90,17 @@ Vue.component('datatable', {
                     timer: 1000,
                     showConfirmButton: false
                 });
+
             }
 
             var item = this.data[$(el).attr('data-id')];
 
             this.data.$remove(item);
+            //console.log(item);
+
+            //delete this.data[item];
+            //this.data.splice(0,1);
+            //console.log(this.data);
         },
 
         onError: function (response) {
@@ -102,6 +108,7 @@ Vue.component('datatable', {
                 swal({
                     title: "Error",
                     type: "error",
+                    //text: "error",
                     text: response.data.message,
                     showConfirmButton: true
                 });
