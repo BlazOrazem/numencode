@@ -41,4 +41,11 @@ class Manager extends Model implements
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * The attributes that are dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at'];
 }

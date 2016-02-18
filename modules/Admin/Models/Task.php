@@ -19,6 +19,14 @@ class Task extends Model
      * @var array
      */
     protected $fillable = [
+        'title',
         'body',
     ];
+
+    /**
+     * The attributes that are dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at'];
 }

@@ -24,6 +24,7 @@ $factory->define(Admin\Models\Manager::class, function (Faker\Generator $faker) 
 
 $factory->define(Admin\Models\Task::class, function (Faker\Generator $faker) {
     return [
+        'name' => $faker->sentence(4),
         'body' => $faker->paragraph,
     ];
 });

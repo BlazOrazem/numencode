@@ -41,20 +41,20 @@ elixir(function(mix) {
      */
 
     var adminResources = 'modules/Admin/Resources/assets/';
-    //mix.less([
-    //    adminResources + 'styles/app.less',
-    //    adminResources + 'styles/jstree/default/style.less'
-    //], './public/css/admin-app.css')
-    //.styles([
-    //    '/node_modules/font-awesome/css/font-awesome.min.css',
-    //    '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
-    //    '/node_modules/sweetalert/dist/sweetalert.css',
-    //    '/node_modules/metismenu/dist/metisMenu.min.css',
-    //    '/node_modules/morris.js/morris.css',
-    //    '/node_modules/datatables-lite/css/jquery.dataTables.min.css',
-    //    '/node_modules/datatables-lite/css/dataTables.bootstrap.css',
-    //    '/node_modules/datatables-lite/css/responsive.dataTables.min.css'
-    //], 'public/css/admin-libs.css')
+    mix.less([
+        adminResources + 'styles/app.less',
+        adminResources + 'styles/jstree/default/style.less'
+    ], './public/css/admin-app.css')
+    .styles([
+        '/node_modules/font-awesome/css/font-awesome.min.css',
+        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+        '/node_modules/sweetalert/dist/sweetalert.css',
+        '/node_modules/metismenu/dist/metisMenu.min.css',
+        '/node_modules/morris.js/morris.css',
+        '/node_modules/datatables-lite/css/jquery.dataTables.min.css',
+        '/node_modules/datatables-lite/css/dataTables.bootstrap.css',
+        '/node_modules/datatables-lite/css/responsive.dataTables.min.css'
+    ], 'public/css/admin-libs.css')
     mix.scripts([
         adminResources + 'scripts/tasks.js',
         //adminResources + 'scripts/app.js',
@@ -113,12 +113,12 @@ elixir(function(mix) {
      |
      */
 
-    //mix.version([
-    //    'public/css/admin-app.css',
-    //    'public/css/admin-libs.css',
-    //    'public/css/app.css',
-    //    'public/css/libs.css'
-    //]);
+    mix.version([
+        'public/css/admin-app.css',
+        'public/css/admin-libs.css',
+        'public/css/app.css',
+        'public/css/libs.css'
+    ]);
 
     /*
      |--------------------------------------------------------------------------

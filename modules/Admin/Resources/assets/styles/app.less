@@ -250,7 +250,7 @@ table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,
 table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
-  background: transparent;
+  background:  none !important;
 }
 table.dataTable thead .sorting_asc:after {
   content: "\f0de";
@@ -353,6 +353,21 @@ table.dataTable tbody td {
     color: @brand-warning;
     &:hover {
       color: darken(@brand-warning, 15%);
+    }
+  }
+}
+
+// Forms
+form.form-horizontal {
+  input {
+    &.normal {
+      max-width: 500px;
+    }
+    &.medium {
+      max-width: 300px;
+    }
+    &.small {
+      max-width: 200px;
     }
   }
 }
