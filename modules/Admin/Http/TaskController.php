@@ -15,11 +15,16 @@ class TaskController extends BaseController
     {
         $tasks = Task::latest()->get();
 
-        $this->js(compact('tasks'));
+        $this->js(['data' => $tasks, 'template' => '#tasks-template']);
 
-        return view('admin::task.list', compact('tasks'));
+        return view('admin::task.list');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Task $task
+     */
     public function destroy(Task $task)
     {
         $task->delete();

@@ -14,9 +14,9 @@ class ManagerController extends BaseController
      */
     public function index()
     {
-        $managers = Manager::all()->keyBy('id');
+        $managers = Manager::all();
 
-        $this->js(compact('managers'));
+        $this->js(['data' => $managers, 'template' => '#managers-template']);
 
         return view('admin::manager.list');
     }

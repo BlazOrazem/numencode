@@ -44,9 +44,9 @@ $(function() {
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="_token"]').attr('content');
 
 Vue.component('datatable', {
-    props: ['title', 'data-id'],
+    props: ['title', 'admin-id'],
 
-    template: '#tasks-template',
+    template: vars.template,
 
     data: function() {
         return {
@@ -55,23 +55,23 @@ Vue.component('datatable', {
     },
 
     ready: function() {
-        //$('table.data-table').DataTable({
-        //    dom: '<"top"if>rt<"bottom"lp><"clear">',
-        //    responsive: true,
-        //    order: [],
-        //    columnDefs: [{
-        //        targets  : 'no-sort',
-        //        orderable: false
-        //    }]
-        //});
+        $('table.data-table').DataTable({
+            dom: '<"top"if>rt<"bottom"lp><"clear">',
+            responsive: true,
+            order: [],
+            columnDefs: [{
+                targets  : 'no-sort',
+                orderable: false
+            }]
+        });
     },
 
     created: function() {
-        this.list = vars.tasks;
+        this.list = vars.data;
     },
 
     methods: {
-        submit: function(event, task) {
+        submit: function(event, item) {
             var el = event.target;
             var requestType = this.getRequestType(el);
 
@@ -87,12 +87,12 @@ Vue.component('datatable', {
             }, function() {
                 this
                     .$http[requestType]($(el).attr('action'))
-                    .then(this.onComplete.bind(this, el, task))
+                    .then(this.onComplete.bind(this, el, item))
                     .catch(this.onError);
             }.bind(this));
         },
 
-        onComplete: function (el, task) {
+        onComplete: function (el, item) {
 
             if ($(el).attr('completeTitle')) {
                 swal({
@@ -104,7 +104,7 @@ Vue.component('datatable', {
                 });
             }
 
-            this.list.$remove(task);
+            this.list.$remove(item);
         },
 
         onError: function (response) {
