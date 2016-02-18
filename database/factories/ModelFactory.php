@@ -22,6 +22,12 @@ $factory->define(Admin\Models\Manager::class, function (Faker\Generator $faker) 
     ];
 });
 
+$factory->define(Admin\Models\Task::class, function (Faker\Generator $faker) {
+    return [
+        'body' => $faker->paragraph,
+    ];
+});
+
 $factory->define(Cms\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,

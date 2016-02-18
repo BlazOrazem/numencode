@@ -41,10 +41,18 @@ $(function() {
     });
 });
 
+Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="_token"]').attr('content');
 
 Vue.component('datatable', {
-    props: ['title', 'data', 'admin-id'],
-    template: '#managers-list',
+    props: ['title', 'data-id'],
+
+    template: '#tasks-template',
+
+    data: function() {
+        return {
+            list: []
+        };
+    },
 
     ready: function() {
         //$('table.data-table').DataTable({
@@ -58,10 +66,13 @@ Vue.component('datatable', {
         //});
     },
 
-    methods: {
-        submit: function(e, manager) {
-            var el = e.target;
+    created: function() {
+        this.list = vars.tasks;
+    },
 
+    methods: {
+        submit: function(event, task) {
+            var el = event.target;
             var requestType = this.getRequestType(el);
 
             swal({
@@ -76,13 +87,13 @@ Vue.component('datatable', {
             }, function() {
                 this
                     .$http[requestType]($(el).attr('action'))
-                    .then(this.onComplete.bind(this, el, manager))
+                    .then(this.onComplete.bind(this, el, task))
                     .catch(this.onError);
             }.bind(this));
         },
 
-        onComplete: function (el, manager) {
-            
+        onComplete: function (el, task) {
+
             if ($(el).attr('completeTitle')) {
                 swal({
                     title: $(el).attr('completeTitle'),
@@ -93,17 +104,7 @@ Vue.component('datatable', {
                 });
             }
 
-            this.data.$remove(manager);
-            
-
-            //var item = this.data[$(el).attr('data-id')];
-
-            //this.data.$remove(item);
-            //console.log(item);
-
-            //delete this.data[item];
-            //this.data.splice(0,1);
-            //console.log(this.data);
+            this.list.$remove(task);
         },
 
         onError: function (response) {
@@ -111,7 +112,6 @@ Vue.component('datatable', {
                 swal({
                     title: "Error",
                     type: "error",
-                    //text: "error",
                     text: response.data.message,
                     showConfirmButton: true
                 });
@@ -120,9 +120,12 @@ Vue.component('datatable', {
 
         getRequestType: function (el) {
             var method = el.querySelector('input[name="_method"]');
-            
+
             return (method ? method.value : el.method).toLowerCase();
         }
     }
+});
 
+new Vue({
+    el: 'body'
 });

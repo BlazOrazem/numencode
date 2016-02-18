@@ -47,7 +47,7 @@
                                     <td class="text-center">
                                         <form v-if="adminId != manager.id" method="POST"
                                               action="/admin/manager/@{{ manager.id }}"
-                                              @submit.prevent="submit"
+                                              @submit.prevent="submit($event, manager)"
                                               title="Are you sure?"
                                               notification="This action is irreversible."
                                               completeTitle="Deleted"
