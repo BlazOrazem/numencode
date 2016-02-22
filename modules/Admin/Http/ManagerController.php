@@ -2,11 +2,31 @@
 
 namespace Admin\Http;
 
-use JavaScript;
 use Admin\Models\Manager;
+use Admin\Repositories\ManagerRepository;
+use Admin\Http\Requests\ManagerUpdateRequest;
 
 class ManagerController extends BaseController
 {
+    /**
+     * The Manager Repository implementation.
+     *
+     * @var ManagerRepository
+     */
+    protected $managers;
+
+    /**
+     * Create a new profile controller instance.
+     *
+     * @param ManagerRepository $managers
+     */
+    public function __construct(ManagerRepository $managers)
+    {
+        parent::__construct();
+
+        $this->managers = $managers;
+    }
+
     /**
      * Display a listing of the  managers.
      *
@@ -14,9 +34,7 @@ class ManagerController extends BaseController
      */
     public function index()
     {
-        $managers = Manager::all();
-
-        $this->js(['data' => $managers, 'template' => '#managers-template']);
+        $this->js(['data' => Manager::all(), 'template' => '#managers-template']);
 
         return view('admin::manager.list');
     }
@@ -76,14 +94,20 @@ class ManagerController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @param ManagerUpdateRequest $request
+     * @param Manager $manager
      * @return \Illuminate\Http\Response
      */
-//    public function update(Request $request, $id)
-//    {
-//        //
-//    }
+    public function update(ManagerUpdateRequest $request, Manager $manager)
+    {
+        $this->managers->updateManager($manager, $request);
+
+        flash()->success(
+            trans('admin::messages.success'), trans('admin::messages.profile.updated', ['name' => $manager->name])
+        );
+
+        return redirect()->back();
+    }
 
     /**
      * Remove the specified resource from storage.

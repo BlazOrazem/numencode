@@ -14,7 +14,7 @@ class TaskController extends BaseController
     public function index()
     {
         $tasks = Task::latest()->get();
-
+    
         $this->js(['data' => $tasks, 'template' => '#tasks-template']);
 
         return view('admin::task.list');

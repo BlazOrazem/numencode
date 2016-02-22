@@ -3,6 +3,7 @@
 namespace Admin\Repositories;
 
 use Admin\Models\Manager;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ManagerRepository
@@ -54,5 +55,37 @@ class ManagerRepository
         flash()->success(trans('messages.login.title', ['name' => $manager->name]), trans('messages.login.content'));
 
         event('manager.logged_in', $manager);
+    }
+
+    /**
+     * Update manager's profile.
+     *
+     * @param Manager $manager
+     * @param Request $request
+     */
+    public function updateManager(Manager $manager, Request $request)
+    {
+        if ($request->email != $manager->email) {
+            $manager->email = $request->email;
+        }
+
+//        if ($request->avatar) {
+//            if ($manager->avatar) {
+//                $this->deleteAvatarFile($manager);
+//            }
+//
+//            $manager->avatar = $this->makeAvatarFromFile($request->avatar);
+//            $manager->avatar_thumbnail = $this->makeAvatarFromFile($request->avatar, true);
+//        }
+
+        if ($request->password) {
+            $manager->password = bcrypt($request->password);
+        }
+
+        $manager->name = $request->name;
+        $manager->phone = $request->phone;
+        $manager->save();
+
+        event('manager.update_profile', $manager);
     }
 }

@@ -54,7 +54,13 @@ Vue.component('datatable', {
         };
     },
 
+    created: function() {
+        this.list = vars.data;
+    },
+
     ready: function() {
+        console.log(this.listArray);
+
         $('table.data-table').DataTable({
             dom: '<"top"if>rt<"bottom"lp><"clear">',
             responsive: true,
@@ -64,10 +70,6 @@ Vue.component('datatable', {
                 orderable: false
             }]
         });
-    },
-
-    created: function() {
-        this.list = vars.data;
     },
 
     methods: {

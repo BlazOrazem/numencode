@@ -26,6 +26,11 @@ class BaseController extends Controller
         view()->share('signedIn', (bool)Auth::guard('admin')->check());
     }
 
+    /**
+     * Pass data to Javascript
+     *
+     * @param $data
+     */
     protected function js($data)
     {
         JavaScriptFacade::put($data);
