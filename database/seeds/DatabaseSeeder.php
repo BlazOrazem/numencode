@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         'permissions',
         'permission_role',
         'role_user',
+        'manager_role',
         'tasks',
     ];
 
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
+        $this->call(ManagerRoleTableSeeder::class);
         $this->call(TasksTableSeeder::class);
     }
 

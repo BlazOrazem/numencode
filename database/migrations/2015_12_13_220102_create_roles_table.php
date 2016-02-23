@@ -16,6 +16,7 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('label')->nullable();
+            $table->boolean('is_admin')->nullable();
             $table->timestamps();
         });
 
@@ -59,6 +60,23 @@ class CreateRolesTable extends Migration
 
             $table->primary(['role_id', 'user_id']);
         });
+
+        Schema::create('manager_role', function (Blueprint $table) {
+            $table->integer('role_id')->unsigned();
+            $table->integer('manager_id')->unsigned();
+
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('cascade');
+
+            $table->foreign('manager_id')
+                ->references('id')
+                ->on('managers')
+                ->onDelete('cascade');
+
+            $table->primary(['role_id', 'manager_id']);
+        });
     }
 
     /**
@@ -69,6 +87,7 @@ class CreateRolesTable extends Migration
     public function down()
     {
         Schema::drop('role_user');
+        Schema::drop('manager_role');
         Schema::drop('permission_role');
         Schema::drop('permissions');
         Schema::drop('roles');

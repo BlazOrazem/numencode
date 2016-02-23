@@ -2,6 +2,7 @@
 
 namespace Admin\Models;
 
+use Admin\Traits\ManagerRoles;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -13,7 +14,7 @@ class Manager extends Model implements
     AuthenticatableContract,
     AuthorizableContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, ManagerRoles;
 
     /**
      * The database table used by the model.
