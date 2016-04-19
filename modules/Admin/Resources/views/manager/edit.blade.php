@@ -63,7 +63,6 @@
             </form>
 
         </div>
-        <!-- /.col-lg-12 -->
     </div>
 
 @stop
