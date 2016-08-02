@@ -2,8 +2,8 @@
 
 namespace Admin\Repositories;
 
-use Admin\Models\Manager;
 use Illuminate\Http\Request;
+use Numencode\Models\Manager;
 use Illuminate\Support\Facades\Auth;
 
 class ManagerRepository

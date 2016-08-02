@@ -3,7 +3,7 @@
 namespace Cms\Repositories;
 
 use Image;
-use Cms\Models\User;
+use Numencode\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Laravel\Socialite\AbstractUser as SocialUser;

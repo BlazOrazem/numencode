@@ -5,7 +5,6 @@ namespace Numencode\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 //use Numencode\Http\Middleware\IsGuest;
-//use Numencode\Http\Middleware\IsGuest;
 //use Numencode\Http\Middleware\IsAuthenticated;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

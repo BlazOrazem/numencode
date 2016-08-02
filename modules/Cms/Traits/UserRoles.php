@@ -2,7 +2,7 @@
 
 namespace Cms\Traits;
 
-use Cms\Models\Role;
+use Numencode\Models\Role;
 
 trait UserRoles
 {

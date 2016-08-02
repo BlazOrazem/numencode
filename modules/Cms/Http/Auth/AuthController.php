@@ -2,7 +2,7 @@
 
 namespace Cms\Http\Auth;
 
-use Cms\Models\User;
+use Numencode\Models\User;
 use Cms\Http\BaseController;
 use Illuminate\Http\Request;
 use Numencode\Utils\AppMailer;

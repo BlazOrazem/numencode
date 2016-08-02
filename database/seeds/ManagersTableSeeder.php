@@ -1,7 +1,7 @@
 <?php
 
-use Admin\Models\Manager;
 use Faker\Factory as Faker;
+use Numencode\Models\Manager;
 use Illuminate\Database\Seeder;
 
 class ManagersTableSeeder extends Seeder

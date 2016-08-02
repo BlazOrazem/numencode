@@ -2,7 +2,7 @@
 
 namespace Admin\Http;
 
-use Admin\Models\Task;
+use Numencode\Models\Task;
 
 class TaskController extends BaseController
 {

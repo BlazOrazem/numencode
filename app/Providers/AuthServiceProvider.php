@@ -2,7 +2,7 @@
 
 namespace Numencode\Providers;
 
-use Cms\Models\Permission;
+use Numencode\Models\Permission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

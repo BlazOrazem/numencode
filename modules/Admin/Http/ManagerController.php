@@ -2,7 +2,7 @@
 
 namespace Admin\Http;
 
-use Admin\Models\Manager;
+use Numencode\Models\Manager;
 use Admin\Repositories\ManagerRepository;
 use Admin\Http\Requests\ManagerUpdateRequest;
 

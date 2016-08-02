@@ -1,6 +1,6 @@
 <?php
 
-use Admin\Models\Task;
+use Numencode\Models\Task;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

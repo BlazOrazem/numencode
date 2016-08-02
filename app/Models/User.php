@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Models;
+namespace Numencode\Models;
 
 use Cms\Traits\UserRoles;
 use Illuminate\Auth\Authenticatable;

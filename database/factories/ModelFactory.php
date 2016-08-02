@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Admin\Models\Manager::class, function (Faker\Generator $faker) {
+$factory->define(Numencode\Models\Manager::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -22,14 +22,14 @@ $factory->define(Admin\Models\Manager::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->define(Admin\Models\Task::class, function (Faker\Generator $faker) {
+$factory->define(Numencode\Models\Task::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->sentence(4),
         'body' => $faker->paragraph,
     ];
 });
 
-$factory->define(Cms\Models\User::class, function (Faker\Generator $faker) {
+$factory->define(Numencode\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'nickname' => $faker->name,

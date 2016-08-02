@@ -1,6 +1,6 @@
 <?php
 
-use Cms\Models\User;
+use Numencode\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

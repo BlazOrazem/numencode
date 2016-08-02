@@ -2,7 +2,7 @@
 
 namespace Admin\Traits;
 
-use Admin\Models\Role;
+use Numencode\Models\Role;
 
 trait ManagerRoles
 {

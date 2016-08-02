@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Models;
+namespace Numencode\Models;
 
 use Admin\Traits\ManagerRoles;
 use Illuminate\Auth\Authenticatable;
