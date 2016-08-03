@@ -27,21 +27,21 @@ class CreateRolesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('permission_role', function (Blueprint $table) {
-            $table->integer('permission_id')->unsigned();
+        Schema::create('role_permission', function (Blueprint $table) {
             $table->integer('role_id')->unsigned();
-
-            $table->foreign('permission_id')
-                ->references('id')
-                ->on('permissions')
-                ->onDelete('cascade');
+            $table->integer('permission_id')->unsigned();
 
             $table->foreign('role_id')
                 ->references('id')
                 ->on('roles')
                 ->onDelete('cascade');
 
-            $table->primary(['permission_id', 'role_id']);
+            $table->foreign('permission_id')
+                ->references('id')
+                ->on('permissions')
+                ->onDelete('cascade');
+
+            $table->primary(['role_id', 'permission_id']);
         });
 
         Schema::create('role_user', function (Blueprint $table) {
@@ -61,7 +61,7 @@ class CreateRolesTable extends Migration
             $table->primary(['role_id', 'user_id']);
         });
 
-        Schema::create('manager_role', function (Blueprint $table) {
+        Schema::create('role_manager', function (Blueprint $table) {
             $table->integer('role_id')->unsigned();
             $table->integer('manager_id')->unsigned();
 
@@ -87,8 +87,8 @@ class CreateRolesTable extends Migration
     public function down()
     {
         Schema::drop('role_user');
-        Schema::drop('manager_role');
-        Schema::drop('permission_role');
+        Schema::drop('role_manager');
+        Schema::drop('role_permission');
         Schema::drop('permissions');
         Schema::drop('roles');
     }

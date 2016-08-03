@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ManagerRoleTableSeeder extends Seeder
+class RoleManagerTableSeeder extends Seeder
 {
     public function run()
     {
@@ -11,6 +11,6 @@ class ManagerRoleTableSeeder extends Seeder
             ['role_id' => '2', 'manager_id' => '2'],
         ];
 
-        DB::table('manager_role')->insert($items);
+        DB::table('role_manager')->insert($items);
     }
 }
