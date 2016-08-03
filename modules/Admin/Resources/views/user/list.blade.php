@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Managers
+                Users
             </h1>
         </div>
     </div>
@@ -31,12 +31,12 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Created at</th>
-                                    @if($admin->can('edit_managers'))
+                                    @can('edit_managers')
                                         <th class="no-sort text-center" width="30">Edit</th>
-                                    @endif
-                                    @if($admin->can('delete_managers'))
+                                    @endcan
+                                    @can('delete_managers')
                                         <th class="no-sort text-center" width="30">Delete</th>
-                                    @endif
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -46,14 +46,14 @@
                                     <td>@{{ item.email }}</td>
                                     <td>@{{ item.phone }}</td>
                                     <td>@{{ item.created_at }}</td>
-                                    @if($admin->can('edit_managers'))
+                                    @can('edit_managers')
                                         <td class="text-center">
                                             <a href="/admin/manager/@{{ item.id }}/edit">
                                                 <i class="glyphicon glyphicon-pencil"></i>
                                             </a>
                                         </td>
-                                    @endif
-                                    @if($admin->can('delete_managers'))
+                                    @endcan
+                                    @can('delete_managers')
                                         <td class="text-center">
                                             <form v-if="adminId != item.id" method="POST"
                                                   action="/admin/manager/@{{ item.id }}"
@@ -70,7 +70,7 @@
                                                 </button>
                                             </form>
                                         </td>
-                                    @endif
+                                    @endcan
                                 </tr>
                                 </tbody>
                             </table>

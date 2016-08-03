@@ -180,6 +180,9 @@ class RouteServiceProvider extends ServiceProvider
             // Managers
             Route::resource('manager', 'ManagerController');
 
+            // Users
+            Route::resource('user', 'UserController');
+
             // Tasks
             Route::get('task/api', 'TaskController@api')->name('admin.tasks.api');
             Route::resource('task', 'TaskController');
