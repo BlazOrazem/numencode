@@ -5,6 +5,7 @@ namespace Numencode\Models;
 use Cms\Traits\UserRoles;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -16,7 +17,7 @@ class User extends Model implements
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, UserRoles;
+    use Authenticatable, Authorizable, CanResetPassword, UserRoles, Notifiable;
 
     /**
      * The database table used by the model.

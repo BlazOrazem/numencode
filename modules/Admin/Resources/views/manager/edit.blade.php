@@ -12,7 +12,7 @@
         <div class="col-lg-12">
 
             <form method="POST"
-                  action="{{ route('admin.manager.update', ['manager' => $manager]) }}"
+                  action="{{ route('manager.update', ['manager' => $manager]) }}"
                   class="form-horizontal"
                   enctype="multipart/form-data"
                     >

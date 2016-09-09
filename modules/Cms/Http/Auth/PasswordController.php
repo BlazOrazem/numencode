@@ -58,7 +58,7 @@ class PasswordController extends BaseController
             'success'
         );
 
-            return redirect('/');
+        return redirect('/');
     }
 
     /**

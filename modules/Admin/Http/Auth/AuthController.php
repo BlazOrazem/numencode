@@ -7,7 +7,6 @@ use Admin\Http\BaseController;
 use Illuminate\Support\Facades\Auth;
 use Admin\Http\Requests\LoginRequest;
 use Admin\Repositories\ManagerRepository;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends BaseController
 {
@@ -24,8 +23,6 @@ class AuthController extends BaseController
      * @var $guard
      */
     protected $guard = 'admin';
-
-    use AuthenticatesAndRegistersUsers;
 
     /**
      * Page with login form.

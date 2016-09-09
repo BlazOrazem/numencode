@@ -11,7 +11,6 @@ use Cms\Repositories\UserRepository;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
 use Cms\Http\Requests\RegistrationRequest;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends BaseController
 {
@@ -28,8 +27,6 @@ class AuthController extends BaseController
      * @var Guard
      */
     protected $auth;
-
-    use AuthenticatesAndRegistersUsers;
 
     /**
      * Create a new authentication controller instance.

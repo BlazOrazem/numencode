@@ -34,12 +34,11 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
+        parent::boot();
     }
 
     /**
@@ -181,7 +180,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::resource('manager', 'ManagerController');
 
             // Users
-            Route::resource('user', 'UserController');
+//            Route::resource('user', 'UserController');
 
             // Tasks
             Route::get('task/api', 'TaskController@api')->name('admin.tasks.api');
