@@ -47,9 +47,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(TokenRepositoryInterface::class, function ($app) {
             $connection = $app['db']->connection();
-            $table = $app['config']['auth.password.table'];
+            $table = $app['config']['auth.passwords.users.table'];
             $key = $app['config']['app.key'];
-            $expire = $app['config']->get('auth.password.expire', 60);
+            $expire = $app['config']->get('auth.passwords.users.expire', 60);
             return new DbRepository($connection, $table, $key, $expire);
         });
     }
