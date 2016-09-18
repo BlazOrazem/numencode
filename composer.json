@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "numencode/numencode",
+    "description": "Numencode Content Management System",
+    "keywords": ["numencode", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {

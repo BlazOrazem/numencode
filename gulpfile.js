@@ -86,23 +86,23 @@ elixir(function(mix) {
      |
      */
 
-    //var cmsResources = 'modules/Cms/Resources/assets/';
-    //mix.less([
-    //    cmsResources + 'styles/app.less'
-    //], './public/css/app.css')
-    //.styles([
-    //    '/node_modules/font-awesome/css/font-awesome.min.css',
-    //    '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
-    //    '/node_modules/sweetalert/dist/sweetalert.css'
-    //], 'public/css/libs.css')
-    //.scripts([
-    //    cmsResources + 'scripts/app.js'
-    //], './public/js/app.js')
-    //.scripts([
-    //    '/node_modules/jquery/dist/jquery.min.js',
-    //    '/node_modules/bootstrap-less/js/bootstrap.min.js',
-    //    '/node_modules/sweetalert/dist/sweetalert.min.js'
-    //], './public/js/libs.js');
+    var cmsResources = 'modules/Cms/Resources/assets/';
+    mix.less([
+        cmsResources + 'styles/app.less'
+    ], './public/css/app.css')
+    .styles([
+        '/node_modules/font-awesome/css/font-awesome.min.css',
+        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+        '/node_modules/sweetalert/dist/sweetalert.css'
+    ], 'public/css/libs.css')
+    .scripts([
+        cmsResources + 'scripts/app.js'
+    ], './public/js/app.js')
+    .scripts([
+        '/node_modules/jquery/dist/jquery.min.js',
+        '/node_modules/bootstrap-less/js/bootstrap.min.js',
+        '/node_modules/sweetalert/dist/sweetalert.min.js'
+    ], './public/js/libs.js');
 
     /*
      |--------------------------------------------------------------------------
@@ -129,5 +129,5 @@ elixir(function(mix) {
      |
      */
 
-    //mix.phpUnit();
+    mix.phpUnit();
 });
