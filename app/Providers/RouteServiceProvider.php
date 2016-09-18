@@ -89,7 +89,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => 'isAuthenticated',
             'namespace' => $this->cmsNamespace,
-            'prefix' => 'auth'
         ], function () {
             // Authentication logout
             Route::get('logout', $this->authController . '@getLogout')->name('logout');
@@ -108,7 +107,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => 'isGuest',
             'namespace' => $this->cmsNamespace,
-            'prefix' => 'auth'
         ], function () {
             // Authentication login
             Route::get('login', $this->authController . '@getLogin')->name('login');
@@ -134,7 +132,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => 'isGuest',
             'namespace' => $this->cmsNamespace,
-            'prefix' => 'auth'
         ], function () {
             Route::get('social/{provider?}', 'Auth\SocialAuthController@getLogin')->name('login_social');
         });
