@@ -2,7 +2,6 @@
 
 namespace Numencode\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -42,10 +41,9 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router $router
-     * @return void
+     * @internal void
      */
-    public function map(Router $router)
+    public function map()
     {
         $this->authController = 'Auth\AuthController';
 
@@ -53,46 +51,42 @@ class RouteServiceProvider extends ServiceProvider
             $this->authController = 'Auth\AuthWithLoginThrottleController';
         }
 
-        $router->group([
+        Route::group([
             'namespace' => $this->namespace,
             'middleware' => 'web',
-        ], function ($router) {
-            $this->publicRoutes($router);
+        ], function () {
+            $this->publicRoutes();
 
-            $this->authorizedRoutes($router);
+            $this->authorizedRoutes();
 
-            $this->guestRoutes($router);
+            $this->guestRoutes();
 
             if (config('login.socialite')) {
-                $this->socialiteRoutes($router);
+                $this->socialiteRoutes();
             }
 
-            $this->adminRoutes($router);
+            $this->adminRoutes();
         });
     }
 
     /**
      * Public routes.
-     *
-     * @param Router $router
      */
-    protected function publicRoutes(Router $router)
+    protected function publicRoutes()
     {
         // Homepage
-        $router->get('/', $this->cmsNamespace . 'HomeController@index');
+        Route::get('/', $this->cmsNamespace . 'HomeController@index');
 
         // User email verification
-        $router->get('auth/register/verify/{token}', $this->cmsNamespace . $this->authController . '@verifyEmail');
+        Route::get('auth/register/verify/{token}', $this->cmsNamespace . $this->authController . '@verifyEmail');
     }
 
     /**
      * Authorized routes.
-     *
-     * @param Router $router
      */
-    protected function authorizedRoutes(Router $router)
+    protected function authorizedRoutes()
     {
-        $router->group([
+        Route::group([
             'middleware' => 'isAuthenticated',
             'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
@@ -108,12 +102,10 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Guest routes.
-     *
-     * @param Router $router
      */
-    protected function guestRoutes(Router $router)
+    protected function guestRoutes()
     {
-        $router->group([
+        Route::group([
             'middleware' => 'isGuest',
             'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
@@ -136,12 +128,10 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Socialite routes.
-     *
-     * @param Router $router
      */
-    protected function socialiteRoutes(Router $router)
+    protected function socialiteRoutes()
     {
-        $router->group([
+        Route::group([
             'middleware' => 'isGuest',
             'namespace' => $this->cmsNamespace,
             'prefix' => 'auth'
@@ -152,12 +142,10 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Admin routes.
-     *
-     * @param Router $router
      */
-    protected function adminRoutes(Router $router)
+    protected function adminRoutes()
     {
-        $router->group([
+        Route::group([
             'namespace' => $this->adminNamespace,
             'prefix' => 'admin',
         ], function () {
@@ -166,7 +154,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::post('login', 'Auth\AuthController@postLogin')->name('admin.login.action');
         });
 
-        $router->group([
+        Route::group([
 			'middleware' => 'isAdmin',
             'namespace' => $this->adminNamespace,
             'prefix' => 'admin',
@@ -186,7 +174,6 @@ class RouteServiceProvider extends ServiceProvider
             // Tasks
             Route::get('task/api', 'TaskController@api')->name('admin.tasks.api');
             Route::resource('task', 'TaskController');
-
         });
     }
 }
