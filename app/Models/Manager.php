@@ -3,18 +3,12 @@
 namespace Numencode\Models;
 
 use Admin\Traits\ManagerRoles;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Manager extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract
+class Manager extends Authenticatable
 {
-    use Authenticatable, Authorizable, CanResetPassword, ManagerRoles;
+    use ManagerRoles, Notifiable;
 
     /**
      * The database table used by the model.
@@ -41,12 +35,16 @@ class Manager extends Model implements
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     /**
      * The attributes that are dates.
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = [
+        'created_at', 'updated_at',
+    ];
 }

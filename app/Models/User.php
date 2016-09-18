@@ -3,21 +3,12 @@
 namespace Numencode\Models;
 
 use Cms\Traits\UserRoles;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class User extends Authenticatable
 {
-    use Authenticatable, Authorizable, CanResetPassword, UserRoles, Notifiable;
+    use UserRoles, Notifiable;
 
     /**
      * The database table used by the model.
@@ -48,7 +39,18 @@ class User extends Model implements
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'is_verified', 'token'];
+    protected $hidden = [
+        'password', 'remember_token', 'is_verified', 'token',
+    ];
+
+    /**
+     * The attributes that are dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at', 'updated_at',
+    ];
 
     /**
      * Bootstrap application services for user.
