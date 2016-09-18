@@ -24,8 +24,6 @@ class ProfileController extends BaseController
     {
         parent::__construct();
 
-        $this->middleware('isAuthenticated');
-
         $this->users = $users;
     }
 

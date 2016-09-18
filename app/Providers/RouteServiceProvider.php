@@ -4,8 +4,6 @@ namespace Numencode\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-//use Numencode\Http\Middleware\IsGuest;
-//use Numencode\Http\Middleware\IsAuthenticated;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -55,7 +53,10 @@ class RouteServiceProvider extends ServiceProvider
             $this->authController = 'Auth\AuthWithLoginThrottleController';
         }
 
-        $router->group(['namespace' => $this->namespace], function ($router) {
+        $router->group([
+            'namespace' => $this->namespace,
+            'middleware' => 'web',
+        ], function ($router) {
             $this->publicRoutes($router);
 
             $this->authorizedRoutes($router);

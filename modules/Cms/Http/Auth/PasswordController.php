@@ -22,12 +22,12 @@ class PasswordController extends BaseController
     /**
      * Create a new password controller instance.
      */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->middleware('isGuest');
-    }
+//    public function __construct()
+//    {
+//        parent::__construct();
+//
+//        $this->middleware('isGuest');
+//    }
 
     /**
      * Page with password reset request form.
