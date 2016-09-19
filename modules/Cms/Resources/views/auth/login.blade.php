@@ -4,7 +4,7 @@
 
     <div class="omb_login">
 
-        <h3 class="omb_authTitle">Login or <a href="{{ route('register_action') }}">Sign up</a></h3>
+        <h3 class="omb_authTitle">Login or <a href="{{ route('register') }}">Sign up</a></h3>
 
         <div class="row omb_row-sm-offset-2 omb_socialButtons">
             <div class="col-xs-3 col-sm-3 col-md-2">
@@ -40,8 +40,8 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ route('login_action') }}" class="omb_loginForm">
-            {!! csrf_field() !!}
+        <form method="POST" action="{{ route('login.post') }}" class="omb_loginForm">
+            {{ csrf_field() }}
             @if (isset($ref))
                 <input type="hidden" name="ref" value="{{ $ref }}">
             @endif
@@ -53,14 +53,14 @@
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address">
                             </div>
-                            <span class="help-block">{!! $errors->first('email', ':message') !!}</span>
+                            <span class="help-block">{{ $errors->first('email', ':message') }}</span>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('password') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input type="password" class="form-control" name="password" placeholder="Password">
                             </div>
-                            <span class="help-block">{!! $errors->first('password', ':message') !!}</span>
+                            <span class="help-block">{{ $errors->first('password', ':message') }}</span>
                         </div>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-4">
                     <p class="omb_forgotPwd">
-                        <a href="{{ route('password_forget') }}">Forgot password?</a>
+                        <a href="{{ route('password.forget') }}">Forgot password?</a>
                     </p>
                 </div>
             </div>

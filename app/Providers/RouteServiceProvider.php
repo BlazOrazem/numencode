@@ -57,9 +57,10 @@ class RouteServiceProvider extends ServiceProvider
         ], function () {
             $this->publicRoutes();
 
+            $this->mapGuestRoutes();
+
             $this->authorizedRoutes();
 
-            $this->guestRoutes();
 
             if (config('login.socialite')) {
                 $this->socialiteRoutes();
@@ -78,7 +79,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::get('/', $this->cmsNamespace . 'HomeController@index');
 
         // User email verification
-        Route::get('auth/register/verify/{token}', $this->cmsNamespace . $this->authController . '@verifyEmail');
+//        Route::get('auth/register/verify/{token}', $this->cmsNamespace . $this->authController . '@verifyEmail');
     }
 
     /**
@@ -102,25 +103,38 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Guest routes.
      */
-    protected function guestRoutes()
+//    protected function mapGuestRoutes()
+//    {
+//        Route::group([
+//            'middleware' => 'isGuest',
+//            'namespace' => $this->cmsNamespace,
+//        ], function () {
+//            // Authentication login
+//            Route::get('login', $this->authController . '@getLogin')->name('login');
+//            Route::post('login', $this->authController . '@postLogin')->name('login_action');
+//
+//            // Registration
+//            Route::get('register', $this->authController . '@getRegister')->name('register');
+//            Route::post('register', $this->authController . '@postRegister')->name('register_action');
+//
+//            // Password reset
+//            Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password_forget');
+//            Route::post('password/email', 'Auth\PasswordController@postEmail')->name('password_send');
+//            Route::get('password/reset/{token}', 'Auth\PasswordController@getPassword')->name('password_token');
+//            Route::post('password/reset', 'Auth\PasswordController@postPassword')->name('password_reset');
+//        });
+//    }
+
+    /**
+     * Guest routes
+     */
+    protected function mapGuestRoutes()
     {
         Route::group([
             'middleware' => 'isGuest',
-            'namespace' => $this->cmsNamespace,
-        ], function () {
-            // Authentication login
-            Route::get('login', $this->authController . '@getLogin')->name('login');
-            Route::post('login', $this->authController . '@postLogin')->name('login_action');
-
-            // Registration
-            Route::get('register', $this->authController . '@getRegister')->name('register');
-            Route::post('register', $this->authController . '@postRegister')->name('register_action');
-
-            // Password reset
-            Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password_forget');
-            Route::post('password/email', 'Auth\PasswordController@postEmail')->name('password_send');
-            Route::get('password/reset/{token}', 'Auth\PasswordController@getPassword')->name('password_token');
-            Route::post('password/reset', 'Auth\PasswordController@postPassword')->name('password_reset');
+            'namespace' => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/guest.php');
         });
     }
 
