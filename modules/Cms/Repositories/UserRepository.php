@@ -243,13 +243,13 @@ class UserRepository
      * @param bool $isThumbnail
      * @return string
      */
-    protected function makeAvatarFromFile(UploadedFile $file, $isThumbnail = false)
+    public static function makeAvatarFromFile(UploadedFile $file, $isThumbnail = false)
     {
         $image = Image::make($file);
 
-        $this->avatar = sha1(time() . $file->getClientOriginalName());
+        $avatar = sha1(time() . $file->getClientOriginalName());
 
-        return $this->saveAvatarFile($image, $isThumbnail);
+        return static::saveAvatarFile($avatar, $image, $isThumbnail);
     }
 
     /**
@@ -259,7 +259,7 @@ class UserRepository
      * @param bool $isThumbnail
      * @return string
      */
-    protected function makeAvatarFromUrl($avatarUrl, $isThumbnail = false)
+    public function makeAvatarFromUrl($avatarUrl, $isThumbnail = false)
     {
         $avatarUrl = fix_avatar_url($avatarUrl);
 
@@ -277,7 +277,7 @@ class UserRepository
      * @param bool $isThumbnail
      * @return string
      */
-    protected function saveAvatarFile($image, $isThumbnail = false)
+    public static function saveAvatarFile($avatar, $image, $isThumbnail = false)
     {
         if ($isThumbnail) {
             $image->fit(40, 40)->encode('jpg', 100);
@@ -288,7 +288,7 @@ class UserRepository
             })->encode('jpg', 100);
         }
 
-        $filePath = $this->avatarPath . '/' . ($isThumbnail ? 'tn-' . $this->avatar : $this->avatar) . '.jpg';
+        $filePath = 'uploads/avatars/' . ($isThumbnail ? 'tn-' . $avatar : $avatar) . '.jpg';
 
         $image->save($filePath);
 
