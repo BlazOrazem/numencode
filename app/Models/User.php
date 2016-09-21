@@ -2,6 +2,7 @@
 
 namespace Numencode\Models;
 
+use Cms\Http\Auth\AvatarController;
 use Cms\Traits\UserRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,7 +29,6 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar',
-        'avatar_thumbnail',
         'social_provider_type',
         'social_provider_id',
         'is_verified',
@@ -80,5 +80,16 @@ class User extends Authenticatable
         $this->token = null;
 
         $this->save();
+    }
+
+    public function avatar($width = 100, $height = null)
+    {
+        $height = $height ?: $width;
+
+        if (!$this->avatar) {
+            return null;
+        }
+
+        return AvatarController::getAvatarImageUrl($this->avatar, $width, $height);
     }
 }

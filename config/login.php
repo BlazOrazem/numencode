@@ -42,4 +42,27 @@ return [
 
     'throttle' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | User Avatar Upload Folder Path
+    |--------------------------------------------------------------------------
+    |
+    | Root folder is /public/. Use no leading or trailing slash.
+    |
+    */
+
+    'avatar_path' => 'uploads/avatars',
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Avatar Image Dimensions
+    |--------------------------------------------------------------------------
+    |
+    | Dimensions for user avatar image in pixels (px).
+    |
+    */
+
+    'avatar_width' => 1000,
+    'avatar_height' => 1000,
+
 ];

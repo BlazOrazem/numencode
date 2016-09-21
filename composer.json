@@ -7,12 +7,13 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
+        "guzzlehttp/guzzle": "~5.3|~6.0",
         "laravel/socialite": "~2.0",
         "intervention/image": "^2.3",
-        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "intervention/imagecache": "^2.3",
+        "laracasts/utilities": "^2.1",
         "barryvdh/laravel-debugbar": "~2.0@dev",
-        "barryvdh/laravel-ide-helper": "^2.1",
-        "laracasts/utilities": "^2.1"
+        "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

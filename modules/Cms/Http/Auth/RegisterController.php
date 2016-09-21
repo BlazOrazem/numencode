@@ -5,7 +5,6 @@ namespace Cms\Http\Auth;
 use Validator;
 use Numencode\Models\User;
 use Cms\Http\BaseController;
-use Cms\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends BaseController
@@ -59,8 +58,7 @@ class RegisterController extends BaseController
             'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'avatar' => $data['avatar'] ? UserRepository::makeAvatarFromFile($data['avatar']) : null,
-            'avatar_thumbnail' => $data['avatar'] ? UserRepository::makeAvatarFromFile($data['avatar'], true) : null,
+            'avatar' => $data['avatar'] ? AvatarController::makeAvatarFromFile($data['avatar']) : null,
             'is_verified' => config('login.verification') ? false : true,
         ]);
     }

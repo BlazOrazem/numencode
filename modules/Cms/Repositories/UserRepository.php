@@ -123,7 +123,6 @@ class UserRepository
     {
         $user->nickname = $user->nickname ?: $socialUser->nickname;
         $user->avatar = $user->avatar ?: $this->makeAvatarFromUrl($socialUser->avatar);
-        $user->avatar_thumbnail = $user->avatar_thumbnail ?: $this->makeAvatarFromUrl($socialUser->avatar, true);
         $user->social_provider_type = $provider;
         $user->social_provider_id = $socialUser->getId();
         $user->is_verified = true;
@@ -147,7 +146,6 @@ class UserRepository
             'email' => $socialUser->email,
             'password' => '',
             'avatar' => $this->makeAvatarFromUrl($socialUser->avatar),
-            'avatar_thumbnail' => $this->makeAvatarFromUrl($socialUser->avatar, true),
             'social_provider_type' => $socialProvider,
             'social_provider_id' => $socialUser->getId(),
             'is_verified' => true,
@@ -172,7 +170,6 @@ class UserRepository
             'email' => $request->email,
             'password' => $request->password,
             'avatar' => $request->avatar ? $this->makeAvatarFromFile($request->avatar) : null,
-            'avatar_thumbnail' => $request->avatar ? $this->makeAvatarFromFile($request->avatar, true) : null,
             'is_verified' => config('login.verification') ? false : true,
         ]);
     }
@@ -191,7 +188,6 @@ class UserRepository
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'avatar' => $data['avatar'],
-            'avatar_thumbnail' => $data['avatar_thumbnail'],
             'social_provider_type' => isset($data['social_provider_type']) ? $data['social_provider_type'] : null,
             'social_provider_id' => isset($data['social_provider_id']) ? $data['social_provider_id'] : null,
             'is_verified' => $data['is_verified'],
@@ -222,7 +218,6 @@ class UserRepository
             }
 
             $user->avatar = $this->makeAvatarFromFile($request->avatar);
-            $user->avatar_thumbnail = $this->makeAvatarFromFile($request->avatar, true);
         }
 
         if ($request->password) {
@@ -303,7 +298,6 @@ class UserRepository
     protected function deleteAvatarFile(User $user)
     {
         unlink($user->avatar);
-        unlink($user->avatar_thumbnail);
     }
 
     /**

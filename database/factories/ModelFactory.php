@@ -36,7 +36,6 @@ $factory->define(Numencode\Models\User::class, function (Faker\Generator $faker)
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
-        'avatar_thumbnail' => $faker->imageUrl($width = 40, $height = 40, 'people'),
         'is_verified' => true,
         'token' => str_random(30),
         'remember_token' => str_random(10),
