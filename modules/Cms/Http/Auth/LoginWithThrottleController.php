@@ -11,7 +11,7 @@ class LoginWithThrottleController extends LoginController
     | Login Controller With Login Throttle
     |--------------------------------------------------------------------------
     |
-    | Throttle login attempts to your application.
+    | Throttle login attempts to application.
     |
     */
 

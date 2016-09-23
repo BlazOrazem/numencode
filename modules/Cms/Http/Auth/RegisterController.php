@@ -9,17 +9,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends BaseController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -58,7 +47,7 @@ class RegisterController extends BaseController
             'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'avatar' => $data['avatar'] ? AvatarController::makeAvatarFromFile($data['avatar']) : null,
+            'avatar' => isset($data['avatar']) ? AvatarController::makeAvatarFromFile($data['avatar']) : null,
             'is_verified' => config('login.verification') ? false : true,
         ]);
     }

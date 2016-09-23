@@ -11,7 +11,7 @@ class ResetPasswordController extends BaseController
     use ResetsPasswords;
 
     /**
-     * Get password reset redirect path.
+     * Where to redirect after successful password reset.
      *
      * @var string
      */
@@ -47,6 +47,6 @@ class ResetPasswordController extends BaseController
             'success'
         );
 
-        return redirect($this->redirectPath());
+        return redirect($this->redirectTo);
     }
 }

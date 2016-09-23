@@ -97,7 +97,15 @@ class AvatarController
         unlink(config('login.avatar_path') . '/' . $avatarFileName);
     }
 
-
+    /**
+     * TODO
+     * http://stackoverflow.com/questions/29098814/laravel-5-intervention-image-intervention-cache-flexible-url-routing
+     *
+     * @param $avatarFileName
+     * @param $width
+     * @param $height
+     * @return \Intervention\Image\Image
+     */
     public static function getAvatarImageUrl($avatarFileName, $width, $height)
     {
         $img = Image::cache(function($image) use ($avatarFileName, $width, $height) {

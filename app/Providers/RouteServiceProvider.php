@@ -83,49 +83,6 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Authorized routes.
-     */
-    protected function authorizedRoutes()
-    {
-        Route::group([
-            'middleware' => 'isAuthenticated',
-            'namespace' => $this->cmsNamespace,
-        ], function () {
-            // Authentication logout
-            Route::get('logout', $this->authController . '@getLogout')->name('logout');
-
-            // User profile
-            Route::get('profile', 'Auth\ProfileController@index')->name('profile');
-            Route::post('profile/update', 'Auth\ProfileController@updateProfile')->name('profile_update');
-        });
-    }
-
-    /**
-     * Guest routes.
-     */
-//    protected function mapGuestRoutes()
-//    {
-//        Route::group([
-//            'middleware' => 'isGuest',
-//            'namespace' => $this->cmsNamespace,
-//        ], function () {
-//            // Authentication login
-//            Route::get('login', $this->authController . '@getLogin')->name('login');
-//            Route::post('login', $this->authController . '@postLogin')->name('login_action');
-//
-//            // Registration
-//            Route::get('register', $this->authController . '@getRegister')->name('register');
-//            Route::post('register', $this->authController . '@postRegister')->name('register_action');
-//
-//            // Password reset
-//            Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password_forget');
-//            Route::post('password/email', 'Auth\PasswordController@postEmail')->name('password_send');
-//            Route::get('password/reset/{token}', 'Auth\PasswordController@getPassword')->name('password_token');
-//            Route::post('password/reset', 'Auth\PasswordController@postPassword')->name('password_reset');
-//        });
-//    }
-
-    /**
      * Guest routes
      */
     protected function mapGuestRoutes()
@@ -134,7 +91,20 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'isGuest',
             'namespace' => $this->cmsNamespace . 'Auth',
         ], function ($router) {
-            require base_path('routes/guest.php');
+            require base_path('routes/auth.guest.php');
+        });
+    }
+
+    /**
+     * Authorized routes
+     */
+    protected function authorizedRoutes()
+    {
+        Route::group([
+            'middleware' => 'isAuthenticated',
+            'namespace' => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.authorized.php');
         });
     }
 

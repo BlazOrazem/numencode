@@ -14,7 +14,7 @@
                 <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                         <td>
-                            <a href='{{ url("auth/password/reset/{$token}") }}'>Reset Password</a>
+                            <a href='{{ route("password", compact("token")) }}'>Reset Password</a>
                         </td>
                     </tr>
                 </table>
