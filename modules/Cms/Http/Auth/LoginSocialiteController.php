@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use Cms\Repositories\UserRepository;
 use Laravel\Socialite\Facades\Socialite;
 
-class SocialAuthController extends BaseController
+class LoginSocialiteController extends BaseController
 {
     /**
-     * Supported social providers.
+     * Supported socialite providers.
      *
      * @var array
      */
@@ -26,7 +26,7 @@ class SocialAuthController extends BaseController
      *
      * @var null
      */
-    protected $redirect = null;
+    protected $redirectTo = '/';
 
     /**
      * Login or register a user with social provider.
@@ -36,7 +36,7 @@ class SocialAuthController extends BaseController
      * @param $provider
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getLogin(Request $request, UserRepository $repository, $provider)
+    public function login(Request $request, UserRepository $repository, $provider)
     {
         $this->assertProvider($provider);
 
@@ -46,7 +46,7 @@ class SocialAuthController extends BaseController
             return $this->getAuthorizationFirst($provider);
         }
 
-        $user = $repository->createSocialUser($this->getSocialUser($provider), $provider);
+        $user = $repository->createSocialUser($this->getSocialiteUser($provider), $provider);
 
         $repository->login($user, true);
 
@@ -82,7 +82,7 @@ class SocialAuthController extends BaseController
      * @param $provider
      * @return mixed
      */
-    public function getSocialUser($provider)
+    public function getSocialiteUser($provider)
     {
         return Socialite::driver($provider)->user();
     }

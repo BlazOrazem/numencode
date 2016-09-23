@@ -4,6 +4,8 @@ namespace Numencode\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Image;
+use Response;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -62,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapAuthAuthorizedRoutes();
 
             if (config('login.socialite')) {
-                $this->mapSocialiteRoutes();
+                $this->mapAuthSocialiteRoutes();
             }
 
             $this->mapAdminRoutes();
@@ -117,15 +119,15 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Socialite routes
+     * Authentication Socialite routes
      */
-    protected function mapSocialiteRoutes()
+    protected function mapAuthSocialiteRoutes()
     {
         Route::group([
             'middleware' => 'isGuest',
-            'namespace' => $this->cmsNamespace,
-        ], function () {
-            Route::get('social/{provider?}', 'Auth\SocialAuthController@getLogin')->name('login_social');
+            'namespace' => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.socialite.php');
         });
     }
 

@@ -20,7 +20,7 @@
                 </table>
                 <!-- /button -->
                 <p>Thanks, have a lovely day.</p>
-                <p><a href="{{ env('APP_URL') }}">Team {{ env('MAIL_FROM_NAME') }}</a></p>
+                <p><a href="{{ env('app_url') }}">Team {{ env('mail_from_name') }}</a></p>
             </td>
         </tr>
     </table>

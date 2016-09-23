@@ -21,7 +21,7 @@
                 <!-- /button -->
                 <p>If you haven't requested password reset, please ignore this email.</p>
                 <p>Thanks, have a lovely day.</p>
-                <p><a href="{{ env('APP_URL') }}">Team {{ env('MAIL_FROM_NAME') }}</a></p>
+                <p><a href="{{ env('app_url') }}">Team {{ env('mail_from_name') }}</a></p>
             </td>
         </tr>
     </table>
