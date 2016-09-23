@@ -9,8 +9,7 @@
                 <table>
                     <tr>
                         <td align="center">
-                            <p>Don't like these annoying emails? <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>.
-                            </p>
+                            <p>Don't like these annoying emails? <a href="#">Unsubscribe</a>.</p>
                         </td>
                     </tr>
                 </table>

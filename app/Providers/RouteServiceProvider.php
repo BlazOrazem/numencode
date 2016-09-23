@@ -8,14 +8,14 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to the admin controller routes in your routes file.
+     * This namespace is applied to the Admin controller routes in the routes file.
      *
      * @var string
      */
     protected $adminNamespace = 'Admin\Http\\';
 
     /**
-     * This namespace is applied to the cms controller routes in your routes file.
+     * This namespace is applied to the Cms controller routes in the routes file.
      *
      * @var string
      */
@@ -55,37 +55,45 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
             'middleware' => 'web',
         ], function () {
-            $this->publicRoutes();
+            $this->mapPublicRoutes();
 
-            $this->mapGuestRoutes();
-
-            $this->authorizedRoutes();
-
+            $this->mapAuthRoutes();
+            $this->mapAuthGuestRoutes();
+            $this->mapAuthAuthorizedRoutes();
 
             if (config('login.socialite')) {
-                $this->socialiteRoutes();
+                $this->mapSocialiteRoutes();
             }
 
-            $this->adminRoutes();
+            $this->mapAdminRoutes();
         });
     }
 
     /**
-     * Public routes.
+     * Public routes
      */
-    protected function publicRoutes()
+    protected function mapPublicRoutes()
     {
         // Homepage
         Route::get('/', $this->cmsNamespace . 'HomeController@index');
-
-        // User email verification
-//        Route::get('auth/register/verify/{token}', $this->cmsNamespace . $this->authController . '@verifyEmail');
     }
 
     /**
-     * Guest routes
+     * Authentication routes
      */
-    protected function mapGuestRoutes()
+    protected function mapAuthRoutes()
+    {
+        Route::group([
+            'namespace' => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.php');
+        });
+    }
+
+    /**
+     * Authentication Guest routes
+     */
+    protected function mapAuthGuestRoutes()
     {
         Route::group([
             'middleware' => 'isGuest',
@@ -96,9 +104,9 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Authorized routes
+     * Authentication Authorized routes
      */
-    protected function authorizedRoutes()
+    protected function mapAuthAuthorizedRoutes()
     {
         Route::group([
             'middleware' => 'isAuthenticated',
@@ -109,9 +117,9 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Socialite routes.
+     * Socialite routes
      */
-    protected function socialiteRoutes()
+    protected function mapSocialiteRoutes()
     {
         Route::group([
             'middleware' => 'isGuest',
@@ -122,9 +130,9 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Admin routes.
+     * Admin routes
      */
-    protected function adminRoutes()
+    protected function mapAdminRoutes()
     {
         Route::group([
             'namespace' => $this->adminNamespace,

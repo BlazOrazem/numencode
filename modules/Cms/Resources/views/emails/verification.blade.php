@@ -14,13 +14,13 @@
                 <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                         <td>
-                            <a href='{{ url("auth/register/verify/{$user->token}") }}'>Verify My Email Address</a>
+                            <a href='{{ route("register.verify", ['token' => $user->token]) }}'>Verify My Email Address</a>
                         </td>
                     </tr>
                 </table>
                 <!-- /button -->
                 <p>Thanks, have a lovely day.</p>
-                <p><a href="http://twitter.com/">Follow @CleanSlate on Twitter</a></p>
+                <p><a href="{{ env('APP_URL') }}">Team {{ env('MAIL_FROM_NAME') }}</a></p>
             </td>
         </tr>
     </table>
