@@ -11,6 +11,6 @@ $loginController = config('login.throttle') ? 'LoginWithThrottleController' : 'L
 // Logout
 Route::get('logout', $loginController . '@logout')->name('logout');
 
-// User profile TODO
-Route::get('profile', 'ProfileController@index')->name('profile');
-Route::post('profile/update', 'ProfileController@updateProfile')->name('profile_update');
+// User profile
+Route::get('profile', 'ProfileController@showProfileUpdateForm')->name('profile');
+Route::post('profile/update', 'ProfileController@update')->name('profile.update');

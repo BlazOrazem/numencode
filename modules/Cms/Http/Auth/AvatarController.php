@@ -2,6 +2,7 @@
 
 namespace Cms\Http\Auth;
 
+use File;
 use Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -89,12 +90,13 @@ class AvatarController
     /**
      * Delete avatar image file.
      *
-     * @param $avatarFileName
-     * @return void
+     * @param null $fileName
      */
-    public static function deleteAvatarFile($avatarFileName = null)
+    public static function deleteAvatarFile($fileName = null)
     {
-        unlink(config('login.avatar_path') . '/' . $avatarFileName);
+        if ($fileName && File::exists(public_path() . '/' . $fileName)) {
+            unlink(public_path() . '/' . $fileName);
+        }
     }
 
     /**

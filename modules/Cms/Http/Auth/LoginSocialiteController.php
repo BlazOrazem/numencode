@@ -47,7 +47,7 @@ class LoginSocialiteController extends BaseController
             return $this->getAuthorizationFirst($provider);
         }
 
-        $user = $repository->createSocialiteUser($this->getSocialiteUser($provider), $provider);
+        $user = $repository->loginSocialiteUser($this->getSocialiteUser($provider), $provider);
 
         $this->guard()->login($user);
 

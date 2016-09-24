@@ -16,13 +16,13 @@ class UserRepository
      * @param $provider
      * @return object
      */
-    public function createSocialiteUser(SocialiteUser $socialiteUser, $provider)
+    public function loginSocialiteUser(SocialiteUser $socialiteUser, $provider)
     {
         if ($user = User::where('email', $socialiteUser->email)->first()) {
             return $this->mergeSocialiteUser($user, $socialiteUser, $provider);
         }
 
-        return $this->createFromSocialiteUser($socialiteUser, $provider);
+        return $this->createSocialiteUser($socialiteUser, $provider);
     }
 
     /**
@@ -32,7 +32,7 @@ class UserRepository
      * @param $provider
      * @return User
      */
-    protected function createFromSocialiteUser(SocialiteUser $socialiteUser, $provider)
+    protected function createSocialiteUser(SocialiteUser $socialiteUser, $provider)
     {
         return User::create([
             'name' => $socialiteUser->name,
@@ -69,11 +69,11 @@ class UserRepository
     }
 
     /**
-     * TODO refactoring
      * Update user's profile.
      *
      * @param User $user
      * @param Request $request
+     * @return User
      */
     public function updateUser(User $user, Request $request)
     {
@@ -84,11 +84,8 @@ class UserRepository
         }
         
         if ($request->avatar) {
-            if ($user->avatar) {
-                $this->deleteAvatarFile($user);
-            }
-
-            $user->avatar = $this->makeAvatarFromFile($request->avatar);
+            AvatarController::deleteAvatarFile($user->avatar);
+            $user->avatar = AvatarController::makeAvatarFromUrl($request->avatar);
         }
 
         if ($request->password) {
@@ -99,22 +96,6 @@ class UserRepository
         $user->nickname = $request->nickname;
         $user->save();
 
-        event('user.update_profile', $user);
-    }
-
-    /**
-     * TODO refactoring
-     * Change user's password.
-     *
-     * @param User $user
-     * @param $password
-     * @return null
-     */
-    public function changePassword(User $user, $password)
-    {
-        $user->password = bcrypt($password);
-        $user->save();
-
-        return event('user.reset_password_changed', [$user]);
+        return $user;
     }
 }
