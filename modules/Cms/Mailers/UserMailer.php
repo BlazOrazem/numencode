@@ -69,4 +69,13 @@ class UserMailer
                 ->subject($this->subject);
         });
     }
+
+    public function sendEmailTestTo($email)
+    {
+        $this->subject = 'Testing Email';
+        $this->to = $email;
+        $this->view = 'theme::emails.sample';
+
+        return $this->deliver();
+    }
 }
