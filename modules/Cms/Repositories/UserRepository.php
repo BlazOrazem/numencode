@@ -2,203 +2,74 @@
 
 namespace Cms\Repositories;
 
-use Image;
 use Numencode\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
-use Laravel\Socialite\AbstractUser as SocialUser;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Illuminate\Auth\Passwords\TokenRepositoryInterface;
+use Cms\Http\Auth\AvatarController;
+use Laravel\Socialite\AbstractUser as SocialiteUser;
 
 class UserRepository
 {
     /**
-     * Avatar upload folder path.
-     *
-     * @var string
-     */
-    protected $avatarPath = 'uploads/avatars';
-
-    /**
-     * Avatar file name.
-     *
-     * @var string
-     */
-    protected $avatar;
-
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
-    protected $auth;
-
-    /**
-     * User tokens.
-     *
-     * @var object
-     */
-    private $tokens;
-
-    /**
-     * Create a new user repository instance.
-     *
-     * @param Guard $auth
-     * @param TokenRepositoryInterface $tokens
-     */
-    public function __construct(Guard $auth, TokenRepositoryInterface $tokens)
-    {
-        $this->auth = $auth;
-        $this->tokens = $tokens;
-    }
-
-    /**
-     * Find a user by email address.
-     *
-     * @param $email
-     * @return object|bool
-     */
-    public function getByEmail($email)
-    {
-        return User::where('email', $email)->first() ?: false;
-    }
-
-    /**
-     * Find a user by login data.
-     *
-     * @param $email
-     * @param $password
-     * @return object|null
-     */
-    public function getByLogin($email, $password)
-    {
-        if ($user = $this->getByEmail($email)) {
-            return password_verify($password, $user['password']) ? $user : null;
-        }
-
-        return null;
-    }
-
-    /**
-     * Login user.
-     *
-     * @param User $user
-     * @param bool $remember
-     */
-    public function login(User $user, $remember = false)
-    {
-        $this->auth->login($user, $remember);
-
-        flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
-
-        event('user.logged_in', $user);
-    }
-
-    /**
      * Find an existing user or create a new one with social provider.
      *
-     * @param SocialUser $socialUser
-     * @param $socialProvider
+     * @param SocialiteUser $socialiteUser
+     * @param $provider
      * @return object
      */
-    public function createSocialUser(SocialUser $socialUser, $socialProvider)
+    public function createSocialiteUser(SocialiteUser $socialiteUser, $provider)
     {
-        if ($user = $this->getByEmail($socialUser->email)) {
-            $this->mergeSocialUser($user, $socialUser, $socialProvider);
-
-            return $user;
+        if ($user = User::where('email', $socialiteUser->email)->first()) {
+            return $this->mergeSocialiteUser($user, $socialiteUser, $provider);
         }
 
-        return $this->createFromSocialUser($socialUser, $socialProvider);
-    }
-
-    /**
-     * Merge social user with an existing user.
-     *
-     * @param User $user
-     * @param SocialUser $socialUser
-     * @param $provider
-     */
-    protected function mergeSocialUser(User $user, SocialUser $socialUser, $provider)
-    {
-        $user->nickname = $user->nickname ?: $socialUser->nickname;
-        $user->avatar = $user->avatar ?: $this->makeAvatarFromUrl($socialUser->avatar);
-        $user->social_provider_type = $provider;
-        $user->social_provider_id = $socialUser->getId();
-        $user->is_verified = true;
-        $user->save();
-
-        event('user.merged', [$user, $provider]);
+        return $this->createFromSocialiteUser($socialiteUser, $provider);
     }
 
     /**
      * Create a new user from social provider.
      *
-     * @param SocialUser $socialUser
-     * @param $socialProvider
-     * @return object
+     * @param SocialiteUser $socialiteUser
+     * @param $provider
+     * @return User
      */
-    protected function createFromSocialUser(SocialUser $socialUser, $socialProvider)
+    protected function createFromSocialiteUser(SocialiteUser $socialiteUser, $provider)
     {
-        $user = $this->create([
-            'name' => $socialUser->name,
-            'nickname' => $socialUser->nickname,
-            'email' => $socialUser->email,
+        return User::create([
+            'name' => $socialiteUser->name,
+            'nickname' => $socialiteUser->nickname,
+            'email' => $socialiteUser->email,
             'password' => '',
-            'avatar' => $this->makeAvatarFromUrl($socialUser->avatar),
-            'social_provider_type' => $socialProvider,
-            'social_provider_id' => $socialUser->getId(),
+            'avatar' => isset($socialiteUser->avatar) && !empty($socialiteUser->avatar) ?
+                AvatarController::makeAvatarFromUrl($socialiteUser->avatar) : null,
+            'social_provider_type' => $provider,
+            'social_provider_id' => $socialiteUser->getId(),
             'is_verified' => true,
         ]);
+    }
 
-        event('user.registered', $user);
+    /**
+     * Merge Socialite user with an existing user.
+     *
+     * @param User $user
+     * @param SocialiteUser $socialiteUser
+     * @param $provider
+     * @return User
+     */
+    protected function mergeSocialiteUser(User $user, SocialiteUser $socialiteUser, $provider)
+    {
+        $user->nickname = $user->nickname ?: $socialiteUser->nickname;
+        $user->avatar = $user->avatar ?: (isset($socialiteUser->avatar) && !empty($socialiteUser->avatar) ?
+            AvatarController::makeAvatarFromUrl($socialiteUser->avatar) : null);
+        $user->social_provider_type = $provider;
+        $user->social_provider_id = $socialiteUser->getId();
+        $user->is_verified = true;
+        $user->save();
 
         return $user;
     }
 
     /**
-     * Create a new user form request.
-     *
-     * @param Request $request
-     * @return object
-     */
-    public function createFromRequest(Request $request)
-    {
-        return $this->create([
-            'name' => $request->name,
-            'nickname' => $request->nickname,
-            'email' => $request->email,
-            'password' => $request->password,
-            'avatar' => $request->avatar ? $this->makeAvatarFromFile($request->avatar) : null,
-            'is_verified' => config('login.verification') ? false : true,
-        ]);
-    }
-
-    /**
-     * Create a new user object.
-     *
-     * @param array $data
-     * @return object
-     */
-    public function create(array $data)
-    {
-        $user = User::create([
-            'name' => $data['name'],
-            'nickname' => $data['nickname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'avatar' => $data['avatar'],
-            'social_provider_type' => isset($data['social_provider_type']) ? $data['social_provider_type'] : null,
-            'social_provider_id' => isset($data['social_provider_id']) ? $data['social_provider_id'] : null,
-            'is_verified' => $data['is_verified'],
-        ]);
-
-        event('user.registered', $user);
-
-        return $user;
-    }
-
-    /**
+     * TODO refactoring
      * Update user's profile.
      *
      * @param User $user
@@ -232,88 +103,7 @@ class UserRepository
     }
 
     /**
-     * Create avatar image from uploaded file.
-     *
-     * @param UploadedFile $file
-     * @param bool $isThumbnail
-     * @return string
-     */
-    public static function makeAvatarFromFile(UploadedFile $file, $isThumbnail = false)
-    {
-        $image = Image::make($file);
-
-        $avatar = sha1(time() . $file->getClientOriginalName());
-
-        return static::saveAvatarFile($avatar, $image, $isThumbnail);
-    }
-
-    /**
-     * Create avatar image from given image URL.
-     *
-     * @param $avatarUrl
-     * @param bool $isThumbnail
-     * @return string
-     */
-    public function makeAvatarFromUrl($avatarUrl, $isThumbnail = false)
-    {
-        $avatarUrl = fix_avatar_url($avatarUrl);
-
-        $image = Image::make(file_get_contents($avatarUrl));
-
-        $this->avatar = sha1($avatarUrl);
-
-        return $this->saveAvatarFile($image, $isThumbnail);
-    }
-
-    /**
-     * Save avatar image file.
-     *
-     * @param $image
-     * @param bool $isThumbnail
-     * @return string
-     */
-    public static function saveAvatarFile($avatar, $image, $isThumbnail = false)
-    {
-        if ($isThumbnail) {
-            $image->fit(40, 40)->encode('jpg', 100);
-        } else {
-            $image->resize(800, 600, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->encode('jpg', 100);
-        }
-
-        $filePath = 'uploads/avatars/' . ($isThumbnail ? 'tn-' . $avatar : $avatar) . '.jpg';
-
-        $image->save($filePath);
-
-        return $filePath;
-    }
-
-    /**
-     * Delete user's avatar files.
-     *
-     * @param User $user
-     */
-    protected function deleteAvatarFile(User $user)
-    {
-        unlink($user->avatar);
-    }
-
-    /**
-     * Reset user's password.
-     *
-     * @param User $user
-     * @return null
-     */
-    public function resetPassword(User $user)
-    {
-        $token = $this->tokens->create($user);
-
-        return event('user.reset_password', [$user, $token]);
-    }
-
-    /**
+     * TODO refactoring
      * Change user's password.
      *
      * @param User $user

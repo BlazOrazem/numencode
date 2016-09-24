@@ -5,6 +5,7 @@ namespace Cms\Http\Auth;
 use Cms\Http\BaseController;
 use Illuminate\Http\Request;
 use Cms\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginSocialiteController extends BaseController
@@ -46,11 +47,13 @@ class LoginSocialiteController extends BaseController
             return $this->getAuthorizationFirst($provider);
         }
 
-        $user = $repository->createSocialUser($this->getSocialiteUser($provider), $provider);
+        $user = $repository->createSocialiteUser($this->getSocialiteUser($provider), $provider);
 
-        $repository->login($user, true);
+        $this->guard()->login($user);
 
-        return redirect('/');
+        flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
+
+        return isset($request->ref) ? redirect(route($request->ref)) : redirect($this->redirectTo);
     }
 
     /**
@@ -85,5 +88,15 @@ class LoginSocialiteController extends BaseController
     public function getSocialiteUser($provider)
     {
         return Socialite::driver($provider)->user();
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

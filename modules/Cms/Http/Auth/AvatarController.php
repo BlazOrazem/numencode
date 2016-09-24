@@ -98,7 +98,7 @@ class AvatarController
     }
 
     /**
-     * TODO
+     * TODO Image Caching
      * http://stackoverflow.com/questions/29098814/laravel-5-intervention-image-intervention-cache-flexible-url-routing
      *
      * @param $avatarFileName
