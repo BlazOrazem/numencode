@@ -56,6 +56,10 @@
 
 <div class="container">
     @yield('content')
+
+    <div class="plugins">
+        @yield('plugins')
+    </div>
 </div>
 
 <script src="/js/libs.js"></script>

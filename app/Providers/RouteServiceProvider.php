@@ -76,8 +76,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapPublicRoutes()
     {
-        // Homepage
-        Route::get('/', $this->cmsNamespace . 'HomeController@index');
+        Route::group([
+            'namespace' => $this->cmsNamespace,
+        ], function ($router) {
+            require base_path('routes/public.php');
+        });
     }
 
     /**

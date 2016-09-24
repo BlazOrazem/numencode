@@ -12,7 +12,7 @@ class TruncateTable extends Command
      *
      * @var string
      */
-    protected $signature = 'truncate {table_name}';
+    protected $signature = 'db:truncate {table_name}';
 
     /**
      * The console command description.
@@ -28,7 +28,12 @@ class TruncateTable extends Command
      */
     public function handle()
     {
+        DB::beginTransaction();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table($this->argument('table_name'))->truncate();
-        $this->comment(PHP_EOL . 'Database table "' . $this->argument('table_name') . '" successfully truncated.' . PHP_EOL);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        DB::commit();
+
+        $this->comment(PHP_EOL . 'Database table "' . $this->argument('table_name') . '" was truncated.' . PHP_EOL);
     }
 }

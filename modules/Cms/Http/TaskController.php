@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Http;
+namespace Cms\Http;
 
 use Numencode\Models\Task;
 
@@ -14,19 +14,18 @@ class TaskController extends BaseController
     public function index()
     {
         $tasks = Task::latest()->get();
-    
-        $this->js(['data' => $tasks, 'template' => '#tasks-template']);
 
-        return view('admin::task.list');
+        return view('theme::tasks.list', compact('tasks'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Sample method. Will be removed soon.
      *
-     * @param Task $task
+     * @param $params
+     * @return \Illuminate\View\View
      */
-    public function destroy(Task $task)
+    public function sample($params)
     {
-        $task->delete();
+        return view('theme::tasks.sample', ['sample' => json_decode($params)]);
     }
 }

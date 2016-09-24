@@ -4,11 +4,6 @@
 |--------------------------------------------------------------------------
 | Model Factories
 |--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
 */
 
 $factory->define(Numencode\Models\Manager::class, function (Faker\Generator $faker) {
@@ -22,13 +17,6 @@ $factory->define(Numencode\Models\Manager::class, function (Faker\Generator $fak
     ];
 });
 
-$factory->define(Numencode\Models\Task::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->sentence(4),
-        'body' => $faker->paragraph,
-    ];
-});
-
 $factory->define(Numencode\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
@@ -39,5 +27,12 @@ $factory->define(Numencode\Models\User::class, function (Faker\Generator $faker)
         'is_verified' => true,
         'token' => str_random(30),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(Numencode\Models\Task::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->sentence(4),
+        'body' => $faker->paragraph,
     ];
 });

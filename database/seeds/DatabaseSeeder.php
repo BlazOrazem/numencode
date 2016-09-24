@@ -14,11 +14,17 @@ class DatabaseSeeder extends Seeder
     private $tables = [
         'managers',
         'users',
+
         'roles',
         'permissions',
         'role_permission',
         'role_user',
         'role_manager',
+
+        'pages',
+        'contents',
+        'page_content',
+
         'tasks',
     ];
 
@@ -34,11 +40,17 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ManagersTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(RolePermissionTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(RoleManagerTableSeeder::class);
+
+        $this->call(PagesTableSeeder::class);
+        $this->call(ContentsTableSeeder::class);
+        $this->call(PageContentTableSeeder::class);
+
         $this->call(TasksTableSeeder::class);
     }
 

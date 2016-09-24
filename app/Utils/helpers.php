@@ -49,3 +49,27 @@ if (!function_exists('fix_avatar_url'))
         return $avatarUrl;
     }
 }
+
+/**
+ * Generate plugins object from given plugin content
+ *
+ * @param $plugins
+ * @return stdClass
+ */
+if (!function_exists('plugins'))
+{
+    function plugins($plugins)
+    {
+        $content = new stdClass();
+
+        foreach ($plugins as $key => $plugin) {
+            $controllerName = 'Cms\Http\\'.$plugin->controller . 'Controller';
+            $methodName = $plugin->method;
+
+            $controller = new $controllerName();
+            $content->$key = $controller->$methodName($plugin->params);
+        }
+
+        return $content;
+    }
+}

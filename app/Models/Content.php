@@ -4,26 +4,25 @@ namespace Numencode\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Content extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'tasks';
+    protected $table = 'contents';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['controller', 'method', 'params', 'ord', 'is_hidden'];
 
-    /**
-     * The attributes that are dates.
-     *
-     * @var array
-     */
-    protected $dates = ['created_at', 'updated_at'];
+
+    public function pages()
+    {
+        return $this->belongsToMany(Page::class, 'page_content');
+    }
 }

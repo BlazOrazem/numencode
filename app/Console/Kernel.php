@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        \Numencode\Console\Commands\DropTables::class,
         \Numencode\Console\Commands\TruncateTable::class,
     ];
 

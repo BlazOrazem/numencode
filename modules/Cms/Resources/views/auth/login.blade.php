@@ -8,25 +8,25 @@
 
         <div class="row omb_row-sm-offset-2 omb_socialButtons">
             <div class="col-xs-3 col-sm-3 col-md-2">
-                <a href="{{ route('login_social') }}/facebook" class="btn btn-lg btn-block omb_btn-facebook">
+                <a href="{{ route('login.socialite') }}/facebook" class="btn btn-lg btn-block omb_btn-facebook">
                     <i class="fa fa-facebook visible-xs"></i>
                     <span class="hidden-xs">Facebook</span>
                 </a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-2">
-                <a href="{{ route('login_social') }}/twitter" class="btn btn-lg btn-block omb_btn-twitter">
+                <a href="{{ route('login.socialite') }}/twitter" class="btn btn-lg btn-block omb_btn-twitter">
                     <i class="fa fa-twitter visible-xs"></i>
                     <span class="hidden-xs">Twitter</span>
                 </a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-2">
-                <a href="{{ route('login_social') }}/google" class="btn btn-lg btn-block omb_btn-google">
+                <a href="{{ route('login.socialite') }}/google" class="btn btn-lg btn-block omb_btn-google">
                     <i class="fa fa-google-plus visible-xs"></i>
                     <span class="hidden-xs">Google+</span>
                 </a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-2">
-                <a href="{{ route('login_social') }}/github" class="btn btn-lg btn-block omb_btn-github">
+                <a href="{{ route('login.socialite') }}/github" class="btn btn-lg btn-block omb_btn-github">
                     <i class="fa fa-github visible-xs"></i>
                     <span class="hidden-xs">GitHub</span>
                 </a>
