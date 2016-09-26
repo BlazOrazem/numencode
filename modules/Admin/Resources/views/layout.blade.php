@@ -271,7 +271,10 @@
                         <a href="{{ route('manager.index') }}"><i class="fa fa-user-secret fa-fw"></i> Managers</a>
                     </li>
                     <li>
-                        <a href="{{ route('task.index') }}"><i class="fa fa-user-secret fa-fw"></i> Tasks</a>
+                        <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('task.index') }}"><i class="fa fa-tasks fa-fw"></i> Tasks</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-list-alt fa-fw"></i> Page Structure<span class="fa arrow"></span></a>

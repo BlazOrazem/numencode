@@ -14,19 +14,22 @@ class TaskController extends BaseController
     public function index()
     {
         $tasks = Task::latest()->get();
-    
-        $this->js(['data' => $tasks, 'template' => '#tasks-template']);
 
-        return view('admin::task.list');
+        return view('admin::task.list', compact('tasks'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete the task.
      *
-     * @param Task $task
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
+        $task = Task::findOrFail($id);
+
         $task->delete();
+
+        return redirect()->back();
     }
 }

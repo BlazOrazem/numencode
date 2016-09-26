@@ -56,19 +56,14 @@ elixir(function(mix) {
         '/node_modules/datatables-lite/css/responsive.dataTables.min.css'
     ], 'public/css/admin-libs.css')
     mix.scripts([
-        adminResources + 'scripts/tasks.js',
-        //adminResources + 'scripts/app.js',
-        //adminResources + 'scripts/vue.ajax.js',
-        //adminResources + 'scripts/vue.init.js'
+        adminResources + 'scripts/app.js',
     ], './public/js/admin-app.js')
     .scripts([
         '/node_modules/jquery/dist/jquery.min.js',
         '/node_modules/bootstrap-less/js/bootstrap.min.js',
-        '/node_modules/vue/dist/vue.js',
-        '/node_modules/vue-resource/dist/vue-resource.js',
         '/node_modules/sweetalert/dist/sweetalert.min.js',
         '/node_modules/metismenu/dist/metisMenu.min.js',
-        '/node_modules/raphael/raphael-min.js',
+        '/node_modules/raphael/raphael.min.js',
         '/node_modules/morris.js/morris.min.js',
         '/node_modules/jstree/dist/jstree.min.js',
         '/node_modules/jstree/dist/jstree.min.js',

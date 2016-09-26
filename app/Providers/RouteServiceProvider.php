@@ -67,7 +67,8 @@ class RouteServiceProvider extends ServiceProvider
                 $this->mapAuthSocialiteRoutes();
             }
 
-            $this->mapAdminRoutes();
+            $this->mapAdminGuestRoutes();
+            $this->mapAdminAuthorizedRoutes();
         });
     }
 
@@ -135,39 +136,29 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Admin routes
+     * Admin Guest routes
      */
-    protected function mapAdminRoutes()
+    protected function mapAdminGuestRoutes()
     {
         Route::group([
             'namespace' => $this->adminNamespace,
             'prefix' => 'admin',
-        ], function () {
-            // Admin authentication login
-            Route::get('login', 'Auth\AuthController@getLogin')->name('admin.login');
-            Route::post('login', 'Auth\AuthController@postLogin')->name('admin.login.action');
+        ], function ($router) {
+            require base_path('routes/admin.guest.php');
         });
+    }
 
+    /**
+     * Admin Authorized routes
+     */
+    protected function mapAdminAuthorizedRoutes()
+    {
         Route::group([
-			'middleware' => 'isAdmin',
+            'middleware' => 'isAdmin',
             'namespace' => $this->adminNamespace,
             'prefix' => 'admin',
-        ], function () {
-            // Admin dashboard
-            Route::get('/', 'DashboardController@index')->name('admin.dashboard');
-
-            // Authentication logout
-            Route::get('logout', 'Auth\AuthController@getLogout')->name('admin.logout');
-
-            // Managers
-            Route::resource('manager', 'ManagerController');
-
-            // Users
-//            Route::resource('user', 'UserController');
-
-            // Tasks
-            Route::get('task/api', 'TaskController@api')->name('admin.tasks.api');
-            Route::resource('task', 'TaskController');
+        ], function ($router) {
+            require base_path('routes/admin.authorized.php');
         });
     }
 }

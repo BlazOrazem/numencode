@@ -28,15 +28,15 @@ class ManagerController extends BaseController
     }
 
     /**
-     * Display a listing of the  managers.
+     * Display a listing of the managers.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        $this->js(['data' => Manager::all(), 'template' => '#managers-template']);
+        $managers = Manager::all();
 
-        return view('admin::manager.list');
+        return view('admin::manager.list', compact('managers'));
     }
 
     /**
@@ -83,11 +83,13 @@ class ManagerController extends BaseController
     /**
      * Show the form for editing the specified manager.
      *
-     * @param Manager $manager
+     * @param $id
      * @return \Illuminate\View\View
      */
-    public function edit(Manager $manager)
+    public function edit($id)
     {
+        $manager = Manager::findOrFail($id);
+
         return view('admin::manager.edit', compact('manager'));
     }
 
@@ -110,13 +112,17 @@ class ManagerController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete the manager.
      *
-     * @param Manager $manager
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Manager $manager)
+    public function destroy($id)
     {
+        $manager = Manager::findOrFail($id);
+
         $manager->delete();
+
+        return redirect()->back();
     }
 }

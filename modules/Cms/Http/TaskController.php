@@ -3,17 +3,9 @@
 namespace Cms\Http;
 
 use Numencode\Models\Task;
-use Cms\Mailers\UserMailer;
 
 class TaskController extends BaseController
 {
-    public function __construct(UserMailer $mailer)
-    {
-        parent::__construct();
-
-        $this->mailer = $mailer;
-    }
-
     /**
      * Display a listing of the tasks.
      *
