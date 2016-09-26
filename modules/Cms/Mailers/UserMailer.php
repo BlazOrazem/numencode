@@ -11,7 +11,7 @@ class UserMailer
     protected $from;
     protected $fromName;
     protected $to;
-    protected $subject = 'Notification';
+    protected $subject;
     protected $view;
     protected $data = [];
 
@@ -64,18 +64,7 @@ class UserMailer
     public function deliver()
     {
         $this->mailer->send($this->view, $this->data, function ($message) {
-            $message->from($this->from, $this->fromName)
-                ->to($this->to)
-                ->subject($this->subject);
+            $message->from($this->from, $this->fromName)->to($this->to)->subject($this->subject);
         });
-    }
-
-    public function sendEmailTestTo($email)
-    {
-        $this->subject = 'Testing Email';
-        $this->to = $email;
-        $this->view = 'theme::emails.sample';
-
-        return $this->deliver();
     }
 }

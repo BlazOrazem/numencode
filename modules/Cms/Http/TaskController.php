@@ -27,7 +27,10 @@ class TaskController extends BaseController
     }
 
     /**
-     * Sample method. Will be removed soon.
+     * TODO Sample method
+     *
+     * For testing purposes: append contents on the page.
+     * This method will be removed soon.
      *
      * @param $params
      * @return \Illuminate\View\View
@@ -35,12 +38,5 @@ class TaskController extends BaseController
     public function sample($params)
     {
         return view('theme::tasks.sample', ['sample' => json_decode($params)]);
-    }
-
-    public function sendTestMail()
-    {
-        $this->mailer->sendEmailTestTo('dev@numencode.com');
-
-        return 'Email test sent.';
     }
 }

@@ -1,203 +1,185 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>@yield('title')</title>
-    <style>
-        /* -------------------------------------
-            GLOBAL
-        ------------------------------------- */
-        * {
-            font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-            font-size: 100%;
-            line-height: 1.6em;
-            margin: 0;
-            padding: 0;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style type="text/css" rel="stylesheet" media="all">
+        /* Media Queries */
+        @media only screen and (max-width: 500px) {
+            .button {
+                width: 100% !important;
+            }
         }
-
-        img {
-            max-width: 600px;
-            width: 100%;
-        }
-
-        body {
-            -webkit-font-smoothing: antialiased;
-            height: 100%;
-            -webkit-text-size-adjust: none;
-            width: 100% !important;
-        }
-
-
-        /* -------------------------------------
-            ELEMENTS
-        ------------------------------------- */
-        a {
-            color: #348eda;
-        }
-
-        .btn-primary {
-            Margin-bottom: 10px;
-            width: auto !important;
-        }
-
-        .btn-primary td {
-            background-color: #348eda;
-            border-radius: 25px;
-            font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-            font-size: 14px;
-            text-align: center;
-            vertical-align: top;
-        }
-
-        .btn-primary td a {
-            background-color: #348eda;
-            border: solid 1px #348eda;
-            border-radius: 25px;
-            border-width: 10px 20px;
-            display: inline-block;
-            color: #ffffff;
-            cursor: pointer;
-            font-weight: bold;
-            line-height: 2;
-            text-decoration: none;
-        }
-
-        .last {
-            margin-bottom: 0;
-        }
-
-        .first {
-            margin-top: 0;
-        }
-
-        .padding {
-            padding: 10px 0;
-        }
-
-
-        /* -------------------------------------
-            BODY
-        ------------------------------------- */
-        table.body-wrap {
-            padding: 20px;
-            width: 100%;
-        }
-
-        table.body-wrap .container {
-            border: 1px solid #f0f0f0;
-        }
-
-
-        /* -------------------------------------
-            FOOTER
-        ------------------------------------- */
-        table.footer-wrap {
-            clear: both !important;
-            width: 100%;
-        }
-
-        .footer-wrap .container p {
-            color: #666666;
-            font-size: 12px;
-
-        }
-
-        table.footer-wrap a {
-            color: #999999;
-        }
-
-
-        /* -------------------------------------
-            TYPOGRAPHY
-        ------------------------------------- */
-        h1,
-        h2,
-        h3 {
-            color: #111111;
-            font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-            font-weight: 200;
-            line-height: 1.2em;
-            margin: 20px 0 10px;
-        }
-
-        h1 {
-            font-size: 30px;
-        }
-        h2 {
-            font-size: 24px;
-        }
-        h3 {
-            font-size: 20px;
-        }
-
-        p,
-        ul,
-        ol {
-            font-size: 14px;
-            font-weight: normal;
-            margin-bottom: 10px;
-        }
-
-        ul li,
-        ol li {
-            margin-left: 5px;
-            list-style-position: inside;
-        }
-
-        /* ---------------------------------------------------
-            RESPONSIVENESS
-        ------------------------------------------------------ */
-
-        /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
-        .container {
-            clear: both !important;
-            display: block !important;
-            Margin: 0 auto !important;
-            max-width: 600px !important;
-        }
-
-        /* Set the padding on the td rather than the div for Outlook compatibility */
-        .body-wrap .container {
-            padding: 20px;
-        }
-
-        /* This should also be a block element, so that it will fill 100% of the .container */
-        .content {
-            display: block;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
-        /* Let's make sure tables in the content area are 100% wide */
-        .content table {
-            width: 100%;
-        }
-
     </style>
 </head>
 
-<body bgcolor="#f6f6f6">
+<?php
 
-<!-- body -->
-<table class="body-wrap" bgcolor="#f6f6f6">
+$style = [
+    /* Layout ------------------------------ */
+
+        'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
+        'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;',
+
+    /* Masthead ----------------------- */
+
+        'email-masthead' => 'padding: 25px 0; text-align: center;',
+        'email-masthead_name' => 'font-size: 16px; font-weight: bold; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;',
+
+        'email-body' => 'width: 100%; margin: 0; padding: 0; border-top: 1px solid #EDEFF2; border-bottom: 1px solid #EDEFF2; background-color: #FFF;',
+        'email-body_inner' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0;',
+        'email-body_cell' => 'padding: 35px;',
+
+        'email-footer' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0; text-align: center;',
+        'email-footer_cell' => 'color: #AEAEAE; padding: 35px; text-align: center;',
+
+    /* Body ------------------------------ */
+
+        'body_action' => 'width: 100%; margin: 30px auto; padding: 0;',
+        'body_sub' => 'margin-top: 25px; padding-top: 25px; border-top: 1px solid #EDEFF2;',
+
+    /* Type ------------------------------ */
+
+        'anchor' => 'color: #3869D4;',
+        'header-1' => 'margin-top: 0; color: #2F3133; font-size: 19px; font-weight: bold; text-align: left;',
+        'paragraph' => 'margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;',
+        'paragraph-sub' => 'margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;',
+        'paragraph-center' => 'text-align: center;',
+
+    /* Buttons ------------------------------ */
+
+        'button' => 'display: block; display: inline-block; width: 200px; min-height: 20px; padding: 10px;
+                 background-color: #3869D4; border-radius: 3px; color: #ffffff; font-size: 15px; line-height: 25px;
+                 text-align: center; text-decoration: none; -webkit-text-size-adjust: none;',
+
+        'button--green' => 'background-color: #22BC66;',
+        'button--red' => 'background-color: #dc4d2f;',
+        'button--blue' => 'background-color: #3869D4;',
+];
+
+?>
+
+<?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; ?>
+
+<body style="{{ $style['body'] }}">
+<table width="100%" cellpadding="0" cellspacing="0">
     <tr>
-        <td></td>
-        <td class="container" bgcolor="#FFFFFF">
+        <td style="{{ $style['email-wrapper'] }}" align="center">
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <!-- Logo -->
+                <tr>
+                    <td style="{{ $style['email-masthead'] }}">
+                        <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
+                            {{ env('mail_from_name') }}
+                        </a>
+                    </td>
+                </tr>
 
-            <!-- content -->
-            <div class="content">
-                @yield('content')
-            </div>
-            <!-- /content -->
+                <!-- Email Body -->
+                <tr>
+                    <td style="{{ $style['email-body'] }}" width="100%">
+                        <table style="{{ $style['email-body_inner'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
+                                    <!-- Greeting -->
+                                    @hasSection('title')
+                                        <h1 style="{{ $style['header-1'] }} {{ $style['paragraph-center'] }}">
+                                            @yield('title')
+                                        </h1>
+                                    @endif
 
+                                    <!-- Intro -->
+                                    @hasSection('intro')
+                                        <p style="{{ $style['paragraph'] }} {{ $style['paragraph-center'] }}">
+                                            @yield('intro')
+                                        </p>
+                                    @endif
+
+                                    <!-- Content -->
+                                    @hasSection('content')
+                                        <table style="{{ $style['body_action'] }}" width="100%" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td>
+                                                    @yield('content')
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endif
+
+                                    <!-- Action Button -->
+                                    @if(isset($action))
+                                        <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td align="center">
+                                                    <a href="{{ isset($action['url']) ? $action['url'] : url('/') }}"
+                                                       style="{{ $fontFamily }} {{ $style['button'] }} {{ $style['button--' . (isset($action['color']) ? $action['color'] : 'green')] }}"
+                                                       class="button"
+                                                       target="_blank">
+                                                        {{ isset($action['title']) ? $action['title'] : 'Click here' }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endif
+
+                                    <!-- Outro -->
+                                    @hasSection('outro')
+                                        <p style="{{ $style['paragraph'] }} {{ $style['paragraph-center'] }}">
+                                            @yield('outro')
+                                        </p>
+                                    @endif
+
+                                    <!-- Salutation -->
+                                    <p style="{{ $style['paragraph'] }} {{ $style['paragraph-center'] }}">
+                                        Regards, {{ env('mail_from_name') }}
+                                    </p>
+
+                                    <!-- Sub Copy -->
+                                    @if(isset($action))
+                                        <table style="{{ $style['body_sub'] }}">
+                                            <tr>
+                                                <td style="{{ $fontFamily }}">
+                                                    <p style="{{ $style['paragraph-sub'] }}">
+                                                        If you’re having trouble clicking the "{{ isset($action['title']) ? $action['title'] : 'Click here' }}" button,
+                                                        copy and paste the URL below into your web browser:
+                                                    </p>
+
+                                                    <p style="{{ $style['paragraph-sub'] }}">
+                                                        <a style="{{ $style['anchor'] }}" href="{{ isset($action['url']) ? $action['url'] : url('/') }}" target="_blank">
+                                                            {{ isset($action['url']) ? $action['url'] : url('/') }}
+                                                        </a>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endif
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td>
+                        <table style="{{ $style['email-footer'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
+                                    <p style="{{ $style['paragraph-sub'] }}">
+                                        &copy; {{ date('Y') }}
+                                        <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
+                                        All rights reserved.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
-        <td></td>
     </tr>
 </table>
-<!-- /body -->
-
-@include('theme::emails.partials.footer')
-
 </body>
 </html>
