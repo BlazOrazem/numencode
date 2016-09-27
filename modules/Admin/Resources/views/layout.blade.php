@@ -283,31 +283,19 @@
                         <a href="#"><i class="fa fa-list-alt fa-fw"></i> Page Structure<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <div id="jstree">
-                                    <ul>
-                                        <li data-jstree='{"type":"folder"}'><span title="Root node 1" onclick="javascript:location.href='http://www.google.com/'">Root node 1</span>
-                                            <ul>
-                                                <li data-jstree='{"type":"folder"}'><span title="Child node 1" onclick="javascript:location.href='http://www.google.com/'">Child node 1</span>
-                                                    <ul>
-                                                        <li><span onclick="javascript:location.href='http://www.google.com/'">Child 1.1</span>
-                                                        <li><span onclick="javascript:location.href='http://www.google.com/'">Child 1.2</span>
-                                                        <li><span onclick="javascript:location.href='http://www.google.com/'">Child 1.3</span>
-                                                        <li data-jstree='{"type":"new"}'><span onclick="javascript:location.href='http://www.google.com/'">New page</span></li>
-                                                    </ul>
-                                                </li>
-                                                <li><span onclick="javascript:location.href='http://www.google.com/'">Child node 2</span></li>
-                                                <li><span onclick="javascript:location.href='http://www.google.com/'">Child node 3</span></li>
-                                                <li><span onclick="javascript:location.href='http://www.google.com/'">Child node 4</span></li>
-                                                <li data-jstree='{"type":"new"}'><span onclick="javascript:location.href='http://www.google.com/'">New page</span></li>
-                                            </ul>
-                                        </li>
-                                        <li><span onclick="javascript:location.href='http://www.google.com/'">Root node 2</span></li>
-                                        <li><span onclick="javascript:location.href='http://www.google.com/'">Root node 3</span></li>
-                                        <li><span onclick="javascript:location.href='http://www.google.com/'">Root node 4</span></li>
-                                        <li data-jstree='{"type":"new"}'><span onclick="javascript:location.href='http://www.google.com/'">New page</span></li>
-                                    </ul>
-                                </div>
-                                <!-- /#jstree -->
+                                @if (count($pageTree) > 0)
+                                    <div id="jstree">
+                                        <ul>
+                                            @foreach ($pageTree as $page)
+                                                @include('admin::pages.tree', $page)
+                                            @endforeach
+                                            <li data-jstree='{"type":"new"}'>
+                                                <span onclick="javascript:location.href='#'">New page</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- /#jstree -->
+                                @endif
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
