@@ -268,10 +268,13 @@
                         <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{ route('manager.index') }}"><i class="fa fa-user-secret fa-fw"></i> Managers</a>
+                        <a href="{{ route('managers.index') }}"><i class="fa fa-user-secret fa-fw"></i> Managers</a>
                     </li>
                     <li>
-                        <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                        <a href="{{ route('users.index') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('roles.index') }}"><i class="fa fa-lock fa-fw"></i> Roles and Permissions</a>
                     </li>
                     <li>
                         <a href="{{ route('task.index') }}"><i class="fa fa-tasks fa-fw"></i> Tasks</a>

@@ -2,8 +2,8 @@
 
 namespace Numencode\Models;
 
-use Cms\Http\Auth\AvatarController;
 use Cms\Traits\UserRoles;
+use Cms\Http\Auth\AvatarController;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -35,7 +35,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes excluded from the models' JSON form.
      *
      * @var array
      */
@@ -72,7 +72,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Verify user's email address.
+     * Verify users' email address.
      */
     public function verifyEmail()
     {
@@ -82,6 +82,13 @@ class User extends Authenticatable
         $this->save();
     }
 
+	/**
+	 * Get avatar
+	 *
+	 * @param int $width
+	 * @param null $height
+	 * @return \Intervention\Image\Image|null
+	 */
     public function avatar($width = 100, $height = null)
     {
         $height = $height ?: $width;

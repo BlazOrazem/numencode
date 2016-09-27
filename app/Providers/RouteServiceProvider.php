@@ -4,8 +4,6 @@ namespace Numencode\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Image;
-use Response;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,13 +22,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $cmsNamespace = 'Cms\Http\\';
 
     /**
-     * Authentication controller name.
-     *
-     * @var
-     */
-    protected $authController;
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
@@ -47,12 +38,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->authController = 'Auth\AuthController';
-
-        if (config('login.throttle')) {
-            $this->authController = 'Auth\AuthWithLoginThrottleController';
-        }
-
         Route::group([
             'namespace' => $this->namespace,
             'middleware' => 'web',

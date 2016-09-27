@@ -36,26 +36,26 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($managers as $item)
+                        @foreach ($managers as $manager)
                         <tr>
                             <td class="text-center">
-                                <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
+                                <img src="{{ $manager->avatar }}" width="50" height="50" class="img-circle">
                             </td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->phone }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $manager->name }}</td>
+                            <td>{{ $manager->email }}</td>
+                            <td>{{ $manager->phone }}</td>
+                            <td>{{ $manager->created_at }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    <a href="/admin/manager/{{ $item->id }}/edit">
+                                    <a href="{{ route('managers.edit', compact('manager')) }}">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                 </td>
                             @endif
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
-                                    @if ($admin->id != $item->id)
-                                    <form method="POST" action="/admin/manager/{{ $item->id }}" >
+                                    @if ($admin->id != $manager->id)
+                                    <form method="POST" action="{{ route('managers.destroy', compact('manager')) }}" >
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-link btn-confirmation">

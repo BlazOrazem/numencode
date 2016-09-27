@@ -36,7 +36,7 @@ class ManagerController extends BaseController
     {
         $managers = Manager::all();
 
-        return view('admin::manager.list', compact('managers'));
+        return view('admin::managers.list', compact('managers'));
     }
 
     /**
@@ -46,7 +46,7 @@ class ManagerController extends BaseController
      */
     public function create()
     {
-        return view('admin::manager.create');
+        return view('admin::managers.create');
     }
 
     /**
@@ -90,10 +90,10 @@ class ManagerController extends BaseController
     {
         $manager = Manager::findOrFail($id);
 
-        return view('admin::manager.edit', compact('manager'));
+        return view('admin::managers.edit', compact('manager'));
     }
 
-    /**
+	/**
      * Update the specified resource in storage.
      *
      * @param ManagerUpdateRequest $request

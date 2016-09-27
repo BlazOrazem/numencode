@@ -15,6 +15,6 @@ class UserController extends BaseController
     {
         $users = User::all();
 
-        return view('admin::user.list', compact('users'));
+        return view('admin::users.list', compact('users'));
     }
 }
