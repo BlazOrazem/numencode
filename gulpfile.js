@@ -51,12 +51,12 @@ elixir(function(mix) {
         '/node_modules/sweetalert/dist/sweetalert.css',
         '/node_modules/metismenu/dist/metisMenu.min.css',
         '/node_modules/morris.js/morris.css',
-        '/node_modules/datatables-lite/css/jquery.dataTables.min.css',
-        '/node_modules/datatables-lite/css/dataTables.bootstrap.css',
-        '/node_modules/datatables-lite/css/responsive.dataTables.min.css'
+        '/node_modules/datatables-numencode/css/jquery.dataTables.min.css',
+        '/node_modules/datatables-numencode/css/dataTables.bootstrap.min.css',
+        '/node_modules/datatables-numencode/css/responsive.dataTables.min.css'
     ], 'public/css/admin-libs.css')
     mix.scripts([
-        adminResources + 'scripts/app.js',
+        adminResources + 'scripts/app.js'
     ], './public/js/admin-app.js')
     .scripts([
         '/node_modules/jquery/dist/jquery.min.js',
@@ -67,9 +67,9 @@ elixir(function(mix) {
         '/node_modules/morris.js/morris.min.js',
         '/node_modules/jstree/dist/jstree.min.js',
         '/node_modules/jstree/dist/jstree.min.js',
-        '/node_modules/datatables-lite/js/jquery.dataTables.min.js',
-        '/node_modules/datatables-lite/js/dataTables.bootstrap.min.js',
-        '/node_modules/datatables-lite/js/dataTables.responsive.min.js'
+        '/node_modules/datatables-numencode/js/jquery.dataTables.min.js',
+        '/node_modules/datatables-numencode/js/dataTables.bootstrap.min.js',
+        '/node_modules/datatables-numencode/js/dataTables.responsive.min.js'
     ], './public/js/admin-libs.js');
 
     /*

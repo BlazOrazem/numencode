@@ -9,21 +9,21 @@ class BasicTest extends TestCase
     /** @test */
     public function visitHomepage()
     {
-        $this->visit('/')
+        $this->visit(url('/'))
              ->see('Numencode');
     }
 
     /** @test */
     public function visitRegisterPage()
     {
-        $this->visit('/auth/register')
+        $this->visit(route('register'))
             ->see('Please Sign Up');
     }
 
     /** @test */
     public function visitAdminDashboard()
     {
-        $this->visit('/admin')
+        $this->visit(route('admin.dashboard'))
             ->see('Admin Dashboard');
     }
 }
