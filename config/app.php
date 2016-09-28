@@ -164,6 +164,7 @@ return [
         Numencode\Providers\AppServiceProvider::class,
         Numencode\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
+        Numencode\Providers\ComposerServiceProvider::class,
         Numencode\Providers\EventServiceProvider::class,
         Numencode\Providers\RouteServiceProvider::class,
 
