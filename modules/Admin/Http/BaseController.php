@@ -25,37 +25,35 @@ class BaseController extends Controller
 
         view()->share('admin', $this->admin);
         view()->share('signedIn', (bool)Auth::guard('admin')->check());
+    
+        $pages = Page::orderBy('ord')->get();
+        
+        $flat = [];
+        foreach ($pages as $page){
+            $flat[$page->parent_id ?: 0][] = $page;
+        }
 
-        view()->share('pageTree', $this->pageTreeStructure());
+        view()->share('pageTree', $this->createTree($flat, $flat[0]));
     }
 
     /**
-     * Build page tree structure.
+     * Create page tree structure.
      *
-     * @param null $parent
+     * @param $list
+     * @param $parent
      * @return array
      */
-    protected function pageTreeStructure($parent = null)
+    protected function createTree(&$list, $parent)
     {
-        $pages = Page::where('parent_id', $parent)->orderBy('ord')->get();
+        $tree = [];
 
-        $treeArray = [];
-
-        foreach ($pages as $row) {
-            $treeArray[$row->id] = $row;
-
-            if ($row->parent_id != $parent) {
-                continue;
-            }
-
-            $treeArray[$row->id]['children'] = $this->pageTreeStructure($row->id);
-
-            if(empty($treeArray[$row->id]['children'])) {
-                unset($treeArray[$row->id]['children']);
-            }
+        foreach ($parent as $item){
+            $tree[] = $item;
+            if (!isset($list[$item->id])) continue;
+            $item->children = $this->createTree($list, $list[$item->id]);
         }
 
-        return $treeArray;
+        return $tree;
     }
 
     /**

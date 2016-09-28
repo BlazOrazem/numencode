@@ -16,7 +16,7 @@ $(function() {
                 "icon" : "jt jt-new"
             }
         },
-        "plugins" : [ "types" ]
+        "plugins" : [ "types", "state" ]
     });
 
     $('.data-table').DataTable({
