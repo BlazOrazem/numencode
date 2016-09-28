@@ -19,8 +19,8 @@ Route::resource('managers', 'ManagerController');
 Route::resource('users', 'UserController');
 
 // Tasks
-Route::get('task/api', 'TaskController@api')->name('admin.tasks.api');
-Route::resource('task', 'TaskController');
+Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
+Route::resource('tasks', 'TaskController');
 
 // Roles and Permissions
 Route::get('roles', 'RoleController@index')->name('roles.index');

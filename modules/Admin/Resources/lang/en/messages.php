@@ -19,5 +19,8 @@ return [
     'profile' => [
         'updated'   => 'Manager :name has been successfully updated!',
     ],
+    'tasks' => [
+        'created'   => 'Task has been successfully created!',
+    ],
 
 ];

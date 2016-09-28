@@ -298,7 +298,7 @@
                         <a href="{{ route('roles.index') }}"><i class="fa fa-lock fa-fw"></i> Roles and Permissions</a>
                     </li>
                     <li>
-                        <a href="{{ route('task.index') }}"><i class="fa fa-tasks fa-fw"></i> Tasks</a>
+                        <a href="{{ route('tasks.index') }}"><i class="fa fa-tasks fa-fw"></i> Tasks</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

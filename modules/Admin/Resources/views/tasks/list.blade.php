@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Tasks
+                    Tasks :: <a href="{{ route('tasks.create') }}">Create new Task</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -33,7 +33,7 @@
                             @foreach ($tasks as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ $item->body }}</td>
                                 <td>{{ $item->completed }}</td>
                                 <td>{{ $item->created_at }}</td>

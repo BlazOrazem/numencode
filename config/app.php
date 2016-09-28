@@ -152,11 +152,12 @@ return [
         /**
          * Custom Service Providers...
          */
-        Laravel\Socialite\SocialiteServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Spatie\Translatable\TranslatableServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->integer('parent_id')->nullable()->index();
             $table->string('title');
+            $table->text('lead')->nullable();
             $table->text('body')->nullable();
             $table->integer('ord')->default(0);
             $table->boolean('is_hidden')->default(0);
