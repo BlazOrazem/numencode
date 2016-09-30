@@ -15,43 +15,23 @@ class PageComposer
      */
     public function compose(View $view)
     {
-        $view->with('pageTree', $this->createPageTree());
+        $view->with('pageTree', $this->pageTreeStructure());
     }
 
-    /**
-     * Create page tree structure.
-     *
-     * @param array $tree
-     * @return array
-     */
-    protected function createPageTree($tree = [])
-    {
-        $pages = Page::orderBy('ord')->get();
+	/**
+	 * Create page tree structure.
+	 *
+	 * @return mixed
+	 */
+	public function pageTreeStructure()
+	{
+		$pages = Page::orderBy('ord')->get()->groupBy('parent_id');
 
-        foreach ($pages as $page){
-            $tree[$page->parent_id ?: 0][] = $page;
-        }
+		if (count($pages)) {
+			$pages['root'] = $pages[''];
+			unset($pages['']);
+		}
 
-        return $this->buildTree($tree, $tree[0]) ;
-    }
-
-    /**
-     * Build page tree structure.
-     *
-     * @param $list
-     * @param $parent
-     * @return array
-     */
-    protected function buildTree(&$list, $parent)
-    {
-        $tree = [];
-
-        foreach ($parent as $item){
-            $tree[] = $item;
-            if (!isset($list[$item->id])) continue;
-            $item->children = $this->buildTree($list, $list[$item->id]);
-        }
-
-        return $tree;
-    }
+		return $pages;
+	}
 }

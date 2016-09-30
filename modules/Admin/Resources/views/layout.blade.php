@@ -267,23 +267,13 @@
                     <li>
                         <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="#"><i class="fa fa-list-alt fa-fw"></i> Page Structure<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                @if (count($pageTree) > 0)
-                                    <div id="jstree">
-                                        <ul>
-                                            @foreach ($pageTree as $page)
-                                                @include('admin::pages.tree', $page)
-                                            @endforeach
-                                            <li data-jstree='{"type":"new"}'>
-                                                <span onclick="javascript:location.href='#'">New page</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- /#jstree -->
-                                @endif
+                                <div id="jstree">
+                                    @include ('admin::pages.list', ['collection' => $pageTree['root']])
+                                </div>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

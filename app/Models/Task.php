@@ -3,12 +3,9 @@
 namespace Numencode\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class Task extends Model
 {
-    use HasTranslations;
-
     /**
      * The database table used by the model.
      *

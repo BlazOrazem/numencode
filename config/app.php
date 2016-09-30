@@ -157,7 +157,6 @@ return [
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Spatie\Translatable\TranslatableServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "66586a7f23ca1d75e6ee0ad9b96e1204",
-    "content-hash": "59573b25d1f2444e61d504947eccf5e4",
+    "hash": "7d0a01193d909dc70b4cfd7454283993",
+    "content-hash": "79b5ffbe9d8b932f2a30adf999ab20df",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -807,16 +807,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.3.10",
+            "version": "v5.3.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6febb0ee61999cde3bc7b2963c8903032bb22691"
+                "reference": "f034a02f38db77d4b0b3e89942394cae456a627f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6febb0ee61999cde3bc7b2963c8903032bb22691",
-                "reference": "6febb0ee61999cde3bc7b2963c8903032bb22691",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f034a02f38db77d4b0b3e89942394cae456a627f",
+                "reference": "f034a02f38db77d4b0b3e89942394cae456a627f",
                 "shasum": ""
             },
             "require": {
@@ -931,7 +931,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-09-20 13:46:16"
+            "time": "2016-09-29 22:13:17"
         },
         {
             "name": "laravel/socialite",
@@ -1710,71 +1710,6 @@
                 "uuid"
             ],
             "time": "2016-08-02 18:39:32"
-        },
-        {
-            "name": "spatie/laravel-translatable",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "4101a498da0befe9e12ce58c8e929c5469b518c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/4101a498da0befe9e12ce58c8e929c5469b518c6",
-                "reference": "4101a498da0befe9e12ce58c8e929c5469b518c6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "illuminate/support": "~5.1.0|~5.2.0|~5.3.0",
-                "mockery/mockery": "^0.9.4",
-                "orchestra/testbench": "^3.2",
-                "phpunit/phpunit": "5.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Translatable\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Mohamed Said",
-                    "email": "theMohamedSaid@gmail.com",
-                    "role": "Original idea"
-                }
-            ],
-            "description": "A trait to make an Eloquent model hold translations",
-            "homepage": "https://github.com/spatie/laravel-translatable",
-            "keywords": [
-                "eloquent",
-                "i8n",
-                "laravel-translatable",
-                "model",
-                "multilingual",
-                "spatie",
-                "translate"
-            ],
-            "time": "2016-08-24 06:01:48"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3026,16 +2961,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd"
+                "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/9270140b940ff02e58ec577c237274e92cd40cdd",
-                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/8331b5efe816ae05461b7ca1e721c01b46bafb3e",
+                "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e",
                 "shasum": ""
             },
             "require": {
@@ -3067,7 +3002,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-06-10 09:48:41"
+            "time": "2016-09-30 07:12:33"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3152,16 +3087,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "7e7e104de01b5052195cefefcd0b29f1add4c116"
+                "reference": "153ebd99d9b842e0c99a024c41f970d79db46475"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/7e7e104de01b5052195cefefcd0b29f1add4c116",
-                "reference": "7e7e104de01b5052195cefefcd0b29f1add4c116",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/153ebd99d9b842e0c99a024c41f970d79db46475",
+                "reference": "153ebd99d9b842e0c99a024c41f970d79db46475",
                 "shasum": ""
             },
             "require": {
@@ -3226,7 +3161,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2016-09-04 11:59:15"
+            "time": "2016-09-26 20:28:11"
         },
         {
             "name": "phpspec/prophecy",
