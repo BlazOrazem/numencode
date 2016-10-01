@@ -12,38 +12,46 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Tasks :: <a href="{{ route('tasks.create') }}">Create new Task</a>
+                    <a href="{{ route('tasks.create') }}" class="btn btn-success">Create new Task</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table class="table data-table table-striped table-hover" data-order='[[ 1, "asc" ]]'>
+                        <table width="100%" class="table data-table table-striped table-hover" data-order='[[ 3, "desc" ]]'>
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Body</th>
                                 <th>Completed</th>
                                 <th>Created at</th>
-                                <th class="no-sort text-center" width="30">Edit</th>
-                                <th class="no-sort text-center" width="30">Delete</th>
+                                <th width="30" class="no-sort text-center">Show</th>
+                                <th width="30" class="no-sort text-center">Edit</th>
+                                <th width="30" class="no-sort text-center">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($tasks as $item)
+                            @foreach ($tasks as $task)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->body }}</td>
-                                <td>{{ $item->completed }}</td>
-                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $task->id }}</td>
+                                <td>{{ $task->title }}</td>
+                                <td>
+                                    @if ($task->completed)
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    @endif
+                                </td>
+                                <td>{{ $task->created_at }}</td>
                                 <td class="text-center">
-                                    <a href="/admin/task/{{ $item->id }}/edit">
+                                    <a href="{{ route('tasks.show', compact('task')) }}">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ route('tasks.edit', compact('task')) }}">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <form method="POST" action="/admin/task/{{ $item->id }}">
+                                    <form method="POST" action="{{ route('tasks.destroy', compact('task')) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-link btn-confirmation">

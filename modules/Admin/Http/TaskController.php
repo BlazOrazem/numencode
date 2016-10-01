@@ -2,8 +2,8 @@
 
 namespace Admin\Http;
 
-use Illuminate\Http\Request;
 use Numencode\Models\Task;
+use Illuminate\Http\Request;
 
 class TaskController extends BaseController
 {
@@ -20,13 +20,28 @@ class TaskController extends BaseController
     }
 
     /**
+     * Show the specified task.
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $task = Task::findOrFail($id);
+
+        return view('admin::tasks.show', compact('task'));
+    }
+
+    /**
      * Show the form for creating a new task.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin::tasks.create');
+        return view('admin::tasks.create', [
+            'task' => new Task
+        ]);
     }
 
     /**
@@ -37,11 +52,53 @@ class TaskController extends BaseController
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body'  => 'required'
+        ]);
+
         Task::create($request->all());
 
         flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.created'));
 
         return redirect(route('tasks.index'));
+    }
+    
+    /**
+     * Show the form for editing the task.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @internal param Request $request
+     */
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+
+        return view('admin::tasks.edit', compact('task'));
+    }
+
+    /**
+     * Update the task.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+
+        $this->validate($request, [
+            'title' => 'required',
+            'body'  => 'required'
+        ]);
+
+        if ($task->update($request->all())) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.updated'));
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -54,7 +111,9 @@ class TaskController extends BaseController
     {
         $task = Task::findOrFail($id);
 
-        $task->delete();
+        if ($task->delete()) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.deleted'));
+        }
 
         return redirect()->back();
     }

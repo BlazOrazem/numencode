@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Create a new Task</h1>
+            <h1 class="page-header">Update a Task</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -14,14 +14,16 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    New Task
+                    Update a Task <strong>{{ $task->title }}</strong>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <form method="POST" action="{{ route('tasks.store') }}" role="form">
+                            <form method="POST" action="{{ route('tasks.update', compact('task')) }}" role="form">
+                                {{ method_field('PATCH') }}
+
                                 @include ('admin::tasks.form', [
-                                    'resetButton' => true
+                                    'submitButtonText' => trans('admin::messages.tasks.submit_update')
                                 ])
                             </form>
                         </div>

@@ -2,10 +2,12 @@
 
 namespace Numencode\Models;
 
+use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use Translatable;
     /**
      * The database table used by the model.
      *
@@ -18,7 +20,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'completed'];
 
     /**
      * The attributes that are dates.
@@ -26,11 +28,4 @@ class Task extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at'];
-
-    /**
-     * The attributes that are translatable.
-     *
-     * @var array
-     */
-//    public $translatable = ['title', 'body'];
 }

@@ -20,7 +20,11 @@ return [
         'updated'   => 'Manager :name has been successfully updated!',
     ],
     'tasks' => [
+        'submit_create'   => 'Submit',
+        'submit_update'   => 'Update a task',
         'created'   => 'Task has been successfully created!',
+        'updated'   => 'Task has been successfully updated!',
+        'deleted'   => 'Task has been successfully deleted!',
     ],
 
 ];

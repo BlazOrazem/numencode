@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d0a01193d909dc70b4cfd7454283993",
-    "content-hash": "79b5ffbe9d8b932f2a30adf999ab20df",
+    "hash": "2493655ea75ba2d0290d5ede49df8cea",
+    "content-hash": "613ef61290a7499e97df0800279c4427",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -804,6 +804,54 @@
                 "laravel"
             ],
             "time": "2015-10-01 05:16:28"
+        },
+        {
+            "name": "laraplus/translatable",
+            "version": "1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laraplus/translatable.git",
+                "reference": "9d906069952b5f0fbf5ee468b111e70786d3b84b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laraplus/translatable/zipball/9d906069952b5f0fbf5ee468b111e70786d3b84b",
+                "reference": "9d906069952b5f0fbf5ee468b111e70786d3b84b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.2",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laraplus\\Data\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anže Časar",
+                    "email": "anze.casar@gmail.com"
+                }
+            ],
+            "description": "Translatable eloquent models.",
+            "keywords": [
+                "eloquent",
+                "i18n",
+                "laravel",
+                "model",
+                "translatable",
+                "translate"
+            ],
+            "time": "2016-09-29 10:50:48"
         },
         {
             "name": "laravel/framework",

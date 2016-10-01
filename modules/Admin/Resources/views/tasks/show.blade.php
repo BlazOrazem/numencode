@@ -4,26 +4,30 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Create a new Task</h1>
+            <h1 class="page-header">{{ $task->title }}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    New Task
+                    {{ $task->title }}
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <form method="POST" action="{{ route('tasks.store') }}" role="form">
-                                @include ('admin::tasks.form', [
-                                    'resetButton' => true
-                                ])
-                            </form>
+                            {{ $task->body }}
+                        </div>
+                        <div class="col-lg-6">
+                            Task completed:
+                            @if ($task->completed)
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            @else
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            @endif
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                     </div>
