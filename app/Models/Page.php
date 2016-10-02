@@ -2,10 +2,13 @@
 
 namespace Numencode\Models;
 
+use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
+    use Translatable;
+
     /**
      * The database table used by the model.
      *
@@ -18,7 +21,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'body', 'ord', 'is_hidden'];
+    protected $fillable = ['parent_id', 'title', 'lead', 'body', 'ord', 'is_hidden'];
 
     /**
      * The attributes that are dates.
@@ -27,9 +30,13 @@ class Page extends Model
      */
     protected $dates = ['created_at', 'updated_at'];
 
-
+    /**
+     * Page has many contents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function contents()
     {
-        return $this->belongsToMany(Content::class, 'page_content');
+        return $this->hasMany(Content::class);
     }
 }

@@ -22,10 +22,13 @@ class DatabaseSeeder extends Seeder
         'role_manager',
 
         'pages',
+        'pages_i18n',
         'contents',
-        'page_content',
+        'contents_i18n',
+        'plugins',
 
         'tasks',
+        'tasks_i18n',
     ];
 
     /**
@@ -49,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PagesTableSeeder::class);
         $this->call(ContentsTableSeeder::class);
-        $this->call(PageContentTableSeeder::class);
+        $this->call(PluginsTableSeeder::class);
 
         $this->call(TasksTableSeeder::class);
     }

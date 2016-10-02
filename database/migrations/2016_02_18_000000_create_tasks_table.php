@@ -24,7 +24,7 @@ class CreateTasksTable extends Migration
             $table->integer('task_id')->unsigned();
             $table->string('locale', 6);
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
 
             $table->primary(['task_id', 'locale']);
         });

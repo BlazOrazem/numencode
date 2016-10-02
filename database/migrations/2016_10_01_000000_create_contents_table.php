@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,24 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->nullable()->index();
+            $table->integer('page_id')->unsigned()->index();
+            $table->integer('plugin_id')->unsigned()->index();
+            $table->text('plugin_params')->nullable();
             $table->integer('ord')->default(0);
             $table->boolean('is_hidden')->default(0);
-            $table->timestamps();
         });
 
-        Schema::create('pages_i18n', function(Blueprint $table)
+        Schema::create('contents_i18n', function(Blueprint $table)
         {
-            $table->integer('page_id')->unsigned();
+            $table->integer('content_id')->unsigned();
             $table->string('locale', 6);
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('lead')->nullable();
             $table->text('body')->nullable();
 
-            $table->primary(['page_id', 'locale']);
+            $table->primary(['content_id', 'locale']);
         });
     }
 
@@ -40,7 +41,7 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pages');
-        Schema::drop('pages_i18n');
+        Schema::dropIfExists('contents');
+        Schema::dropIfExists('contents_i18n');
     }
 }

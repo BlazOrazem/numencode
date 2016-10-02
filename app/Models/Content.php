@@ -2,10 +2,13 @@
 
 namespace Numencode\Models;
 
+use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
+    use Translatable;
+
     /**
      * The database table used by the model.
      *
@@ -18,11 +21,15 @@ class Content extends Model
      *
      * @var array
      */
-    protected $fillable = ['controller', 'method', 'params', 'ord', 'is_hidden'];
+    protected $fillable = ['page_id', 'plugin_id', 'plugin_params', 'ord', 'is_hidden', 'title', 'lead', 'body'];
 
-
-    public function pages()
+    /**
+     * Content belongs to page.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function page()
     {
-        return $this->belongsToMany(Page::class, 'page_content');
+        return $this->belongsTo(Page::class);
     }
 }
