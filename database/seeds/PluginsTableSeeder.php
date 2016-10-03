@@ -25,15 +25,6 @@ class PluginsTableSeeder extends Seeder
                 'ord' => 20,
                 'is_hidden' => 0,
             ],
-            [
-                'id' => 3,
-                'title' => 'Text',
-                'description' => 'Just some text content.',
-                'controller' => null,
-                'method' => null,
-                'ord' => 30,
-                'is_hidden' => 0,
-            ],
         ];
 
         DB::table('plugins')->insert($items);

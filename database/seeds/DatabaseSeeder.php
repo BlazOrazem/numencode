@@ -14,19 +14,16 @@ class DatabaseSeeder extends Seeder
     private $tables = [
         'managers',
         'users',
-
         'roles',
         'permissions',
         'role_permission',
         'role_user',
         'role_manager',
-
         'pages',
         'pages_i18n',
         'contents',
         'contents_i18n',
         'plugins',
-
         'tasks',
         'tasks_i18n',
     ];
@@ -39,21 +36,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->cleanDatabase();
+        $this->command->info('-------------------');
         $this->command->info('Database truncated.');
+        $this->command->info('-------------------');
 
         $this->call(ManagersTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(RolePermissionTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(RoleManagerTableSeeder::class);
-
         $this->call(PagesTableSeeder::class);
         $this->call(ContentsTableSeeder::class);
         $this->call(PluginsTableSeeder::class);
-
         $this->call(TasksTableSeeder::class);
     }
 
@@ -66,6 +62,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($this->tables as $tableName) {
             DB::table($tableName)->truncate();
+            $this->command->info('Table ' . $tableName . ' truncated.');
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');

@@ -7,7 +7,7 @@ use Numencode\Models\Page;
 class PageController extends BaseController
 {
     /**
-     * Display a page with it's plugins.
+     * Display a page.
      *
      * @param $id
      * @return \Illuminate\View\View
@@ -15,22 +15,7 @@ class PageController extends BaseController
     public function index($id)
     {
         $page = Page::findOrFail($id);
-        $plugins = plugins($this->getContents($page));
 
-        return view('theme::pages.index', compact('page', 'plugins'));
-    }
-
-    /**
-     * Get all contents for a page.
-     *
-     * @param Page $page
-     * @return mixed
-     */
-    protected function getContents(Page $page)
-    {
-        return $page->contents()
-            ->where('is_hidden', false)
-            ->orderBy('ord')
-            ->get(['*', 'params']);
+        return view('theme::pages.index', compact('page'));
     }
 }

@@ -4,7 +4,7 @@ namespace Numencode\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Plugins extends Model
+class Plugin extends Model
 {
     /**
      * The database table used by the model.
@@ -19,14 +19,4 @@ class Plugins extends Model
      * @var array
      */
     protected $fillable = ['title', 'description', 'controller', 'method', 'ord', 'is_hidden'];
-
-    /**
-     * Plugin belongs to content.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function content()
-    {
-        return $this->belongsTo(Content::class);
-    }
 }

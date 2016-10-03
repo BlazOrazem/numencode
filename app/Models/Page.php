@@ -39,4 +39,17 @@ class Page extends Model
     {
         return $this->hasMany(Content::class);
     }
+
+    /**
+     * Get all contents for a page.
+     *
+     * @return mixed
+     */
+    public function getContents()
+    {
+        return $this->contents()
+            ->where('is_hidden', false)
+            ->orderBy('ord')
+            ->get(['*', 'params']);
+    }
 }
