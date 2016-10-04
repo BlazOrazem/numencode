@@ -29,6 +29,6 @@ class TaskController extends BaseController
      */
     public function sample($params)
     {
-        return view('theme::tasks.sample', ['sample' => json_decode($params)]);
+        return view('theme::tasks.sample', ['sample' => $params]);
     }
 }

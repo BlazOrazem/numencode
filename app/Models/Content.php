@@ -23,6 +23,13 @@ class Content extends Model
      */
     protected $fillable = ['page_id', 'plugin_id', 'plugin_params', 'ord', 'is_hidden', 'title', 'lead', 'body'];
 
+	/**
+	 * Cast attributes to other types.
+	 *
+	 * @var array
+	 */
+	protected $casts = ['plugin_params' => 'object'];
+
     /**
      * Disable timestamps for this table.
      *
@@ -51,11 +58,9 @@ class Content extends Model
             return null;
         }
 
-        $controllerName = 'Cms\Http\\' . $this->plugin->controller . 'Controller';
-        $methodName = $this->plugin->method;
-
-        $controller = new $controllerName();
-
-        return $controller->$methodName($this->plugin_params);
+		return app()->call(
+			[app('Cms\Http\\' . $this->plugin->controller . 'Controller'), $this->plugin->method],
+			['params' => $this->plugin_params]
+		);
     }
 }

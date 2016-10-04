@@ -41,6 +41,7 @@ elixir(function(mix) {
      */
 
     var adminResources = 'modules/Admin/Resources/assets/';
+
     mix.less([
         adminResources + 'styles/app.less',
         adminResources + 'styles/jstree/default/style.less'
@@ -54,7 +55,8 @@ elixir(function(mix) {
         '/node_modules/datatables-numencode/css/jquery.dataTables.min.css',
         '/node_modules/datatables-numencode/css/dataTables.bootstrap.min.css',
         '/node_modules/datatables-numencode/css/responsive.dataTables.min.css'
-    ], 'public/css/admin-libs.css')
+    ], 'public/css/admin-libs.css');
+
     mix.scripts([
         adminResources + 'scripts/app.js'
     ], './public/js/admin-app.js')
