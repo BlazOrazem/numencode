@@ -1,0 +1,158 @@
+{
+  "name": "pacificonis",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "3.3.6",
+    "html5shiv": "~3.7.3",
+    "respondJs": "~1.4.2",
+    "material-design-iconic-font": "~2.2.0",
+    "metisMenu": "~2.2.0",
+    "animate.css": "~3.4.0",
+    "remarkable-bootstrap-notify": "~3.1.3",
+    "DataTables": "~1.10.9",
+    "datatables.net-responsive": "~1.0.7",
+    "fullcalendar": "~2.4.0",
+    "Chart.js": "~1.0.2",
+    "flot": "~0.8.3",
+    "jquery.easy-pie-chart": "~2.1.6",
+    "malihu-custom-scrollbar-plugin": "~3.1.1",
+    "Waves": "waves#~0.7.4",
+    "gmaps": "~0.4.21",
+    "jqvmap": "~1.4.0",
+    "bootstrap-select": "~1.9.4",
+    "dropzone": "~4.3.0",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "flot.tooltip": "~0.8.7",
+    "summernote": "~0.8.1",
+    "twitter-bootstrap-wizard": "~1.3.2",
+    "x-editable": "~1.5.1",
+    "jstree": "~3.3.0",
+    "bootstrap-sweetalert": "~0.4.5",
+    "nouislider": "~8.5.1",
+    "toastr": "~2.1.2",
+    "hopscotch": "^0.2.5",
+    "jquery-validation": "^1.15.0",
+    "jquery-idletimer": "^1.0.1",
+    "peity": "^3.2.0",
+    "morris.js": "^0.5.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./dist/js/bootstrap.min.js",
+        "./dist/js/bootstrap.js",
+        "./dist/css/bootstrap.min.css",
+        "./dist/css/bootstrap.css"
+      ]
+    },
+    "jquery": {
+      "main": [
+        "dist/jquery.js",
+        "dist/jquery.min.js"
+      ]
+    },
+    "animate.css": {
+      "main": [
+        "./animate.css",
+        "./animate.min.css"
+      ]
+    },
+    "moment": {
+      "main": [
+        "moment.js",
+        "min/moment.min.js"
+      ]
+    },
+    "html5shiv": {
+      "main": [
+        "dist/html5shiv.js",
+        "dist/html5shiv.min.js"
+      ]
+    },
+    "respond": {
+      "main": [
+        "dest/respond.min.js"
+      ]
+    },
+    "jquery.nicescroll": {
+      "main": [
+        "./jquery.nicescroll.js",
+        "./jquery.nicescroll.min.js"
+      ]
+    },
+    "metisMenu": {
+      "main": [
+        "./dist/*.*"
+      ]
+    },
+    "remarkable-bootstrap-notify": {
+      "main": [
+        "./bootstrap-notify.js",
+        "./bootstrap-notify.min.js"
+      ]
+    },
+    "summernote": {
+      "main": [
+        "dist/summernote.js",
+        "dist/summernote.min.js",
+        "dist/summernote.css",
+        "dist/font/*.*"
+      ]
+    },
+    "fullcalendar": {
+      "main": [
+        "dist/fullcalendar.js",
+        "dist/fullcalendar.min.js",
+        "dist/fullcalendar.min.css",
+        "dist/fullcalendar.css"
+      ]
+    },
+    "datatables": {
+      "main": [
+        "./media/js/jquery.dataTables.js",
+        "./media/css/jquery.dataTables.css",
+        "./media/js/jquery.dataTables.min.js",
+        "./media/css/jquery.dataTables.min.css",
+        "./media/images/sort_asc.png",
+        "./media/images/sort_asc_disabled.png",
+        "./media/images/sort_both.png",
+        "./media/images/sort_desc.png",
+        "./media/images/sort_desc_disabled.png"
+      ]
+    },
+    "jqvmap": {
+      "main": [
+        "./dist/*.*",
+        "./dist/maps/*.*",
+        "./examples/*.*",
+        "./examples/js/*.*"
+      ]
+    },
+    "Flot": {
+      "main": [
+        "jquery.flot.js",
+        "jquery.flot.resize.js"
+      ]
+    },
+    "Waves": {
+      "main": [
+        "dist/*.*"
+      ]
+    },
+    "x-editable": {
+      "main": [
+        "dist/bootstrap3-editable/**/*.*"
+      ]
+    },
+    "jstree": {
+      "main": [
+        "dist/**/*.*"
+      ]
+    },
+    "jquery-idletimer": {
+      "main": [
+        "dist/idle-timer.min.js"
+      ]
+    }
+  }
+}
