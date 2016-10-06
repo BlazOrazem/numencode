@@ -10,8 +10,8 @@
     <title>Numencode</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('css/libs.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/default/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/default/css/libs.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -62,8 +62,8 @@
     </div>
 </div>
 
-<script src="/js/libs.js"></script>
-<script src="/js/app.js"></script>
+<script src="{{ elixir('themes/default/js/app.js') }}"></script>
+<script src="{{ elixir('themes/default/js/libs.js') }}"></script>
 
 @include('theme::flash')
 

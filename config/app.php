@@ -155,7 +155,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+//        Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laraplus\Data\TranslatableServiceProvider::class,
 

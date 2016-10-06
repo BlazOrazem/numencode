@@ -8,8 +8,9 @@
     <meta name="author" content="Numencode.com">
     <title>Admin Dashboard</title>
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('css/admin-app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('css/admin-libs.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/admin/css/common.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/admin/css/libs.css') }}" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

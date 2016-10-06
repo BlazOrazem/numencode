@@ -18,6 +18,9 @@ elixir.config.css.folder = '';
 /* Set the Less source folder */
 elixir.config.css.less.folder = '';
 
+/* Set the Sass source folder */
+elixir.config.css.sass.folder = '';
+
 /* Set the JavaScripts source folder */
 elixir.config.js.folder = '';
 
@@ -40,66 +43,50 @@ elixir(function(mix) {
      |
      */
 
-    var adminResources = 'modules/Admin/Resources/assets/';
+    var adminResources = './modules/Admin/Resources/assets/';
+    var publicPath = './public/themes/admin/';
 
-    mix.less([
-        adminResources + 'styles/app.less',
-        adminResources + 'styles/jstree/default/style.less'
-    ], './public/css/admin-app.css')
+	mix.less([
+		//adminResources + 'styles/app.less',
+		adminResources + 'styles/jstree/default/style.less'
+	], publicPath + 'css/app.css')
+	.sass([
+		adminResources + 'scss/style.scss'
+	], publicPath + 'css/common.css')
     .styles([
-        '/node_modules/font-awesome/css/font-awesome.min.css',
-        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
-        '/node_modules/sweetalert/dist/sweetalert.css',
-        '/node_modules/metismenu/dist/metisMenu.min.css',
-        '/node_modules/morris.js/morris.css',
-        '/node_modules/datatables-numencode/css/jquery.dataTables.min.css',
-        '/node_modules/datatables-numencode/css/dataTables.bootstrap.min.css',
-        '/node_modules/datatables-numencode/css/responsive.dataTables.min.css'
-    ], 'public/css/admin-libs.css');
+		adminResources + 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+        adminResources + 'bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css',
+        adminResources + 'bower_components/animate.css/animate.min.css',
+        adminResources + 'bower_components/metisMenu/dist/metisMenu.min.css',
+        adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
+        adminResources + 'bower_components/Waves/dist/waves.min.css',
+        adminResources + 'bower_components/toastr/toastr.css',
+        adminResources + 'bower_components/DataTables/media/css/jquery.dataTables.min.css'
+    ], publicPath + 'css/libs.css');
 
     mix.scripts([
         adminResources + 'scripts/app.js'
-    ], './public/js/admin-app.js')
+    ], publicPath + 'js/app.js')
+	.scripts([
+        adminResources + 'scripts/common.js'
+    ], publicPath + 'js/common.js')
     .scripts([
-        '/node_modules/jquery/dist/jquery.min.js',
-        '/node_modules/bootstrap-less/js/bootstrap.min.js',
-        '/node_modules/sweetalert/dist/sweetalert.min.js',
-        '/node_modules/metismenu/dist/metisMenu.min.js',
-        '/node_modules/raphael/raphael.min.js',
-        '/node_modules/morris.js/morris.min.js',
-        '/node_modules/jstree/dist/jstree.min.js',
-        '/node_modules/jstree/dist/jstree.min.js',
-        '/node_modules/datatables-numencode/js/jquery.dataTables.min.js',
-        '/node_modules/datatables-numencode/js/dataTables.bootstrap.min.js',
-        '/node_modules/datatables-numencode/js/dataTables.responsive.min.js'
-    ], './public/js/admin-libs.js');
-
-    /*
-     |--------------------------------------------------------------------------
-     | CMS Assets
-     |--------------------------------------------------------------------------
-     |
-     | Gulp watcher for cms assets, trigger with "gulp watch".
-     |
-     */
-
-    var cmsResources = 'modules/Cms/Resources/assets/';
-    mix.less([
-        cmsResources + 'styles/app.less'
-    ], './public/css/app.css')
-    .styles([
-        '/node_modules/font-awesome/css/font-awesome.min.css',
-        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
-        '/node_modules/sweetalert/dist/sweetalert.css'
-    ], 'public/css/libs.css')
-    .scripts([
-        cmsResources + 'scripts/app.js'
-    ], './public/js/app.js')
-    .scripts([
-        '/node_modules/jquery/dist/jquery.min.js',
-        '/node_modules/bootstrap-less/js/bootstrap.min.js',
-        '/node_modules/sweetalert/dist/sweetalert.min.js'
-    ], './public/js/libs.js');
+		adminResources + 'bower_components/jquery/dist/jquery.min.js',
+		adminResources + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
+		adminResources + 'bower_components/metisMenu/dist/metisMenu.min.js',
+		adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
+		adminResources + 'bower_components/Waves/dist/waves.min.js',
+		adminResources + 'bower_components/toastr/toastr.js',
+		adminResources + 'bower_components/datatables/media/js/jquery.dataTables.min.js',
+		adminResources + 'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
+		adminResources + 'bower_components/moment/min/moment.min.js',
+		adminResources + 'bower_components/Chart.js/Chart.js',
+		adminResources + 'bower_components/flot/jquery.flot.js',
+		adminResources + 'bower_components/flot/jquery.flot.resize.js',
+		adminResources + 'bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
+		adminResources + 'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.js',
+		adminResources + 'bower_components/jstree/dist/jstree.js'
+    ], publicPath + 'js/libs.js');
 
     /*
      |--------------------------------------------------------------------------
@@ -111,11 +98,23 @@ elixir(function(mix) {
      */
 
     mix.version([
-        'public/css/admin-app.css',
-        'public/css/admin-libs.css',
-        'public/css/app.css',
-        'public/css/libs.css'
+        publicPath + 'css/app.css',
+        publicPath + 'css/common.css',
+        publicPath + 'css/libs.css',
+        publicPath + 'js/app.js',
+        publicPath + 'js/common.js',
+        publicPath + 'js/libs.js'
     ]);
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | Copy some Assets
+	 |--------------------------------------------------------------------------
+	 */
+	mix.copy(adminResources + 'bower_components/html5shiv/dist/html5shiv.min.js', publicPath + 'js/html5shiv.min.js');
+	mix.copy(adminResources + 'bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
+	mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', publicPath + 'fonts');
+	//mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', './public/build/themes/admin/fonts');
 
     /*
      |--------------------------------------------------------------------------
@@ -126,5 +125,5 @@ elixir(function(mix) {
      |
      */
 
-    mix.phpUnit();
+    //mix.phpUnit();
 });

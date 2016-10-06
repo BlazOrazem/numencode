@@ -18,6 +18,9 @@ elixir.config.css.folder = '';
 /* Set the Less source folder */
 elixir.config.css.less.folder = '';
 
+/* Set the Sass source folder */
+elixir.config.css.sass.folder = '';
+
 /* Set the JavaScripts source folder */
 elixir.config.js.folder = '';
 
@@ -33,49 +36,6 @@ elixir(function(mix) {
 
     /*
      |--------------------------------------------------------------------------
-     | Admin Assets
-     |--------------------------------------------------------------------------
-     |
-     | Gulp watcher for admin assets, trigger with "gulp watch".
-     |
-     */
-
-    var adminResources = 'modules/Admin/Resources/assets/';
-
-    mix.less([
-        adminResources + 'styles/app.less',
-        adminResources + 'styles/jstree/default/style.less'
-    ], './public/css/admin-app.css')
-    .styles([
-        '/node_modules/font-awesome/css/font-awesome.min.css',
-        '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
-        '/node_modules/sweetalert/dist/sweetalert.css',
-        '/node_modules/metismenu/dist/metisMenu.min.css',
-        '/node_modules/morris.js/morris.css',
-        '/node_modules/datatables-numencode/css/jquery.dataTables.min.css',
-        '/node_modules/datatables-numencode/css/dataTables.bootstrap.min.css',
-        '/node_modules/datatables-numencode/css/responsive.dataTables.min.css'
-    ], 'public/css/admin-libs.css');
-
-    mix.scripts([
-        adminResources + 'scripts/app.js'
-    ], './public/js/admin-app.js')
-    .scripts([
-        '/node_modules/jquery/dist/jquery.min.js',
-        '/node_modules/bootstrap-less/js/bootstrap.min.js',
-        '/node_modules/sweetalert/dist/sweetalert.min.js',
-        '/node_modules/metismenu/dist/metisMenu.min.js',
-        '/node_modules/raphael/raphael.min.js',
-        '/node_modules/morris.js/morris.min.js',
-        '/node_modules/jstree/dist/jstree.min.js',
-        '/node_modules/jstree/dist/jstree.min.js',
-        '/node_modules/datatables-numencode/js/jquery.dataTables.min.js',
-        '/node_modules/datatables-numencode/js/dataTables.bootstrap.min.js',
-        '/node_modules/datatables-numencode/js/dataTables.responsive.min.js'
-    ], './public/js/admin-libs.js');
-
-    /*
-     |--------------------------------------------------------------------------
      | CMS Assets
      |--------------------------------------------------------------------------
      |
@@ -83,23 +43,25 @@ elixir(function(mix) {
      |
      */
 
-    var cmsResources = 'modules/Cms/Resources/assets/';
+    var cmsResources = './modules/Cms/Resources/assets/';
+	var publicPath = './public/themes/default/';
+
     mix.less([
         cmsResources + 'styles/app.less'
-    ], './public/css/app.css')
+    ], publicPath + 'css/app.css')
     .styles([
         '/node_modules/font-awesome/css/font-awesome.min.css',
         '/node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
         '/node_modules/sweetalert/dist/sweetalert.css'
-    ], 'public/css/libs.css')
+    ], publicPath + 'css/libs.css')
     .scripts([
         cmsResources + 'scripts/app.js'
-    ], './public/js/app.js')
+    ], publicPath + 'js/app.js')
     .scripts([
         '/node_modules/jquery/dist/jquery.min.js',
         '/node_modules/bootstrap-less/js/bootstrap.min.js',
         '/node_modules/sweetalert/dist/sweetalert.min.js'
-    ], './public/js/libs.js');
+    ], publicPath + 'js/libs.js');
 
     /*
      |--------------------------------------------------------------------------
@@ -111,11 +73,20 @@ elixir(function(mix) {
      */
 
     mix.version([
-        'public/css/admin-app.css',
-        'public/css/admin-libs.css',
-        'public/css/app.css',
-        'public/css/libs.css'
+		publicPath + 'css/app.css',
+		publicPath + 'css/libs.css',
+		publicPath + 'js/app.js',
+		publicPath + 'js/libs.js'
     ]);
+
+	/*
+	 |--------------------------------------------------------------------------
+	 | Copy some Assets
+	 |--------------------------------------------------------------------------
+	 */
+	mix.copy('./bower_components/html5shiv/dist/html5shiv.min.js', publicPath + 'js/html5shiv.min.js');
+	mix.copy('./bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
+	mix.copy('./node_modules/font-awesome/fonts', './public/build/themes/default/fonts');
 
     /*
      |--------------------------------------------------------------------------
@@ -126,5 +97,5 @@ elixir(function(mix) {
      |
      */
 
-    mix.phpUnit();
+    //mix.phpUnit();
 });

@@ -1,6 +1,8 @@
 {
-  "css/admin-app.css": "css/admin-app-043b666f77.css",
-  "css/admin-libs.css": "css/admin-libs-32d27d836e.css",
-  "css/app.css": "css/app-474fccdf7d.css",
-  "css/libs.css": "css/libs-236bb0f9d7.css"
+  "themes/admin/css/app.css": "themes/admin/css/app-a814b7f034.css",
+  "themes/admin/css/common.css": "themes/admin/css/common-cf1b57e011.css",
+  "themes/admin/css/libs.css": "themes/admin/css/libs-89dc63608e.css",
+  "themes/admin/js/app.js": "themes/admin/js/app-a12db95f12.js",
+  "themes/admin/js/common.js": "themes/admin/js/common-c50a7f436f.js",
+  "themes/admin/js/libs.js": "themes/admin/js/libs-cb8f21db7b.js"
 }
