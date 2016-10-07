@@ -48,6 +48,6 @@ class DropTables extends Command
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         DB::commit();
 
-        $this->comment(PHP_EOL."If no errors showed up, all tables were dropped".PHP_EOL);
+        $this->comment(PHP_EOL . "If no errors showed up, all tables were dropped" . PHP_EOL);
     }
 }

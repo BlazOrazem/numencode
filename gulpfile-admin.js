@@ -52,43 +52,43 @@ elixir(function(mix) {
 	], publicPath + 'css/app.css')
 	.sass([
 		adminResources + 'scss/style.scss'
-	], publicPath + 'css/common.css')
-    .styles([
-		adminResources + 'bower_components/bootstrap/dist/css/bootstrap.min.css',
-        adminResources + 'bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css',
-        adminResources + 'bower_components/animate.css/animate.min.css',
-        adminResources + 'bower_components/metisMenu/dist/metisMenu.min.css',
-        adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
-        adminResources + 'bower_components/Waves/dist/waves.min.css',
-        adminResources + 'bower_components/toastr/toastr.css',
-        adminResources + 'bower_components/DataTables/media/css/jquery.dataTables.min.css',
-		adminResources + 'bower_components/bootstrap-select/dist/css/bootstrap-select.css',
-    ], publicPath + 'css/libs.css');
+	], publicPath + 'css/common.css');
+    //.styles([
+		//adminResources + 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+    //    adminResources + 'bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css',
+    //    adminResources + 'bower_components/animate.css/animate.min.css',
+    //    adminResources + 'bower_components/metisMenu/dist/metisMenu.min.css',
+    //    adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
+    //    adminResources + 'bower_components/Waves/dist/waves.min.css',
+    //    adminResources + 'bower_components/toastr/toastr.css',
+    //    adminResources + 'bower_components/DataTables/media/css/jquery.dataTables.min.css',
+		//adminResources + 'bower_components/bootstrap-select/dist/css/bootstrap-select.css',
+    //], publicPath + 'css/libs.css');
 
     mix.scripts([
         adminResources + 'scripts/app.js'
     ], publicPath + 'js/app.js')
 	.scripts([
         adminResources + 'scripts/common.js'
-    ], publicPath + 'js/common.js')
-    .scripts([
-		adminResources + 'bower_components/jquery/dist/jquery.min.js',
-		adminResources + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
-		adminResources + 'bower_components/metisMenu/dist/metisMenu.min.js',
-		adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
-		adminResources + 'bower_components/Waves/dist/waves.min.js',
-		adminResources + 'bower_components/toastr/toastr.js',
-		adminResources + 'bower_components/datatables/media/js/jquery.dataTables.min.js',
-		adminResources + 'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
-		adminResources + 'bower_components/moment/min/moment.min.js',
-		adminResources + 'bower_components/Chart.js/Chart.js',
-		adminResources + 'bower_components/flot/jquery.flot.js',
-		adminResources + 'bower_components/flot/jquery.flot.resize.js',
-		adminResources + 'bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
-		adminResources + 'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.js',
-		adminResources + 'bower_components/jstree/dist/jstree.js',
-		adminResources + 'bower_components/bootstrap-select/dist/js/bootstrap-select.js'
-    ], publicPath + 'js/libs.js');
+    ], publicPath + 'js/common.js');
+    //.scripts([
+		//adminResources + 'bower_components/jquery/dist/jquery.min.js',
+		//adminResources + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
+		//adminResources + 'bower_components/metisMenu/dist/metisMenu.min.js',
+		//adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
+		//adminResources + 'bower_components/Waves/dist/waves.min.js',
+		//adminResources + 'bower_components/toastr/toastr.js',
+		//adminResources + 'bower_components/datatables/media/js/jquery.dataTables.min.js',
+		//adminResources + 'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
+		//adminResources + 'bower_components/moment/min/moment.min.js',
+		//adminResources + 'bower_components/Chart.js/Chart.js',
+		//adminResources + 'bower_components/flot/jquery.flot.js',
+		//adminResources + 'bower_components/flot/jquery.flot.resize.js',
+		//adminResources + 'bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
+		//adminResources + 'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.js',
+		//adminResources + 'bower_components/jstree/dist/jstree.js',
+		//adminResources + 'bower_components/bootstrap-select/dist/js/bootstrap-select.js'
+    //], publicPath + 'js/libs.js');
 
     /*
      |--------------------------------------------------------------------------
@@ -113,11 +113,12 @@ elixir(function(mix) {
 	 | Copy some Assets
 	 |--------------------------------------------------------------------------
 	 */
-	mix.copy(adminResources + 'bower_components/html5shiv/dist/html5shiv.min.js', publicPath + 'js/html5shiv.min.js');
-	mix.copy(adminResources + 'bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
-	mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', publicPath + 'fonts');
-	mix.copy(adminResources + 'bower_components/DataTables/media/images', publicPath + 'images');
-	mix.copy(adminResources + 'bower_components/DataTables/media/images', './public/build/themes/admin/images');
+	//mix.copy(adminResources + 'bower_components/html5shiv/dist/html5shiv.min.js', publicPath + 'js/html5shiv.min.js');
+	//mix.copy(adminResources + 'bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
+	//mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', publicPath + 'fonts');
+	//mix.copy(adminResources + 'bower_components/DataTables/media/images', publicPath + 'images');
+	//mix.copy(adminResources + 'bower_components/DataTables/media/images', './public/build/themes/admin/images');
+
 	//mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', './public/build/themes/admin/fonts');
 
     /*

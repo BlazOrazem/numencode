@@ -139,8 +139,14 @@ $(function() {
     });
   }
 
-  //MetisMenu
-  $('.metismenu').metisMenu();
+    //MetisMenu
+    var url = window.location;
+    $('.metismenu li a[href="'+ url +'"]').parent().addClass('active');
+    $('.metismenu li a[href="'+ url +'"]').parentsUntil(".metismenu").last().addClass('active');
+
+    $('.metismenu').metisMenu({
+        activeClass: 'active'
+    });
 
   //Waves ripple effect
   Waves.attach('.btn');

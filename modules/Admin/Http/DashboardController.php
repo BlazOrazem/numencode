@@ -11,6 +11,6 @@ class DashboardController extends BaseController
      */
     public function index()
     {
-        return view('admin::pages.home');
+        return view('admin::pages.dashboard');
     }
 }

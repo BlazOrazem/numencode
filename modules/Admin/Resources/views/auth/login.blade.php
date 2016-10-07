@@ -37,7 +37,6 @@
     <![endif]-->
 </head>
 
-
 <body class="user-page login" style="background-image: url('/themes/admin/images/background/{{ $season }}.jpg');">
 <!--Preloader-->
 <div id="preloader">

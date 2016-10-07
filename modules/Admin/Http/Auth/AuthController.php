@@ -32,7 +32,8 @@ class AuthController extends BaseController
      */
     public function getLogin(Request $request)
     {
-		$season = 'autumn';
+		$seasons = ['spring', 'summer', 'autumn', 'winter'];
+        $season = $seasons[array_rand($seasons)];
 
         $view = view('admin::auth.login', compact('season'));
 

@@ -1547,7 +1547,7 @@ aside.sidebar {
     width: 3px;
     height: 100%;
     position: absolute;
-    background: #FFC107;
+    background: #2196F3;
     z-index: 2;
     opacity: 1; }
 
@@ -2016,6 +2016,20 @@ body.small-content .container-fluid {
   content: "\f278"; }
 
 /*Welcome notification*/
+[data-notify="progressbar"] {
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  width: 100%;
+  height: 4px;
+  border-radius: 0 0 3px 3px;
+  box-shadow: none;
+  background: #7F7F7F; }
+  [data-notify="progressbar"] .progress-bar {
+    background: #8BC34A;
+    box-shadow: none; }
+
 [data-notify="container"] {
   max-width: 300px;
   font-size: 16px;
@@ -2100,6 +2114,12 @@ body .dataTables_wrapper .dataTables_paginate {
     border-top-right-radius: 3px !important;
     border-bottom-right-radius: 3px !important; }
 
+body .dataTables_wrapper .dataTables_info {
+  float: left;
+  color: #fff;
+  font-size: 16px;
+  padding: 15px 10px; }
+
 table.display {
   border-bottom: 0 !important;
   width: 100% !important; }
@@ -2113,11 +2133,16 @@ table.display {
       padding-left: 20px;
       border: 0; }
   table.display tbody tr, table.display tbody tr td {
-    background: #fff !important;
     font-weight: 500;
     padding-left: 20px; }
-  table.display.datatable-striped tbody tr.even {
+    table.display tbody tr .btn-link, table.display tbody tr td .btn-link {
+      color: #E64A19 !important; }
+  table.display.datatable-striped tbody tr.even,
+  table.display.datatable-striped tbody tr.even > .sorting_1 {
     background: #F9F9F9 !important; }
+  table.display.datatable-striped tbody tr.odd,
+  table.display.datatable-striped tbody tr.odd > .sorting_1 {
+    background: #FFFFFF !important; }
   table.display tr:last-child {
     background: transparent; }
     table.display tr:last-child td:first-child {
@@ -2139,6 +2164,22 @@ table.display {
     line-height: 32px;
     box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
     color: #000; }
+
+.dataTables_wrapper .dataTables_length {
+  float: right !important;
+  border: 0;
+  border-radius: 3px;
+  padding: 0 12px;
+  line-height: 32px;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+  background: #fff;
+  margin-top: 9px; }
+  .dataTables_wrapper .dataTables_length label {
+    margin: 0;
+    font-weight: 600;
+    color: #9E9E9E; }
+  .dataTables_wrapper .dataTables_length select {
+    cursor: pointer; }
 
 .data-danger thead tr {
   background: #e64f4f !important; }
