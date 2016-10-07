@@ -1,11 +1,6 @@
-/*
- *
- *   New Project - Responsive Admin Template
- *   version 1.0
- *
-*/
-/*Google fonts*/
+/* Google fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900);
+/* Custom CSS */
 a, a:hover {
   text-decoration: none !important; }
 
@@ -422,6 +417,10 @@ body {
   .conf-body .title {
     margin-top: 10px; }
 
+.user-page.login {
+  background: no-repeat center center;
+  background-size: cover; }
+
 .user-page .wrapper {
   height: 100% !important; }
 
@@ -432,25 +431,25 @@ body {
   height: 100%; }
 
 .user-page .error-400 {
-  background-image: url("../img/400.jpg"); }
+  background-image: url("../images/400.jpg"); }
 
 .user-page .error-401 {
-  background-image: url("../img/401.jpg"); }
+  background-image: url("../images/401.jpg"); }
 
 .user-page .error-403 {
-  background-image: url("../img/403.jpg"); }
+  background-image: url("../images/403.jpg"); }
 
 .user-page .error-404 {
-  background-image: url("../img/404.jpg"); }
+  background-image: url("../images/404.jpg"); }
 
 .user-page .error-500 {
-  background-image: url("../img/500.jpg"); }
+  background-image: url("../images/500.jpg"); }
 
 .user-page .error-503 {
-  background-image: url("../img/503.jpg"); }
+  background-image: url("../images/503.jpg"); }
 
 .user-page.coming-soon .bg {
-  background-image: url("../img/coming-soon.jpg"); }
+  background-image: url("../images/coming-soon.jpg"); }
 
 .user-page.coming-soon .countdown-section {
   display: inline-block;
@@ -475,7 +474,7 @@ body {
       font-size: 45px; } }
 
 .user-page.confirm-email .bg {
-  background-image: url("../img/confirm-email.jpg"); }
+  background-image: url("../images/confirm-email.jpg"); }
 
 .user-page.confirm-email i {
   font-size: 75px;
@@ -488,7 +487,7 @@ body {
   background: rgba(0, 0, 0, 0.6); }
 
 .user-page.lock-screen .bg {
-  background-image: url("../img/lock-screen.jpg"); }
+  background-image: url("../images/lock-screen.jpg"); }
 
 .user-page.lock-screen img {
   max-width: 100px;
@@ -514,12 +513,15 @@ body {
 .user-page .login {
   max-width: 300px;
   min-width: 300px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   margin-left: 50%; }
   .user-page .login h4 {
     color: #fff;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 500; }
   .user-page .login input {
     border-color: #fff;
@@ -2835,19 +2837,19 @@ table.display {
   height: 101px; }
 
 .farbtastic .wheel {
-  background: url(../img/wheel.png) no-repeat;
+  background: url(../images/wheel.png) no-repeat;
   width: 195px;
   height: 195px; }
 
 .farbtastic .overlay {
-  background: url(../img/mask.png) no-repeat; }
+  background: url(../images/mask.png) no-repeat; }
 
 .farbtastic .marker {
   width: 17px;
   height: 17px;
   margin: -8px 0 0 -8px;
   overflow: hidden;
-  background: url(../img/marker.png) no-repeat; }
+  background: url(../images/marker.png) no-repeat; }
 
 .cp-container {
   position: relative;
@@ -4605,7 +4607,7 @@ blockquote {
     margin-top: 20px; }
   blockquote:before, blockquote:after {
     content: '';
-    background: url("../img/quote-left.png");
+    background: url("../images/quote-left.png");
     background-size: cover;
     display: inline-block;
     width: 78px;
@@ -4619,7 +4621,7 @@ blockquote {
       blockquote:before, blockquote:after {
         content: none !important; } }
   blockquote:after {
-    background: url("../img/quote-right.png");
+    background: url("../images/quote-right.png");
     background-size: cover;
     float: right;
     margin-right: 10px;

@@ -32,7 +32,9 @@ class AuthController extends BaseController
      */
     public function getLogin(Request $request)
     {
-        $view = view('admin::auth.login');
+		$season = 'autumn';
+
+        $view = view('admin::auth.login', compact('season'));
 
         if (isset($_GET['ref'])) {
             $view->with('ref', strip_tags($_GET['ref']));

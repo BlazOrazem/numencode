@@ -47,7 +47,7 @@ elixir(function(mix) {
     var publicPath = './public/themes/admin/';
 
 	mix.less([
-		//adminResources + 'styles/app.less',
+		adminResources + 'styles/app.less',
 		adminResources + 'styles/jstree/default/style.less'
 	], publicPath + 'css/app.css')
 	.sass([
@@ -61,7 +61,8 @@ elixir(function(mix) {
         adminResources + 'bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
         adminResources + 'bower_components/Waves/dist/waves.min.css',
         adminResources + 'bower_components/toastr/toastr.css',
-        adminResources + 'bower_components/DataTables/media/css/jquery.dataTables.min.css'
+        adminResources + 'bower_components/DataTables/media/css/jquery.dataTables.min.css',
+		adminResources + 'bower_components/bootstrap-select/dist/css/bootstrap-select.css',
     ], publicPath + 'css/libs.css');
 
     mix.scripts([
@@ -85,7 +86,8 @@ elixir(function(mix) {
 		adminResources + 'bower_components/flot/jquery.flot.resize.js',
 		adminResources + 'bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
 		adminResources + 'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.js',
-		adminResources + 'bower_components/jstree/dist/jstree.js'
+		adminResources + 'bower_components/jstree/dist/jstree.js',
+		adminResources + 'bower_components/bootstrap-select/dist/js/bootstrap-select.js'
     ], publicPath + 'js/libs.js');
 
     /*
@@ -114,6 +116,8 @@ elixir(function(mix) {
 	mix.copy(adminResources + 'bower_components/html5shiv/dist/html5shiv.min.js', publicPath + 'js/html5shiv.min.js');
 	mix.copy(adminResources + 'bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
 	mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', publicPath + 'fonts');
+	mix.copy(adminResources + 'bower_components/DataTables/media/images', publicPath + 'images');
+	mix.copy(adminResources + 'bower_components/DataTables/media/images', './public/build/themes/admin/images');
 	//mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', './public/build/themes/admin/fonts');
 
     /*

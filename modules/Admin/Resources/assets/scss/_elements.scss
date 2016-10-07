@@ -302,7 +302,7 @@ blockquote{
   }
   &:before, &:after{
     content: '';
-    background: url("../img/quote-left.png");
+    background: url("../images/quote-left.png");
     background-size: cover;
     display: inline-block;
     width: 78px;
@@ -317,7 +317,7 @@ blockquote{
     }
   }
   &:after{
-    background: url("../img/quote-right.png");
+    background: url("../images/quote-right.png");
     background-size: cover;
     float: right;
     margin-right: 10px;

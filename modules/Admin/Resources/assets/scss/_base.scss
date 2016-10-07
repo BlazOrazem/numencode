@@ -523,6 +523,11 @@ body{
 
 //login, registration, 404-page
 .user-page {
+  &.login {
+//	background-image: url('#{$images-path}autumn.jpg');
+	background: no-repeat center center;
+	background-size: cover;
+  }
   .wrapper {
     height: 100% !important;
   }
@@ -533,26 +538,26 @@ body{
     height: 100%;
   }
   .error-400{
-    background-image: url("../img/400.jpg");
+    background-image: url("../images/400.jpg");
   }
   .error-401{
-    background-image: url("../img/401.jpg");
+    background-image: url("../images/401.jpg");
   }
   .error-403{
-    background-image: url("../img/403.jpg");
+    background-image: url("../images/403.jpg");
   }
   .error-404{
-    background-image: url("../img/404.jpg");
+    background-image: url("../images/404.jpg");
   }
   .error-500{
-    background-image: url("../img/500.jpg");
+    background-image: url("../images/500.jpg");
   }
   .error-503{
-    background-image: url("../img/503.jpg");
+    background-image: url("../images/503.jpg");
   }
   &.coming-soon{
     .bg{
-      background-image: url("../img/coming-soon.jpg");
+      background-image: url("../images/coming-soon.jpg");
     }
     .countdown-section{
       display: inline-block;
@@ -579,7 +584,7 @@ body{
   }
   &.confirm-email{
     .bg{
-      background-image: url("../img/confirm-email.jpg");
+      background-image: url("../images/confirm-email.jpg");
     }
     i{
       font-size: 75px;
@@ -594,7 +599,7 @@ body{
   }
   &.lock-screen{
     .bg{
-      background-image: url("../img/lock-screen.jpg");
+      background-image: url("../images/lock-screen.jpg");
     }
     img{
       max-width: 100px;
@@ -621,11 +626,14 @@ body{
   .login{
     max-width: 300px;
     min-width: 300px;
+	padding: 20px;
+	background: rgba(0,0,0,0.6);
+    border-radius: 10px;
     transform: translateX(-50%);
     margin-left: 50%;
     h4{
       color: $white;
-      font-size: 30px;
+      font-size: 24px;
       font-weight: 500;
     }
     input{

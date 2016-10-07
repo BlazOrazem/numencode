@@ -49,7 +49,7 @@
     <nav class="navbar navbar-blue">
         <div class="navbar-header container brand-blue">
             <a href="#" class="menu-toggle"><i class="zmdi zmdi-menu"></i></a>
-            <a href="index.html" class="logo"><img src="themes/admin/img/logo.png" alt="Logo Pacificonis"></a>
+            <a href="index.html" class="logo"><img src="themes/admin/images/logo.png" alt="Logo Pacificonis"></a>
             <a href="index.html" class="icon-logo"></a>
         </div>
         <div class="navbar-container clearfix">
@@ -116,35 +116,40 @@
             <li class="profile-sidebar-container">
                 <div class="profile-sidebar text-center">
                     <div class="profile-userpic">
-                        <img src="themes/admin/img/profile_user.jpg" class="img-responsive img-circle center-block" alt="user">
+                        <img src="themes/admin/images/profile_user.jpg" class="img-responsive img-circle center-block" alt="user">
                         <span class="online"></span>
                     </div>
                     <div class="profile-usertitle">
                         <div class="name">
-                            Marcus Doe
+                            {{ $admin->name }}
                         </div>
                     </div>
                 </div>
             </li>
             <li>
-                <a href="#"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
             </li>
             <li>
                 <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
                 <ul class="nav nav-inside collapse">
                     <li class="inside-title">Managers</li>
-                    <li><a href="index.html">List managers</a></li>
-                    <li><a href="dashboard-2.html">Add new manager</a></li>
+                    <li><a href="{{ route('managers.index') }}">List managers</a></li>
+                    <li><a href="{{ route('managers.create') }}">Add new manager</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="zmdi zmdi-account-circle"></i>Users</a>
+                <a href="#"><i class="zmdi zmdi-account-circle"></i>Users<span class="zmdi arrow"></span></a>
+                <ul class="nav nav-inside collapse">
+                    <li class="inside-title">Managers</li>
+                    <li><a href="{{ route('users.index') }}">List users</a></li>
+                    <li><a href="{{ route('managers.create') }}">Add new user</a></li>
+                </ul>
             </li>
             <li>
-                <a href="#"><i class="zmdi zmdi-lock"></i>Roles and permissions</a>
+                <a href="{{ route('roles.index') }}"><i class="zmdi zmdi-lock"></i>Roles and permissions</a>
             </li>
             <li>
-                <a href="#"><i class="zmdi zmdi-format-align-justify"></i>Tasks</a>
+                <a href="{{ route('tasks.index') }}"><i class="zmdi zmdi-format-align-justify"></i>Tasks</a>
             </li>
         </ul>
     </aside>
@@ -162,48 +167,9 @@
             <div class="tab-pane fade in active" id="tab-side-1">
                 <div class="side-title">Page Structure</div>
                 <div class="p-15">
-
                     <div id="jstree">
-                        <ul>
-                            <li data-jstree='{"type":"folder"}'>Home
-                                <ul>
-                                    <li data-jstree='{"type":"folder"}'>Email
-                                        <ul>
-                                            <li>Inbox</li>
-                                            <li>Compose</li>
-                                            <li data-jstree='{"type":"folder"}'>View
-                                                <ul>
-                                                    <li><a href="#">Email One</a></li>
-                                                    <li>Email Two</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>Dashboard</li>
-                                    <li>Typography</li>
-                                    <li data-jstree='{"type":"folder"}'>User Interface
-                                        <ul>
-                                            <li>Buttons</li>
-                                            <li>Checkboxes</li>
-                                            <li>Radios</li>
-                                        </ul>
-                                    </li>
-                                    <li>Pages</li>
-                                    <li data-jstree='{"type":"folder"}'>Forms
-                                        <ul>
-                                            <li>Form Elements</li>
-                                            <li>Form Components</li>
-                                            <li>Form Examples</li>
-                                        </ul>
-                                    </li>
-                                    <li>Tables</li>
-                                    <li>Widgets</li>
-                                </ul>
-                            </li>
-                            <li data-jstree='{"type":"new"}'>Settings</li>
-                        </ul>
+                        @include ('admin::pages.list', ['collection' => $pageTree['root']])
                     </div>
-
                 </div>
             </div>
 
@@ -274,6 +240,8 @@
     </div>
 
     <div class="container-fluid">
+
+        <!-- BLOCK : Google Analytics -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
@@ -382,7 +350,459 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- BLOCK : DataTables -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="data-info">
+                    <table id="table1" class="display datatable no-stripes table">
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Number of Orders</th>
+                            <th>Customer</th>
+                            <th>Status</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="info-color">Coats Tony Taylor</td>
+                            <td>Mens</td>
+                            <td>3 324</td>
+                            <td>Alisa Kito</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$245</td>
+                        </tr>
+                        <tr>
+                            <td class="info-color">Nike sneakers</td>
+                            <td>Womans</td>
+                            <td>5 467</td>
+                            <td>John Tredmont</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$560</td>
+                        </tr>
+                        <tr>
+                            <td class="info-color">Adidas T-shirt</td>
+                            <td>Children</td>
+                            <td>2 546</td>
+                            <td>Kyle Jackson</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$2764</td>
+                        </tr>
+                        <tr>
+                            <td class="info-color">Jacket</td>
+                            <td>Womans</td>
+                            <td>1 875</td>
+                            <td>CJ Watson</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$1329</td>
+                        </tr>
+                        <tr>
+                            <td class="info-color">Shirt Diamond</td>
+                            <td>Mens</td>
+                            <td>6 032</td>
+                            <td>Olga Lutchkova</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$896</td>
+                        </tr>
+                        <tr>
+                            <td class="info-color">Summer Shorts</td>
+                            <td>Children</td>
+                            <td>1 358</td>
+                            <td>Silvia Saint</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$8 907</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="data-danger">
+                    <table id="table2" class="display datatable">
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Number of Orders</th>
+                            <th>Customer</th>
+                            <th>Status</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Coats Tony Taylor</td>
+                            <td>Mens</td>
+                            <td>3 324</td>
+                            <td class="danger-color">Alisa Kito</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$245</td>
+                        </tr>
+                        <tr>
+                            <td>Nike sneakers</td>
+                            <td>Womans</td>
+                            <td>5 467</td>
+                            <td class="danger-color">John Tredmont</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$560</td>
+                        </tr>
+                        <tr>
+                            <td>Adidas T-shirt</td>
+                            <td>Children</td>
+                            <td>2 546</td>
+                            <td class="danger-color">Kyle Jackson</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$2764</td>
+                        </tr>
+                        <tr>
+                            <td>Jacket</td>
+                            <td>Womans</td>
+                            <td>1 875</td>
+                            <td class="danger-color">CJ Watson</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$1329</td>
+                        </tr>
+                        <tr>
+                            <td>Shirt Diamond</td>
+                            <td>Mens</td>
+                            <td>6 032</td>
+                            <td class="danger-color">Olga Lutchkova</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$896</td>
+                        </tr>
+                        <tr>
+                            <td>Summer Shorts</td>
+                            <td>Children</td>
+                            <td>1 358</td>
+                            <td class="danger-color">Silvia Blake</td>
+                            <td><span class="label label-default">Closed</span></td>
+                            <td>$8 907</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BLOCK : Forms - elements -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="content-box">
+                    <div class="head success-bg clearfix">
+                        <h5 class="content-title pull-left">Input types</h5>
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="inputText" class="col-sm-2 control-label">Text</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputText" placeholder="Some text here">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPlaceholder" class="col-sm-2 control-label">Placeholder</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputPlaceholder" placeholder="Placeholder">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="inputPassword3" value="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Textarea</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="inputFocus" class="col-sm-2 control-label">Focused</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputFocus" placeholder="Focused" autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDisabled" class="col-sm-2 control-label">Disabled</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputDisabled" placeholder="Disabled input here..." disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputHelped" class="col-sm-2 control-label">Help</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputHelped" placeholder="Helping text">
+                                            <span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Selects</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control selectpicker">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <select class="form-control selectpicker" data-style="btn-primary">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <select class="form-control selectpicker" data-style="btn-info">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Input States</h5>
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="form-group">
+                            <label class="control-label warning-color">Input warning</label>
+                            <input type="text" class="form-control input-warning">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label danger-color">Input error</label>
+                            <input type="text" class="form-control input-danger">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label success-color">Input success</label>
+                            <input type="text" class="form-control input-success">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label primary-color">Input primary</label>
+                            <input type="text" class="form-control input-primary">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Input info</label>
+                            <input type="text" class="form-control input-info">
+                        </div>
+                        <div class="form-group has-icon">
+                            <label class="control-label success-color">Input success with icon</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control input-success">
+                                <span class="zmdi zmdi-check success-color f-s-24 form-icon"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-icon">
+                            <label class="control-label warning-color">Input warning with icon</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control input-warning">
+                                <span class="zmdi zmdi-alert-triangle warning-color f-s-24 form-icon"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-icon">
+                            <label class="control-label danger-color">Input danger with icon</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control input-danger">
+                                <span class="zmdi zmdi-close danger-color f-s-24 m-r-5 form-icon"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-icon">
+                            <label class="control-label">Input with custom icon</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control">
+                                <span class="zmdi zmdi-car f-s-24 form-icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-box">
+                    <div class="head warning-bg clearfix">
+                        <h5 class="content-title pull-left">Input sizes</h5>
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="form-group">
+                            <label class="control-label">Large Input</label>
+                            <input type="email" class="form-control input-lg">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Default Input</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Small input</label>
+                            <input type="email" class="form-control input-sm">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Grid sizes</label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-3">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-8">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-10">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-8">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-6">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-6">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-9">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control m-b-20" placeholder=".col-md-3">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" placeholder=".col-md-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="content-box">
+                    <div class="head danger-bg clearfix">
+                        <h5 class="content-title pull-left">Input addons</h5>
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Static</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="zmdi zmdi-twitter"></span></div>
+                                        <input type="text" class="form-control" placeholder="Twitter">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                        <div class="input-group-addon"><span class="zmdi zmdi-email"></span></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="zmdi zmdi-edit"></span></div>
+                                        <input type="text" class="form-control" placeholder="Username">
+                                        <div class="input-group-addon">Profile</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Buttons</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon p-0"><button type="button" class="btn btn-default">$</button></div>
+                                        <input type="text" class="form-control" placeholder="Amount">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                        <div class="input-group-addon p-0"><button type="button" class="btn btn-info">Submit</button></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon p-0"><button type="button" class="btn btn-success"><span class="zmdi zmdi-facebook"></span></button></div>
+                                        <input type="text" class="form-control" placeholder="http://facebook.com">
+                                        <div class="input-group-addon p-0"><button type="button" class="btn btn-warning"><span class="zmdi zmdi-edit m-r-5"></span>Edit</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div> <!-- ./container -->
+
     <footer class="page-footer">© 2016 Copyright</footer>
 </div>
 
@@ -620,6 +1040,31 @@
         }
     });
 
+</script>
+
+
+<script>
+    //Data Tables
+    $('#table1').DataTable({
+        "dom": '<"toolbar tool1">rtip',
+        info: false,
+        paging: false,
+        responsive: true
+    });
+
+    $("div.tool1").html('<h5 class="zero-m">Info table</h5>');
+
+    $('#table2').DataTable({
+        "dom": '<"toolbar tool2"><"clear-filter">frtip',
+        info: false,
+        paging: false,
+        responsive: true,
+        "oLanguage": { "sSearch": "" }
+    });
+
+    $("div.tool2").html('<h5 class="zero-m">Danger table</h5>');
+
+    $('.dataTables_filter input').attr("placeholder", "Search");
 </script>
 
 <script src="{{ elixir('themes/admin/js/app.js') }}"></script>
