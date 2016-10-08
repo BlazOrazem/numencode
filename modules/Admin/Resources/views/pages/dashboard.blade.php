@@ -116,6 +116,115 @@
         </div>
     </div>
 
+    <!-- BLOCK : Widgets -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box gallery-widget">
+                <div class="head success-bg clearfix">
+                    <h5 class="content-title pull-left">Gallery</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                </div>
+                <div class="content clearfix">
+                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+
+                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+
+                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+
+                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+
+                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+
+                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="content-box p-20 info-bg white f-s-16 text-center">
+                <div class="text-right">
+                    <span class="current-date"></span>
+                </div>
+                <span class="time"></span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="content-box chat-widget">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Chat</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="chat-container">
+                                <div class="content-box p-20 clearfix">
+                                    <div class="pull-left text-center">
+                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <time>12:04</time>
+                                    </div>
+                                    <div class="message">
+                                        <p><em>Must you with him from him her were more. In eldest be it result should remark vanity square.</em></p>
+                                    </div>
+                                </div>
+                                <div class="content-box p-20 clearfix reply">
+                                    <div class="pull-left message">
+                                        <p><em>His not get talked effect worthy barton. Household shameless incommode at no objection behaviour.</em></p>
+                                        <p><em>Especially do at he possession insensible sympathize boisterous it.</em></p>
+                                    </div>
+                                    <div class="pull-right text-center">
+                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <time>12:06</time>
+                                    </div>
+                                </div>
+                                <div class="content-box p-20 clearfix">
+                                    <div class="pull-left text-center">
+                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <time>12:017</time>
+                                    </div>
+                                    <div class="message">
+                                        <p><em>Subjects to ecstatic children he. Could ye leave up as built match.</em></p>
+                                    </div>
+                                </div>
+                                <div class="content-box p-20 clearfix reply">
+                                    <div class="pull-left message">
+                                        <p><em>Out believe has request not how comfort evident. Up delight cousins we feeling minutes. Genius has looked end piqued spring.</em></p>
+                                        <p><em> Old had conviction discretion understood put principles you. Match means keeps round one her quick.</em></p>
+                                    </div>
+                                    <div class="pull-right text-center">
+                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <time>13:24</time>
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="chat">
+                                <div class="form-group fg-float pull-left m-r-10">
+                                    <input class="form-control" type="text" placeholder="Type message">
+                                    <input id="fileinput" type="file" class="hidden">
+                                </div>
+                                <button id="fileinputbtn" type="button" class="btn btn-info btn-lg icon">
+                                    <i class="zmdi zmdi-attachment-alt"></i>
+                                </button>
+                                <button type="submit" class="btn btn-info btn-lg icon">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- BLOCK : DataTables -->
     <div class="row">
         <div class="col-lg-12">

@@ -9,14 +9,7 @@ var update = function () {
     datetime.html(date.format('DD MMMM YYYY <br> dddd'));
     time.html(date.format('H:mm:ss'));
 };
-////Preloader
-//$('#preloader').height($(window).height() + "px");
-//$(window).on('load', function(){
-//    setTimeout(function(){
-//        $('body').css("overflow-y","visible");
-//        $('#preloader').fadeOut(400);
-//    }, 800);
-//});
+
 $(function() {
   
   if($(".icon-menu")[0]){
@@ -69,33 +62,7 @@ $(function() {
     setInterval(update, 1000);
   }
  
-  //Scroll for body
-  if($(window).width() > 1024 && $("body").has(".navbar").length){
-    $("body").mCustomScrollbar({
-      theme: "minimal-dark",
-      scrollInertia: 200,
-      mouseWheel:{ scrollAmount: 150 },
-      callbacks:{
-        onCreate: function(){
-          $(".mCSB_scrollTools").last().addClass("body-scroll");
-        }
-      }
-    });
-  }
 
-  //Scroll for sidebar
-  if($(window).width() > 768){
-    $(".sidebar").mCustomScrollbar({
-      theme: "minimal",
-      scrollInertia: 0,
-      mouseWheel:{
-        preventDefault: true
-      }
-    });
-  }
-  else{
-    $(".sidebar").css("overflow-y", "auto");
-  }
   
   
   $(".notification-container").mCustomScrollbar({
@@ -131,103 +98,6 @@ $(function() {
         $(".check-ok").fadeIn(200);
       }, 800);
   });
-
-  if($(".content-scroll")[0]){
-    $(".content-scroll").mCustomScrollbar({
-      theme: "minimal-dark",
-      scrollInertia: 50
-    });
-  }
-
-    //MetisMenu
-    var url = window.location;
-    $('.metismenu li a[href="'+ url +'"]').parent().addClass('active');
-    $('.metismenu li a[href="'+ url +'"]').parentsUntil(".metismenu").last().addClass('active');
-
-    $('.metismenu').metisMenu({
-        activeClass: 'active'
-    });
-
-  //Waves ripple effect
-  Waves.attach('.btn');
-  Waves.init();
-
-  //Menu search bar
-  var submitIcon = $('.searchbox-icon'),
-      inputBox = $('.searchbox-input'),
-      searchBox = $('.searchbox'),
-      isOpen = false;
-  submitIcon.on("click", function () {
-    if (isOpen === false) {
-      searchBox.addClass('searchbox-open');
-      inputBox.focus();
-      isOpen = true;
-    } else {
-      searchBox.removeClass('searchbox-open');
-      if ($(window).width() < 769) {
-        setTimeout(function () {
-          $(".page-title").fadeIn(300);
-        }, 100);
-      }
-      inputBox.focusout();
-      isOpen = false;
-    }
-  });
-  submitIcon.on("mouseup", function () {
-    return false;
-  });
-  searchBox.on("mouseup", function () {
-    return false;
-  });
-  $(document).on("mouseup", function () {
-    if (isOpen === true) {
-      $('.searchbox-icon').css('display', 'block');
-      submitIcon.click();
-    }
-  });
-
-  //Dropdown Menu
-  if($('.dropdown')[0]) {
-  //Propagate
-  $('body').on('click', '.dropdown.open .dropdown-menu', function(e){
-      e.stopPropagation();
-  });
-
-  $('.dropdown').on('shown.bs.dropdown', function (e) {
-      if($(this).attr('data-animation')) {
-      $animArray = [];
-      $animation = $(this).data('animation');
-      $animArray = $animation.split(',');
-      $animationIn = 'animated '+$animArray[0];
-      $animationOut = 'animated '+ $animArray[1];
-      $animationDuration = '';
-      if(!$animArray[2]) {
-          $animationDuration = 500; //if duration is not defined, default is set to 500ms
-      }
-      else {
-          $animationDuration = $animArray[2];
-      }
-
-      $(this).find('.dropdown-menu').removeClass($animationOut);
-      $(this).find('.dropdown-menu').addClass($animationIn);
-      }
-  });
-
-  $('.dropdown').on('hide.bs.dropdown', function (e) {
-      if($(this).attr('data-animation')) {
-          e.preventDefault();
-          $this = $(this);
-          $dropdownMenu = $this.find('.dropdown-menu');
-
-          $dropdownMenu.addClass($animationOut);
-          setTimeout(function(){
-              $this.removeClass('open');
-
-          }, $animationDuration);
-          }
-      });
-  }
-
 
   //selectpickers
   if($(".selectpicker")[0]){
@@ -351,74 +221,6 @@ $(function() {
     $(this).parent().toggleClass("open");
     $(".side-panel").toggleClass("open");
   });
-
-
-  //Fullscreen mode
-  function toggleFullScreen() {
-    if (!document.fullscreenElement &&    // alternative standard method
-        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      }
-    }
-  }
-
-  $('.fullscreen').on("click", function(e){
-    toggleFullScreen();
-    $('.fullscreen i').toggleClass("zmdi-fullscreen zmdi-fullscreen-exit");
-    e.preventDefault();
-  });
-
-  $('.fullscreen-btn').on('click', function(e){
-  e.preventDefault();
-  element = $(this).closest(".content-box").get(0);
-  if (
-    document.fullscreenElement ||
-    document.webkitFullscreenElement ||
-    document.mozFullScreenElement ||
-    document.msFullscreenElement
-  ) {
-    element.classList.remove("is-fullscreen");
-    $(this).find("i").toggleClass("zmdi-fullscreen-exit zmdi-fullscreen");
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  } else {
-    element.classList.add("is-fullscreen");
-    $(this).find("i").toggleClass("zmdi-fullscreen zmdi-fullscreen-exit");
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
-    }
-  }
-});
 
   
 toastr.options = {

@@ -116,7 +116,7 @@
             <li class="profile-sidebar-container">
                 <div class="profile-sidebar text-center">
                     <div class="profile-userpic">
-                        <img src="{{ $admin->avatar }}" width="86" height="86" class="img-responsive img-circle center-block" alt="{{ $admin->name }}">
+                        <img src="{{ $admin->avatar }}" width="86" height="86" class="img-circle center-block" alt="{{ $admin->name }}">
                         <span class="online"></span>
                     </div>
                     <div class="profile-usertitle">

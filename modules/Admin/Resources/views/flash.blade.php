@@ -22,30 +22,30 @@
 @endif
 
 <script>
-    $('.btn-confirmation').click(function(e) {
-        e.preventDefault();
-
-        var form = $(this).closest('form');
-
-        swal({
-            title: "Are you sure?",
-            text: "This action is irreversible!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "Cancel",
-            closeOnConfirm: false
-        }, function() {
-            swal({
-                title: "Deleted",
-                type: "success",
-                timer: 1000,
-                showConfirmButton: false
-            });
-            setTimeout(function () {
-                form[0].submit();
-            }, 800);
-        });
-    });
+//    $('.btn-confirmation').click(function(e) {
+//        e.preventDefault();
+//
+//        var form = $(this).closest('form');
+//
+//        swal({
+//            title: "Are you sure?",
+//            text: "This action is irreversible!",
+//            type: "warning",
+//            showCancelButton: true,
+//            confirmButtonColor: "#DD6B55",
+//            confirmButtonText: "Yes, delete it!",
+//            cancelButtonText: "Cancel",
+//            closeOnConfirm: false
+//        }, function() {
+//            swal({
+//                title: "Deleted",
+//                type: "success",
+//                timer: 1000,
+//                showConfirmButton: false
+//            });
+//            setTimeout(function () {
+//                form[0].submit();
+//            }, 800);
+//        });
+//    });
 </script>
