@@ -40,7 +40,7 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pages');
-        Schema::drop('pages_i18n');
+        Schema::dropIfExists('pages');
+        Schema::dropIfExists('pages_i18n');
     }
 }

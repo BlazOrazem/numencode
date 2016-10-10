@@ -43,17 +43,15 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'web',
         ], function () {
             $this->mapPublicRoutes();
-
             $this->mapAuthRoutes();
             $this->mapAuthGuestRoutes();
             $this->mapAuthAuthorizedRoutes();
-
             if (config('login.socialite')) {
                 $this->mapAuthSocialiteRoutes();
             }
-
             $this->mapAdminGuestRoutes();
             $this->mapAdminAuthorizedRoutes();
+            $this->mapDatabaseDrivenRoutes();
         });
     }
 
@@ -144,6 +142,37 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'admin',
         ], function ($router) {
             require base_path('routes/admin.authorized.php');
+        });
+    }
+
+    /**
+     * Database-driven routes
+     */
+    protected function mapDatabaseDrivenRoutes()
+    {
+        Route::group([
+            'namespace' => $this->cmsNamespace,
+        ], function ($router) {
+            if (app()->runningInConsole()) {
+                return;
+            }
+
+            $uri = substr(app()->request->getRequestUri(), 1);
+
+//            $dbRoute = Route::where('uri', '=', $uri)->first();
+//
+//            if ($dbRoute) {
+//                $router->get($uri, function () use ($dbRoute) {
+//                    $segments = explode('@', $dbRoute->action);
+//                    $controller = $segments[0];
+//                    $method = $segments[1];
+//                    $obj = app()->make($this->namespace . '\\' . $controller);
+//                    $params = (!empty($dbRoute->params)) ? unserialize($dbRoute->params) : [];
+//
+//                    return call_user_func_array([$obj, $method], $params);
+//                });
+//            }
+
         });
     }
 }

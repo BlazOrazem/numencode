@@ -37,7 +37,7 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tasks');
-        Schema::drop('tasks_i18n');
+        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('tasks_i18n');
     }
 }
