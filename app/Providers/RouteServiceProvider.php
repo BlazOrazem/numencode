@@ -152,6 +152,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapDatabaseDrivenRoutes()
     {
         Route::group([
+            'middleware' => 'localization',
             'namespace' => $this->cmsNamespace,
         ], function ($router) {
             if (app()->runningInConsole()) {
@@ -167,7 +168,7 @@ class RouteServiceProvider extends ServiceProvider
                 $method = isset($action[1]) ? $action[1] : 'index';
                 $params = $dbRoute->params ? json_decode($dbRoute->params, true) : [];
 
-                return call_user_func_array([$controller, $method], array_merge($params, [$dbRoute->locale]));
+                return call_user_func_array([$controller, $method], $params);
             });
         });
     }

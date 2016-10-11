@@ -51,5 +51,6 @@ class Kernel extends HttpKernel
         'isAdmin' => \Admin\Http\Middleware\IsAdmin::class,
         'isGuest' => \Cms\Http\Middleware\IsGuest::class,
         'isAuthenticated' => \Cms\Http\Middleware\IsAuthenticated::class,
+        'localization' => \Cms\Http\Middleware\Localization::class,
     ];
 }

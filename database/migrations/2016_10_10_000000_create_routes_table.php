@@ -15,7 +15,6 @@ class CreateRoutesTable extends Migration
     {
 		Schema::create('routes', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('locale', 6);
 			$table->string('uri')->unique();
 			$table->string('action');
 			$table->string('params')->nullable();

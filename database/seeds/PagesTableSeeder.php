@@ -112,5 +112,12 @@ class PagesTableSeeder extends Seeder
         foreach ($items as $item) {
             Page::forceCreate($item);
         }
+
+        $translationPage = Page::find(1);
+        $translationPage->saveTranslation('sl', [
+            'title' => 'Seznam opravil',
+            'lead' => 'To je slovenska stran.',
+            'body' => 'Tukaj je seznam opravil.',
+        ]);
     }
 }

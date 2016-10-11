@@ -12,7 +12,7 @@ $factory->define(Numencode\Models\Manager::class, function (Faker\Generator $fak
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'phone' => $faker->phoneNumber,
-        'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+        'avatar' => 'uploads/sample0' . rand(1,3) . '_600x600.jpg',
         'remember_token' => str_random(10),
     ];
 });
@@ -23,7 +23,7 @@ $factory->define(Numencode\Models\User::class, function (Faker\Generator $faker)
         'nickname' => $faker->name,
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
-        'avatar' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+        'avatar' => 'uploads/sample0' . rand(1,3) . '_600x600.jpg',
         'is_verified' => true,
         'token' => str_random(30),
         'remember_token' => str_random(10),
