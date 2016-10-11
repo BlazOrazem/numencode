@@ -2,6 +2,7 @@
 
 namespace Numencode\Providers;
 
+use DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -156,23 +157,18 @@ class RouteServiceProvider extends ServiceProvider
             if (app()->runningInConsole()) {
                 return;
             }
-
             $uri = substr(app()->request->getRequestUri(), 1);
+            if (!$dbRoute = DB::table('routes')->where('uri', $uri)->first()) {
+                return;
+            }
+            Route::get($uri, function () use ($dbRoute) {
+                $action = explode('@', $dbRoute->action);
+                $controller = app()->make($this->cmsNamespace . $action[0]);
+                $method = isset($action[1]) ? $action[1] : 'index';
+                $params = $dbRoute->params ? json_decode($dbRoute->params, true) : [];
 
-//            $dbRoute = Route::where('uri', '=', $uri)->first();
-//
-//            if ($dbRoute) {
-//                $router->get($uri, function () use ($dbRoute) {
-//                    $segments = explode('@', $dbRoute->action);
-//                    $controller = $segments[0];
-//                    $method = $segments[1];
-//                    $obj = app()->make($this->namespace . '\\' . $controller);
-//                    $params = (!empty($dbRoute->params)) ? unserialize($dbRoute->params) : [];
-//
-//                    return call_user_func_array([$obj, $method], $params);
-//                });
-//            }
-
+                return call_user_func_array([$controller, $method], array_merge($params, [$dbRoute->locale]));
+            });
         });
     }
 }

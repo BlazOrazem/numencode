@@ -24,7 +24,7 @@ class ContentsTableSeeder extends Seeder
                 'id' => 2,
                 'page_id' => 1,
                 'plugin_id' => 2,
-                'plugin_params' => '{"id":10,"name":"John","surname":"Doe"}',
+                'plugin_params' => '{\"id\":10,\"name\":\"John\",\"surname\":\"Doe\"}',
                 'title' => 'Sample plugin',
                 'lead' => null,
                 'body' => null,

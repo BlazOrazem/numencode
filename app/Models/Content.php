@@ -58,9 +58,10 @@ class Content extends Model
             return null;
         }
 
-		return app()->call(
-			[app('Cms\Http\\' . $this->plugin->controller . 'Controller'), $this->plugin->method],
-			['params' => $this->plugin_params]
-		);
+        $action = explode('@', $this->plugin->action);
+
+        return app()->call(
+            [app('Cms\Http\\' . $action[0]), isset($action[1]) ? $action[1] : 'index'], ['params' => $this->plugin_params]
+        );
     }
 }

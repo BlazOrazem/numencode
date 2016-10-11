@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         'role_manager',
         'pages',
         'pages_i18n',
+        'routes',
         'contents',
         'contents_i18n',
         'plugins',
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Database truncated.');
         $this->command->info('-------------------');
 
+        $this->call(DevTableSeeder::class);
         $this->call(ManagersTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(RolesTableSeeder::class);
