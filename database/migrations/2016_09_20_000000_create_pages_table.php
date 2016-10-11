@@ -16,6 +16,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->nullable()->index();
+            $table->integer('route_id')->nullable()->index();
             $table->integer('ord')->default(0);
             $table->boolean('is_hidden')->default(0);
             $table->timestamps();

@@ -15,10 +15,18 @@ class CreateRoutesTable extends Migration
     {
 		Schema::create('routes', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('uri')->unique();
 			$table->string('action');
-			$table->string('params')->nullable();
 		});
+
+        Schema::create('routes_i18n', function(Blueprint $table)
+        {
+            $table->integer('route_id')->unsigned();
+            $table->string('locale', 6);
+            $table->string('uri')->unique();
+            $table->text('params')->nullable();
+
+            $table->primary(['route_id', 'locale']);
+        });
     }
 
     /**
@@ -29,5 +37,6 @@ class CreateRoutesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('routes');
+        Schema::dropIfExists('routes_i18n');
     }
 }

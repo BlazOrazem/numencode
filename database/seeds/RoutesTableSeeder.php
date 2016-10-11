@@ -1,5 +1,6 @@
 <?php
 
+use Numencode\Models\Url;
 use Illuminate\Database\Seeder;
 
 class RoutesTableSeeder extends Seeder
@@ -9,18 +10,20 @@ class RoutesTableSeeder extends Seeder
         $items = [
             [
                 'id' => '1',
+                'action' => 'PageController@index',
                 'uri' => 'new-page',
-                'action' => 'PageController@index',
                 'params' => '{"id":1}',
-            ],
-            [
-                'id' => '2',
-                'uri' => 'sl/nova-stran',
-                'action' => 'PageController@index',
-                'params' => '{"id":1}',
-            ],
+            ]
         ];
 
-        DB::table('routes')->insert($items);
+        foreach ($items as $item) {
+            Url::forceCreate($item);
+        }
+
+        $translationContent = Url::find(1);
+        $translationContent->saveTranslation('sl', [
+            'uri' => 'sl/nova-stran',
+            'params' => '{"id":1}',
+        ]);
     }
 }
