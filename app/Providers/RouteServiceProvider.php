@@ -43,6 +43,7 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
             'middleware' => 'web',
         ], function () {
+            $this->mapDatabaseDrivenRoutes();
             $this->mapPublicRoutes();
             $this->mapAuthRoutes();
             $this->mapAuthGuestRoutes();
@@ -52,7 +53,6 @@ class RouteServiceProvider extends ServiceProvider
             }
             $this->mapAdminGuestRoutes();
             $this->mapAdminAuthorizedRoutes();
-            $this->mapDatabaseDrivenRoutes();
         });
     }
 
@@ -62,6 +62,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapPublicRoutes()
     {
         Route::group([
+            'middleware' => 'localization',
             'namespace' => $this->cmsNamespace,
         ], function ($router) {
             require base_path('routes/public.php');
@@ -86,7 +87,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAuthGuestRoutes()
     {
         Route::group([
-            'middleware' => 'isGuest',
+            'middleware' => ['localization', 'isGuest'],
             'namespace' => $this->cmsNamespace . 'Auth',
         ], function ($router) {
             require base_path('routes/auth.guest.php');
@@ -158,10 +159,19 @@ class RouteServiceProvider extends ServiceProvider
             if (app()->runningInConsole()) {
                 return;
             }
+
             $uri = substr(app()->request->getRequestUri(), 1);
-            if (!$dbRoute = DB::table('routes')->where('uri', $uri)->first()) {
+
+            $dbRoute = DB::table('routes')
+                ->leftJoin('routes_i18n', 'routes.id', '=', 'routes_i18n.route_id')
+                ->select('routes.*', 'routes_i18n.*')
+                ->where('uri', $uri)
+                ->first();
+
+            if (!$dbRoute) {
                 return;
             }
+
             Route::get($uri, function () use ($dbRoute) {
                 $action = explode('@', $dbRoute->action);
                 $controller = app()->make($this->cmsNamespace . $action[0]);

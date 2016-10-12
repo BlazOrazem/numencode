@@ -9,14 +9,13 @@
 $loginController = config('login.throttle') ? 'LoginWithThrottleController' : 'LoginController';
 
 // Login
-Route::get('login', $loginController . '@showLoginForm')->name('login');
+Route::get('login', $loginController . '@showLoginForm')->name('en:login');
+Route::get('sl/prijava', $loginController . '@showLoginForm')->name('sl:login');
 Route::post('login', $loginController . '@login')->name('login.post');
 
-// Socialite Login
-//Route::get('social/{provider?}', 'Auth\SocialAuthController@login')->name('login.social');
-
 // Registration
-Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+Route::get('register', 'RegisterController@showRegistrationForm')->name('en:register');
+Route::get('sl/registracija', 'RegisterController@showRegistrationForm')->name('sl:register');
 Route::post('register', 'RegisterController@register')->name('register.post');
 
 // Password reset

@@ -1,6 +1,38 @@
 <?php
 
 /**
+ * Creates an URL to route alias
+ *
+ * @param string $alias
+ * @param array $parameters
+ * @param null $locale
+ * @param bool $absolute
+ *
+ * @throws BindingResolutionException
+ * @return string
+ */
+if (!function_exists('getRoute'))
+{
+    function getRoute($alias, $locale = null)
+    {
+        $url = app()->make(\Illuminate\Contracts\Routing\UrlGenerator::class);
+
+        if (!$locale) {
+            $locale = app()->getLocale();
+        }
+
+        try {
+            $route = $url->route($locale . ':' . $alias);
+        }
+        catch(InvalidArgumentException $e) {
+            $route = $url->route($alias);
+        }
+
+        return $route;
+    }
+}
+
+/**
  * Flash message handler.
  *
  * @param string|null $title

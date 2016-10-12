@@ -37,11 +37,15 @@ class Url extends Model
      */
     public $timestamps = false;
 
+    /**
+     * Foreign key for translatable table.
+     *
+     * @return string
+     */
     public function getForeignKey()
     {
         return 'route_id';
     }
-
 
     /**
      * Url belongs to page.
