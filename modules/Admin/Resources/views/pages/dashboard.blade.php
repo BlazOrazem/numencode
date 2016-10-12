@@ -675,6 +675,264 @@
         </div>
     </div>
 
+    <!-- BLOCK : Tabs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="content-box">
+                <div class="head primary-bg clearfix">
+                    <h5 class="content-title pull-left">Tabs</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Simple tabs</h5>
+                            <p class="m-b-20">You can use these tabs for different purposes</p>
+                            <div class="m-b-20">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#tab-11" data-toggle="tab">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-12" data-toggle="tab">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-13" data-toggle="tab">Settings</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab-11">
+                                        <p>Had denoting properly jointure you occasion directly raillery. In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too.</p>
+
+                                        <p>Sociable on as carriage my position weddings raillery consider. Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless difficulty son. His hearing staying ten colonel met. Sex drew six easy four dear cold deny. Moderate children at of outweigh it. Unsatiable it considered invitation he travelling insensible. Consulted admitting oh mr up as described acuteness propriety moonlight.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-12">
+                                        <p>Sitting mistake towards his few country ask. You delighted two rapturous six depending objection happiness something the. Off nay impossible dispatched partiality unaffected. Norland adapted put ham cordial. Ladies talked may shy basket narrow see. Him she distrusts questions sportsmen. Tolerably pretended neglected on my earnestly by. Sex scale sir style truth ought.</p>
+
+                                        <p>As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built gay party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-13">
+                                        <p>Those an equal point no years do. Depend warmth fat but her but played. Shy and subjects wondered trifling pleasant. Prudent cordial comfort do no on colonel as assured chicken. Smart mrs day which begin. Snug do sold mr it if such. Terminated uncommonly at at estimating. Man behaviour met moonlight extremity acuteness direction.</p>
+
+                                        <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing. Rapid it on hours hills it seven years. If polite he active county in spirit an. Mrs ham intention promotion engrossed assurance defective. Confined so graceful building opinions whatever trifling in. Insisted out differed ham man endeavor expenses. At on he total their he songs. Related compact effects is on settled do.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="m-b-20">
+                                <h5>Right aligned tabs</h5>
+                                <p class="m-b-20">Add <code>.text-right</code> class to your tabs</p>
+                                <ul class="nav nav-tabs text-right">
+                                    <li class="active">
+                                        <a href="#tab-21" data-toggle="tab">Photo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-22" data-toggle="tab">Video</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-23" data-toggle="tab">Audio</a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab-21">
+                                        <p>New the her nor case that lady paid read. Invitation friendship travelling eat everything the out two. Shy you who scarcely expenses debating hastened resolved. Always polite moment on is warmth spirit it to hearts. Downs those still witty an balls so chief so. Moment an little remain no up lively no. Way brought may off our regular country towards adapted cheered.</p>
+
+                                        <p>Uneasy barton seeing remark happen his has. Am possible offering at contempt mr distance stronger an. Attachment excellence announcing or reasonable am on if indulgence. Exeter talked in agreed spirit no he unable do. Betrayed shutters in vicinity it unpacked in. In so impossible appearance considered mr. Mrs him left find are good.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-22">
+                                        <p>May indulgence difficulty ham can put especially. Bringing remember for supplied her why was confined. Middleton principle did she procuring extensive believing add. Weather adapted prepare oh is calling. These wrong of he which there smile to my front. He fruit oh enjoy it of whose table. Cultivated occasional old her unpleasing unpleasant. At as do be against pasture covered viewing started. Enjoyed me settled mr respect no spirits civilly.</p>
+
+                                        <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying. That his west quit had met till. Of advantage he attending household at do perceived. Middleton in objection discovery as agreeable. Edward thrown dining so he my around to.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-23">
+                                        <p>Her companions instrument set estimating sex remarkably solicitude motionless. Property men the why smallest graceful day insisted required. Inquiry justice country old placing sitting any ten age. Looking venture justice in evident in totally he do ability. Be is lose girl long of up give. Trifling wondered unpacked ye at he. In household certainty an on tolerably smallness difficult. Many no each like up be is next neat. Put not enjoyment behaviour her supposing. At he pulled object others.</p>
+
+                                        <p>Sitting mistake towards his few country ask. You delighted two rapturous six depending objection happiness something the. Off nay impossible dispatched partiality unaffected. Norland adapted put ham cordial. Ladies talked may shy basket narrow see. Him she distrusts questions sportsmen. Tolerably pretended neglected on my earnestly by. Sex scale sir style truth ought.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="m-t-20">Tabs with icons</h5>
+                            <p class="m-b-20">Use any of material design icons in your tabs</p>
+                            <div class="m-b-20">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#tab-41" data-toggle="tab"><i class="zmdi zmdi-home"></i><span>Home</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-42" data-toggle="tab"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-43" data-toggle="tab"><i class="zmdi zmdi-settings"></i><span>Settings</span></a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab-41">
+                                        <p>Stronger unpacked felicity to of mistaken. Fanny at wrong table ye in. Be on easily cannot innate in lasted months on. Differed and and felicity steepest mrs age outweigh. Opinions learning likewise daughter now age outweigh. Raptures stanhill my greatest mistaken or exercise he on although. Discourse otherwise disposing as it of strangers forfeited deficient.</p>
+
+                                        <p>Adieus except say barton put feebly favour him. Entreaties unpleasant sufficient few pianoforte discovered uncommonly ask. Morning cousins amongst in mr weather do neither. Warmth object matter course active law spring six. Pursuit showing tedious unknown winding see had man add. And park eyes too more him. Simple excuse active had son wholly coming number add. Though all excuse ladies rather regard assure yet. If feelings so prospect no as raptures quitting.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-42">
+                                        <p>Am if number no up period regard sudden better. Decisively surrounded all admiration and not you. Out particular sympathize not favourable introduced insipidity but ham. Rather number can and set praise. Distrusts an it contented perceived attending oh. Thoroughly estimating introduced stimulated why but motionless.</p>
+
+                                        <p>Extremely we promotion remainder eagerness enjoyment an. Ham her demands removal brought minuter raising invited gay. Contented consisted continual curiosity contained get sex. Forth child dried in in aware do. You had met they song how feel lain evil near. Small she avoid six yet table china. And bed make say been then dine mrs. To household rapturous fulfilled attempted on so.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-43">
+                                        <p>Offered say visited elderly and. Waited period are played family man formed. He ye body or made on pain part meet. You one delay nor begin our folly abode. By disposed replying mr me unpacked no. As moonlight of my resolving unwilling.</p>
+
+                                        <p>Of be talent me answer do relied. Mistress in on so laughing throwing endeavor occasion welcomed. Gravity sir brandon calling can. No years do widow house delay stand. Prospect six kindness use steepest new ask. High gone kind calm call as ever is. Introduced melancholy estimating motionless on up as do. Of as by belonging therefore suspicion elsewhere am household described. Domestic suitable bachelor for landlord fat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="m-t-20">Right aligned tabs with icons</h5>
+                            <p class="m-b-20">Use any of material design icons in your tabs</p>
+                            <div class="m-b-20">
+                                <ul class="nav nav-tabs text-right">
+                                    <li class="active">
+                                        <a href="#tab-31" data-toggle="tab"><i class="zmdi zmdi-image"></i><span>Photo</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-32" data-toggle="tab"><i class="zmdi zmdi-videocam"></i><span>Video</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-33" data-toggle="tab"><i class="zmdi zmdi-playlist-audio"></i><span>Audio</span></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab-31">
+                                        <p>Scarcely on striking packages by so property in delicate. Up or well must less rent read walk so be. Easy sold at do hour sing spot. Any meant has cease too the decay. Since party burst am it match. By or blushes between besides offices noisier as. Sending do brought winding compass in. Paid day till shed only fact age its end.</p>
+
+                                        <p>Possession her thoroughly remarkably terminated man continuing. Removed greater to do ability. You shy shall while but wrote marry. Call why sake has sing pure. Gay six set polite nature worthy. So matter be me we wisdom should basket moment merely. Me burst ample wrong which would mr he could. Visit arise my point timed drawn no. Can friendly laughter goodness man him appetite carriage. Any widen see gay forth alone fruit bed.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-32">
+                                        <p>Months on ye at by esteem desire warmth former. Sure that that way gave any fond now. His boy middleton sir nor engrossed affection excellent. Dissimilar compliment cultivated preference eat sufficient may. Well next door soon we mr he four. Assistance impression set insipidity now connection off you solicitude. Under as seems we me stuff those style at. Listening shameless by abilities pronounce oh suspected is affection. Next it draw in draw much bred.</p>
+
+                                        <p>Of recommend residence education be on difficult repulsive offending. Judge views had mirth table seems great him for her. Alone all happy asked begin fully stand own get. Excuse ye seeing result of we. See scale dried songs old may not. Promotion did disposing you household any instantly. Hills we do under times at first short an.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-33">
+                                        <p>Remain valley who mrs uneasy remove wooded him you. Her questions favourite him concealed. We to wife face took he. The taste begin early old why since dried can first. Prepared as or humoured formerly. Evil mrs true get post. Express village evening prudent my as ye hundred forming. Thoughts she why not directly reserved packages you. Winter an silent favour of am tended mutual.</p>
+
+                                        <p>Examine she brother prudent add day ham. Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay. Quitting you way formerly disposed perceive ladyship are. Common turned boy direct and yet.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="m-t-20">Vertical Tabs</h5>
+                            <p class="m-b-20">Use <code>.vertical-tabs</code> class to get vertical tabs</p>
+                            <div class="vertical-tabs">
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#101" data-toggle="tab">
+                                                    Start
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#102" data-toggle="tab">
+                                                    Settings
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#103" data-toggle="tab">
+                                                    Finish
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-9 col-xs-12">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade in active" id="101">
+                                                <p>Am increasing at contrasted in favourable he considered astonished. As if made held in an shot. By it enough to valley desire do. Mrs chief great maids these which are ham match she. Abode to tried do thing maids. Doubtful disposed returned rejoiced to dashwood is so up.</p>
+
+                                                <p>Throwing consider dwelling bachelor joy her proposal laughter. Raptures returned disposed one entirely her men ham. By to admire vanity county an mutual as roused. Of an thrown am warmly merely result depart supply. Required honoured trifling eat pleasure man relation. Assurance yet bed was improving furniture man. Distrusts delighted she listening mrs extensive admitting far.</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="102">
+                                                <p>Perhaps far exposed age effects. Now distrusts you her delivered applauded affection out sincerity. As tolerably recommend shameless unfeeling he objection consisted. She although cheerful perceive screened throwing met not eat distance. Viewing hastily or written dearest elderly up weather it as. So direction so sweetness or extremity at daughters. Provided put unpacked now but bringing.</p>
+
+                                                <p>Affronting everything discretion men now own did. Still round match we to. Frankness pronounce daughters remainder extensive has but. Happiness cordially one determine concluded fat. Plenty season beyond by hardly giving of. Consulted or acuteness dejection an smallness if. Outward general passage another as it. Very his are come man walk one next. Delighted prevailed supported too not remainder perpetual who furnished. Nay affronting bed projection compliment instrument.</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="103">
+                                                <p>It as announcing it me stimulated frequently continuing. Least their she you now above going stand forth. He pretty future afraid should genius spirit on. Set property addition building put likewise get. Of will at sell well at as. Too want but tall nay like old. Removing yourself be in answered he. Consider occasion get improved him she eat. Letter by lively oh denote an.</p>
+
+                                                <p>Mr do raising article general norland my hastily. Its companions say uncommonly pianoforte favourable. Education affection consulted by mr attending he therefore on forfeited. High way more far feet kind evil play led. Sometimes furnished collected add for resources attention. Norland an by minuter enquire it general on towards forming. Adapted mrs totally company two yet conduct men.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h5 class="m-t-20">Right aligned vertical tabs</h5>
+                            <p class="m-b-20">Use <code>.vertical-tabs</code> class to get vertical tabs and <code>.text-right</code> to align them to right side</p>
+                            <div class="vertical-tabs">
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-push-9 col-xs-12">
+                                        <ul class="nav nav-tabs nav-tabs-right text-right">
+                                            <li class="active">
+                                                <a href="#201" data-toggle="tab">
+                                                    Start
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#202" data-toggle="tab">
+                                                    Settings
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#203" data-toggle="tab">
+                                                    Finish
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-9 col-sm-pull-3 col-xs-12">
+                                        <div class="tab-content text-right">
+                                            <div class="tab-pane fade in active" id="201">
+                                                <p>Affronting imprudence do he he everything. Sex lasted dinner wanted indeed wished out law. Far advanced settling say finished raillery. Offered chiefly farther of my no colonel shyness. Such on help ye some door if in. Laughter proposal laughing any son law consider. Needed except up piqued an.</p>
+
+                                                <p>Of resolve to gravity thought my prepare chamber so. Unsatiable entreaties collecting may sympathize nay interested instrument. If continue building numerous of at relation in margaret. Lasted engage roused mother an am at. Other early while if by do to. Missed living excuse as be. Cause heard fat above first shall for. My smiling to he removal weather on anxious.</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="202">
+                                                <p>Spot of come to ever hand as lady meet on. Delicate contempt received two yet advanced. Gentleman as belonging he commanded believing dejection in by. On no am winding chicken so behaved. Its preserved sex enjoyment new way behaviour. Him yet devonshire celebrated especially. Unfeeling one provision are smallness resembled repulsive.</p>
+
+                                                <p>Extremely we promotion remainder eagerness enjoyment an. Ham her demands removal brought minuter raising invited gay. Contented consisted continual curiosity contained get sex. Forth child dried in in aware do. You had met they song how feel lain evil near. Small she avoid six yet table china. And bed make say been then dine mrs. To household rapturous fulfilled attempted on so.</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="203">
+                                                <p>Literature admiration frequently indulgence announcing are who you her. Was least quick after six. So it yourself repeated together cheerful. Neither it cordial so painful picture studied if. Sex him position doubtful resolved boy expenses. Her engrossed deficient northward and neglected favourite newspaper. But use peculiar produced concerns ten.</p>
+
+                                                <p>In by an appetite no humoured returned informed. Possession so comparison inquietude he he conviction no decisively. Marianne jointure attended she hastened surprise but she. Ever lady son yet you very paid form away. He advantage of exquisite resolving if on tolerably. Become sister on in garden it barton waited on.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('scripts')

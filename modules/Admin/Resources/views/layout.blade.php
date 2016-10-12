@@ -22,9 +22,9 @@
     <title>Admin Dashboard</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('themes/admin/css/common.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('themes/admin/css/libs.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/admin/css/common.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <!--
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
@@ -49,8 +49,8 @@
     <nav class="navbar navbar-blue">
         <div class="navbar-header container brand-blue">
             <a href="#" class="menu-toggle"><i class="zmdi zmdi-menu"></i></a>
-            <a href="index.html" class="logo"><img src="themes/admin/images/logo.png" alt="Logo Pacificonis"></a>
-            <a href="index.html" class="icon-logo"></a>
+            <a href="{{ route('admin.dashboard') }}" class="logo">numencode<sup>&trade;</sup></a>
+            <a href="{{ route('admin.dashboard') }}" class="icon-logo"></a>
         </div>
         <div class="navbar-container clearfix">
             <div class="pull-left">
@@ -247,7 +247,7 @@
         @yield('content')
     </div>
 
-    <footer class="page-footer">© {{ date('Y') }} Copyright</footer>
+    <footer class="page-footer">&copy; {{ date('Y') }} numencode<sup>&trade;</sup> All rights reserved.</footer>
 </div>
 
 @include('admin::footer')

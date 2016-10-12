@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="data-info" data-id="manager-list">
-                <table data-title="Manager list" data-search="Search manager" class="display datatable search paginate datatable-striped table" data-order='[[ 1, "asc" ]]'>
+                <table data-title="Manager list" data-search="Search manager" class="display datatable search paginate middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                     <thead>
                     <tr>
                         <th class="no-sort" width="50"></th>
@@ -48,7 +48,7 @@
                                         <form method="POST" action="{{ route('managers.destroy', compact('manager')) }}" >
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-primary btn-link btn-confirmation">
+                                            <button type="submit" class="btn btn-danger btn-confirmation">
                                                 <i class="zmdi zmdi-delete"></i>
                                             </button>
                                         </form>

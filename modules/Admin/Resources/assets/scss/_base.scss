@@ -1314,3 +1314,8 @@ body{
 .middle-align {
   vertical-align: middle !important;
 }
+
+table.middle-align th,
+table.middle-align td {
+  vertical-align: middle !important;
+}

@@ -1,3 +1,7 @@
+.mCSB_scrollTools .mCSB_draggerContainer {
+  z-index: 100;
+}
+
 /*MetisMenu*/
 .metismenu .zmdi.arrow{
   line-height: 60px;
@@ -220,7 +224,7 @@ table.display{
 
   label {
     margin: 0;
-    font-weight: 600;
+    font-weight: 500;
     color: $grey;
   }
   select {

@@ -1112,6 +1112,10 @@ body {
 .middle-align {
   vertical-align: middle !important; }
 
+table.middle-align th,
+table.middle-align td {
+  vertical-align: middle !important; }
+
 /*Preloader*/
 .table-wrapper {
   display: table;
@@ -1495,7 +1499,9 @@ body.open-menu aside.sidebar, body.three-column-layout aside.sidebar {
     width: 280px; }
   body.fixed-sidebar nav.navbar .logo, body.three-column-layout nav.navbar .logo {
     display: inline !important;
-    padding-left: 50px; } }
+    padding-left: 19px;
+    font-size: 36px;
+    font-weight: 500; } }
 
 /*Sidebar menu*/
 aside.sidebar {
@@ -1995,6 +2001,9 @@ body.icon-menu.light-menu .inside-title {
 body.small-content .container-fluid {
   margin-right: 280px; }
 
+.mCSB_scrollTools .mCSB_draggerContainer {
+  z-index: 100; }
+
 /*MetisMenu*/
 .metismenu .zmdi.arrow {
   line-height: 60px;
@@ -2176,7 +2185,7 @@ table.display {
   margin-top: 9px; }
   .dataTables_wrapper .dataTables_length label {
     margin: 0;
-    font-weight: 600;
+    font-weight: 500;
     color: #9E9E9E; }
   .dataTables_wrapper .dataTables_length select {
     cursor: pointer; }
