@@ -1,4 +1,4 @@
-@extends('theme::layout')
+@extends('theme::layouts.default')
 
 @section('content')
 

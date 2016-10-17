@@ -87,6 +87,7 @@ elixir(function(mix) {
 	mix.copy('./bower_components/html5shiv/dist/html5shiv.min.js', publicPath + 'js/html5shiv.min.js');
 	mix.copy('./bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
 	mix.copy('./node_modules/font-awesome/fonts', './public/build/themes/default/fonts');
+	mix.copy('./node_modules/font-awesome/fonts', publicPath + 'fonts');
 
     /*
      |--------------------------------------------------------------------------
