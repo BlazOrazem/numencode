@@ -4,10 +4,11 @@ namespace Numencode\Models;
 
 use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Numencode\Models\Traits\HiddenFilter;
 
 class Page extends Model
 {
-    use Translatable;
+    use Translatable, HiddenFilter;
 
     /**
      * The database table used by the model.
@@ -21,7 +22,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'title', 'lead', 'body', 'ord', 'is_hidden'];
+    protected $fillable = ['parent_id', 'layout', 'title', 'lead', 'body', 'ord', 'is_hidden'];
 
     /**
      * The attributes that are dates.
@@ -41,15 +42,14 @@ class Page extends Model
     }
 
     /**
-     * Get all contents for a page.
+     * Merge general and page contents, sort the collection by order and return.
      *
      * @return mixed
      */
     public function getContents()
     {
-        return $this->contents()
-            ->where('is_hidden', false)
-            ->orderBy('ord')
-            ->get(['*', 'params']);
+        $generalContents = Content::whereNull('page_id')->get();
+
+        return $generalContents->merge($this->contents()->get())->sortBy('ord');
     }
 }

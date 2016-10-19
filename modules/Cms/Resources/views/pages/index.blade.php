@@ -1,4 +1,4 @@
-@extends('theme::layouts.default')
+@extends('theme::layouts.' . $page->layout)
 
 @section('content')
 
@@ -8,20 +8,20 @@
         <p>{{ $page->body }}</p>
     </div>
 
-    @if($page->getContents())
-        @section('plugins')
-            @foreach($page->getContents() as $content)
-                <h4>{{ $content->title }}</h4>
-                <p>{{ $content->lead }}</p>
-                <p>{{ $content->body }}</p>
-
-                <div class="row">
-                    {!! $content->renderPlugin() !!}
-                </div>
-
-                <hr>
-            @endforeach
-        @stop
-    @endif
-
 @stop
+
+@if($page->getContents())
+    @section('plugins')
+        @foreach($page->getContents() as $content)
+            <h4>{{ $content->title }}</h4>
+            <p>{{ $content->lead }}</p>
+            <p>{{ $content->body }}</p>
+
+            <div class="row">
+                {!! $content->renderPlugin() !!}
+            </div>
+
+            <hr>
+        @endforeach
+    @stop
+@endif

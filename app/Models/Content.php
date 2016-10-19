@@ -4,10 +4,11 @@ namespace Numencode\Models;
 
 use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Numencode\Models\Traits\HiddenFilter;
 
 class Content extends Model
 {
-    use Translatable;
+    use Translatable, HiddenFilter;
 
     /**
      * The database table used by the model.

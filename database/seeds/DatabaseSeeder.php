@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     private $tables = [
+        'codelist_group',
+        'codelist_item',
         'managers',
         'users',
         'roles',
@@ -22,6 +24,7 @@ class DatabaseSeeder extends Seeder
         'pages',
         'pages_i18n',
         'routes',
+        'routes_i18n',
         'contents',
         'contents_i18n',
         'plugins',
@@ -53,6 +56,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentsTableSeeder::class);
         $this->call(PluginsTableSeeder::class);
         $this->call(TasksTableSeeder::class);
+        $this->call(CodelistTableSeeder::class);
     }
 
     /**

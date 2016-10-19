@@ -13,6 +13,12 @@ class RoutesTableSeeder extends Seeder
                 'action' => 'PageController@index',
                 'uri' => 'new-page',
                 'params' => '{"id":1}',
+            ],
+            [
+                'id' => '2',
+                'action' => 'PageController@index',
+                'uri' => 'contact',
+                'params' => '{"id":2}',
             ]
         ];
 
@@ -24,6 +30,12 @@ class RoutesTableSeeder extends Seeder
         $translationContent->saveTranslation('sl', [
             'uri' => 'sl/nova-stran',
             'params' => '{"id":1}',
+        ]);
+
+        $translationContent = Url::find(2);
+        $translationContent->saveTranslation('sl', [
+            'uri' => 'sl/kontakt',
+            'params' => '{"id":2}',
         ]);
     }
 }

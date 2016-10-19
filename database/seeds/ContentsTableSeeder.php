@@ -18,7 +18,7 @@ class ContentsTableSeeder extends Seeder
                 'body' => 'EN Non viverra dui ornare at.',
                 'position' => 'center',
                 'ord' => 10,
-                'is_hidden' => 0,
+                'is_hidden' => NULL,
             ],
             [
                 'id' => 2,
@@ -30,7 +30,7 @@ class ContentsTableSeeder extends Seeder
                 'body' => 'EN Lorem ipsum dolor sit amet.',
                 'position' => 'center',
                 'ord' => 20,
-                'is_hidden' => 0,
+                'is_hidden' => NULL,
             ],
             [
                 'id' => 3,
@@ -42,7 +42,7 @@ class ContentsTableSeeder extends Seeder
                 'body' => 'EN Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in erat at enim egestas mattis sit amet mattis diam. Aliquam eu blandit sem. Fusce eget lobortis metus. Vestibulum laoreet magna at tellus eleifend convallis. Maecenas ac tristique magna. Aliquam tincidunt arcu sed quam rutrum, sit amet placerat tellus efficitur. Morbi semper libero augue, eget sodales nisi volutpat ut. Cras tincidunt libero id mi varius, ac ultrices nibh placerat. Vivamus porttitor dictum nisl a sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper sem augue, vel euismod orci convallis non. Sed nisl mauris, blandit eu finibus sed, tempor eget velit. Proin feugiat elementum felis, non viverra dui ornare at.',
                 'position' => 'center',
                 'ord' => 30,
-                'is_hidden' => 0,
+                'is_hidden' => NULL,
             ],
         ];
 

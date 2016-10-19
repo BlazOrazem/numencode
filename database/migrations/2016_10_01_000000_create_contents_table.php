@@ -15,12 +15,12 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('page_id')->unsigned()->index();
+            $table->integer('page_id')->unsigned()->nullable()->index();
             $table->integer('plugin_id')->unsigned()->nullable()->index();
             $table->text('plugin_params')->nullable();
             $table->string('position')->default('center');
             $table->integer('ord')->default(0);
-            $table->boolean('is_hidden')->default(0);
+            $table->boolean('is_hidden')->nullable()->default(NULL);
         });
 
         Schema::create('contents_i18n', function(Blueprint $table)
