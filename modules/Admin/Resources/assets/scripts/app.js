@@ -59,7 +59,7 @@ var MetisMenu = (function () {
 var JsTree = (function () {
     return {
         init: function () {
-            $('#jstree').jstree({
+            $('.jstree').jstree({
                 'core' : {
                     'themes' : {
                         'responsive': false

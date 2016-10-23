@@ -3,7 +3,7 @@
 namespace Admin\Http\ViewComposers;
 
 use Illuminate\View\View;
-use Numencode\Models\Page;
+use Numencode\Models\Menu;
 
 class PageComposer
 {
@@ -15,23 +15,6 @@ class PageComposer
      */
     public function compose(View $view)
     {
-        $view->with('pageTree', $this->pageTreeStructure());
+        $view->with('menus', Menu::getAllWithTree());
     }
-
-	/**
-	 * Create page tree structure.
-	 *
-	 * @return mixed
-	 */
-	public function pageTreeStructure()
-	{
-		$pages = Page::orderBy('ord')->get()->groupBy('parent_id');
-
-		if (count($pages)) {
-			$pages['root'] = $pages[''];
-			unset($pages['']);
-		}
-
-		return $pages;
-	}
 }

@@ -456,6 +456,10 @@ ol.list li{
         }
       }
       span{
+        clear: both;
+        display: block;
+        font-size: 11px;
+
         @media(max-width: 767px){
           display: none;
         }
@@ -463,8 +467,8 @@ ol.list li{
     }
   }
   >li.active>a, >li.active>a:focus, >li.active>a:hover{
-    border: 1px solid $warning-color;
-    background: $warning-color;
+    border: 1px solid $info-color;
+    background: $info-color;
     color: $white;
   }
 }

@@ -160,86 +160,26 @@
 
     <div class="side-panel">
         <ul class="nav nav-tabs nav-justified m-0">
-            <li class="active">
-                <a href="#tab-side-1" data-toggle="tab"><i class="zmdi zmdi-comment-text"></i></a>
-            </li>
-            <li>
-                <a href="#tab-side-2" data-toggle="tab"><i class="zmdi zmdi-settings"></i></a>
-            </li>
+            @foreach ($menus as $menu)
+                <li class="{{ $loop->first ? 'active' : '' }}">
+                    <a href="#tab-side-{{ $menu->id }}" data-toggle="tab">
+                        <i class="zmdi zmdi-menu"></i>
+                        <span class="subtitle">{{ $menu->title }}</span>
+                    </a>
+                </li>
+            @endforeach
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="tab-side-1">
-                <div class="side-title">Page Structure</div>
-                <div class="p-15">
-                    <div id="jstree">
-                        @include ('admin::pages.list', ['collection' => $pageTree['root']])
+            @foreach ($menus as $menu)
+                <div class="tab-pane fade {{ $loop->first ? 'in active' : '' }}" id="tab-side-{{ $menu->id }}">
+                    <div class="side-title">{{ $menu->title }}</div>
+                    <div class="p-15">
+                        <div class="jstree">
+                            @include ('admin::menus.list', ['collection' => $menu->tree['root'], 'menu' => $menu->tree])
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="tab-pane fade" id="tab-side-2">
-                <table class="table table-settings">
-                    <tbody><tr>
-                        <td>
-                            <h5>Alerts</h5>
-                            <p>Sets alerts to get notified when changes occur to get new alerming items</p>
-                        </td>
-                        <td><div class="checkbox checkbox-primary">
-                                <label><input type="checkbox">
-                                    <i></i></label>
-                            </div></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Notifications</h5>
-                            <p>You will receive notification email for any notifications if you set notification</p>
-                        </td>
-                        <td>
-                            <div class="checkbox checkbox-primary">
-                                <label><input type="checkbox" checked>
-                                    <i></i></label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Messages</h5>
-                            <p>You will receive notification on email after setting messages notifications</p>
-                        </td>
-                        <td>
-                            <div class="checkbox checkbox-primary">
-                                <label><input type="checkbox">
-                                    <i></i></label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Warnings</h5>
-                            <p>You will get warnning only some specific setttings or alert system</p>
-                        </td>
-                        <td>
-                            <div class="checkbox checkbox-primary">
-                                <label><input type="checkbox" checked>
-                                    <i></i></label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Sidebar</h5>
-                            <p>You can hide/show use with sidebar collapsw settings</p>
-                        </td>
-                        <td>
-                            <div class="checkbox checkbox-primary">
-                                <label><input type="checkbox" checked>
-                                    <i></i></label>
-                            </div>
-                        </td>
-                    </tr>
-
-                    </tbody></table>
-            </div>
+            @endforeach
         </div>
     </div>
 
