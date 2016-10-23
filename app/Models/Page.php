@@ -32,6 +32,16 @@ class Page extends Model
     protected $dates = ['created_at', 'updated_at'];
 
     /**
+     * Page belongs to url.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function url()
+    {
+        return $this->belongsTo(Url::class, 'route_id');
+    }
+
+    /**
      * Page has many contents.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -46,14 +46,4 @@ class Url extends Model
     {
         return 'route_id';
     }
-
-    /**
-     * Url belongs to page.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function page()
-    {
-        return $this->belongsTo(Page::class);
-    }
 }
