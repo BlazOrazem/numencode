@@ -129,17 +129,17 @@
                     </div>
                 </div>
                 <div class="content clearfix">
-                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                    <a href="#"><img class="img-responsive" src="uploads/sample01_600x600.jpg" alt="gallery"></a>
 
-                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                    <a href="#"><img class="img-responsive" src="uploads/sample02_600x600.jpg" alt="gallery"></a>
 
-                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                    <a href="#"><img class="img-responsive" src="uploads/sample03_600x600.jpg" alt="gallery"></a>
 
-                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                    <a href="#"><img class="img-responsive" src="uploads/sample01_600x600.jpg" alt="gallery"></a>
 
-                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                    <a href="#"><img class="img-responsive" src="uploads/sample02_600x600.jpg" alt="gallery"></a>
 
-                    <a href="#"><img class="img-responsive" src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" alt="gallery"></a>
+                    <a href="#"><img class="img-responsive" src="uploads/sample03_600x600.jpg" alt="gallery"></a>
                 </div>
             </div>
         </div>
@@ -169,7 +169,7 @@
                             <div id="chat-container">
                                 <div class="content-box p-20 clearfix">
                                     <div class="pull-left text-center">
-                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <img src="uploads/sample01_600x600.jpg" width="40" height="40" alt="avatar"><br>
                                         <time>12:04</time>
                                     </div>
                                     <div class="message">
@@ -182,13 +182,13 @@
                                         <p><em>Especially do at he possession insensible sympathize boisterous it.</em></p>
                                     </div>
                                     <div class="pull-right text-center">
-                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <img src="uploads/sample02_600x600.jpg" width="40" height="40" alt="avatar"><br>
                                         <time>12:06</time>
                                     </div>
                                 </div>
                                 <div class="content-box p-20 clearfix">
                                     <div class="pull-left text-center">
-                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <img src="uploads/sample03_600x600.jpg" width="40" height="40" alt="avatar"><br>
                                         <time>12:017</time>
                                     </div>
                                     <div class="message">
@@ -201,7 +201,7 @@
                                         <p><em> Old had conviction discretion understood put principles you. Match means keeps round one her quick.</em></p>
                                     </div>
                                     <div class="pull-right text-center">
-                                        <img src="uploads/avatars/b43199014d2ba00f7943c3d5acff8fb4ef3843d9.jpg" width="40" height="40" alt="avatar"><br>
+                                        <img src="uploads/sample01_600x600.jpg" width="40" height="40" alt="avatar"><br>
                                         <time>13:24</time>
                                     </div>
                                 </div>

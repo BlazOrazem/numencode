@@ -24,7 +24,7 @@ class ContentsTableSeeder extends Seeder
                 'id' => 2,
                 'page_id' => 1,
                 'plugin_id' => 2,
-                'plugin_params' => json_encode(['id' => 10, 'name' => 'John', 'surname' => 'Doe']),
+                'plugin_params' => (object)['id' => 10, 'name' => 'John', 'surname' => 'Doe'],
                 'title' => 'Sample plugin',
                 'lead' => 'Eng lead lorem ipsum.',
                 'body' => 'EN Lorem ipsum dolor sit amet.',
