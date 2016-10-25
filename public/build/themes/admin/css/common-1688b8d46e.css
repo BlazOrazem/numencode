@@ -1538,7 +1538,7 @@ aside.sidebar {
       line-height: 22px;
       padding: 0 3px; }
     aside.sidebar li a i {
-      display: none; }
+      margin-right: 10px; }
   aside.sidebar .nav-inside li a {
     padding-left: 40px;
     line-height: 50px;
@@ -2134,6 +2134,8 @@ table.display {
   width: 100% !important; }
   table.display.widget {
     width: calc(100% + 1px) !important; }
+  table.display .btn {
+    min-width: auto; }
   table.display thead tr {
     text-transform: uppercase;
     background: #616161;
@@ -2141,6 +2143,8 @@ table.display {
     table.display thead tr th {
       padding-left: 20px;
       border: 0; }
+      table.display thead tr th:not(:last-child) {
+        border-right: 1px solid #49ceff; }
   table.display tbody tr, table.display tbody tr td {
     font-weight: 500;
     padding-left: 20px; }
@@ -2782,7 +2786,6 @@ table.display {
     margin-left: 5px; }
 
 #chat-container {
-  max-height: 364px;
   padding: 2px; }
   #chat-container.big {
     max-height: 600px; }

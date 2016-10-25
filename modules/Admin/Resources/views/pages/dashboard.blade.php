@@ -188,6 +188,25 @@
                                 </div>
                                 <div class="content-box p-20 clearfix">
                                     <div class="pull-left text-center">
+                                        <img src="uploads/sample01_600x600.jpg" width="40" height="40" alt="avatar"><br>
+                                        <time>12:04</time>
+                                    </div>
+                                    <div class="message">
+                                        <p><em>Must you with him from him her were more. In eldest be it result should remark vanity square.</em></p>
+                                    </div>
+                                </div>
+                                <div class="content-box p-20 clearfix reply">
+                                    <div class="pull-left message">
+                                        <p><em>His not get talked effect worthy barton. Household shameless incommode at no objection behaviour.</em></p>
+                                        <p><em>Especially do at he possession insensible sympathize boisterous it.</em></p>
+                                    </div>
+                                    <div class="pull-right text-center">
+                                        <img src="uploads/sample02_600x600.jpg" width="40" height="40" alt="avatar"><br>
+                                        <time>12:06</time>
+                                    </div>
+                                </div>
+                                <div class="content-box p-20 clearfix">
+                                    <div class="pull-left text-center">
                                         <img src="uploads/sample03_600x600.jpg" width="40" height="40" alt="avatar"><br>
                                         <time>12:017</time>
                                     </div>

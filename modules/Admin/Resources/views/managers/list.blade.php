@@ -18,10 +18,10 @@
                         <th>Phone</th>
                         <th>Created at</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center" width="30">Edit</th>
+                            <th class="no-sort text-center">Edit</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center" width="30">Delete</th>
+                            <th class="no-sort text-center">Delete</th>
                         @endif
                     </tr>
                     </thead>

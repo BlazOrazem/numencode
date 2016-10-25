@@ -158,6 +158,9 @@ table.display{
   &.widget{
     width: calc(100% + 1px) !important;
   }
+  .btn {
+    min-width: auto;
+  }
   thead tr{
     text-transform: uppercase;
     background: $dark-grey;
@@ -165,6 +168,9 @@ table.display{
     th{
       padding-left: 20px;
       border: 0;
+      &:not(:last-child){
+        border-right: 1px solid $info-color;
+      }
     }
   }
   tbody tr, tbody tr td{
@@ -960,7 +966,7 @@ table.display{
 }
 
 #chat-container {
-  max-height: 364px;
+//  max-height: 364px;
   padding: 2px;
   &.big{
     max-height: 600px;
