@@ -4,21 +4,21 @@ namespace Numencode\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CodelistGroup extends Model
+class CodelistItem extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'codelist_group';
+    protected $table = 'codelist_item';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'ord'];
+    protected $fillable = ['code', 'title', 'ord'];
 
     /**
      * Disable timestamps.
@@ -26,14 +26,4 @@ class CodelistGroup extends Model
      * @var bool
      */
     public $timestamps = false;
-
-    /**
-     * Codelist group has many items.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function items()
-    {
-        return $this->hasMany(CodelistItem::class);
-    }
 }

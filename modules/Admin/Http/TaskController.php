@@ -20,10 +20,10 @@ class TaskController extends BaseController
     }
 
     /**
-     * Show the specified task.
+     * Show the specific task.
      *
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
@@ -35,7 +35,7 @@ class TaskController extends BaseController
     /**
      * Show the form for creating a new task.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -68,8 +68,7 @@ class TaskController extends BaseController
      * Show the form for editing the task.
      *
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @internal param Request $request
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {

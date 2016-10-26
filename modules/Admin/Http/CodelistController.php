@@ -7,13 +7,13 @@ use Numencode\Models\CodelistGroup;
 class CodelistController extends BaseController
 {
     /**
-     * Display a listing of the roles and permissions.
+     * Display a listing of the codelist groups.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        $codelistGroups = CodelistGroup::all()->sortBy('ord');
+        $codelistGroups = CodelistGroup::with('items')->get()->sortBy('ord');
         $lastOrder = $codelistGroups->pluck('ord')->last() + 10;
 
         return view('admin::codelist.index', compact('codelistGroups', 'lastOrder'));
@@ -36,5 +36,35 @@ class CodelistController extends BaseController
         flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.created'));
 
         return redirect(route('codelist.index'));
+    }
+
+    /**
+     * Show the codelist group edit form and codelist items for this group.
+     *
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $codelistGroup = CodelistGroup::findOrFail($id);
+
+        return view('admin::codelist.edit', compact('codelistGroup'));
+    }
+
+    /**
+     * Delete the codelist group.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $codelistGroup = CodelistGroup::findOrFail($id);
+
+        if ($codelistGroup->delete()) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.deleted'));
+        }
+
+        return redirect()->back();
     }
 }

@@ -65,6 +65,10 @@ a, a.btn, a.btn:hover, a.btn:focus, a.btn:active:focus{
   box-shadow: none;
 }
 
+a.btn.btn-info {
+  color: $white;
+}
+
 a.btn:hover{
   text-decoration: underline;
 }

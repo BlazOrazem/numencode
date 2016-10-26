@@ -2135,7 +2135,7 @@ table.display {
   table.display.widget {
     width: calc(100% + 1px) !important; }
   table.display .btn {
-    min-width: auto; }
+    min-width: 40px; }
   table.display thead tr {
     text-transform: uppercase;
     background: #616161;
@@ -4485,6 +4485,9 @@ label.radio-inline input[type=radio][disabled] ~ .circle {
 a, a.btn, a.btn:hover, a.btn:focus, a.btn:active:focus {
   color: #49ceff;
   box-shadow: none; }
+
+a.btn.btn-info {
+  color: #fff; }
 
 a.btn:hover {
   text-decoration: underline; }

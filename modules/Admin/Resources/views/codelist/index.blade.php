@@ -15,10 +15,10 @@
                         <th>Title</th>
                         <th class="text-right">Order</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center" width="50">Edit</th>
+                            <th class="no-sort text-center">Items</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center" width="50">Delete</th>
+                            <th class="no-sort text-center">Delete</th>
                         @endif
                     </tr>
                     </thead>
@@ -29,20 +29,19 @@
                             <td class="text-right">{{ $group->ord }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    <a href="{{ route('codelist.edit', [$group]) }}">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </a>
+                                    @include ('admin::components.edit', [
+                                        'action' => route('codelist.edit', compact('group')),
+                                        'icon' => 'zmdi-collection-text'
+                                    ])
                                 </td>
                             @endif
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
-                                    <form method="POST" action="{{ route('codelist.destroy', [$group]) }}" >
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger btn-confirmation">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                    </form>
+                                    @if (!$group->items->count())
+                                        @include ('admin::components.delete', [
+                                            'action' => route('codelist.destroy', compact('group'))
+                                        ])
+                                    @endif
                                 </td>
                             @endif
                         </tr>
