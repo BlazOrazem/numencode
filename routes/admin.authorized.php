@@ -23,7 +23,7 @@ Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
 Route::resource('tasks', 'TaskController');
 
 // Codelist
-Route::get('codelist', 'CodelistController@index')->name('codelist.index');
+Route::resource('codelist', 'CodelistController');
 
 // Roles and Permissions
 Route::get('roles', 'RoleController@index')->name('roles.index');

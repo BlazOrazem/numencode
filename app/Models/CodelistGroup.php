@@ -19,4 +19,11 @@ class CodelistGroup extends Model
      * @var array
      */
     protected $fillable = ['title', 'ord'];
+
+    /**
+     * No timestamps.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }

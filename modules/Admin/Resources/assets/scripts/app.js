@@ -86,26 +86,38 @@ var DataTables = (function () {
     return {
         init: function () {
             $('.datatable:not(.search):not(.search-paginate)').DataTable({
-                "dom": '<"toolbar"><"clear-filter">rti',
+                dom: '<"toolbar"><"clear-filter">rti',
                 info: false,
                 paging: true,
-                responsive: true
+                responsive: true,
+                columnDefs: [{
+                    "targets": 'no-sort',
+                    "orderable": false
+                }]
             });
 
             $('.datatable.search:not(.paginate)').DataTable({
-                "dom": '<"toolbar"><"clear-filter">frti',
+                dom: '<"toolbar"><"clear-filter">frti',
                 info: false,
                 paging: true,
                 responsive: true,
-                "oLanguage": { "sSearch": "" }
+                oLanguage: { "sSearch": "" },
+                columnDefs: [{
+                    "targets": 'no-sort',
+                    "orderable": false
+                }]
             });
 
             $('.datatable.search.paginate').DataTable({
-                "dom": '<"toolbar"><"top"fl>rt<"bottom"ip><"clear">',
+                dom: '<"toolbar"><"top"fl>rt<"bottom"ip><"clear">',
                 info: true,
                 paging: true,
                 responsive: true,
-                "oLanguage": { "sSearch": "" }
+                oLanguage: { "sSearch": "" },
+                columnDefs: [{
+                    "targets": 'no-sort',
+                    "orderable": false
+                }]
             });
 
             $('.datatable').each(function() {

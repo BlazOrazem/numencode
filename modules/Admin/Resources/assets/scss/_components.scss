@@ -171,6 +171,13 @@ table.display{
       &:not(:last-child){
         border-right: 1px solid $info-color;
       }
+      &.sorting,
+      &.sorting_asc,
+      &.sorting_desc {
+        &.text-right {
+          padding-right: 22px;
+        }
+      }
     }
   }
   tbody tr, tbody tr td{

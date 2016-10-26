@@ -40,8 +40,8 @@
             <a href="{{ route('roles.index') }}"><i class="zmdi zmdi-settings"></i>Settings<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Settings</li>
-                <li><a href="{{ route('roles.index') }}">Roles and permissions</a></li>
-                <li><a href="{{ route('codelist.index') }}">Code lists</a></li>
+                <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
+                <li><a href="{{ route('roles.index') }}">User roles</a></li>
             </ul>
         </li>
         <li>
