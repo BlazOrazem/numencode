@@ -3,12 +3,13 @@
 namespace Numencode\Models;
 
 use Laraplus\Data\Translatable;
+use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Numencode\Models\Traits\HiddenFilter;
 
 class Content extends Model
 {
-    use Translatable, HiddenFilter;
+    use Translatable, Sortable, HiddenFilter;
 
     /**
      * The database table used by the model.

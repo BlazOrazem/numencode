@@ -13,7 +13,7 @@ class CodelistController extends BaseController
      */
     public function index()
     {
-        $codelistGroups = CodelistGroup::with('items')->get()->sortBy('ord');
+        $codelistGroups = CodelistGroup::with('items')->get();
         $lastOrder = $codelistGroups->pluck('ord')->last() + 10;
 
         return view('admin::codelist.index', compact('codelistGroups', 'lastOrder'));
@@ -46,7 +46,8 @@ class CodelistController extends BaseController
      */
     public function edit($id)
     {
-        $codelistGroup = CodelistGroup::findOrFail($id);
+        $codelistGroup = CodelistGroup::with('items')->find($id);
+        dd($codelistGroup->toArray());
 
         return view('admin::codelist.edit', compact('codelistGroup'));
     }

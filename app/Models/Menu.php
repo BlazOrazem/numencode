@@ -2,10 +2,13 @@
 
 namespace Numencode\Models;
 
+use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
+    use Sortable;
+
     /**
      * The database table used by the model.
      *
@@ -40,11 +43,11 @@ class Menu extends Model
      * Create page tree structure.
      *
      * @param $code
-     * @return $items \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function buildTreeMenu($code)
     {
-        $items = Page::with('url')->where('menu', $code)->orderBy('ord')->get()->groupBy('parent_id');
+        $items = Page::with('url')->where('menu', $code)->get()->groupBy('parent_id');
         
         if (count($items)) {
             $items['root'] = $items[''];
