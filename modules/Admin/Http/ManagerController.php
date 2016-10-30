@@ -4,7 +4,6 @@ namespace Admin\Http;
 
 use Numencode\Models\Manager;
 use Admin\Repositories\ManagerRepository;
-use Admin\Http\Requests\ManagerUpdateRequest;
 
 class ManagerController extends BaseController
 {
@@ -93,20 +92,26 @@ class ManagerController extends BaseController
         return view('admin::managers.edit', compact('manager'));
     }
 
-	/**
-     * Update the specified resource in storage.
+    /**
+     * Update the specified manager in storage.
      *
-     * @param ManagerUpdateRequest $request
-     * @param Manager $manager
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ManagerUpdateRequest $request, Manager $manager)
+    public function update($id)
     {
-        $this->managers->updateManager($manager, $request);
+        $manager = Manager::findOrFail($id);
 
-        flash()->success(
-            trans('admin::messages.success'), trans('admin::messages.profile.updated', ['name' => $manager->name])
-        );
+        $this->validate(request(), [
+            'name' => 'required|max:255',
+            'email' => request()->email == $manager->email ? '' : 'required|email|max:255|unique:managers',
+            'password' => empty($this->password) ? '' : 'required|min:6',
+//            'avatar'   => 'mimes:jpg,jpeg,png,gif,bmp',
+        ]);
+
+//        $this->managers->updateManager($manager, $request);
+
+        flash()->success(trans('admin::messages.success'), trans('admin::messages.manager.updated', ['name' => $manager->name]));
 
         return redirect()->back();
     }
@@ -122,6 +127,8 @@ class ManagerController extends BaseController
         $manager = Manager::findOrFail($id);
 
         $manager->delete();
+
+        flash()->success(trans('admin::messages.success'), trans('admin::messages.manager.deleted'), 2000);
 
         return redirect()->back();
     }

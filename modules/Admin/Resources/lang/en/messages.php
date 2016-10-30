@@ -16,9 +16,17 @@ return [
     'success' => 'Success',
     'error'   => 'Error',
 
-    'profile' => [
-        'updated'   => 'Manager :name has been successfully updated!',
+    'codelist' => [
+        'group_create'   => 'Create new group',
+        'group_created'   => 'Codelist group :name created.',
+        'group_deleted' => 'Codelist group has been successfully deleted.',
     ],
+
+    'manager' => [
+        'updated'   => 'Manager :name has been successfully updated.',
+        'deleted' => 'Manager has been successfully deleted.',
+    ],
+
     'tasks' => [
         'submit_create'   => 'Submit',
         'submit_update'   => 'Update a task',

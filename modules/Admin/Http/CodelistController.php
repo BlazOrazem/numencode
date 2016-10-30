@@ -28,12 +28,12 @@ class CodelistController extends BaseController
     {
         $this->validate(request(), [
             'title' => 'required|unique:codelist_group',
-            'ord'  => 'integer'
+            'ord'  => 'required|integer'
         ]);
 
         CodelistGroup::create(request()->all());
 
-        flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.created'));
+        flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_created', ['name' => request()->title]));
 
         return redirect(route('codelist.index'));
     }
@@ -63,7 +63,7 @@ class CodelistController extends BaseController
         $codelistGroup = CodelistGroup::findOrFail($id);
 
         if ($codelistGroup->delete()) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.deleted'));
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_deleted'));
         }
 
         return redirect()->back();

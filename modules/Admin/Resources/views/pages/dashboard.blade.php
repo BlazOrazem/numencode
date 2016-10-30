@@ -952,10 +952,284 @@
         </div>
     </div>
 
+    <!-- BLOCK : Sweet Alerts -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="content-box">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Sweet Alerts</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="min-width:50%;">Alert Type</th>
+                            <th>Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="middle-align">Basic Example</td>
+                            <td>
+                          <span class="swal-default">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="middle-align">A title with a text under</td>
+                            <td>
+                          <span class="swal-html">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A success message!</td>
+                            <td>
+                          <span class="swal-success">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A warning message, with a function attached to the "Confirm"-button...</td>
+                            <td>
+                          <span class="swal-confirm">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">By passing a parameter, you can execute something else for "Cancel".</td>
+                            <td>
+                          <span class="swal-warning">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">Error message!.</td>
+                            <td>
+                          <span class="swal-error">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with custom Image Header</td>
+                            <td>
+                          <span class="swal-image">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with auto close timer</td>
+                            <td>
+                          <span class="swal-autoclose">
+                            <button type="button" class="btn btn-default">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with button primary</td>
+                            <td>
+                          <span class="swal-primary">
+                            <button type="button" class="btn btn-primary">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with button info</td>
+                            <td>
+                          <span class="swal-info">
+                            <button type="button" class="btn btn-info">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with button success</td>
+                            <td>
+                          <span class="swal-success">
+                            <button type="button" class="btn btn-success">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with button warning</td>
+                            <td>
+                          <span class="swal-warning">
+                            <button type="button" class="btn btn-warning">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="middle-align">A message with button danger</td>
+                            <td>
+                          <span class="swal-danger">
+                            <button type="button" class="btn btn-danger">Click me</button>
+                          </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('scripts')
     <script>
+        //Sweet alerts
+        $(".swal-default button").on("click", function () {
+            swal("Here's a message!");
+        });
+
+        $(".swal-success button").on("click", function () {
+            swal("Good job!", "You clicked the button!", "success");
+        });
+
+        $(".swal-error button").on("click", function () {
+            swal("Oops...", "Something went wrong!", "error");
+        });
+
+        $(".swal-html button").on("click", function () {
+            swal({
+                title: "HTML Title!",
+                text: "A custom html message.",
+                html: true,
+                confirmButtonColor: "#63A8EB"
+            });
+        });
+
+        $('.swal-warning button').on("click", function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-warning',
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }, function () {
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            });
+        });
+
+        $(".swal-confirm button").on("click", function () {
+            swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel pls!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false,
+                        confirmButtonColor: "#FFBB33"
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+        });
+
+        $('.swal-image button').on("click", function () {
+            swal({
+                title: "Sweet!",
+                text: "Here's a custom image.",
+                imageUrl: "img/media-avatar.png"
+            });
+        });
+
+        //Auto Close Timer
+        $('.swal-autoclose button').on("click", function () {
+            swal({
+                title: "Auto close alert!",
+                text: "I will close in 2 seconds.",
+                timer: 2000,
+                showConfirmButton: false
+            });
+        });
+
+        //Primary
+        $('.swal-primary button').on("click", function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "info",
+                showCancelButton: true,
+                cancelButtonClass: 'btn-success',
+                confirmButtonClass: 'btn-primary',
+                confirmButtonText: 'Primary!'
+            });
+        });
+
+        //Info
+        $('.swal-info button').on("click", function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "info",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-info',
+                confirmButtonText: 'Info!'
+            });
+        });
+
+        //Success
+        $('.swal-success button').on("click", function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "success",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-success',
+                confirmButtonText: 'Success!'
+            });
+        });
+
+        //Warning
+        $('.swal-warning button').on("click", function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-warning',
+                confirmButtonText: 'Warning!'
+            });
+        });
+
+        //Danger
+        $('.swal-danger button').on("click", function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "error",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-danger',
+                confirmButtonText: 'Danger!'
+            });
+        });
+
+
+
 //        $('#table1').DataTable({
 //            "dom": '<"toolbar tool1">rtip',
 //            info: true,

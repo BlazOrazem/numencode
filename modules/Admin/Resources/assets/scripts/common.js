@@ -222,26 +222,6 @@ $(function() {
     $(".side-panel").toggleClass("open");
   });
 
-  
-toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-bottom-left",
-  "preventDuplicates": true,
-  "showDuration": "300",
-  "hideDuration": "500",
-  "timeOut": "4000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "show",
-  "hideMethod": "hide"
-};
-  
-//toastr["success"]('Good to see you, Marcus!');
-
   //Open/Close sidebar
   $(".menu-toggle").on("click", function(){
     $("body").toggleClass("open-menu");

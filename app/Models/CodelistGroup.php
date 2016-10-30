@@ -24,6 +24,15 @@ class CodelistGroup extends Model
     protected $fillable = ['title', 'ord'];
 
     /**
+     * Cast the values.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'ord' => 'integer',
+    ];
+
+    /**
      * Disable timestamps.
      *
      * @var bool

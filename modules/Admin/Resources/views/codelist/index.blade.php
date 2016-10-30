@@ -71,16 +71,16 @@
                                 <p class="help-block">{{ $errors->first('title', ':message') }}</p>
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('order') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('ord') ? ' has-error' : '' }}">
                             <label for="codelistNewOrder" class="col-sm-2 control-label">Order</label>
                             <div class="col-sm-10">
-                                <input type="text" name="ord" value="{{ old('order', $lastOrder) }}" class="form-control" id="codelistNewOrder" placeholder="Set order">
-                                {{ $errors->first('order', ':message') }}
+                                <input type="text" name="ord" value="{{ old('ord', $lastOrder) }}" class="form-control" id="codelistNewOrder" placeholder="Set order">
+                                <p class="help-block">{{ $errors->first('ord', ':message') }}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-info">{{ trans('admin::messages.tasks.submit_create') }}</button>
+                                <button type="submit" class="btn btn-info">{{ trans('admin::messages.codelist.group_create') }}</button>
                             </div>
                         </div>
                     </form>

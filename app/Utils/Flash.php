@@ -12,14 +12,16 @@ class Flash
      * @param $level
      * @param string $key
      * @param null $button
+     * @param int $timeout
      */
-    public function create($title, $message, $level, $key = 'flash_message', $button = null)
+    public function create($title, $message, $level, $timeout = 3000, $button = null, $key = 'flash_message')
     {
         session()->flash($key, [
             'title' => $title,
             'message' => $message,
             'level' => $level,
-            'button' => $button
+            'button' => $button,
+            'timeout' => $timeout,
         ]);
     }
 
@@ -40,11 +42,12 @@ class Flash
      *
      * @param $title
      * @param $message
+     * @param $timeout
      * @return void
      */
-    public function success($title, $message)
+    public function success($title, $message, $timeout = null)
     {
-        return $this->create($title, $message, 'success');
+        return $this->create($title, $message, 'success', $timeout);
     }
 
     /**
@@ -76,10 +79,11 @@ class Flash
      *
      * @param $title
      * @param $message
-     * @return void
+     * @param string $level
+     * @param string $button
      */
     public function overlay($title, $message, $level = 'success', $button = 'Okay')
     {
-        return $this->create($title, $message, $level, 'flash_message_overlay', $button);
+        return $this->create($title, $message, $level, 0, $button, 'flash_message_overlay');
     }
 }
