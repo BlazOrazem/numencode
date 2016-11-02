@@ -106,18 +106,18 @@
                     <form method="POST" action="{{ route('codelist.update', [$codelistGroup]) }}" class="form-horizontal">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        <div class="form-group{{ $errors->updateGroup->has('title') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->groupErrors->has('title') ? ' has-error' : '' }}">
                             <label for="codelistEditTitle" class="col-sm-2 control-label">Title</label>
                             <div class="col-sm-10">
                                 <input type="text" name="title" value="{{ old('title', $codelistGroup->title) }}" class="form-control" id="codelistEditTitle" placeholder="Enter group title" required>
-                                <p class="help-block">{{ $errors->updateGroup->first('title', ':message') }}</p>
+                                <p class="help-block">{{ $errors->groupErrors->first('title', ':message') }}</p>
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->updateGroup->has('sort_order') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->groupErrors->has('sort_order') ? ' has-error' : '' }}">
                             <label for="codelistEditOrder" class="col-sm-2 control-label">Order</label>
                             <div class="col-sm-10">
                                 <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroup->sort_order) }}" class="form-control" id="codelistEditOrder" placeholder="Set order" required>
-                                <p class="help-block">{{ $errors->updateGroup->first('sort_order', ':message') }}</p>
+                                <p class="help-block">{{ $errors->groupErrors->first('sort_order', ':message') }}</p>
                             </div>
                         </div>
                         <div class="form-group">

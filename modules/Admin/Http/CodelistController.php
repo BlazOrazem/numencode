@@ -63,36 +63,20 @@ class CodelistController extends BaseController
     {
         $codelistGroup = CodelistGroup::findOrFail($id);
 
-
-        // TODO: Multiple forms validation:
-        // https://laracasts.com/discuss/channels/laravel/authcontroller-loginregistration-on-same-page
-
-        $validator = new Validator;
-        $validator::make(request()->all(), [
+        $validator = Validator::make(request()->all(), [
             'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
-            'sort_order'  => 'integer'
-        ])->validate();
+            'sort_order'  => 'integer',
+        ]);
 
-//        $this->validate(request(), [
-//            'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
-//            'sort_order'  => 'integer'
-//        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator, 'groupErrors');
+        }
 
         if ($codelistGroup->update(request()->all())) {
             flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_updated', ['name' => request()->title]));
         }
 
-        if ($validator->fails()) {
-            return redirect()->route('codelist.index')->withErrors($validator, 'updateGroup');
-
-//            return redirect('post/create')
-//                ->withErrors($validator)
-//                ->withInput();
-        } else {
-
-            return redirect()->route('codelist.index');
-        }
-
+        return redirect()->route('codelist.index');
     }
 
     /**
