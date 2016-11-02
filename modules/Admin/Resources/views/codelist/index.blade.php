@@ -15,7 +15,7 @@
                         <th>Title</th>
                         <th class="text-right">Order</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Items</th>
+                            <th class="no-sort text-center">Manage</th>
                         @endif
                         @if ($admin->can('delete_managers'))
                             <th class="no-sort text-center">Delete</th>
@@ -26,7 +26,7 @@
                     @foreach ($codelistGroups as $group)
                         <tr>
                             <td>{{ $group->title }}</td>
-                            <td class="text-right">{{ $group->ord }}</td>
+                            <td class="text-right">{{ $group->sort_order }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
                                     @include ('admin::components.edit', [
@@ -67,15 +67,15 @@
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="codelistNewTitle" class="col-sm-2 control-label">Title</label>
                             <div class="col-sm-10">
-                                <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="codelistNewTitle" placeholder="Enter group title">
+                                <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="codelistNewTitle" placeholder="Enter group title" required>
                                 <p class="help-block">{{ $errors->first('title', ':message') }}</p>
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('ord') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
                             <label for="codelistNewOrder" class="col-sm-2 control-label">Order</label>
                             <div class="col-sm-10">
-                                <input type="text" name="ord" value="{{ old('ord', $lastOrder) }}" class="form-control" id="codelistNewOrder" placeholder="Set order">
-                                <p class="help-block">{{ $errors->first('ord', ':message') }}</p>
+                                <input type="text" name="sort_order" value="{{ old('sort_order', $lastOrder) }}" class="form-control" id="codelistNewOrder" placeholder="Set order" required>
+                                <p class="help-block">{{ $errors->first('sort_order', ':message') }}</p>
                             </div>
                         </div>
                         <div class="form-group">

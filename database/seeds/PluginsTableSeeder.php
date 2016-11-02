@@ -12,7 +12,7 @@ class PluginsTableSeeder extends Seeder
                 'title' => 'Tasks list',
                 'description' => null,
                 'action' => 'TaskController@index',
-                'ord' => 10,
+                'sort_order' => 10,
                 'is_hidden' => 0,
             ],
             [
@@ -20,7 +20,7 @@ class PluginsTableSeeder extends Seeder
                 'title' => 'Sample',
                 'description' => null,
                 'action' => 'TaskController@sample',
-                'ord' => 20,
+                'sort_order' => 20,
                 'is_hidden' => 0,
             ],
         ];

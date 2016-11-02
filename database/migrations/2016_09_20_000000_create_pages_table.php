@@ -19,7 +19,7 @@ class CreatePagesTable extends Migration
             $table->integer('route_id')->nullable()->index();
             $table->string('menu')->nullable()->default('main');
             $table->string('layout')->nullable()->default('default');
-            $table->integer('ord')->default(0);
+            $table->integer('sort_order')->default(0);
             $table->boolean('is_hidden')->nullable()->default(NULL);
             $table->timestamps();
         });

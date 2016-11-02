@@ -21,5 +21,5 @@ class Plugin extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'controller', 'method', 'ord', 'is_hidden'];
+    protected $fillable = ['title', 'description', 'controller', 'method', 'sort_order', 'is_hidden'];
 }

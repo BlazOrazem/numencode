@@ -21,7 +21,7 @@ class Menu extends Model
      *
      * @var array
      */
-    protected $fillable = ['code', 'title', 'ord'];
+    protected $fillable = ['code', 'title', 'sort_order'];
 
     /**
      * Return all menus with page tree structure.

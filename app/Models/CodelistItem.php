@@ -21,7 +21,7 @@ class CodelistItem extends Model
      *
      * @var array
      */
-    protected $fillable = ['code', 'title', 'ord'];
+    protected $fillable = ['code', 'title', 'sort_order'];
 
     /**
      * Disable timestamps.

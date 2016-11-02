@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('title');
-            $table->integer('ord')->default(0);
+            $table->integer('sort_order')->default(0);
         });
     }
 

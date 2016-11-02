@@ -24,6 +24,7 @@ Route::resource('tasks', 'TaskController');
 
 // Codelist
 Route::resource('codelist', 'CodelistController');
+Route::post('codelist_item', 'CodelistController@storeItem')->name('codelist.item.create');
 
 // Roles and Permissions
 Route::get('roles', 'RoleController@index')->name('roles.index');

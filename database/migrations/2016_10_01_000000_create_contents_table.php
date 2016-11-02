@@ -19,7 +19,7 @@ class CreateContentsTable extends Migration
             $table->integer('plugin_id')->unsigned()->nullable()->index();
             $table->text('plugin_params')->nullable();
             $table->string('position')->default('center');
-            $table->integer('ord')->default(0);
+            $table->integer('sort_order')->default(0);
             $table->boolean('is_hidden')->nullable()->default(NULL);
         });
 

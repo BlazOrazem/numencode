@@ -23,7 +23,7 @@ class Content extends Model
      *
      * @var array
      */
-    protected $fillable = ['page_id', 'plugin_id', 'plugin_params', 'ord', 'is_hidden', 'title', 'lead', 'body'];
+    protected $fillable = ['page_id', 'plugin_id', 'plugin_params', 'sort_order', 'is_hidden', 'title', 'lead', 'body'];
 
 	/**
 	 * Cast attributes to other types.

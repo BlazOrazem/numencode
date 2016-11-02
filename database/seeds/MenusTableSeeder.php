@@ -11,13 +11,13 @@ class MenusTableSeeder extends Seeder
                 'id' => 1,
                 'code' => 'main',
                 'title' => 'Main Menu',
-                'ord' => '10',
+                'sort_order' => '10',
             ],
             [
                 'id' => 2,
                 'code' => 'corpo',
                 'title' => 'Corpo Menu',
-                'ord' => '20',
+                'sort_order' => '20',
             ],
         ];
 

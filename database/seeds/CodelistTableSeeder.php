@@ -10,7 +10,7 @@ class CodelistTableSeeder extends Seeder
             [
                 'id' => 1,
                 'title' => 'Page Layout',
-                'ord' => '10',
+                'sort_order' => '10',
             ],
         ];
 
@@ -22,14 +22,14 @@ class CodelistTableSeeder extends Seeder
                 'codelist_group_id' => 1,
                 'code' => 'default',
                 'title' => 'Default layout',
-                'ord' => '10',
+                'sort_order' => '10',
             ],
             [
                 'id' => 2,
                 'codelist_group_id' => 1,
                 'code' => 'contact',
                 'title' => 'Contact page',
-                'ord' => '20',
+                'sort_order' => '20',
             ],
         ];
 

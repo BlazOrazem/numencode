@@ -23,7 +23,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'layout', 'title', 'lead', 'body', 'ord', 'is_hidden'];
+    protected $fillable = ['parent_id', 'layout', 'title', 'lead', 'body', 'sort_order', 'is_hidden'];
 
     /**
      * The attributes that are dates.
@@ -61,6 +61,6 @@ class Page extends Model
     {
         $generalContents = Content::whereNull('page_id')->get();
 
-        return $generalContents->merge($this->contents()->get())->sortBy('ord');
+        return $generalContents->merge($this->contents()->get())->sortBy('sort_order');
     }
 }
