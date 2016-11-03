@@ -24,7 +24,10 @@ Route::resource('tasks', 'TaskController');
 
 // Codelist
 Route::resource('codelist', 'CodelistController');
-Route::post('codelist_item', 'CodelistController@storeItem')->name('codelist.item.create');
+Route::post('codelist_item/{group}', 'CodelistController@storeItem')->name('codelist.item.create');
+Route::patch('codelist_item/{item}', 'CodelistController@updateItem')->name('codelist.item.update');
+Route::delete('codelist_item/{item}', 'CodelistController@destroyItem')->name('codelist.item.destroy');
+Route::get('codelist_item/{item}/edit', 'CodelistController@editItem')->name('codelist.item.edit');
 
 // Roles and Permissions
 Route::get('roles', 'RoleController@index')->name('roles.index');

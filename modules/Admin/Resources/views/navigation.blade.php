@@ -48,4 +48,5 @@
             <a href="{{ route('tasks.index') }}"><i class="zmdi zmdi-format-align-justify"></i>Tasks</a>
         </li>
     </ul>
+    <input id="activeUrl" type="hidden" value="{{ url('/') }}/{{ request()->segment(1) }}{{ request()->segment(2) ? '/' . request()->segment(2) : '' }}">
 </aside>

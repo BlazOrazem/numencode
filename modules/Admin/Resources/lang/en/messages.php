@@ -17,12 +17,18 @@ return [
     'error'   => 'Error',
 
     'codelist' => [
+        'index' => 'Back to Codelist',
+        'index_group' => 'Back to Codelist group',
         'group_create' => 'Create new group',
-        'group_update' => 'Update group',
         'group_created' => 'Codelist group :name created.',
+        'group_update' => 'Update group',
         'group_updated' => 'Codelist group :name updated.',
         'group_deleted' => 'Codelist group has been successfully deleted.',
         'item_create' => 'Create new item',
+        'item_created' => 'Codelist item :name created.',
+        'item_update' => 'Update codelist item',
+        'item_updated' => 'Codelist item :name updated.',
+        'item_deleted' => 'Codelist item has been successfully deleted.',
     ],
 
     'manager' => [

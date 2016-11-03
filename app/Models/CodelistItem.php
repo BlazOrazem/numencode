@@ -29,4 +29,19 @@ class CodelistItem extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Create a new instance and associate it with the given codelist group.
+     *
+     * @param CodelistGroup $codelistGroup
+     * @return static
+     */
+    public static function forGroup(CodelistGroup $codelistGroup)
+    {
+        $codelistItem = new static;
+
+        $codelistItem->codelist_group_id = $codelistGroup->id;
+
+        return $codelistItem;
+    }
 }

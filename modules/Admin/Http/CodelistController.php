@@ -4,6 +4,7 @@ namespace Admin\Http;
 
 use Validator;
 use Illuminate\Validation\Rule;
+use Numencode\Models\CodelistItem;
 use Numencode\Models\CodelistGroup;
 
 class CodelistController extends BaseController
@@ -91,6 +92,98 @@ class CodelistController extends BaseController
 
         if ($codelistGroup->delete()) {
             flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_deleted'));
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Store a newly created codelist item.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeItem($id)
+    {
+        $codelistGroup = CodelistGroup::findOrFail($id);
+
+        $validator = Validator::make(request()->all(), [
+            'code' => [
+                'required',
+                Rule::unique('codelist_item')->where(function ($query) use ($codelistGroup) {
+                    $query->where('codelist_group_id', $codelistGroup->id);
+                })
+            ],
+            'title' => 'required',
+            'sort_order' => 'integer'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator, 'itemErrors');
+        }
+
+        CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save();
+
+        flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_created', ['name' => request()->title]));
+
+        return redirect()->back();
+    }
+
+    /**
+     * Edit the codelist item.
+     *
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function editItem($id)
+    {
+        $codelistItem = CodelistItem::findOrFail($id);
+
+        $codelistGroup = CodelistGroup::with('items')->find($codelistItem->codelist_group_id);
+
+        return view('admin::codelist.item', compact('codelistItem', 'codelistGroup'));
+    }
+
+    /**
+     * Update the codelist item.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateItem($id)
+    {
+        $codelistItem = CodelistItem::findOrFail($id);
+
+        $this->validate(request(), [
+            'code' => [
+                'required',
+                Rule::unique('codelist_item')->where(function ($query) use ($codelistItem) {
+                    $query->where('codelist_group_id', $codelistItem->codelist_group_id);
+                })
+            ],
+            'title' => 'required',
+            'sort_order'  => 'integer'
+        ]);
+
+        if ($codelistItem->update(request()->all())) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_updated', ['name' => request()->title]));
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Delete the codelist item.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroyItem($id)
+    {
+        $codelistItem = CodelistItem::findOrFail($id);
+
+        if ($codelistItem->delete()) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_deleted'));
         }
 
         return redirect()->back();

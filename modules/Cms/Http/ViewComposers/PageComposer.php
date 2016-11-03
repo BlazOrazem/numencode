@@ -29,7 +29,7 @@ class PageComposer
      */
     public function buildMenu(Menu $menu)
     {
-        $items = Page::with('url')->where('menu', $menu->code)->orderBy('ord')->get()->groupBy('parent_id');
+        $items = Page::with('url')->where('menu', $menu->code)->orderBy('sort_order')->get()->groupBy('parent_id');
 
         if (count($items)) {
             $items['root'] = $items[''];

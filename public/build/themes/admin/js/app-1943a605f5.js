@@ -101,7 +101,8 @@ var Responsive = (function () {
 var MetisMenu = (function () {
     return {
         init: function () {
-            var url = window.location;
+            var url = $('#activeUrl').val();
+
             $('.metismenu li a[href="'+ url +'"]').parent().addClass('active');
             $('.metismenu li a[href="'+ url +'"]').parentsUntil(".metismenu").last().addClass('active');
 
