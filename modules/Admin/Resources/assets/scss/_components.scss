@@ -221,19 +221,16 @@ table.display{
     border-radius: $border-radius;
     padding: 0 8px;
     line-height: 32px;
-    @include shadow(1);
     color: $black;
   }
 }
 .dataTables_wrapper .dataTables_length {
-  float: right !important;
   border: 0;
   border-radius: $border-radius;
   padding: 0 12px;
   line-height: 32px;
-  @include shadow(1);
   background: $white;
-  margin-top: 9px;
+  margin: 9px 15px;
 
   label {
     margin: 0;
@@ -242,6 +239,19 @@ table.display{
   }
   select {
     cursor: pointer;
+    border-radius: $border-radius;
+  }
+}
+@media screen and (max-width: 640px) {
+  .dataTables_wrapper .dataTables_length {
+    background: none;
+    margin-top: -0.5em;
+    label {
+      color: $white;
+    }
+    select {
+      color: $grey;
+    }
   }
 }
 
@@ -249,7 +259,7 @@ table.display{
   thead tr{
     background: desaturate(darken($danger-color, 8), 25) !important;
   }
-  tbody tr td:first-child, tbody tr td:nth-child(4){
+  tbody tr td.sorting_1{
     color: $danger-color;
   }
   .dataTables_wrapper{
@@ -261,7 +271,7 @@ table.display{
   thead tr{
     background: desaturate(darken($primary-color, 8), 25) !important;
   }
-  tbody tr td:first-child, tbody tr td:nth-child(4){
+  tbody tr td.sorting_1{
     color: $primary-color;
   }
   .dataTables_wrapper{
@@ -273,7 +283,7 @@ table.display{
   thead tr{
     background: darken($success-color, 5) !important;
   }
-  tbody tr td:first-child, tbody tr td:nth-child(4){
+  tbody tr td.sorting_1{
     color: $success-color;
   }
   .dataTables_wrapper{
@@ -285,7 +295,7 @@ table.display{
   thead tr{
     background: desaturate(darken($info-color, 8), 25) !important;
   }
-  tbody tr td:first-child, tbody tr td:nth-child(4){
+  tbody tr td.sorting_1{
     color: $info-color;
   }
   .dataTables_wrapper{
@@ -297,7 +307,7 @@ table.display{
   thead tr{
     background: desaturate(darken($warning-color, 8), 25) !important;
   }
-  tbody tr td:first-child, tbody tr td:nth-child(4){
+  tbody tr td.sorting_1{
     color: $warning-color;
   }
   .dataTables_wrapper{
@@ -309,7 +319,7 @@ table.display{
   thead tr{
     background: desaturate(darken($default-color, 8), 25) !important;
   }
-  tbody tr td:first-child, tbody tr td:nth-child(4){
+  tbody tr td.sorting_1{
     color: $default-color;
   }
   .dataTables_wrapper{

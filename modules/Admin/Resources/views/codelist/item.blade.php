@@ -9,8 +9,15 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <div class="data-info" data-id="codelist-items">
-                <table data-title="{{ $codelistGroup->title }} items" class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
+            <div class="data-table data-success content-box" data-id="codelist-items">
+                <div class="head success-bg clearfix">
+                    <h5 class="content-title pull-left">{{ $codelistGroup->title }} items</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                    </div>
+                </div>
+                <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
                         <th>Title</th>
@@ -88,13 +95,19 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10 col-sm-offset-2">
-                                <div class="btn-toolbar">
-                                    <button type="submit" class="btn btn-info">{{ trans('admin::messages.codelist.item_update') }}</button>
-                                    <a class="btn btn-default btn-link pull-right" href="{{ route('codelist.edit', $codelistGroup) }}">{{ trans('admin::messages.codelist.index_group') }}</a>
-                                </div>
+                                <button type="submit" class="btn btn-md btn-warning">{{ trans('admin::messages.codelist.item_update') }}</button>
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <div class="content">
+                    <a class="btn btn-default btn-link btn-md" href="{{ route('codelist.edit', $codelistGroup) }}">
+                        <i class="zmdi zmdi-caret-left-circle left"></i>
+                        {{ trans('admin::messages.codelist.index_group') }}
+                    </a>
                 </div>
             </div>
         </div>

@@ -166,7 +166,7 @@ var DataTables = (function () {
             });
 
             $('.datatable.search.paginate').DataTable({
-                dom: '<"toolbar"><"top"fl>rt<"bottom"ip><"clear">',
+                dom: '<"toolbar"><"top"lf>rt<"bottom"ip><"clear">',
                 info: true,
                 paging: true,
                 responsive: true,
@@ -178,8 +178,9 @@ var DataTables = (function () {
             });
 
             $('.datatable').each(function() {
-                var dataTableInfo = $(this).closest('.data-info');
-                dataTableInfo.find('.toolbar').html('<h5 class="zero-m">' + $(this).data('title') + '</h5>');
+                var dataTableInfo = $(this).closest('.data-table');
+                //dataTableInfo.find('.toolbar').html('<h5 class="zero-m">' + $(this).data('title') + '</h5>');
+                dataTableInfo.find('.toolbar').css('display', 'none');
                 dataTableInfo.find('.dataTables_filter input').attr("placeholder", $(this).data('search'));
             });
         }

@@ -692,6 +692,56 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-12">
+            <div class="content-box">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Inline form</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <p>Add <code>.form-inline</code> to your form for left-aligned and inline-block controls. <strong>This only applies to forms within viewports that are at least 768px wide.</strong></p>
+                    <form class="form-inline m-b-40">
+                        <h5>Variation 1</h5>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox checkbox-info">
+                                <label><input type="checkbox">
+                                    <i></i></label>
+                                <span class="m-l-5">Remember me</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info">Submit</button>
+                        </div>
+                    </form>
+                    <form class="form-inline">
+                        <h5>Variation 2</h5>
+                        <div class="form-group">
+                            <label class="control-label">Username</label>
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-warning">Reset password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- BLOCK : Tabs -->

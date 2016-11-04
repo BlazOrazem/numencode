@@ -7,9 +7,17 @@
 @section('content')
 
     <div class="row">
+
         <div class="col-lg-6">
-            <div class="data-info" data-id="codelist-groups">
-                <table data-title="Codelist groups" class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+            <div class="data-table data-info content-box" data-id="codelist-groups">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Codelist groups</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                    </div>
+                </div>
+                <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                     <thead>
                     <tr>
                         <th>Title</th>
@@ -87,6 +95,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 @stop

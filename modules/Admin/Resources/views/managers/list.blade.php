@@ -8,11 +8,18 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="data-info" data-id="manager-list">
-                <table data-title="Manager list" data-search="Search manager" class="display datatable search paginate middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+            <div class="data-table data-info content-box" data-id="manager-list">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Managers</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                    </div>
+                </div>
+                <table data-search="Search" class="display datatable search paginate middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th class="no-sort" width="50"></th>
+                        <th class="no-sort"></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -37,21 +44,17 @@
                             <td>{{ $manager->created_at }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    <a href="{{ route('managers.edit', compact('manager')) }}">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </a>
+                                    @include ('admin::components.edit', [
+                                        'action' => route('managers.edit', compact('manager')),
+                                    ])
                                 </td>
                             @endif
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
                                     @if ($admin->id != $manager->id)
-                                        <form method="POST" action="{{ route('managers.destroy', compact('manager')) }}" >
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger btn-confirmation">
-                                                <i class="zmdi zmdi-delete"></i>
-                                            </button>
-                                        </form>
+                                        @include ('admin::components.delete', [
+                                            'action' => route('managers.destroy', compact('manager'))
+                                        ])
                                     @endif
                                 </td>
                             @endif
