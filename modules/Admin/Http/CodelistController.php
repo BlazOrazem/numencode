@@ -17,7 +17,6 @@ class CodelistController extends BaseController
     public function index()
     {
         $codelistGroups = CodelistGroup::with('items')->get();
-        $lastOrder = $codelistGroups->pluck('sort_order')->last() + 10;
 
         return view('admin::codelist.index', compact('codelistGroups', 'lastOrder'));
     }

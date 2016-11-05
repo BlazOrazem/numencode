@@ -82,7 +82,7 @@
                         <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
                             <label for="codelistNewOrder" class="col-sm-2 control-label">Order</label>
                             <div class="col-sm-10">
-                                <input type="text" name="sort_order" value="{{ old('sort_order', $lastOrder) }}" class="form-control" id="codelistNewOrder" placeholder="Set order" required>
+                                <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroups->pluck('sort_order')->last() + 10) }}" class="form-control" id="codelistNewOrder" placeholder="Set order" required>
                                 <p class="help-block">{{ $errors->first('sort_order', ':message') }}</p>
                             </div>
                         </div>

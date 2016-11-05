@@ -30,5 +30,5 @@ Route::delete('codelist_item/{item}', 'CodelistController@destroyItem')->name('c
 Route::get('codelist_item/{item}/edit', 'CodelistController@editItem')->name('codelist.item.edit');
 
 // Roles and Permissions
-Route::get('roles', 'RoleController@index')->name('roles.index');
+Route::resource('roles', 'RoleController');
 Route::get('roles/{role}/permissions', 'RoleController@assignPermissions')->name('roles.permissions');

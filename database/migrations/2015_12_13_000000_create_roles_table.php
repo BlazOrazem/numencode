@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->string('name');
             $table->string('label')->nullable();
             $table->boolean('is_admin')->nullable();
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
 
@@ -24,6 +25,7 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('label')->nullable();
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
 

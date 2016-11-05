@@ -31,6 +31,10 @@ return [
         'item_deleted' => 'Codelist item has been successfully deleted.',
     ],
 
+    'roles' => [
+        'create' => 'Create new role',
+    ],
+
     'manager' => [
         'updated' => 'Manager :name has been successfully updated.',
         'deleted' => 'Manager has been successfully deleted.',

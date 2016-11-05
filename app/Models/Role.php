@@ -2,11 +2,24 @@
 
 namespace Numencode\Models;
 
+use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-	/**
+    use Sortable;
+
+    /**
+     * Role is deletable if no users or managers are assigned with it.
+     *
+     * @return bool
+     */
+    public function isDeletable()
+    {
+        return !($this->managers()->count() || $this->users()->count());
+    }
+
+    /**
 	 * Role can belong to many permissions.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

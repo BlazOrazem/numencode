@@ -41,7 +41,7 @@
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Settings</li>
                 <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
-                <li><a href="{{ route('roles.index') }}">User roles</a></li>
+                <li><a href="{{ route('roles.index') }}">Roles and Permissions</a></li>
             </ul>
         </li>
         <li>
