@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('roles.create') }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
@@ -72,7 +72,7 @@
                         <th class="text-right">Order</th>
                         <th>Is admin?</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Edit</th>
+                            <th class="no-sort text-center">Manage</th>
                         @endif
                         @if ($admin->can('delete_managers'))
                             <th class="no-sort text-center">Delete</th>
@@ -89,7 +89,8 @@
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
                                     @include ('admin::components.edit', [
-                                        'action' => route('roles.edit', compact('item'))
+                                        'action' => route('roles.edit', compact('item')),
+                                        'icon' => 'zmdi-collection-text'
                                     ])
                                 </td>
                             @endif

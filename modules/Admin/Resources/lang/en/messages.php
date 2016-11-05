@@ -33,6 +33,7 @@ return [
 
     'roles' => [
         'create' => 'Create new role',
+        'created' => 'Role :name created.',
     ],
 
     'permissions' => [

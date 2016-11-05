@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Validator;
 use Numencode\Models\Role;
 use Numencode\Models\Permission;
 
@@ -18,6 +19,43 @@ class RoleController extends BaseController
         $permissions = Permission::all();
 
         return view('admin::roles.index', compact('roles', 'permissions'));
+    }
+
+    /**
+     * Store a newly created role.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        $validator = Validator::make(request()->all(), [
+            'name' => 'required|unique:roles',
+            'label' => 'required',
+            'sort_order'  => 'integer'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator, 'roleErrors');
+        }
+
+        if (Role::create(request()->all())) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->title]));
+        }
+
+        return redirect(route('roles.index'));
+    }
+
+    /**
+     * Show the role edit form and permissions for this role.
+     *
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $role = Role::with('permissions')->find($id);
+
+        return view('admin::roles.edit', compact('role'));
     }
 
 	/**

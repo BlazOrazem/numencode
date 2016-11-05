@@ -10,6 +10,13 @@ class Role extends Model
     use Sortable;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'label', 'sort_order'];
+
+    /**
      * Role is deletable if no users or managers are assigned with it.
      *
      * @return bool
