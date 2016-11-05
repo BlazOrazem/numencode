@@ -168,9 +168,6 @@ table.display{
     th{
       padding-left: 20px;
       border: 0;
-      &:not(:last-child){
-        border-right: 1px solid $info-color;
-      }
       &.sorting,
       &.sorting_asc,
       &.sorting_desc {

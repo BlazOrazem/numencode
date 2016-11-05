@@ -35,6 +35,10 @@ return [
         'create' => 'Create new role',
     ],
 
+    'permissions' => [
+        'create' => 'Create new permission',
+    ],
+
     'manager' => [
         'updated' => 'Manager :name has been successfully updated.',
         'deleted' => 'Manager has been successfully deleted.',

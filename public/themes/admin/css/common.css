@@ -2143,8 +2143,6 @@ table.display {
     table.display thead tr th {
       padding-left: 20px;
       border: 0; }
-      table.display thead tr th:not(:last-child) {
-        border-right: 1px solid #49ceff; }
       table.display thead tr th.sorting.text-right, table.display thead tr th.sorting_asc.text-right, table.display thead tr th.sorting_desc.text-right {
         padding-right: 22px; }
   table.display tbody tr, table.display tbody tr td {

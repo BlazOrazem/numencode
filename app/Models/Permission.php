@@ -2,10 +2,13 @@
 
 namespace Numencode\Models;
 
+use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
+    use Sortable;
+
 	/**
 	 * Permission can belongs to many roles.
 	 *
