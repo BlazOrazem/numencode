@@ -61,7 +61,9 @@ $ php artisan db:seed
 ## Demo credentials
 
 **Back-office:** should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
+
 **Username:** info@numencode.com
+
 **Password:** q1w2e3
 
 ## License
