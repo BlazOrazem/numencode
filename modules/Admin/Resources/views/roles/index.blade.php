@@ -67,15 +67,15 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Label</th>
-                        <th class="text-right">Order</th>
+                        <th>{{ trans('admin::tables.name') }}</th>
+                        <th>{{ trans('admin::tables.label') }}</th>
+                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
                         <th>Is admin?</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Manage</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center">Delete</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
                     </thead>
@@ -169,14 +169,14 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Label</th>
-                        <th class="text-right">Order</th>
+                        <th>{{ trans('admin::tables.name') }}</th>
+                        <th>{{ trans('admin::tables.label') }}</th>
+                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Edit</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center">Delete</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
                     </thead>

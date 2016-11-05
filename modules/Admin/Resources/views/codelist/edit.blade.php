@@ -56,14 +56,14 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Code</th>
-                        <th class="text-right">Order</th>
+                        <th>{{ trans('admin::tables.title') }}</th>
+                        <th>{{ trans('admin::tables.code') }}</th>
+                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Edit</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center">Delete</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
                     </thead>
@@ -107,21 +107,21 @@
                     <form method="POST" action="{{ route('codelist.item.create', [$codelistGroup]) }}" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->itemErrors->has('title') ? ' has-error' : '' }}">
-                            <label for="itemNewTitle" class="col-sm-2 control-label">Title</label>
+                            <label for="itemNewTitle" class="col-sm-2 control-label">{{ trans('admin::forms.title') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="itemNewTitle" placeholder="Enter title">
                                 <span class="help-block">{{ $errors->itemErrors->first('title', ':message') }}</span>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->itemErrors->has('code') ? ' has-error' : '' }}">
-                            <label for="itemNewCode" class="col-sm-2 control-label">Code</label>
+                            <label for="itemNewCode" class="col-sm-2 control-label">{{ trans('admin::forms.code') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="code" value="{{ old('code') }}" class="form-control" id="itemNewCode" placeholder="Enter code">
                                 <span class="help-block">{{ $errors->itemErrors->first('code', ':message') }}</span>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->itemErrors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="itemNewOrder" class="col-sm-2 control-label">Order</label>
+                            <label for="itemNewOrder" class="col-sm-2 control-label">{{ trans('admin::forms.order') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroup->items->pluck('sort_order')->last() + 10) }}" class="form-control" id="itemNewOrder" placeholder="Set order">
                                 <p class="help-block">{{ $errors->itemErrors->first('sort_order', ':message') }}</p>

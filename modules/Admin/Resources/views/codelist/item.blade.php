@@ -20,14 +20,14 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Code</th>
-                        <th class="text-right">Order</th>
+                        <th>{{ trans('admin::tables.title') }}</th>
+                        <th>{{ trans('admin::tables.code') }}</th>
+                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Edit</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center">Delete</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
                     </thead>
@@ -73,21 +73,21 @@
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="itemUpdateTitle" class="col-sm-2 control-label">Title</label>
+                            <label for="itemUpdateTitle" class="col-sm-2 control-label">{{ trans('admin::forms.title') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="title" value="{{ old('title', $codelistItem->title) }}" class="form-control" id="itemUpdateTitle" placeholder="Enter title" required>
                                 <p class="help-block">{{ $errors->first('title', ':message') }}</p>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                            <label for="itemUpdateCode" class="col-sm-2 control-label">Code</label>
+                            <label for="itemUpdateCode" class="col-sm-2 control-label">{{ trans('admin::forms.code') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="code" value="{{ old('code', $codelistItem->code) }}" class="form-control" id="itemUpdateCode" placeholder="Enter code" required>
                                 <p class="help-block">{{ $errors->first('code', ':message') }}</p>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="itemUpdateOrder" class="col-sm-2 control-label">Order</label>
+                            <label for="itemUpdateOrder" class="col-sm-2 control-label">{{ trans('admin::forms.order') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="sort_order" value="{{ old('sort_order', $codelistItem->sort_order) }}" class="form-control" id="itemUpdateOrder" placeholder="Set order" required>
                                 <p class="help-block">{{ $errors->first('sort_order', ':message') }}</p>
@@ -101,7 +101,6 @@
                     </form>
                 </div>
             </div>
-
             <div class="content-box">
                 <div class="content">
                     <a class="btn btn-default btn-link btn-md" href="{{ route('codelist.edit', $codelistGroup) }}">
@@ -111,7 +110,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @stop

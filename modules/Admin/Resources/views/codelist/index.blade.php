@@ -20,13 +20,13 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th class="text-right">Order</th>
+                        <th>{{ trans('admin::tables.title') }}</th>
+                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Manage</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center">Delete</th>
+                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
                     </thead>
@@ -73,14 +73,14 @@
                     <form method="POST" action="{{ route('codelist.store') }}" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="codelistNewTitle" class="col-sm-2 control-label">Title</label>
+                            <label for="codelistNewTitle" class="col-sm-2 control-label">{{ trans('admin::forms.title') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="codelistNewTitle" placeholder="Enter group title" required>
                                 <p class="help-block">{{ $errors->first('title', ':message') }}</p>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="codelistNewOrder" class="col-sm-2 control-label">Order</label>
+                            <label for="codelistNewOrder" class="col-sm-2 control-label">{{ trans('admin::forms.order') }}</label>
                             <div class="col-sm-10">
                                 <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroups->pluck('sort_order')->last() + 10) }}" class="form-control" id="codelistNewOrder" placeholder="Set order" required>
                                 <p class="help-block">{{ $errors->first('sort_order', ':message') }}</p>
