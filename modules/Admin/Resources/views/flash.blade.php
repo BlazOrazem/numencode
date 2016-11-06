@@ -54,13 +54,13 @@
         var form = $(this).closest('form');
 
         swal({
-            title: "Are you sure?",
-            text: "This action is irreversible!",
+            title: "{{ trans('admin::flash.delete.title') }}",
+            text: "{{ trans('admin::flash.delete.notice') }}",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: 'btn-warning',
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "Cancel",
+            confirmButtonText: "{{ trans('admin::flash.delete.confirm_button') }}",
+            cancelButtonText: "{{ trans('admin::flash.delete.cancel_button') }}",
             closeOnConfirm: false
         }, function () {
             swal({
@@ -72,6 +72,40 @@
             setTimeout(function () {
                 form[0].submit();
             }, 800);
+        });
+    });
+
+    $(".ajax-confirmation").on("click", function (e) {
+        e.preventDefault();
+
+        var form = $(this).closest('form');
+        var inputData = form.serialize();
+        var route = form.attr('action');
+        var htmlElement = form.closest(form.data('element'));
+
+        swal({
+            title: "{{ trans('admin::flash.delete.title') }}",
+            text: "{{ trans('admin::flash.delete.notice') }}",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#FFBB33",
+            confirmButtonText: "{{ trans('admin::flash.delete.confirm_button') }}",
+            cancelButtonText: "{{ trans('admin::flash.delete.cancel_button') }}",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: route,
+                    type: 'POST',
+                    data: inputData,
+                    success: function(data) {
+                        htmlElement.remove();
+                        swal(data.title, data.msg, "success");
+                    }
+                });
+            }
         });
     });
 </script>

@@ -90,10 +90,13 @@ class CodelistController extends BaseController
         $codelistGroup = CodelistGroup::findOrFail($id);
 
         if ($codelistGroup->delete()) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_deleted'));
+            return [
+                'title' => trans('admin::messages.success'),
+                'msg' => trans('admin::messages.codelist.group_deleted'),
+            ];
         }
 
-        return redirect()->back();
+        return reportError();
     }
 
     /**
@@ -182,9 +185,12 @@ class CodelistController extends BaseController
         $codelistItem = CodelistItem::findOrFail($id);
 
         if ($codelistItem->delete()) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_deleted'));
+            return [
+                'title' => trans('admin::messages.success'),
+                'msg' => trans('admin::messages.codelist.item_deleted'),
+            ];
         }
 
-        return redirect()->back();
+        return reportError();
     }
 }

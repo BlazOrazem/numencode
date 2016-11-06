@@ -58,6 +58,26 @@ class RoleController extends BaseController
         return view('admin::roles.edit', compact('role'));
     }
 
+    /**
+     * Delete the role.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $role = Role::findOrFail($id);
+
+        if ($role->delete()) {
+            return [
+                'title' => trans('admin::messages.success'),
+                'msg' => trans('admin::messages.roles.deleted'),
+            ];
+        }
+
+        return reportError();
+    }
+
 	/**
 	 * Assign permissions to a given role.
 	 *

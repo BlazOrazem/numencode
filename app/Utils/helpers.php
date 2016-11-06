@@ -54,6 +54,22 @@ if (!function_exists('flash'))
 }
 
 /**
+ * Report error notice to user.
+ *
+ * @return array
+ */
+if (!function_exists('reportError'))
+{
+    function reportError()
+    {
+        return [
+            'title' => trans('admin::messages.error'),
+            'msg' => trans('admin::messages.error_notice'),
+        ];
+    }
+}
+
+/**
  * Return URL for the large avatar image, given from any social network.
  *
  * @param string $avatarUrl

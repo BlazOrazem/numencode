@@ -143,9 +143,9 @@ var DataTables = (function () {
     return {
         init: function () {
             $('.datatable:not(.search):not(.search-paginate)').DataTable({
-                dom: '<"toolbar"><"clear-filter">rti',
+                dom: '<"clear-filter">rti',
                 info: false,
-                paging: true,
+                paging: false,
                 responsive: true,
                 columnDefs: [{
                     "targets": 'no-sort',
@@ -154,9 +154,9 @@ var DataTables = (function () {
             });
 
             $('.datatable.search:not(.paginate)').DataTable({
-                dom: '<"toolbar"><"clear-filter">frti',
+                dom: '<"clear-filter">frti',
                 info: false,
-                paging: true,
+                paging: false,
                 responsive: true,
                 oLanguage: { "sSearch": "" },
                 columnDefs: [{
@@ -166,7 +166,7 @@ var DataTables = (function () {
             });
 
             $('.datatable.search.paginate').DataTable({
-                dom: '<"toolbar"><"top"lf>rt<"bottom"ip><"clear">',
+                dom: '<"top"lf>rt<"bottom"ip><"clear">',
                 info: true,
                 paging: true,
                 responsive: true,
@@ -179,8 +179,6 @@ var DataTables = (function () {
 
             $('.datatable').each(function() {
                 var dataTableInfo = $(this).closest('.data-table');
-                //dataTableInfo.find('.toolbar').html('<h5 class="zero-m">' + $(this).data('title') + '</h5>');
-                dataTableInfo.find('.toolbar').css('display', 'none');
                 dataTableInfo.find('.dataTables_filter input').attr("placeholder", $(this).data('search'));
             });
         }

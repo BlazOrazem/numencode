@@ -32,8 +32,9 @@ class Gulp extends Command
         $process = new Process($command);
         $process->run();
 
+        $success = $process->isSuccessful() ? 'Gulp for the admin theme executed successfully.' : 'Error executing Gulp for the admin theme.';
         $output = $process->getOutput();
 
-        $this->comment(strip_tags($output));
+        $this->comment(strip_tags($success));
     }
 }

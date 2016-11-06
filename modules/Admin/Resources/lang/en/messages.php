@@ -14,7 +14,8 @@ return [
     */
 
     'success' => 'Success',
-    'error'   => 'Error',
+    'error' => 'Error',
+    'error_notice' => 'An unexpected error occurred while performing this action.',
 
     'codelist' => [
         'index' => 'Back to Codelist',
@@ -34,6 +35,7 @@ return [
     'roles' => [
         'create' => 'Create new role',
         'created' => 'Role :name created.',
+        'deleted' => 'Role has been successfully deleted.',
     ],
 
     'permissions' => [
