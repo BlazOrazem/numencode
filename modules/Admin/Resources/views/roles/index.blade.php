@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal role-new">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
@@ -55,6 +55,33 @@
                     </form>
                 </div>
             </div>
+
+            @section('scripts')
+                <script>
+                    $(function(){
+                        $('.role-new').on('submit',function(e){
+                            $.ajaxSetup({
+                                header:$('meta[name="_token"]').attr('content')
+                            });
+                            e.preventDefault(e);
+
+                            $.ajax({
+
+                                type:"POST",
+                                url: "{{ route('roles.store') }}",
+                                data: $(this).serialize(),
+                                dataType: 'json',
+                                success: function(data){
+                                    console.log(data);
+                                },
+                                error: function(data){
+
+                                }
+                            })
+                        });
+                    });
+                </script>
+            @endsection
 
             <div class="data-table data-success content-box" data-id="roles">
                 <div class="head success-bg clearfix">

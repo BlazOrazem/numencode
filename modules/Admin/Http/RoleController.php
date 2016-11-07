@@ -2,7 +2,6 @@
 
 namespace Admin\Http;
 
-use Validator;
 use Numencode\Models\Role;
 use Numencode\Models\Permission;
 
@@ -28,15 +27,13 @@ class RoleController extends BaseController
      */
     public function store()
     {
-        $validator = Validator::make(request()->all(), [
+        $this->validateWithBag('roleErrors', request(), [
             'name' => 'required|unique:roles',
             'label' => 'required',
             'sort_order'  => 'integer'
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator, 'roleErrors');
-        }
+        if(request()->ajax()) return ['success' => true];
 
         if (Role::create(request()->all())) {
             flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->title]));
