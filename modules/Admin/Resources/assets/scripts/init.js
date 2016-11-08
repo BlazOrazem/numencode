@@ -20,4 +20,5 @@ $(document).ready(function() {
 
     FullScreenMode.init();
 
+    Form.init();
 });

@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal role-new">
+                    <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
@@ -55,65 +55,6 @@
                     </form>
                 </div>
             </div>
-
-            @section('scripts')
-                <script>
-                    $(function(){
-                        $('.role-new').bind('submit', function(e) {
-                            e.preventDefault(e);
-                            validateForm($(this));
-                        });
-
-                        $('.role-new input').bind('blur', function() {
-                            validateInputField($(this));
-                        });
-
-                        function validateInputField(field) {
-                            var form = field.closest('form');
-                            var fieldName = field.attr('name');
-
-                            http.post(form.attr('action'), Form.serialize(form))
-                                .success(function() {
-                                    Form.successFor(Form.getGroupFor(form, fieldName));
-                                })
-                                .error(function(data) {
-                                    var errors = Form.errors(data);
-                                    var item = Form.getGroupFor(form, fieldName);
-
-                                    if ($(item).hasClass('has-error')) {
-                                        Form.successFor(item);
-                                    }
-
-                                    $.each(errors, function(name, error) {
-                                        if (name == fieldName) {
-                                            Form.failFor(Form.getGroupFor(form, fieldName), error);
-                                        }
-                                    });
-                                });
-                        }
-
-                        function validateForm(form) {
-                            http.post(form.attr('action'), Form.serialize(form))
-                                .success(function() {
-                                    form[0].submit();
-                                })
-                                .error(function(data) {
-                                    $.each(Form.getAllGroups(form), function(key, item) {
-                                        if ($(item).hasClass('has-error')) {
-                                            Form.successFor(item);
-                                        }
-                                    });
-
-                                    var errors = Form.errors(data);
-
-                                    $.each(errors, function(fieldName, error) {
-                                        Form.failFor(Form.getGroupFor(form, fieldName), error);
-                                    });
-                                });
-                        }
-                    });
-                </script>
-            @stop
 
             <div class="data-table data-success content-box" data-id="roles">
                 <div class="head success-bg clearfix">
