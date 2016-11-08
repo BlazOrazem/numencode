@@ -4,8 +4,6 @@ namespace Numencode\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,17 +44,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof ModelNotFoundException) {
-            $exception = new NotFoundHttpException($exception->getMessage(), $exception);
-        }
-
-        if ($request->wantsJson()) {
-            return response([
-                'success' => false,
-                'message' => $exception->getMessage(),
-            ], 404);
-        }
-
         return parent::render($request, $exception);
     }
 

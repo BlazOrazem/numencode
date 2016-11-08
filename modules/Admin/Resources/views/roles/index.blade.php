@@ -60,24 +60,34 @@
                 <script>
                     $(function(){
                         $('.role-new').on('submit',function(e){
-                            $.ajaxSetup({
-                                header:$('meta[name="_token"]').attr('content')
-                            });
                             e.preventDefault(e);
 
-                            $.ajax({
+                            var form = $(this);
 
-                                type:"POST",
-                                url: "{{ route('roles.store') }}",
-                                data: $(this).serialize(),
-                                dataType: 'json',
-                                success: function(data){
-                                    console.log(data);
-                                },
-                                error: function(data){
+                            http.post("{{ route('roles.store') }}", Form.serialize(form))
+                                .success(function() {
+                                    $('.role-new')[0].submit();
+                                })
+                                .error(function(data) {
+                                    $.each(form.find('.form-group'), function(key, item) {
+                                        if ($(item).hasClass('has-error')) {
+                                            $(item).removeClass('has-error');
+                                            $(item).find('label').addClass('success-color');
+                                            $(item).find('input').addClass('input-success');
+                                            $(item).find('.help-block').html('');
+                                        }
+                                    });
 
-                                }
-                            })
+                                    var errors = $.parseJSON(data.responseText);
+
+                                    $.each(errors, function(index, value) {
+                                        var item = form.find('[name='+index+']').closest('.form-group');
+                                        $(item).find('label').removeClass('success-color');
+                                        $(item).find('input').removeClass('input-success');
+                                        item.addClass('has-error');
+                                        item.find('.help-block').html(value.join(' '));
+                                    });
+                                });
                         });
                     });
                 </script>

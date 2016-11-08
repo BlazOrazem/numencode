@@ -33,7 +33,10 @@ class RoleController extends BaseController
             'sort_order'  => 'integer'
         ]);
 
-        if(request()->ajax()) return ['success' => true];
+//        if (request()->ajax()) return ['success' => true];
+        if (request()->ajax()) {
+            return ['success' => true];
+        }
 
         if (Role::create(request()->all())) {
             flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->title]));

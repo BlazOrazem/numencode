@@ -68,6 +68,7 @@ elixir(function(mix) {
 
     mix.scripts([
         adminResources + 'scripts/general.js',
+        adminResources + 'scripts/http.js',
         adminResources + 'scripts/app.js',
         adminResources + 'scripts/init.js'
     ], publicPath + 'js/app.js')
