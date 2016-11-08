@@ -337,18 +337,3 @@ var FullScreenMode = (function () {
         }
     };
 })();
-
-var Form = (function () {
-    return {
-        serialize: function (form) {
-            var data = form.serializeArray();
-            var result = {};
-
-            $.each(data, function(key, item) {
-                result[item.name] = item.value;
-            });
-
-            return result;
-        }
-    };
-})();

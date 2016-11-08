@@ -59,39 +59,61 @@
             @section('scripts')
                 <script>
                     $(function(){
-                        $('.role-new').on('submit',function(e){
+                        $('.role-new').bind('submit', function(e) {
                             e.preventDefault(e);
+                            validateForm($(this));
+                        });
 
-                            var form = $(this);
+                        $('.role-new input').bind('blur', function() {
+                            validateInputField($(this));
+                        });
 
-                            http.post("{{ route('roles.store') }}", Form.serialize(form))
+                        function validateInputField(field) {
+                            var form = field.closest('form');
+                            var fieldName = field.attr('name');
+
+                            http.post(form.attr('action'), Form.serialize(form))
                                 .success(function() {
-                                    $('.role-new')[0].submit();
+                                    Form.successFor(Form.getGroupFor(form, fieldName));
                                 })
                                 .error(function(data) {
-                                    $.each(form.find('.form-group'), function(key, item) {
+                                    var errors = Form.errors(data);
+                                    var item = Form.getGroupFor(form, fieldName);
+
+                                    if ($(item).hasClass('has-error')) {
+                                        Form.successFor(item);
+                                    }
+
+                                    $.each(errors, function(name, error) {
+                                        if (name == fieldName) {
+                                            Form.failFor(Form.getGroupFor(form, fieldName), error);
+                                        }
+                                    });
+                                });
+                        }
+
+                        function validateForm(form) {
+                            http.post(form.attr('action'), Form.serialize(form))
+                                .success(function() {
+                                    form[0].submit();
+                                })
+                                .error(function(data) {
+                                    $.each(Form.getAllGroups(form), function(key, item) {
                                         if ($(item).hasClass('has-error')) {
-                                            $(item).removeClass('has-error');
-                                            $(item).find('label').addClass('success-color');
-                                            $(item).find('input').addClass('input-success');
-                                            $(item).find('.help-block').html('');
+                                            Form.successFor(item);
                                         }
                                     });
 
-                                    var errors = $.parseJSON(data.responseText);
+                                    var errors = Form.errors(data);
 
-                                    $.each(errors, function(index, value) {
-                                        var item = form.find('[name='+index+']').closest('.form-group');
-                                        $(item).find('label').removeClass('success-color');
-                                        $(item).find('input').removeClass('input-success');
-                                        item.addClass('has-error');
-                                        item.find('.help-block').html(value.join(' '));
+                                    $.each(errors, function(fieldName, error) {
+                                        Form.failFor(Form.getGroupFor(form, fieldName), error);
                                     });
                                 });
-                        });
+                        }
                     });
                 </script>
-            @endsection
+            @stop
 
             <div class="data-table data-success content-box" data-id="roles">
                 <div class="head success-bg clearfix">

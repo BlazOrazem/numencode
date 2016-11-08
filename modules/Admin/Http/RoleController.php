@@ -33,7 +33,6 @@ class RoleController extends BaseController
             'sort_order'  => 'integer'
         ]);
 
-//        if (request()->ajax()) return ['success' => true];
         if (request()->ajax()) {
             return ['success' => true];
         }
