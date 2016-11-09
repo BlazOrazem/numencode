@@ -68,20 +68,41 @@ class CodelistController extends BaseController
     {
         $codelistGroup = CodelistGroup::findOrFail($id);
 
-        $validator = Validator::make(request()->all(), [
+        $this->validateWithBag('groupErrors', request(), [
             'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
             'sort_order' => 'required|integer',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator, 'groupErrors');
+        if (request()->ajax()) {
+            return ajaxSuccess();
         }
 
         if ($codelistGroup->update(request()->all())) {
             flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_updated', ['name' => request()->title]));
         }
 
-        return redirect()->route('codelist.index');
+        return redirect(route('roles.index'));
+
+
+
+
+
+
+//        $validator = Validator::make(request()->all(), [
+//            'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
+//            'sort_order' => 'required|integer',
+//        ]);
+
+//        if ($validator->fails()) {
+//            return redirect()->back()->withErrors($validator, 'groupErrors');
+//        }
+
+//        if ($codelistGroup->update(request()->all())) {
+//            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_updated', ['name' => request()->title]));
+//        }
+//
+//        return redirect()->route('codelist.index');
+
     }
 
     /**

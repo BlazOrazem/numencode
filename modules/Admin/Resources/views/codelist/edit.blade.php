@@ -18,14 +18,17 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('codelist.update', [$codelistGroup]) }}" class="form-inline">
+                    <form method="POST" action="{{ route('codelist.update', [$codelistGroup]) }}" class="form-inline form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        <div class="form-group{{ $errors->groupErrors->has('title') ? ' has-error' : '' }}">
-                            <label for="codelistEditTitle" class="control-label">Title</label>
-                            <input type="text" name="title" value="{{ old('title', $codelistGroup->title) }}" class="form-control" id="codelistEditTitle" placeholder="Enter group title" required>
-                            <span class="help-block">{{ $errors->groupErrors->first('title', ':message') }}</span>
-                        </div>
+                        @include ('admin::components.form.text', [
+                            'label' => 'Title',
+                            'field' => 'title',
+                            'placeholder' => 'Enter group title',
+                            'errors' => $errors->groupErrors,
+                            'item' => $codelistGroup,
+                            'inline' => true,
+                        ])
                         <div class="form-group{{ $errors->groupErrors->has('sort_order') ? ' has-error' : '' }}">
                             <label for="codelistEditOrder" class="control-label">Order</label>
                             <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroup->sort_order) }}" class="form-control" id="codelistEditOrder" placeholder="Set order" required>
