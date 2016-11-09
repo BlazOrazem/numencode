@@ -30,11 +30,11 @@ class RoleController extends BaseController
         $this->validateWithBag('roleErrors', request(), [
             'name' => 'required|unique:roles',
             'label' => 'required',
-            'sort_order'  => 'integer'
+            'sort_order'  => 'required|integer'
         ]);
 
         if (request()->ajax()) {
-            return ['success' => true];
+            return ajaxSuccess();
         }
 
         if (Role::create(request()->all())) {

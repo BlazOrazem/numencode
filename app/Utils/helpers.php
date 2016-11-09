@@ -70,6 +70,21 @@ if (!function_exists('reportError'))
 }
 
 /**
+ * Standardized successful Ajax response.
+ *
+ * @return array
+ */
+if (!function_exists('ajaxSuccess'))
+{
+    function ajaxSuccess()
+    {
+        return [
+            'success' => true,
+        ];
+    }
+}
+
+/**
  * Return URL for the large avatar image, given from any social network.
  *
  * @param string $avatarUrl

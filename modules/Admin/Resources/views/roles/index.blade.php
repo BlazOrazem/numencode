@@ -22,34 +22,27 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group{{ $errors->roleErrors->has('name') ? ' has-error' : '' }}">
-                                    <label for="roleNewName" class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="roleNewName" placeholder="Enter role name">
-                                        <span class="help-block">{{ $errors->roleErrors->first('name', ':message') }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group{{ $errors->roleErrors->has('label') ? ' has-error' : '' }}">
-                                    <label for="roleNewLabel" class="col-sm-2 control-label">Label</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="label" value="{{ old('label') }}" class="form-control" id="roleNewLabel" placeholder="Enter role label">
-                                        <span class="help-block">{{ $errors->roleErrors->first('label', ':message') }}</span>
-                                    </div>
-                                </div>
+                                @include ('admin::components.form.text', [
+                                    'label' => 'Name',
+                                    'field' => 'name',
+                                    'placeholder' => 'Enter role name',
+                                    'errors' => $errors->roleErrors,
+                                ])
+                                @include ('admin::components.form.text', [
+                                    'label' => 'Label',
+                                    'field' => 'label',
+                                    'placeholder' => 'Enter role label',
+                                    'errors' => $errors->roleErrors,
+                                ])
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group{{ $errors->roleErrors->has('sort_order') ? ' has-error' : '' }}">
-                                    <label for="itemNewOrder" class="col-sm-2 control-label">Order</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="sort_order" value="{{ old('sort_order', $roles->pluck('sort_order')->last() + 10) }}" class="form-control" id="itemNewOrder" placeholder="Set order">
-                                        <p class="help-block">{{ $errors->roleErrors->first('sort_order', ':message') }}</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-10 col-sm-offset-2">
-                                        <button type="submit" class="btn btn-md btn-success">{{ trans('admin::messages.roles.create') }}</button>
-                                    </div>
-                                </div>
+                                @include ('admin::components.form.order', [
+                                    'errors' => $errors->roleErrors,
+                                    'next' => $roles->pluck('sort_order')->last() + 10
+                                ])
+                                @include ('admin::components.form.submit', [
+                                    'button' => trans('admin::messages.roles.create'),
+                                ])
                             </div>
                         </div>
                     </form>

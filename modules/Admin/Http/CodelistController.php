@@ -18,7 +18,7 @@ class CodelistController extends BaseController
     {
         $codelistGroups = CodelistGroup::with('items')->get();
 
-        return view('admin::codelist.index', compact('codelistGroups', 'lastOrder'));
+        return view('admin::codelist.index', compact('codelistGroups'));
     }
 
     /**
@@ -30,12 +30,17 @@ class CodelistController extends BaseController
     {
         $this->validate(request(), [
             'title' => 'required|unique:codelist_group',
-            'sort_order'  => 'integer'
+            'sort_order' => 'required|integer'
         ]);
 
-        CodelistGroup::create(request()->all());
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
 
-        flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_created', ['name' => request()->title]));
+        if (CodelistGroup::create(request()->all())) {
+            flash()->success(trans('admin::messages.success'),
+                trans('admin::messages.codelist.group_created', ['name' => request()->title]));
+        }
 
         return redirect(route('codelist.index'));
     }
@@ -65,7 +70,7 @@ class CodelistController extends BaseController
 
         $validator = Validator::make(request()->all(), [
             'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
-            'sort_order'  => 'integer',
+            'sort_order' => 'required|integer',
         ]);
 
         if ($validator->fails()) {

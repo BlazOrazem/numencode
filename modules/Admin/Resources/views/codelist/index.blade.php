@@ -70,27 +70,20 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('codelist.store') }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('codelist.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="codelistNewTitle" class="col-sm-2 control-label">{{ trans('admin::forms.title') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="codelistNewTitle" placeholder="Enter group title" required>
-                                <p class="help-block">{{ $errors->first('title', ':message') }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="codelistNewOrder" class="col-sm-2 control-label">{{ trans('admin::forms.order') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroups->pluck('sort_order')->last() + 10) }}" class="form-control" id="codelistNewOrder" placeholder="Set order" required>
-                                <p class="help-block">{{ $errors->first('sort_order', ':message') }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-info">{{ trans('admin::messages.codelist.group_create') }}</button>
-                            </div>
-                        </div>
+                        @include ('admin::components.form.text', [
+                            'label' => 'Title',
+                            'field' => 'title',
+                            'placeholder' => 'Enter group title',
+                        ])
+                        @include ('admin::components.form.order', [
+                            'errors' => $errors->roleErrors,
+                            'next' => $codelistGroups->pluck('sort_order')->last() + 10
+                        ])
+                        @include ('admin::components.form.submit', [
+                            'button' => trans('admin::messages.codelist.group_create'),
+                        ])
                     </form>
                 </div>
             </div>
