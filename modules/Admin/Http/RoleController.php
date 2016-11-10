@@ -41,7 +41,7 @@ class RoleController extends BaseController
             flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->title]));
         }
 
-        return redirect(route('roles.index'));
+        return redirect()->route('roles.index');
     }
 
     /**

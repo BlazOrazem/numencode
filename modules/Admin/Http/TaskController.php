@@ -61,7 +61,7 @@ class TaskController extends BaseController
 
         flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.created'));
 
-        return redirect(route('tasks.index'));
+        return redirect()->route('tasks.index');
     }
     
     /**

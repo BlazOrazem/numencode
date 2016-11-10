@@ -59,7 +59,7 @@ class AuthController extends BaseController
 
         flash()->success(trans('messages.login.title', ['name' => $manager->name]), trans('messages.login.content'));
 
-        return isset($request->ref) ? redirect(route($request->ref)) : redirect($this->redirectPath);
+        return isset($request->ref) ? redirect($request->ref) : redirect($this->redirectPath);
     }
 
     /**

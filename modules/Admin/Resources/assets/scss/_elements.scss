@@ -1403,6 +1403,10 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
   label {
     padding-right: 10px;
   }
+  .help-block {
+    text-align: right;
+    min-height: 20px;
+  }
 }
 
 label{

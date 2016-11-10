@@ -162,12 +162,12 @@ table.display{
     min-width: 40px;
   }
   thead tr{
-    text-transform: uppercase;
     background: $dark-grey;
     color: $white;
     th{
       padding-left: 20px;
       border: 0;
+      font-weight: 400;
       &.sorting,
       &.sorting_asc,
       &.sorting_desc {

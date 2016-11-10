@@ -42,7 +42,7 @@ class CodelistController extends BaseController
                 trans('admin::messages.codelist.group_created', ['name' => request()->title]));
         }
 
-        return redirect(route('codelist.index'));
+        return redirect()->route('codelist.index');
     }
 
     /**
@@ -81,28 +81,7 @@ class CodelistController extends BaseController
             flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_updated', ['name' => request()->title]));
         }
 
-        return redirect(route('roles.index'));
-
-
-
-
-
-
-//        $validator = Validator::make(request()->all(), [
-//            'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
-//            'sort_order' => 'required|integer',
-//        ]);
-
-//        if ($validator->fails()) {
-//            return redirect()->back()->withErrors($validator, 'groupErrors');
-//        }
-
-//        if ($codelistGroup->update(request()->all())) {
-//            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_updated', ['name' => request()->title]));
-//        }
-//
-//        return redirect()->route('codelist.index');
-
+        return redirect()->back();
     }
 
     /**

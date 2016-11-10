@@ -14,6 +14,6 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        return redirect(route('roles.index'));
+        return redirect()->route('roles.index');
     }
 }

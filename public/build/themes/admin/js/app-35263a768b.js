@@ -470,7 +470,7 @@ $(document).ready(function() {
 var Form = (function () {
 
     /**
-     * Define form class names, currently set for Bootstrap 3 admin theme.
+     * Define form classes, currently set for Bootstrap 3 admin theme.
      */
     var _formValidate = 'form-validate';
     var _successColor = 'success-color';

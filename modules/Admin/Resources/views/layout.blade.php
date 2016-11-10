@@ -54,7 +54,7 @@
         </div>
         <div class="navbar-container clearfix">
             <div class="pull-left">
-                <a href="{{ Request::url() }}" class="page-title text-uppercase">@yield('title')</a>
+                <a href="{{ Request::url() }}" class="page-title">@yield('title')</a>
             </div>
 
             <div class="pull-right">

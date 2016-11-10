@@ -2137,12 +2137,12 @@ table.display {
   table.display .btn {
     min-width: 40px; }
   table.display thead tr {
-    text-transform: uppercase;
     background: #616161;
     color: #fff; }
     table.display thead tr th {
       padding-left: 20px;
-      border: 0; }
+      border: 0;
+      font-weight: 400; }
       table.display thead tr th.sorting.text-right, table.display thead tr th.sorting_asc.text-right, table.display thead tr th.sorting_desc.text-right {
         padding-right: 22px; }
   table.display tbody tr, table.display tbody tr td {
@@ -5520,6 +5520,10 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 
 .form-inline label {
   padding-right: 10px; }
+
+.form-inline .help-block {
+  text-align: right;
+  min-height: 20px; }
 
 label {
   font-weight: 500;

@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    Codelist
+    Codelist Management
 @stop
 
 @section('content')
@@ -29,15 +29,16 @@
                             'item' => $codelistGroup,
                             'inline' => true,
                         ])
-                        <div class="form-group{{ $errors->groupErrors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="codelistEditOrder" class="control-label">Order</label>
-                            <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroup->sort_order) }}" class="form-control" id="codelistEditOrder" placeholder="Set order" required>
-                            <span class="help-block">{{ $errors->groupErrors->first('sort_order', ':message') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-md btn-info">{{ trans('admin::messages.codelist.group_update') }}</button>
-                            <span class="help-block"></span>
-                        </div>
+                        @include ('admin::components.form.order', [
+                            'errors' => $errors->groupErrors,
+                            'next' => $codelistGroup->sort_order,
+                            'inline' => true,
+                        ])
+                        @include ('admin::components.form.submit', [
+                            'button' => trans('admin::messages.codelist.group_update'),
+                            'type' => 'info',
+                            'inline' => true,
+                        ])
                     </form>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                     <tr>
                         <th>{{ trans('admin::tables.title') }}</th>
                         <th>{{ trans('admin::tables.code') }}</th>
-                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
+                        <th>{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
                             <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif

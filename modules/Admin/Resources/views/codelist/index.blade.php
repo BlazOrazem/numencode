@@ -21,7 +21,7 @@
                     <thead>
                     <tr>
                         <th>{{ trans('admin::tables.title') }}</th>
-                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
+                        <th>{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
                             <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
                         @endif
