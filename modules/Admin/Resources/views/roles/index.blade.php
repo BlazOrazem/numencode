@@ -81,7 +81,7 @@
                             <td>{{ $item->is_admin }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.edit', [
+                                    @include ('admin::components.button.edit', [
                                         'action' => route('roles.edit', compact('item')),
                                         'icon' => 'zmdi-collection-text'
                                     ])
@@ -90,7 +90,7 @@
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
                                     @if ($item->isDeletable())
-                                        @include ('admin::components.delete', [
+                                        @include ('admin::components.button.delete', [
                                             'action' => route('roles.destroy', compact('item'))
                                         ])
                                     @endif
@@ -181,14 +181,14 @@
                             <td class="text-right">{{ $item->sort_order }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.edit', [
+                                    @include ('admin::components.button.edit', [
                                         'action' => route('permissions.edit', compact('item'))
                                     ])
                                 </td>
                             @endif
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.delete', [
+                                    @include ('admin::components.button.delete', [
                                         'action' => route('permissions.destroy', compact('item'))
                                     ])
                                 </td>

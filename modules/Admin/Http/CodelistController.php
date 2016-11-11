@@ -114,7 +114,7 @@ class CodelistController extends BaseController
     {
         $codelistGroup = CodelistGroup::findOrFail($id);
 
-        $validator = Validator::make(request()->all(), [
+        $this->validateWithBag('itemErrors', request(), [
             'code' => [
                 'required',
                 Rule::unique('codelist_item')->where(function ($query) use ($codelistGroup) {
@@ -122,16 +122,16 @@ class CodelistController extends BaseController
                 })
             ],
             'title' => 'required',
-            'sort_order' => 'integer'
+            'sort_order' => 'required|integer'
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator, 'itemErrors');
+        if (request()->ajax()) {
+            return ajaxSuccess();
         }
 
-        CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save();
-
-        flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_created', ['name' => request()->title]));
+        if (CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save()) {
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_created', ['name' => request()->title]));
+        }
 
         return redirect()->back();
     }

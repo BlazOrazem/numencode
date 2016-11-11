@@ -26,7 +26,7 @@
                             'field' => 'title',
                             'placeholder' => 'Enter group title',
                             'errors' => $errors->groupErrors,
-                            'item' => $codelistGroup,
+                            'entity' => $codelistGroup,
                             'inline' => true,
                         ])
                         @include ('admin::components.form.order', [
@@ -79,14 +79,14 @@
                             <td class="text-right">{{ $item->sort_order }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.edit', [
+                                    @include ('admin::components.button.edit', [
                                         'action' => route('codelist.item.edit', compact('item'))
                                     ])
                                 </td>
                             @endif
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.delete', [
+                                    @include ('admin::components.button.delete', [
                                         'action' => route('codelist.item.destroy', compact('item'))
                                     ])
                                 </td>
@@ -108,34 +108,27 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('codelist.item.create', [$codelistGroup]) }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('codelist.item.create', [$codelistGroup]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->itemErrors->has('title') ? ' has-error' : '' }}">
-                            <label for="itemNewTitle" class="col-sm-2 control-label">{{ trans('admin::forms.title') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="itemNewTitle" placeholder="Enter title">
-                                <span class="help-block">{{ $errors->itemErrors->first('title', ':message') }}</span>
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->itemErrors->has('code') ? ' has-error' : '' }}">
-                            <label for="itemNewCode" class="col-sm-2 control-label">{{ trans('admin::forms.code') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="code" value="{{ old('code') }}" class="form-control" id="itemNewCode" placeholder="Enter code">
-                                <span class="help-block">{{ $errors->itemErrors->first('code', ':message') }}</span>
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->itemErrors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="itemNewOrder" class="col-sm-2 control-label">{{ trans('admin::forms.order') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sort_order" value="{{ old('sort_order', $codelistGroup->items->pluck('sort_order')->last() + 10) }}" class="form-control" id="itemNewOrder" placeholder="Set order">
-                                <p class="help-block">{{ $errors->itemErrors->first('sort_order', ':message') }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-md btn-success">{{ trans('admin::messages.codelist.item_create') }}</button>
-                            </div>
-                        </div>
+                        @include ('admin::components.form.text', [
+                            'label' => 'Title',
+                            'field' => 'title',
+                            'placeholder' => 'Enter title',
+                            'errors' => $errors->itemErrors,
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => 'Code',
+                            'field' => 'code',
+                            'placeholder' => 'Enter code',
+                            'errors' => $errors->itemErrors,
+                        ])
+                        @include ('admin::components.form.order', [
+                            'errors' => $errors->itemErrors,
+                            'next' => $codelistGroup->items->pluck('sort_order')->last() + 10,
+                        ])
+                        @include ('admin::components.form.submit', [
+                            'button' => trans('admin::messages.codelist.item_create'),
+                        ])
                     </form>
                 </div>
             </div>

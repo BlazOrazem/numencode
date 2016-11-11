@@ -39,14 +39,14 @@
                             <td class="text-right">{{ $item->sort_order }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.edit', [
+                                    @include ('admin::components.button.edit', [
                                         'action' => route('codelist.item.edit', compact('item'))
                                     ])
                                 </td>
                             @endif
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.delete', [
+                                    @include ('admin::components.button.delete', [
                                         'action' => route('codelist.item.destroy', compact('item'))
                                     ])
                                 </td>

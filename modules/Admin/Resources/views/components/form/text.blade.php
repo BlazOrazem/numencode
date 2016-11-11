@@ -12,7 +12,7 @@
 
         <input type="text"
                name="{{ $field }}"
-               value="{{ old($field, (isset($item) ? $item->$field : '')) }}"
+               value="{{ old($field, (isset($entity) ? $entity->$field : '')) }}"
                class="form-control{{ isset($class) ? ' ' . $class : '' }}"
                id="{{ $fieldId }}"
                placeholder="{{ $placeholder }}"

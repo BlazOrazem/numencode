@@ -37,7 +37,7 @@
                             <td class="text-right">{{ $group->sort_order }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.edit', [
+                                    @include ('admin::components.button.edit', [
                                         'action' => route('codelist.edit', compact('group')),
                                         'icon' => 'zmdi-collection-text'
                                     ])
@@ -46,7 +46,7 @@
                             @if ($admin->can('delete_managers'))
                                 <td class="text-center">
                                     @if (!$group->items->count())
-                                        @include ('admin::components.delete', [
+                                        @include ('admin::components.button.delete', [
                                             'action' => route('codelist.destroy', compact('group'))
                                         ])
                                     @endif
