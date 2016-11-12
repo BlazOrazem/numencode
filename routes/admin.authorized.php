@@ -23,11 +23,11 @@ Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
 Route::resource('tasks', 'TaskController');
 
 // Codelist
+Route::post('codelist/item/{group}', 'CodelistController@storeItem')->name('codelist.item.create');
+Route::patch('codelist/item/{item}', 'CodelistController@updateItem')->name('codelist.item.update');
+Route::delete('codelist/item/{item}', 'CodelistController@destroyItem')->name('codelist.item.destroy');
+Route::get('codelist/item/{item}/edit', 'CodelistController@editItem')->name('codelist.item.edit');
 Route::resource('codelist', 'CodelistController');
-Route::post('codelist_item/{group}', 'CodelistController@storeItem')->name('codelist.item.create');
-Route::patch('codelist_item/{item}', 'CodelistController@updateItem')->name('codelist.item.update');
-Route::delete('codelist_item/{item}', 'CodelistController@destroyItem')->name('codelist.item.destroy');
-Route::get('codelist_item/{item}/edit', 'CodelistController@editItem')->name('codelist.item.edit');
 
 // Roles and Permissions
 Route::resource('roles', 'RoleController');

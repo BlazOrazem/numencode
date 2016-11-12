@@ -69,35 +69,31 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('codelist.item.update', [$codelistItem]) }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('codelist.item.update', [$codelistItem]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="itemUpdateTitle" class="col-sm-2 control-label">{{ trans('admin::forms.title') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="title" value="{{ old('title', $codelistItem->title) }}" class="form-control" id="itemUpdateTitle" placeholder="Enter title" required>
-                                <p class="help-block">{{ $errors->first('title', ':message') }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                            <label for="itemUpdateCode" class="col-sm-2 control-label">{{ trans('admin::forms.code') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="code" value="{{ old('code', $codelistItem->code) }}" class="form-control" id="itemUpdateCode" placeholder="Enter code" required>
-                                <p class="help-block">{{ $errors->first('code', ':message') }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
-                            <label for="itemUpdateOrder" class="col-sm-2 control-label">{{ trans('admin::forms.order') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sort_order" value="{{ old('sort_order', $codelistItem->sort_order) }}" class="form-control" id="itemUpdateOrder" placeholder="Set order" required>
-                                <p class="help-block">{{ $errors->first('sort_order', ':message') }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-md btn-warning">{{ trans('admin::messages.codelist.item_update') }}</button>
-                            </div>
-                        </div>
+                        @include ('admin::components.form.text', [
+                            'label' => 'Title',
+                            'field' => 'title',
+                            'placeholder' => 'Enter title',
+                            'errors' => $errors->itemErrors,
+                            'entity' => $codelistItem,
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => 'Code',
+                            'field' => 'code',
+                            'placeholder' => 'Enter code',
+                            'errors' => $errors->itemErrors,
+                            'entity' => $codelistItem,
+                        ])
+                        @include ('admin::components.form.order', [
+                            'errors' => $errors->itemErrors,
+                            'next' => $codelistItem->sort_order,
+                        ])
+                        @include ('admin::components.form.submit', [
+                            'button' => trans('admin::messages.codelist.item_update'),
+                            'type' => 'warning',
+                        ])
                     </form>
                 </div>
             </div>

@@ -172,8 +172,13 @@ class CodelistController extends BaseController
             'sort_order'  => 'integer'
         ]);
 
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
+
         if ($codelistItem->update(request()->all())) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_updated', ['name' => request()->title]));
+            flash()->success(trans('admin::messages.success'),
+                trans('admin::messages.codelist.item_updated', ['name' => request()->title]));
         }
 
         return redirect()->back();
