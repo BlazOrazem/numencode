@@ -48,72 +48,6 @@
                 </div>
             </div>
 
-            <div class="data-table data-info content-box">
-                <div class="head info-bg clearfix">
-                    <h5 class="content-title pull-left">Managers with role: {{ $role->name }}</h5>
-
-                    <div class="functions-btns pull-right">
-                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
-                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                    </div>
-                </div>
-                <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
-                    <thead>
-                    <tr>
-                        <th class="no-sort">{{ trans('admin::tables.picture') }}</th>
-                        <th>{{ trans('admin::tables.name') }}</th>
-                        <th>{{ trans('admin::tables.email') }}</th>
-                        <th>{{ trans('admin::tables.phone') }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($role->managers as $item)
-                        <tr>
-                            <td>
-                                <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
-                            </td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->phone }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="data-table data-success content-box">
-                <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">Users with role: {{ $role->name }}</h5>
-
-                    <div class="functions-btns pull-right">
-                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
-                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                    </div>
-                </div>
-                <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
-                    <thead>
-                    <tr>
-                        <th class="no-sort">{{ trans('admin::tables.picture') }}</th>
-                        <th>{{ trans('admin::tables.name') }}</th>
-                        <th>{{ trans('admin::tables.email') }}</th>
-                        <th>{{ trans('admin::tables.phone') }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($role->users as $item)
-                        <tr>
-                            <td>
-                                <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
-                            </td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->phone }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-
             <div class="content-box">
                 <div class="content text-center">
                     <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('roles.index') }}">
@@ -122,6 +56,76 @@
                     </a>
                 </div>
             </div>
+
+            @if ($role->is_admin)
+                <div class="data-table data-info content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Managers with role: {{ $role->name }}</h5>
+
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        </div>
+                    </div>
+                    <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+                        <thead>
+                        <tr>
+                            <th class="no-sort">{{ trans('admin::tables.picture') }}</th>
+                            <th>{{ trans('admin::tables.name') }}</th>
+                            <th>{{ trans('admin::tables.email') }}</th>
+                            <th>{{ trans('admin::tables.phone') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($role->managers as $item)
+                            <tr>
+                                <td>
+                                    <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
+                                </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->phone }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+
+            @if (!$role->is_admin)
+                <div class="data-table data-info content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Users with role: {{ $role->name }}</h5>
+
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        </div>
+                    </div>
+                    <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+                        <thead>
+                        <tr>
+                            <th class="no-sort">{{ trans('admin::tables.picture') }}</th>
+                            <th>{{ trans('admin::tables.name') }}</th>
+                            <th>{{ trans('admin::tables.nickname') }}</th>
+                            <th>{{ trans('admin::tables.email') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($role->users as $item)
+                            <tr>
+                                <td>
+                                    <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
+                                </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->nickname }}</td>
+                                <td>{{ $item->email }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
 
         <div class="col-lg-6">

@@ -11,6 +11,7 @@ return [
     'picture' => 'Picture',
     'email' => 'E-mail',
     'phone' => 'Phone',
+    'nickname' => 'Nickname',
 
     'edit' => 'Edit',
     'manage' => 'Manage',

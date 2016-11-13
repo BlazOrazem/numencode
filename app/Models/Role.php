@@ -33,7 +33,8 @@ class Role extends Model
 	 */
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class, 'role_permission');
+        return $this->belongsToMany(Permission::class, 'role_permission')
+            ->where('is_admin', $this->is_admin);
     }
 
 	/**

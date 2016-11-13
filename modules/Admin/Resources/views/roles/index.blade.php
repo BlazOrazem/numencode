@@ -38,7 +38,13 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
                             <td class="text-right">{{ $item->sort_order }}</td>
-                            <td>{{ $item->is_admin }}</td>
+                            <td class="text-center text-success">
+                                @if ($item->is_admin)
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="zmdi zmdi-shield-check"></i>
+                                    </button>
+                                @endif
+                            </td>
                             @if ($admin->can('edit_roles'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [

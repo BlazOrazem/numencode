@@ -53,8 +53,8 @@ class RoleController extends BaseController
      */
     public function edit($id)
     {
-        $role = Role::findOrFail($id)->with('permissions', 'managers', 'users')->first();
-        $permissions = Permission::all();
+        $role = Role::with('permissions', 'managers', 'users')->findOrFail($id);
+        $permissions = Permission::where('is_admin', $role->is_admin)->get();
 
         return view('admin::roles.edit', compact('role', 'permissions'));
     }
