@@ -8,41 +8,37 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-lg-6">
             <div class="content-box">
-                <div class="head info-bg clearfix">
-                    <h5 class="content-title pull-left">Update permission : {{ $permission->name }}</h5>
+                <div class="head success-bg clearfix">
+                    <h5 class="content-title pull-left">{{ trans('admin::roles.permission.update') }}: {{ $permission->name }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('permissions.update', [$permission]) }}" class="form-inline form-validate">
+                    <form method="POST" action="{{ route('permissions.update', [$permission]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include ('admin::components.form.text', [
-                            'label' => 'Name',
+                            'label' => trans('admin::forms.name'),
                             'field' => 'name',
-                            'placeholder' => 'Enter permission name',
+                            'placeholder' => trans('admin::roles.placeholder.permission_name'),
                             'entity' => $permission,
-                            'inline' => true,
                         ])
                         @include ('admin::components.form.text', [
-                            'label' => 'Label',
+                            'label' => trans('admin::forms.label'),
                             'field' => 'label',
-                            'placeholder' => 'Enter permission label',
+                            'placeholder' => trans('admin::roles.placeholder.permission_label'),
                             'entity' => $permission,
-                            'inline' => true,
                         ])
                         @include ('admin::components.form.order', [
                             'sortOrder' => $permission->sort_order,
-                            'inline' => true,
                         ])
                         @include ('admin::components.form.submit', [
-                            'button' => trans('admin::messages.permissions.update'),
-                            'type' => 'info',
-                            'inline' => true,
+                            'button' => trans('admin::roles.permission.update'),
                         ])
                     </form>
                 </div>

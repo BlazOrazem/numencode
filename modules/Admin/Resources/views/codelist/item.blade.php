@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    Codelist
+    {{ trans('admin::codelist.title') }}
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-lg-6">
             <div class="data-table data-success content-box" data-id="codelist-items">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ $codelistGroup->title }} items</h5>
+                    <h5 class="content-title pull-left">{{ $codelistGroup->title }} {{ trans('admin::codelist.items') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -22,11 +22,11 @@
                     <tr>
                         <th>{{ trans('admin::tables.title') }}</th>
                         <th>{{ trans('admin::tables.code') }}</th>
-                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
-                        @if ($admin->can('edit_managers'))
+                        <th>{{ trans('admin::tables.order') }}</th>
+                        @if ($admin->can('edit_codelist'))
                             <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif
-                        @if ($admin->can('delete_managers'))
+                        @if ($admin->can('delete_codelist'))
                             <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
@@ -37,14 +37,14 @@
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->code }}</td>
                             <td class="text-right">{{ $item->sort_order }}</td>
-                            @if ($admin->can('edit_managers'))
+                            @if ($admin->can('edit_codelist'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
                                         'action' => route('codelist.item.edit', compact('item'))
                                     ])
                                 </td>
                             @endif
-                            @if ($admin->can('delete_managers'))
+                            @if ($admin->can('delete_codelist'))
                                 <td class="text-center">
                                     @include ('admin::components.button.delete', [
                                         'action' => route('codelist.item.destroy', compact('item'))
@@ -61,7 +61,7 @@
         <div class="col-lg-6">
             <div class="content-box">
                 <div class="head warning-bg clearfix">
-                    <h5 class="content-title pull-left">Edit {{ $codelistItem->title }}</h5>
+                    <h5 class="content-title pull-left">{{ $codelistItem->title }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -73,25 +73,25 @@
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include ('admin::components.form.text', [
-                            'label' => 'Title',
+                            'label' => trans('admin::forms.title'),
                             'field' => 'title',
-                            'placeholder' => 'Enter title',
-                            'errors' => $errors->itemErrors,
+                            'placeholder' => trans('admin::codelist.placeholder.item_title'),
                             'entity' => $codelistItem,
+                            'errors' => $errors->itemErrors,
                         ])
                         @include ('admin::components.form.text', [
-                            'label' => 'Code',
+                            'label' => trans('admin::forms.code'),
                             'field' => 'code',
-                            'placeholder' => 'Enter code',
+                            'placeholder' => trans('admin::codelist.placeholder.item_code'),
                             'errors' => $errors->itemErrors,
                             'entity' => $codelistItem,
                         ])
                         @include ('admin::components.form.order', [
-                            'errors' => $errors->itemErrors,
                             'sortOrder' => $codelistItem->sort_order,
+                            'errors' => $errors->itemErrors,
                         ])
                         @include ('admin::components.form.submit', [
-                            'button' => trans('admin::messages.codelist.item_update'),
+                            'button' => trans('admin::codelist.item_update'),
                             'type' => 'warning',
                         ])
                     </form>
@@ -101,7 +101,7 @@
                 <div class="content">
                     <a class="btn btn-default btn-link btn-md" href="{{ route('codelist.edit', $codelistGroup) }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
-                        {{ trans('admin::messages.codelist.index_group') }}
+                        {{ trans('admin::codelist.index_group') }}
                     </a>
                 </div>
             </div>

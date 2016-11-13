@@ -119,6 +119,22 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id' => '15',
+                'name' => 'edit_codelist',
+                'label' => 'Admin can edit codelist.',
+                'sort_order' => 220,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
+            [
+                'id' => '16',
+                'name' => 'delete_codelist',
+                'label' => 'Admin can delete codelist.',
+                'sort_order' => 230,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
         ];
 
         DB::table('permissions')->insert($items);

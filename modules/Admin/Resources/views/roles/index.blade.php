@@ -41,7 +41,7 @@
                                     'errors' => $errors->roleErrors,
                                 ])
                                 @include ('admin::components.form.submit', [
-                                    'button' => trans('admin::messages.roles.create'),
+                                    'button' => trans('admin::roles.create'),
                                 ])
                             </div>
                         </div>

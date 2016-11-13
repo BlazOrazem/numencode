@@ -38,7 +38,7 @@ class CodelistController extends BaseController
 
         if (CodelistGroup::create(request()->all())) {
             flash()->success(trans('admin::messages.success'),
-                trans('admin::messages.codelist.group_created', ['name' => request()->title]));
+                trans('admin::codelist.group_created', ['name' => request()->title]));
         }
 
         return redirect()->route('codelist.index');
@@ -77,7 +77,8 @@ class CodelistController extends BaseController
         }
 
         if ($codelistGroup->update(request()->all())) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.group_updated', ['name' => request()->title]));
+            flash()->success(trans('admin::messages.success'),
+                trans('admin::codelist.group_updated', ['name' => request()->title]));
         }
 
         return redirect()->back();
@@ -96,7 +97,7 @@ class CodelistController extends BaseController
         if ($codelistGroup->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::messages.codelist.group_deleted'),
+                'msg' => trans('admin::codelist.group_deleted'),
             ];
         }
 
@@ -129,7 +130,8 @@ class CodelistController extends BaseController
         }
 
         if (CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save()) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.codelist.item_created', ['name' => request()->title]));
+            flash()->success(trans('admin::messages.success'),
+                trans('admin::codelist.item_created', ['name' => request()->title]));
         }
 
         return redirect()->back();
@@ -177,7 +179,7 @@ class CodelistController extends BaseController
 
         if ($codelistItem->update(request()->all())) {
             flash()->success(trans('admin::messages.success'),
-                trans('admin::messages.codelist.item_updated', ['name' => request()->title]));
+                trans('admin::codelist.item_updated', ['name' => request()->title]));
         }
 
         return redirect()->back();
@@ -196,7 +198,7 @@ class CodelistController extends BaseController
         if ($codelistItem->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::messages.codelist.item_deleted'),
+                'msg' => trans('admin::codelist.item_deleted'),
             ];
         }
 
