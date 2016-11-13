@@ -98,8 +98,8 @@
                 </div>
             </div>
             <div class="content-box">
-                <div class="content">
-                    <a class="btn btn-default btn-link btn-md" href="{{ route('codelist.edit', $codelistGroup) }}">
+                <div class="content text-center">
+                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.edit', $codelistGroup) }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
                         {{ trans('admin::codelist.index_group') }}
                     </a>

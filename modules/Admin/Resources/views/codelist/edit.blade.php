@@ -134,8 +134,8 @@
             </div>
 
             <div class="content-box">
-                <div class="content">
-                    <a class="btn btn-default btn-link btn-md" href="{{ route('codelist.index') }}">
+                <div class="content text-center">
+                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.index') }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
                         {{ trans('admin::codelist.index') }}
                     </a>
