@@ -417,10 +417,6 @@ body {
   .conf-body .title {
     margin-top: 10px; }
 
-.user-page.login {
-  background: no-repeat center center;
-  background-size: cover; }
-
 .user-page .wrapper {
   height: 100% !important; }
 
@@ -447,6 +443,10 @@ body {
 
 .user-page .error-503 {
   background-image: url("../images/503.jpg"); }
+
+.user-page.login {
+  background: no-repeat center center;
+  background-size: cover; }
 
 .user-page.coming-soon .bg {
   background-image: url("../images/coming-soon.jpg"); }
@@ -520,14 +520,19 @@ body {
   transform: translateX(-50%);
   margin-left: 50%; }
   .user-page .login h4 {
+    text-transform: none;
     color: #fff;
-    font-size: 24px;
+    font-size: 40px;
     font-weight: 500; }
+    .user-page .login h4 sup {
+      font-size: 20px; }
   .user-page .login input {
     border-color: #fff;
     box-shadow: none; }
   .user-page .login .checkbox {
     margin: 0; }
+  .user-page .login .help-block {
+    color: #fff; }
 
 .user-page .pagenotfound {
   max-width: 560px;
@@ -1501,7 +1506,9 @@ body.open-menu aside.sidebar, body.three-column-layout aside.sidebar {
     display: inline !important;
     padding-left: 19px;
     font-size: 36px;
-    font-weight: 500; } }
+    font-weight: 500; }
+    body.fixed-sidebar nav.navbar .logo sup, body.three-column-layout nav.navbar .logo sup {
+      font-size: 20px; } }
 
 /*Sidebar menu*/
 aside.sidebar {

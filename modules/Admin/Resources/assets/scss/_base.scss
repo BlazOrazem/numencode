@@ -523,11 +523,6 @@ body{
 
 //login, registration, 404-page
 .user-page {
-  &.login {
-//	background-image: url('#{$images-path}autumn.jpg');
-	background: no-repeat center center;
-	background-size: cover;
-  }
   .wrapper {
     height: 100% !important;
   }
@@ -554,6 +549,10 @@ body{
   }
   .error-503{
     background-image: url("../images/503.jpg");
+  }
+  &.login {
+    background: no-repeat center center;
+    background-size: cover;
   }
   &.coming-soon{
     .bg{
@@ -632,9 +631,13 @@ body{
     transform: translateX(-50%);
     margin-left: 50%;
     h4{
+      text-transform: none;
       color: $white;
-      font-size: 24px;
+      font-size: 40px;
       font-weight: 500;
+      sup{
+        font-size: 20px;
+      }
     }
     input{
       border-color: $white;
@@ -642,6 +645,9 @@ body{
     }
     .checkbox {
       margin: 0;
+    }
+    .help-block {
+      color: $white;
     }
   }
   .pagenotfound {

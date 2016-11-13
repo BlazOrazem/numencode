@@ -48,7 +48,7 @@
         <div class="table-row">
             <div class="table-cell">
                 <div class="login">
-                    <h4 class="text-center">Login to continue</h4>
+                    <h4 class="text-center">numencode<sup>&trade;</sup></h4>
                     <form method="POST" action="{{ route('admin.login.action') }}" role="form">
                         {{ csrf_field() }}
                         @if (isset($ref))
