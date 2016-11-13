@@ -34,7 +34,11 @@
                     @foreach ($codelistGroups as $group)
                         <tr>
                             <td>{{ $group->title }}</td>
-                            <td class="text-right">{{ $group->sort_order }}</td>
+                            <td class="text-right">
+                                <span class="badge badge-info">
+                                    {{ $group->sort_order }}
+                                </span>
+                            </td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [

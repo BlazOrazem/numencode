@@ -37,7 +37,11 @@
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
-                            <td class="text-right">{{ $item->sort_order }}</td>
+                            <td class="text-right">
+                                <span class="badge badge-info">
+                                    {{ $item->sort_order }}
+                                </span>
+                            </td>
                             <td class="text-center text-success">
                                 @if ($item->is_admin)
                                     <button type="submit" class="btn btn-success">

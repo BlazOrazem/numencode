@@ -36,7 +36,11 @@
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
-                            <td class="text-right">{{ $item->sort_order }}</td>
+                            <td class="text-right">
+                                <span class="badge badge-info">
+                                    {{ $item->sort_order }}
+                                </span>
+                            </td>
                             @if ($admin->can('edit_permissions'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
