@@ -71,8 +71,12 @@ var Form = (function () {
             var form = field.closest('form');
             var fieldName = field.attr('name');
             
+            if ($(field).hasClass('uri-slug')) {
+                $(field).val(Form.slugify($(field).val()));
+            }
+
             if ($(field).hasClass('snake-slug')) {
-                $(field).val(Form.snakefy($(field).val()));
+                $(field).val(Form.snakify($(field).val()));
             }
 
             http.post(form.attr('action'), Form.serialize(form))
@@ -94,13 +98,22 @@ var Form = (function () {
                 });
         },
 
-        snakefy: function (text) {
+        slugify: function (text) {
             return text.toString().toLowerCase()
-                .replace(/\s+/g, '_')           // Replace spaces with -
+                .replace(/\s+/g, '-')           // Replace spaces with -
                 .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-                .replace(/\_\_+/g, '_')         // Replace multiple - with single -
-                .replace(/^_+/, '')             // Trim - from start of text
-                .replace(/_+$/, '');            // Trim - from end of text
+                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                .replace(/^-+/, '')             // Trim - from start of text
+                .replace(/-+$/, '');            // Trim - from end of text
+        },
+
+        snakify: function (text) {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '_')           // Replace spaces with _
+                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                .replace(/__+/g, '_')         // Replace multiple _ with single _
+                .replace(/^_+/, '')             // Trim _ from start of text
+                .replace(/_+$/, '');            // Trim _ from end of text
         }
     };
 })();
