@@ -10,8 +10,9 @@
 
         <div class="col-lg-6">
             <div class="content-box">
-                <div class="head warning-bg clearfix">
+                <div class="head danger-bg clearfix">
                     <h5 class="content-title pull-left">{{ trans('admin::roles.update') }}: {{ $role->name }}</h5>
+
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -19,7 +20,8 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('roles.update', [$role]) }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('roles.update', [$role]) }}"
+                          class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include ('admin::components.form.text', [
@@ -40,7 +42,7 @@
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::roles.update'),
-                            'type' => 'warning',
+                            'type' => 'danger',
                         ])
                     </form>
                 </div>
@@ -49,6 +51,7 @@
             <div class="data-table data-info content-box">
                 <div class="head info-bg clearfix">
                     <h5 class="content-title pull-left">Managers with role: {{ $role->name }}</h5>
+
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -81,6 +84,7 @@
             <div class="data-table data-success content-box">
                 <div class="head success-bg clearfix">
                     <h5 class="content-title pull-left">Users with role: {{ $role->name }}</h5>
+
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -124,6 +128,7 @@
             <div class="data-table data-danger content-box">
                 <div class="head danger-bg clearfix">
                     <h5 class="content-title pull-left">Permissions for: {{ $role->name }}</h5>
+
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -142,7 +147,17 @@
                         <tr>
                             <td>{{ $item->label }}</td>
                             <td>{{ $item->name }}</td>
-                            <td class="text-center"><input type="checkbox" @if (in_array($item->id, $role->permissions()->pluck('id')->toArray())) checked @endif></td>
+                            <td class="text-center">
+                                <label>
+                                    <input class="toggle toggle-danger"
+                                           type="checkbox"
+                                           name="toggle"
+                                           data-toggle="{{ route('roles.assign', [$role->id, $item->id]) }}"
+                                           {{ in_array($item->id, $role->permissions()->pluck('id')->toArray()) ? 'checked' : '' }}
+                                    >
+                                    <i></i>
+                                </label>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -20,6 +20,10 @@ var Form = (function () {
             $('.' + _formValidate + ' input').bind('blur', function() {
                 Form.validateInputField($(this));
             });
+
+            $('input[name="toggle"]').bind('click', function() {
+                http.post($(this).data('toggle'));
+            });
         },
 
         serialize: function (form) {

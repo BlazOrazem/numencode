@@ -110,4 +110,16 @@ class RoleController extends BaseController
 
         return reportError();
     }
+
+    /**
+     * Attach or detach permission on a given role.
+     *
+     * @param $roleId
+     */
+    public function assignPermission($roleId, $permissionId)
+    {
+        $role = Role::findOrFail($roleId);
+
+        $role->permissions()->toggle($permissionId);
+    }
 }
