@@ -26,7 +26,7 @@ class PermissionController extends BaseController
      */
     public function store()
     {
-        $this->validateWithBag('permissionErrors', request(), [
+        $this->validate(request(), [
             'name' => 'required|unique:permissions',
             'label' => 'required',
             'sort_order'  => 'required|integer'
@@ -42,10 +42,10 @@ class PermissionController extends BaseController
             'sort_order' => request()->sort_order,
         ])) {
             flash()->success(trans('admin::messages.success'),
-                trans('admin::roles.permission.created', ['name' => request()->name]));
+                trans('admin::permissions.created', ['name' => request()->name]));
         }
 
-        return redirect()->route('roles.index');
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -72,7 +72,7 @@ class PermissionController extends BaseController
     {
         $permission = Permission::findOrFail($id);
 
-        $this->validateWithBag('groupErrors', request(), [
+        $this->validate(request(), [
             'name' => ['required', Rule::unique('permissions')->ignore($id)],
             'label' => 'required',
             'sort_order' => 'required|integer',
@@ -88,10 +88,10 @@ class PermissionController extends BaseController
             'sort_order' => request()->sort_order,
         ])) {
             flash()->success(trans('admin::messages.success'),
-                trans('admin::roles.permission.updated', ['name' => request()->name]));
+                trans('admin::permissions.updated', ['name' => request()->name]));
         }
 
-        return redirect()->route('roles.index');
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -107,7 +107,7 @@ class PermissionController extends BaseController
         if ($permission->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::roles.permission.deleted'),
+                'msg' => trans('admin::permissions.deleted'),
             ];
         }
 

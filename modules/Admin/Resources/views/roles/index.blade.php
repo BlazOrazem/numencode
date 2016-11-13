@@ -80,17 +80,14 @@
                             'label' => trans('admin::forms.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::roles.placeholder.name'),
-                            'errors' => $errors->roleErrors,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.label'),
                             'field' => 'label',
                             'placeholder' => trans('admin::roles.placeholder.label'),
-                            'errors' => $errors->roleErrors,
                         ])
                         @include ('admin::components.form.order', [
                             'sortOrder' => $roles->pluck('sort_order')->last() + 10,
-                            'errors' => $errors->roleErrors,
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::roles.create'),

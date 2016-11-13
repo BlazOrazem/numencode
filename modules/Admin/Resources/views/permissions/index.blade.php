@@ -75,18 +75,15 @@
                             'label' => trans('admin::forms.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::permissions.placeholder.name'),
-                            'errors' => $errors->permissionErrors,
                             'class' => 'snake-slug',
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.label'),
                             'field' => 'label',
                             'placeholder' => trans('admin::permissions.placeholder.label'),
-                            'errors' => $errors->permissionErrors,
                         ])
                         @include ('admin::components.form.order', [
                             'sortOrder' => $permissions->pluck('sort_order')->last() + 10,
-                            'errors' => $errors->permissionErrors,
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::permissions.create'),

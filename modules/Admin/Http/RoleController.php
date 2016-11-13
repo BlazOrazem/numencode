@@ -3,6 +3,7 @@
 namespace Admin\Http;
 
 use Numencode\Models\Role;
+use Illuminate\Validation\Rule;
 use Numencode\Models\Permission;
 
 class RoleController extends BaseController
@@ -26,7 +27,7 @@ class RoleController extends BaseController
      */
     public function store()
     {
-        $this->validateWithBag('roleErrors', request(), [
+        $this->validate(request(), [
             'name' => 'required|unique:roles',
             'label' => 'required',
             'sort_order'  => 'required|integer'
@@ -55,6 +56,38 @@ class RoleController extends BaseController
         $role = Role::with('permissions')->find($id);
 
         return view('admin::roles.edit', compact('role'));
+    }
+
+    /**
+     * Update the role.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id)
+    {
+        $role = Role::findOrFail($id);
+
+        $this->validate(request(), [
+            'name' => ['required', Rule::unique('roles')->ignore($id)],
+            'label' => 'required',
+            'sort_order' => 'required|integer',
+        ]);
+
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
+
+        if ($role->update([
+            'name' => snake_slug(request()->name),
+            'label' => ucfirst(request()->label),
+            'sort_order' => request()->sort_order,
+        ])) {
+            flash()->success(trans('admin::messages.success'),
+                trans('admin::roles.updated', ['name' => request()->name]));
+        }
+
+        return redirect()->back();
     }
 
     /**
