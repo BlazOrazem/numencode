@@ -32,4 +32,3 @@ Route::resource('codelist', 'CodelistController');
 // Roles and Permissions
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
-Route::get('roles/{role}/permissions', 'RoleController@assignPermissions')->name('roles.permissions');
