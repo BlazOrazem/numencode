@@ -1,18 +1,13 @@
 <?php
 
-/**
- * Creates an URL to route alias
- *
- * @param string $alias
- * @param array $parameters
- * @param null $locale
- * @param bool $absolute
- *
- * @throws BindingResolutionException
- * @return string
- */
-if (!function_exists('getRoute'))
-{
+if (! function_exists('getRoute')) {
+    /**
+     * Creates an URL to route alias
+     *
+     * @param string $alias
+     * @param string|null $locale
+     * @return mixed
+     */
     function getRoute($alias, $locale = null)
     {
         $url = app()->make(\Illuminate\Contracts\Routing\UrlGenerator::class);
@@ -32,15 +27,14 @@ if (!function_exists('getRoute'))
     }
 }
 
-/**
- * Flash message handler.
- *
- * @param string|null $title
- * @param string|null $message
- * @return Numencode\Utils\Flash
- */
-if (!function_exists('flash'))
-{
+if (! function_exists('flash')) {
+    /**
+     * Flash message handler.
+     *
+     * @param string|null $title
+     * @param string|null $message
+     * @return Numencode\Utils\Flash
+     */
     function flash($title = null, $message = null)
     {
         $flash = app(\Numencode\Utils\Flash::class);
@@ -53,13 +47,12 @@ if (!function_exists('flash'))
     }
 }
 
-/**
- * Report error notice to user.
- *
- * @return array
- */
-if (!function_exists('reportError'))
-{
+if (! function_exists('reportError')) {
+    /**
+     * Report error notice to user.
+     *
+     * @return array
+     */
     function reportError()
     {
         return [
@@ -69,13 +62,12 @@ if (!function_exists('reportError'))
     }
 }
 
-/**
- * Standardized successful Ajax response.
- *
- * @return array
- */
-if (!function_exists('ajaxSuccess'))
-{
+if (! function_exists('ajaxSuccess')) {
+    /**
+     * Standardized successful Ajax response.
+     *
+     * @return array
+     */
     function ajaxSuccess()
     {
         return [
@@ -97,14 +89,13 @@ if (! function_exists('snake_slug')) {
     }
 }
 
-/**
- * Return URL for the large avatar image, given from any social network.
- *
- * @param string $avatarUrl
- * @return string
- */
-if (!function_exists('fix_avatar_url'))
-{
+if (! function_exists('fix_avatar_url')) {
+    /**
+     * Return URL for the large avatar image, given from any social network.
+     *
+     * @param string $avatarUrl
+     * @return string
+     */
     function fix_avatar_url($avatarUrl)
     {
         // Facebook
