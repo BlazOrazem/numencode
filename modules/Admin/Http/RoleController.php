@@ -110,19 +110,4 @@ class RoleController extends BaseController
 
         return reportError();
     }
-
-	/**
-	 * TODO: Refactoring to @edit method
-     * Assign permissions to a given role.
-	 *
-	 * @param $roleId
-	 * @return \Illuminate\View\View
-	 */
-	public function assignPermissions($roleId)
-	{
-		$role = Role::findOrFail($roleId)->with('permissions', 'users', 'managers')->first();
-		$permissions = Permission::all();
-
-		return view('admin::roles.assign', compact('role', 'permissions'));
-	}
 }
