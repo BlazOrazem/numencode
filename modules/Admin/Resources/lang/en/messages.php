@@ -2,17 +2,6 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Messages Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used in classes across app for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
     'success' => 'Success',
     'error' => 'Error',
     'error_notice' => 'An unexpected error occurred while performing this action.',
@@ -30,21 +19,6 @@ return [
         'item_update' => 'Update codelist item',
         'item_updated' => 'Codelist item :name updated.',
         'item_deleted' => 'Codelist item has been successfully deleted.',
-    ],
-
-    'roles' => [
-        'create' => 'Create new role',
-        'created' => 'Role :name created.',
-        'update' => 'Update role',
-        'deleted' => 'Role has been successfully deleted.',
-    ],
-
-    'permissions' => [
-        'create' => 'Create new permission',
-        'created' => 'Permission :name created.',
-        'update' => 'Update permission',
-        'updated' => 'Permission :name updated.',
-        'deleted' => 'Permission has been successfully deleted.',
     ],
 
     'manager' => [

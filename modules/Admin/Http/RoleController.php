@@ -38,7 +38,8 @@ class RoleController extends BaseController
         }
 
         if (Role::create(request()->all())) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->name]));
+            flash()->success(trans('admin::messages.success'),
+                trans('admin::roles.created', ['name' => request()->name]));
         }
 
         return redirect()->route('roles.index');
@@ -70,7 +71,7 @@ class RoleController extends BaseController
         if ($role->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::messages.roles.deleted'),
+                'msg' => trans('admin::roles.deleted'),
             ];
         }
 

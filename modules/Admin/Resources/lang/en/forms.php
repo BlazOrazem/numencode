@@ -3,8 +3,9 @@
 return [
 
     'name' => 'Name',
-    'code' => 'Code',
     'title' => 'Title',
+    'label' => 'Label',
+    'code' => 'Code',
 
     'order' => 'Order',
     'order_label' => 'Order',

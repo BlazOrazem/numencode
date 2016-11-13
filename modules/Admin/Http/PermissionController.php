@@ -40,7 +40,7 @@ class PermissionController extends BaseController
             'sort_order' => request()->sort_order,
         ])) {
             flash()->success(trans('admin::messages.success'),
-                trans('admin::messages.permissions.created', ['name' => request()->name]));
+                trans('admin::roles.permission.created', ['name' => request()->name]));
         }
 
         return redirect()->route('roles.index');
@@ -85,7 +85,7 @@ class PermissionController extends BaseController
             'sort_order' => request()->sort_order,
         ])) {
             flash()->success(trans('admin::messages.success'),
-                trans('admin::messages.permissions.updated', ['name' => request()->name]));
+                trans('admin::roles.permission.updated', ['name' => request()->name]));
         }
 
         return redirect()->route('roles.index');
@@ -104,7 +104,7 @@ class PermissionController extends BaseController
         if ($permission->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::messages.permissions.deleted'),
+                'msg' => trans('admin::roles.permission.deleted'),
             ];
         }
 

@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    Roles and Permissions Management
+    {{ trans('admin::roles.title') }}
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="content-box">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">Create a new Role</h5>
+                    <h5 class="content-title pull-left">{{ trans('admin::roles.create') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -23,15 +23,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 @include ('admin::components.form.text', [
-                                    'label' => 'Name',
+                                    'label' => trans('admin::forms.name'),
                                     'field' => 'name',
-                                    'placeholder' => 'Enter role name',
+                                    'placeholder' => trans('admin::roles.placeholder.name'),
                                     'errors' => $errors->roleErrors,
                                 ])
                                 @include ('admin::components.form.text', [
-                                    'label' => 'Label',
+                                    'label' => trans('admin::forms.label'),
                                     'field' => 'label',
-                                    'placeholder' => 'Enter role label',
+                                    'placeholder' => trans('admin::roles.placeholder.label'),
                                     'errors' => $errors->roleErrors,
                                 ])
                             </div>
@@ -51,7 +51,7 @@
 
             <div class="data-table data-success content-box" data-id="roles">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">Roles</h5>
+                    <h5 class="content-title pull-left">{{ trans('admin::roles.roles') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -106,7 +106,7 @@
         <div class="col-md-6">
             <div class="content-box">
                 <div class="head warning-bg clearfix">
-                    <h5 class="content-title pull-left">Create a new Permission</h5>
+                    <h5 class="content-title pull-left">{{ trans('admin::roles.permission.create') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -118,16 +118,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 @include ('admin::components.form.text', [
-                                    'label' => 'Name',
+                                    'label' => trans('admin::forms.name'),
                                     'field' => 'name',
-                                    'placeholder' => 'Enter permission name',
+                                    'placeholder' => trans('admin::roles.placeholder.permission_name'),
                                     'errors' => $errors->permissionErrors,
                                     'class' => 'snake-slug',
                                 ])
                                 @include ('admin::components.form.text', [
-                                    'label' => 'Label',
+                                    'label' => trans('admin::forms.label'),
                                     'field' => 'label',
-                                    'placeholder' => 'Enter permission label',
+                                    'placeholder' => trans('admin::roles.placeholder.permission_label'),
                                     'errors' => $errors->permissionErrors,
                                 ])
                             </div>
@@ -137,7 +137,7 @@
                                     'errors' => $errors->permissionErrors,
                                 ])
                                 @include ('admin::components.form.submit', [
-                                    'button' => trans('admin::messages.permissions.create'),
+                                    'button' => trans('admin::roles.permission.create'),
                                     'type' => 'warning',
                                 ])
                             </div>
@@ -148,7 +148,7 @@
 
             <div class="data-table data-warning content-box" data-id="permissions">
                 <div class="head warning-bg clearfix">
-                    <h5 class="content-title pull-left">Permissions</h5>
+                    <h5 class="content-title pull-left">{{ trans('admin::roles.permissions') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
