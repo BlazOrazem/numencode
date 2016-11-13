@@ -1,10 +1,9 @@
 @php ($inlineForm = isset($inline))
+@php ($fieldId = 'sort_order-' . str_random(10))
 
 <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
 
-    <label for="{{ $fieldId = 'order-' . str_random(10) }}"
-           class="control-label @if (!$inlineForm)col-sm-3 @endif"
-            >
+    <label for="{{ $fieldId }}" class="control-label @if (!$inlineForm)col-sm-3 @endif">
         {{ trans('admin::forms.order_label') }}
     </label>
 
@@ -12,7 +11,7 @@
 
         <input type="text"
                name="sort_order"
-               value="{{ old('sort_order', $next) }}"
+               value="{{ old('sort_order', isset($sortOrder) ? $sortOrder : 0) }}"
                class="form-control{{ isset($class) ? ' ' . $class : '' }}"
                id="{{ $fieldId }}"
                placeholder="{{ trans('admin::forms.order_placeholder') }}"

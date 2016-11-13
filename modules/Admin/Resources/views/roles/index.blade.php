@@ -38,7 +38,7 @@
                             <div class="col-md-6">
                                 @include ('admin::components.form.order', [
                                     'errors' => $errors->roleErrors,
-                                    'next' => $roles->pluck('sort_order')->last() + 10
+                                    'sortOrder' => $roles->pluck('sort_order')->last() + 10
                                 ])
                                 @include ('admin::components.form.submit', [
                                     'button' => trans('admin::messages.roles.create'),

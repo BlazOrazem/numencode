@@ -79,7 +79,7 @@
                         ])
                         @include ('admin::components.form.order', [
                             'errors' => $errors->roleErrors,
-                            'next' => $codelistGroups->pluck('sort_order')->last() + 10
+                            'sortOrder' => $codelistGroups->pluck('sort_order')->last() + 10
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::messages.codelist.group_create'),

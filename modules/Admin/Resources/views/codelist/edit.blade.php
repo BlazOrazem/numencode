@@ -31,7 +31,7 @@
                         ])
                         @include ('admin::components.form.order', [
                             'errors' => $errors->groupErrors,
-                            'next' => $codelistGroup->sort_order,
+                            'sortOrder' => $codelistGroup->sort_order,
                             'inline' => true,
                         ])
                         @include ('admin::components.form.submit', [
@@ -124,7 +124,7 @@
                         ])
                         @include ('admin::components.form.order', [
                             'errors' => $errors->itemErrors,
-                            'next' => $codelistGroup->items->pluck('sort_order')->last() + 10,
+                            'sortOrder' => $codelistGroup->items->pluck('sort_order')->last() + 10,
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::messages.codelist.item_create'),

@@ -88,7 +88,7 @@
                         ])
                         @include ('admin::components.form.order', [
                             'errors' => $errors->itemErrors,
-                            'next' => $codelistItem->sort_order,
+                            'sortOrder' => $codelistItem->sort_order,
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::messages.codelist.item_update'),
