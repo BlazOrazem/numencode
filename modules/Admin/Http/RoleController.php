@@ -46,16 +46,17 @@ class RoleController extends BaseController
     }
 
     /**
-     * Show the role edit form and permissions for this role.
+     * Show the role edit form and assign permissions to a given role.
      *
      * @param $id
      * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        $role = Role::with('permissions')->find($id);
+        $role = Role::findOrFail($id)->with('permissions', 'managers', 'users')->first();
+        $permissions = Permission::all();
 
-        return view('admin::roles.edit', compact('role'));
+        return view('admin::roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -111,14 +112,15 @@ class RoleController extends BaseController
     }
 
 	/**
-	 * Assign permissions to a given role.
+	 * TODO: Refactoring to @edit method
+     * Assign permissions to a given role.
 	 *
 	 * @param $roleId
 	 * @return \Illuminate\View\View
 	 */
 	public function assignPermissions($roleId)
 	{
-		$role = Role::whereId($roleId)->with('permissions', 'users', 'managers')->first();
+		$role = Role::findOrFail($roleId)->with('permissions', 'users', 'managers')->first();
 		$permissions = Permission::all();
 
 		return view('admin::roles.assign', compact('role', 'permissions'));
