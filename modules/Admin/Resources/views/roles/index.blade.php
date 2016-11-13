@@ -122,6 +122,7 @@
                                     'field' => 'name',
                                     'placeholder' => 'Enter permission name',
                                     'errors' => $errors->permissionErrors,
+                                    'class' => 'snake-slug',
                                 ])
                                 @include ('admin::components.form.text', [
                                     'label' => 'Label',

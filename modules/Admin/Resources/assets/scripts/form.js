@@ -70,6 +70,10 @@ var Form = (function () {
         validateInputField: function (field) {
             var form = field.closest('form');
             var fieldName = field.attr('name');
+            
+            if ($(field).hasClass('snake-slug')) {
+                $(field).val(Form.snakefy($(field).val()));
+            }
 
             http.post(form.attr('action'), Form.serialize(form))
                 .success(function() {
@@ -88,6 +92,15 @@ var Form = (function () {
                         }
                     });
                 });
+        },
+
+        snakefy: function (text) {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '_')           // Replace spaces with -
+                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                .replace(/\_\_+/g, '_')         // Replace multiple - with single -
+                .replace(/^_+/, '')             // Trim - from start of text
+                .replace(/_+$/, '');            // Trim - from end of text
         }
     };
 })();
