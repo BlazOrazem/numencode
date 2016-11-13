@@ -8,13 +8,15 @@ use Numencode\Models\Permission;
 class PermissionController extends BaseController
 {
     /**
-     * Redirect to roles and permissions display.
+     * Display a listing of the permissions.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        return redirect()->route('roles.index');
+        $permissions = Permission::all();
+
+        return view('admin::permissions.index', compact('permissions'));
     }
 
     /**
@@ -47,16 +49,17 @@ class PermissionController extends BaseController
     }
 
     /**
-     * Show the permission edit form and roles to which this permission is assigned.
+     * Show the permission edit form.
      *
      * @param $id
      * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        $permission = Permission::with('roles')->find($id);
+        $permissions = Permission::all();
+        $permission = Permission::find($id);
 
-        return view('admin::roles.permission', compact('permission'));
+        return view('admin::permissions.edit', compact('permissions', 'permission'));
     }
 
     /**

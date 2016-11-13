@@ -8,16 +8,15 @@ use Numencode\Models\Permission;
 class RoleController extends BaseController
 {
     /**
-     * Display a listing of the roles and permissions.
+     * Display a listing of the roles.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
         $roles = Role::all();
-        $permissions = Permission::all();
 
-        return view('admin::roles.index', compact('roles', 'permissions'));
+        return view('admin::roles.index', compact('roles'));
     }
 
     /**

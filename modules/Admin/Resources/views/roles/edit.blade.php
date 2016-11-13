@@ -1,5 +1,5 @@
 @extends('admin::layout')
 
 @section('title')
-    Roles and Permissions Management
+    {{ trans('admin::roles.title') }}
 @stop

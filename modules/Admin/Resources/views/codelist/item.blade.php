@@ -9,7 +9,7 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <div class="data-table data-success content-box" data-id="codelist-items">
+            <div class="data-table data-success content-box">
                 <div class="head success-bg clearfix">
                     <h5 class="content-title pull-left">{{ $codelistGroup->title }} {{ trans('admin::codelist.items') }}</h5>
                     <div class="functions-btns pull-right">
@@ -106,6 +106,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 @stop
