@@ -38,7 +38,7 @@ class RoleController extends BaseController
         }
 
         if (Role::create(request()->all())) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->title]));
+            flash()->success(trans('admin::messages.success'), trans('admin::messages.roles.created', ['name' => request()->name]));
         }
 
         return redirect()->route('roles.index');

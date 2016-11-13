@@ -25,13 +25,13 @@
                             'label' => 'Title',
                             'field' => 'title',
                             'placeholder' => 'Enter group title',
-                            'errors' => $errors->groupErrors,
                             'entity' => $codelistGroup,
+                            'errors' => $errors->groupErrors,
                             'inline' => true,
                         ])
                         @include ('admin::components.form.order', [
-                            'errors' => $errors->groupErrors,
                             'sortOrder' => $codelistGroup->sort_order,
+                            'errors' => $errors->groupErrors,
                             'inline' => true,
                         ])
                         @include ('admin::components.form.submit', [

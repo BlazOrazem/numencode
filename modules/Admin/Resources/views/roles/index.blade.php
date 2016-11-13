@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    Roles and permissions
+    Roles and Permissions Management
 @stop
 
 @section('content')
@@ -37,8 +37,8 @@
                             </div>
                             <div class="col-md-6">
                                 @include ('admin::components.form.order', [
+                                    'sortOrder' => $roles->pluck('sort_order')->last() + 10,
                                     'errors' => $errors->roleErrors,
-                                    'sortOrder' => $roles->pluck('sort_order')->last() + 10
                                 ])
                                 @include ('admin::components.form.submit', [
                                     'button' => trans('admin::messages.roles.create'),
@@ -62,8 +62,8 @@
                     <tr>
                         <th>{{ trans('admin::tables.name') }}</th>
                         <th>{{ trans('admin::tables.label') }}</th>
-                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
-                        <th>Is admin?</th>
+                        <th>{{ trans('admin::tables.order') }}</th>
+                        <th>Admin?</th>
                         @if ($admin->can('edit_managers'))
                             <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
                         @endif
@@ -113,38 +113,32 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('permissions.create') }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('permissions.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group{{ $errors->permissionErrors->has('name') ? ' has-error' : '' }}">
-                                    <label for="roleNewName" class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="roleNewName" placeholder="Enter permission name">
-                                        <span class="help-block">{{ $errors->permissionErrors->first('name', ':message') }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group{{ $errors->permissionErrors->has('label') ? ' has-error' : '' }}">
-                                    <label for="roleNewLabel" class="col-sm-2 control-label">Label</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="label" value="{{ old('label') }}" class="form-control" id="roleNewLabel" placeholder="Enter permission label">
-                                        <span class="help-block">{{ $errors->permissionErrors->first('label', ':message') }}</span>
-                                    </div>
-                                </div>
+                                @include ('admin::components.form.text', [
+                                    'label' => 'Name',
+                                    'field' => 'name',
+                                    'placeholder' => 'Enter permission name',
+                                    'errors' => $errors->permissionErrors,
+                                ])
+                                @include ('admin::components.form.text', [
+                                    'label' => 'Label',
+                                    'field' => 'label',
+                                    'placeholder' => 'Enter permission label',
+                                    'errors' => $errors->permissionErrors,
+                                ])
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group{{ $errors->permissionErrors->has('sort_order') ? ' has-error' : '' }}">
-                                    <label for="itemNewOrder" class="col-sm-2 control-label">Order</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="sort_order" value="{{ old('sort_order', $permissions->pluck('sort_order')->last() + 10) }}" class="form-control" id="itemNewOrder" placeholder="Set order">
-                                        <p class="help-block">{{ $errors->permissionErrors->first('sort_order', ':message') }}</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-10 col-sm-offset-2">
-                                        <button type="submit" class="btn btn-md btn-warning">{{ trans('admin::messages.permissions.create') }}</button>
-                                    </div>
-                                </div>
+                                @include ('admin::components.form.order', [
+                                    'sortOrder' => $permissions->pluck('sort_order')->last() + 10,
+                                    'errors' => $errors->permissionErrors,
+                                ])
+                                @include ('admin::components.form.submit', [
+                                    'button' => trans('admin::messages.permissions.create'),
+                                    'type' => 'warning',
+                                ])
                             </div>
                         </div>
                     </form>
@@ -164,7 +158,7 @@
                     <tr>
                         <th>{{ trans('admin::tables.name') }}</th>
                         <th>{{ trans('admin::tables.label') }}</th>
-                        <th class="text-right">{{ trans('admin::tables.order') }}</th>
+                        <th>{{ trans('admin::tables.order') }}</th>
                         @if ($admin->can('edit_managers'))
                             <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif

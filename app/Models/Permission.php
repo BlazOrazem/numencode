@@ -9,6 +9,13 @@ class Permission extends Model
 {
     use Sortable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'label', 'sort_order'];
+
 	/**
 	 * Permission can belongs to many roles.
 	 *

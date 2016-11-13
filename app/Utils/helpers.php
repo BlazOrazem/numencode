@@ -84,6 +84,19 @@ if (!function_exists('ajaxSuccess'))
     }
 }
 
+if (! function_exists('snake_slug')) {
+    /**
+     * Generate a URL friendly "snake slug" from a given string.
+     *
+     * @param  string  $title
+     * @return string
+     */
+    function snake_slug($title)
+    {
+        return str_replace('-', '_', \Illuminate\Support\Str::slug($title));
+    }
+}
+
 /**
  * Return URL for the large avatar image, given from any social network.
  *

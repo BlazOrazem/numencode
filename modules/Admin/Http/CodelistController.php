@@ -2,7 +2,6 @@
 
 namespace Admin\Http;
 
-use Validator;
 use Illuminate\Validation\Rule;
 use Numencode\Models\CodelistItem;
 use Numencode\Models\CodelistGroup;
@@ -169,7 +168,7 @@ class CodelistController extends BaseController
                 })
             ],
             'title' => 'required',
-            'sort_order'  => 'integer'
+            'sort_order'  => 'required|integer'
         ]);
 
         if (request()->ajax()) {
