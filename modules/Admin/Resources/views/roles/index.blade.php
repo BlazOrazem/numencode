@@ -64,10 +64,10 @@
                         <th>{{ trans('admin::tables.label') }}</th>
                         <th>{{ trans('admin::tables.order') }}</th>
                         <th>Admin?</th>
-                        @if ($admin->can('edit_managers'))
+                        @if ($admin->can('edit_roles'))
                             <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
                         @endif
-                        @if ($admin->can('delete_managers'))
+                        @if ($admin->can('delete_roles'))
                             <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
@@ -79,7 +79,7 @@
                             <td>{{ $item->label }}</td>
                             <td class="text-right">{{ $item->sort_order }}</td>
                             <td>{{ $item->is_admin }}</td>
-                            @if ($admin->can('edit_managers'))
+                            @if ($admin->can('edit_roles'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
                                         'action' => route('roles.edit', compact('item')),
@@ -87,7 +87,7 @@
                                     ])
                                 </td>
                             @endif
-                            @if ($admin->can('delete_managers'))
+                            @if ($admin->can('delete_roles'))
                                 <td class="text-center">
                                     @if ($item->isDeletable())
                                         @include ('admin::components.button.delete', [
@@ -160,10 +160,10 @@
                         <th>{{ trans('admin::tables.name') }}</th>
                         <th>{{ trans('admin::tables.label') }}</th>
                         <th>{{ trans('admin::tables.order') }}</th>
-                        @if ($admin->can('edit_managers'))
+                        @if ($admin->can('edit_permissions'))
                             <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif
-                        @if ($admin->can('delete_managers'))
+                        @if ($admin->can('delete_permissions'))
                             <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
@@ -174,14 +174,14 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
                             <td class="text-right">{{ $item->sort_order }}</td>
-                            @if ($admin->can('edit_managers'))
+                            @if ($admin->can('edit_permissions'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
                                         'action' => route('permissions.edit', compact('item'))
                                     ])
                                 </td>
                             @endif
-                            @if ($admin->can('delete_managers'))
+                            @if ($admin->can('delete_permissions'))
                                 <td class="text-center">
                                     @include ('admin::components.button.delete', [
                                         'action' => route('permissions.destroy', compact('item'))

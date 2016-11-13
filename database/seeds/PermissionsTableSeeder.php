@@ -87,6 +87,38 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id' => '11',
+                'name' => 'edit_roles',
+                'label' => 'Admin can manage roles.',
+                'sort_order' => 200,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
+            [
+                'id' => '12',
+                'name' => 'delete_roles',
+                'label' => 'Admin can delete roles.',
+                'sort_order' => 210,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
+            [
+                'id' => '13',
+                'name' => 'edit_permissions',
+                'label' => 'Admin can edit permissions.',
+                'sort_order' => 220,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
+            [
+                'id' => '14',
+                'name' => 'delete_permissions',
+                'label' => 'Admin can delete permissions.',
+                'sort_order' => 230,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
         ];
 
         DB::table('permissions')->insert($items);
