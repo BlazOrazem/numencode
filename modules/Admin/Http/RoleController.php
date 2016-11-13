@@ -83,6 +83,7 @@ class RoleController extends BaseController
             'name' => snake_slug(request()->name),
             'label' => ucfirst(request()->label),
             'sort_order' => request()->sort_order,
+            'is_admin' => isset(request()->is_admin),
         ])) {
             flash()->success(trans('admin::messages.success'),
                 trans('admin::roles.updated', ['name' => request()->name]));

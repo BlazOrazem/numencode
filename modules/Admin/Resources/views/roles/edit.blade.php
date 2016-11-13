@@ -40,6 +40,12 @@
                         @include ('admin::components.form.order', [
                             'sortOrder' => $role->sort_order,
                         ])
+                        @include ('admin::components.form.checkbox', [
+                            'label' => 'Admin role?',
+                            'field' => 'is_admin',
+                            'type' => 'danger',
+                            'isChecked' => $role->is_admin,
+                        ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::roles.update'),
                             'type' => 'danger',

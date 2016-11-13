@@ -14,7 +14,7 @@ class Role extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'label', 'sort_order'];
+    protected $fillable = ['name', 'label', 'is_admin', 'sort_order'];
 
     /**
      * Role is deletable if no users or managers are assigned with it.
