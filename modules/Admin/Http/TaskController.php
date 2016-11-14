@@ -40,21 +40,21 @@ class TaskController extends BaseController
     public function create()
     {
         return view('admin::tasks.create', [
-            'task' => new Task
+            'task' => new Task,
         ]);
     }
 
     /**
      * Store a newly created task.
      *
-     * @param Request $request
+     * @param  Request                           $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
-            'body'  => 'required'
+            'body'  => 'required',
         ]);
 
         Task::create($request->all());
@@ -63,7 +63,7 @@ class TaskController extends BaseController
 
         return redirect()->route('tasks.index');
     }
-    
+
     /**
      * Show the form for editing the task.
      *
@@ -90,7 +90,7 @@ class TaskController extends BaseController
 
         $this->validate($request, [
             'title' => 'required',
-            'body'  => 'required'
+            'body'  => 'required',
         ]);
 
         if ($task->update($request->all())) {

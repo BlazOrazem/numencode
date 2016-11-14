@@ -6,10 +6,10 @@ return [
 
     'permissions' => 'Permissions',
 
-    'create' => 'Create new permission',
+    'create'  => 'Create new permission',
     'created' => 'Permission :name created.',
 
-    'update' => 'Update permission',
+    'update'  => 'Update permission',
     'updated' => 'Permission :name updated.',
 
     'deleted' => 'Permission has been successfully deleted.',
@@ -17,7 +17,7 @@ return [
     'index' => 'Back to permissions',
 
     'placeholder' => [
-        'name' => 'Enter permission name',
+        'name'  => 'Enter permission name',
         'label' => 'Enter permission label',
     ],
 

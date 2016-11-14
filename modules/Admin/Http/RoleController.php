@@ -27,19 +27,24 @@ class RoleController extends BaseController
      */
     public function store()
     {
-        $this->validate(request(), [
-            'name' => 'required|unique:roles',
-            'label' => 'required',
-            'sort_order'  => 'required|integer'
-        ]);
+        $this->validate(
+            request(),
+            [
+                'name'        => 'required|unique:roles',
+                'label'       => 'required',
+                'sort_order'  => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
         if (Role::create(request()->all())) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::roles.created', ['name' => request()->name]));
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::roles.created', ['name' => request()->name])
+            );
         }
 
         return redirect()->route('roles.index');
@@ -48,7 +53,8 @@ class RoleController extends BaseController
     /**
      * Show the role edit form and assign permissions to a given role.
      *
-     * @param $id
+     * @param int $id Role Id
+     *
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -62,31 +68,39 @@ class RoleController extends BaseController
     /**
      * Update the role.
      *
-     * @param $id
+     * @param int $id Role Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id)
     {
         $role = Role::findOrFail($id);
 
-        $this->validate(request(), [
-            'name' => ['required', Rule::unique('roles')->ignore($id)],
-            'label' => 'required',
-            'sort_order' => 'required|integer',
-        ]);
+        $this->validate(
+            request(),
+            [
+                'name'       => ['required', Rule::unique('roles')->ignore($id)],
+                'label'      => 'required',
+                'sort_order' => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if ($role->update([
-            'name' => snake_slug(request()->name),
-            'label' => ucfirst(request()->label),
-            'sort_order' => request()->sort_order,
-            'is_admin' => isset(request()->is_admin),
-        ])) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::roles.updated', ['name' => request()->name]));
+        if ($role->update(
+            [
+                'name' => snake_slug(request()->name),
+                'label' => ucfirst(request()->label),
+                'sort_order' => request()->sort_order,
+                'is_admin' => isset(request()->is_admin),
+            ]
+        )) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::roles.updated', ['name' => request()->name])
+            );
         }
 
         return redirect()->back();
@@ -95,7 +109,8 @@ class RoleController extends BaseController
     /**
      * Delete the role.
      *
-     * @param $id
+     * @param int $id Role Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
@@ -105,7 +120,7 @@ class RoleController extends BaseController
         if ($role->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::roles.deleted'),
+                'msg'   => trans('admin::roles.deleted'),
             ];
         }
 
@@ -115,7 +130,10 @@ class RoleController extends BaseController
     /**
      * Attach or detach permission on a given role.
      *
-     * @param $roleId
+     * @param int $roleId       Role Id
+     * @param int $permissionId Permission Id
+     *
+     * @return void
      */
     public function assignPermission($roleId, $permissionId)
     {

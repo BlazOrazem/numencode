@@ -3,10 +3,10 @@
 return [
 
     'delete' => [
-        'title' => 'Are you sure?',
-        'notice' => 'This action is irreversible.',
+        'title'          => 'Are you sure?',
+        'notice'         => 'This action is irreversible.',
         'confirm_button' => 'Yes, delete it.',
-        'cancel_button' => 'Cancel',
+        'cancel_button'  => 'Cancel',
     ],
 
 ];

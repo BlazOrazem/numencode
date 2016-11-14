@@ -18,8 +18,9 @@ class IsAdmin
     /**
      * Check if user is authenticated or else display login screen.
      *
-     * @param Request $request
-     * @param callable $next
+     * @param Request  $request Instance of Illuminate\Http\Request
+     * @param callable $next    Instance of Closure
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)

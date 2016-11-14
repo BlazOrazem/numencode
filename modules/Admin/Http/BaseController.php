@@ -14,13 +14,15 @@ class BaseController extends Controller
     public function __construct()
     {
         view()->share('admin', Auth::guard('admin')->user());
-        view()->share('signedIn', (bool)Auth::guard('admin')->check());
+        view()->share('signedIn', (bool) Auth::guard('admin')->check());
     }
 
     /**
      * Pass data to Javascript
      *
-     * @param $data
+     * @param string $data Data
+     *
+     * @return void
      */
     protected function js($data)
     {

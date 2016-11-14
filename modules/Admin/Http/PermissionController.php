@@ -26,23 +26,30 @@ class PermissionController extends BaseController
      */
     public function store()
     {
-        $this->validate(request(), [
-            'name' => 'required|unique:permissions',
-            'label' => 'required',
-            'sort_order'  => 'required|integer'
-        ]);
+        $this->validate(
+            request(),
+            [
+                'name'        => 'required|unique:permissions',
+                'label'       => 'required',
+                'sort_order'  => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if (Permission::create([
+        if (Permission::create(
+            [
             'name' => snake_slug(request()->name),
             'label' => ucfirst(request()->label),
             'sort_order' => request()->sort_order,
-        ])) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::permissions.created', ['name' => request()->name]));
+            ]
+        )) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::permissions.created', ['name' => request()->name])
+            );
         }
 
         return redirect()->route('permissions.index');
@@ -51,7 +58,8 @@ class PermissionController extends BaseController
     /**
      * Show the permission edit form.
      *
-     * @param $id
+     * @param int $id Permission Id
+     *
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -65,30 +73,38 @@ class PermissionController extends BaseController
     /**
      * Update the permission.
      *
-     * @param $id
+     * @param int $id Permission Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id)
     {
         $permission = Permission::findOrFail($id);
 
-        $this->validate(request(), [
-            'name' => ['required', Rule::unique('permissions')->ignore($id)],
-            'label' => 'required',
-            'sort_order' => 'required|integer',
-        ]);
+        $this->validate(
+            request(),
+            [
+                'name'       => ['required', Rule::unique('permissions')->ignore($id)],
+                'label'      => 'required',
+                'sort_order' => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if ($permission->update([
-            'name' => snake_slug(request()->name),
-            'label' => ucfirst(request()->label),
-            'sort_order' => request()->sort_order,
-        ])) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::permissions.updated', ['name' => request()->name]));
+        if ($permission->update(
+            [
+                'name' => snake_slug(request()->name),
+                'label' => ucfirst(request()->label),
+                'sort_order' => request()->sort_order,
+            ]
+        )) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::permissions.updated', ['name' => request()->name])
+            );
         }
 
         return redirect()->route('permissions.index');
@@ -97,7 +113,8 @@ class PermissionController extends BaseController
     /**
      * Delete the permission.
      *
-     * @param $id
+     * @param int $id Permission Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
@@ -107,7 +124,7 @@ class PermissionController extends BaseController
         if ($permission->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::permissions.deleted'),
+                'msg'   => trans('admin::permissions.deleted'),
             ];
         }
 

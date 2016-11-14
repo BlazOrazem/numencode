@@ -6,10 +6,10 @@ return [
 
     'roles' => 'Roles',
 
-    'create' => 'Create new role',
+    'create'  => 'Create new role',
     'created' => 'Role :name created.',
 
-    'update' => 'Update role',
+    'update'  => 'Update role',
     'updated' => 'Role :name updated.',
 
     'deleted' => 'Role has been successfully deleted.',
@@ -17,7 +17,7 @@ return [
     'index' => 'Back to roles',
 
     'placeholder' => [
-        'name' => 'Enter role name',
+        'name'  => 'Enter role name',
         'label' => 'Enter role label',
     ],
 

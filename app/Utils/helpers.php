@@ -4,8 +4,9 @@ if (! function_exists('getRoute')) {
     /**
      * Creates an URL to route alias
      *
-     * @param string $alias
-     * @param string|null $locale
+     * @param string      $alias  Uri alias
+     * @param string|null $locale Set locale or fallback to default
+     *
      * @return mixed
      */
     function getRoute($alias, $locale = null)
@@ -18,8 +19,7 @@ if (! function_exists('getRoute')) {
 
         try {
             $route = $url->route($locale . ':' . $alias);
-        }
-        catch(InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $route = $url->route($alias);
         }
 
@@ -31,8 +31,9 @@ if (! function_exists('flash')) {
     /**
      * Flash message handler.
      *
-     * @param string|null $title
-     * @param string|null $message
+     * @param string|null $title   Flash message title
+     * @param string|null $message Flash message content
+     *
      * @return Numencode\Utils\Flash
      */
     function flash($title = null, $message = null)
@@ -57,7 +58,7 @@ if (! function_exists('reportError')) {
     {
         return [
             'title' => trans('admin::messages.error'),
-            'msg' => trans('admin::messages.error_notice'),
+            'msg'   => trans('admin::messages.error_notice'),
         ];
     }
 }
@@ -80,7 +81,8 @@ if (! function_exists('snake_slug')) {
     /**
      * Generate a URL friendly "snake slug" from a given string.
      *
-     * @param  string  $title
+     * @param string $title Text to be transformed to snake slug
+     *
      * @return string
      */
     function snake_slug($title)
@@ -93,23 +95,24 @@ if (! function_exists('fix_avatar_url')) {
     /**
      * Return URL for the large avatar image, given from any social network.
      *
-     * @param string $avatarUrl
+     * @param string $avatarUrl Uri for the avatar image
+     *
      * @return string
      */
     function fix_avatar_url($avatarUrl)
     {
         // Facebook
-        if(preg_match("/(graph.facebook.com)/i", $avatarUrl)){
+        if (preg_match('/(graph.facebook.com)/i', $avatarUrl)) {
             $avatarUrl = str_replace('?type=normal', '?width=1920', $avatarUrl);
         }
 
         // Twitter
-        if(preg_match("/(pbs.twimg.com)/i", $avatarUrl)){
+        if (preg_match('/(pbs.twimg.com)/i', $avatarUrl)) {
             $avatarUrl = str_replace('_normal.jpg', '.jpg', $avatarUrl);
         }
 
         // Google
-        if(preg_match("/(googleusercontent.com)/i", $avatarUrl)){
+        if (preg_match('/(googleusercontent.com)/i', $avatarUrl)) {
             $avatarUrl = rtrim($avatarUrl, '?sz=50');
         }
 

@@ -2,13 +2,13 @@
 
 return [
 
-    'name' => 'Name',
+    'name'  => 'Name',
     'title' => 'Title',
     'label' => 'Label',
-    'code' => 'Code',
+    'code'  => 'Code',
 
-    'order' => 'Order',
-    'order_label' => 'Order',
+    'order'             => 'Order',
+    'order_label'       => 'Order',
     'order_placeholder' => 'Set sort order',
 
     'submit' => 'Submit',

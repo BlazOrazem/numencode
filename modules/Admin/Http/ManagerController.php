@@ -17,7 +17,7 @@ class ManagerController extends BaseController
     /**
      * Create a new profile controller instance.
      *
-     * @param ManagerRepository $managers
+     * @param ManagerRepository $managers Manager repository
      */
     public function __construct(ManagerRepository $managers)
     {
@@ -49,40 +49,10 @@ class ManagerController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param FlyerRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-//    public function store(FlyerRequest $request)
-//    {
-//        $flyer = $this->user->publish(
-//            new Flyer($request->all())
-//        );
-//
-//        flash()->success('Success!', 'Your flyer has been created.');
-//
-//        return redirect(flyer_path($flyer));
-//    }
-
-    /**
-     * Display the specified manager.
-     *
-     * @param int $id Manager ID
-     * @return \Illuminate\View\View
-     */
-//    public function show($id)
-//    {
-//        $manager = Manager::firstOrFail($id);
-//        dd($manager);
-//
-//        return view('flyers.show', compact('flyer'));
-//    }
-
-    /**
      * Show the form for editing the specified manager.
      *
-     * @param $id
+     * @param int $id Manager Id
+     *
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -95,23 +65,30 @@ class ManagerController extends BaseController
     /**
      * Update the specified manager in storage.
      *
-     * @param $id
+     * @param int $id Manager Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id)
     {
         $manager = Manager::findOrFail($id);
 
-        $this->validate(request(), [
-            'name' => 'required|max:255',
-            'email' => request()->email == $manager->email ? '' : 'required|email|max:255|unique:managers',
-            'password' => empty($this->password) ? '' : 'required|min:6',
-//            'avatar'   => 'mimes:jpg,jpeg,png,gif,bmp',
-        ]);
+        $this->validate(
+            request(),
+            [
+                'name'     => 'required|max:255',
+                'email'    => request()->email == $manager->email ? '' : 'required|email|max:255|unique:managers',
+                'password' => empty($this->password) ? '' : 'required|min:6',
+    //            'avatar'   => 'mimes:jpg,jpeg,png,gif,bmp',
+            ]
+        );
 
 //        $this->managers->updateManager($manager, $request);
 
-        flash()->success(trans('admin::messages.success'), trans('admin::messages.manager.updated', ['name' => $manager->name]));
+        flash()->success(
+            trans('admin::messages.success'),
+            trans('admin::messages.manager.updated', ['name' => $manager->name])
+        );
 
         return redirect()->back();
     }
@@ -119,7 +96,8 @@ class ManagerController extends BaseController
     /**
      * Delete the manager.
      *
-     * @param $id
+     * @param int $id Manager Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
@@ -128,7 +106,10 @@ class ManagerController extends BaseController
 
         $manager->delete();
 
-        flash()->success(trans('admin::messages.success'), trans('admin::messages.manager.deleted'), 2000);
+        flash()->success(
+            trans('admin::messages.success'),
+            trans('admin::messages.manager.deleted'), 2000
+        );
 
         return redirect()->back();
     }

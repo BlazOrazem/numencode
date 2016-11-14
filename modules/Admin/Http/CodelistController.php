@@ -27,18 +27,23 @@ class CodelistController extends BaseController
      */
     public function store()
     {
-        $this->validate(request(), [
-            'title' => 'required|unique:codelist_group',
-            'sort_order' => 'required|integer'
-        ]);
+        $this->validate(
+            request(),
+            [
+                'title'      => 'required|unique:codelist_group',
+                'sort_order' => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
         if (CodelistGroup::create(request()->all())) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::codelist.group_created', ['name' => request()->title]));
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::codelist.group_created', ['name' => request()->title])
+            );
         }
 
         return redirect()->route('codelist.index');
@@ -47,7 +52,8 @@ class CodelistController extends BaseController
     /**
      * Show the codelist group edit form and codelist items for this group.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -60,25 +66,31 @@ class CodelistController extends BaseController
     /**
      * Update the codelist group.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id)
     {
         $codelistGroup = CodelistGroup::findOrFail($id);
-
-        $this->validateWithBag('groupErrors', request(), [
-            'title' => ['required', Rule::unique('codelist_group')->ignore($id)],
-            'sort_order' => 'required|integer',
-        ]);
+        $this->validateWithBag(
+            'groupErrors',
+            request(),
+            [
+                'title'      => ['required', Rule::unique('codelist_group')->ignore($id)],
+                'sort_order' => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
         if ($codelistGroup->update(request()->all())) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::codelist.group_updated', ['name' => request()->title]));
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::codelist.group_updated', ['name' => request()->title])
+            );
         }
 
         return redirect()->back();
@@ -87,7 +99,8 @@ class CodelistController extends BaseController
     /**
      * Delete the codelist group.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
@@ -97,7 +110,7 @@ class CodelistController extends BaseController
         if ($codelistGroup->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::codelist.group_deleted'),
+                'msg'   => trans('admin::codelist.group_deleted'),
             ];
         }
 
@@ -107,31 +120,39 @@ class CodelistController extends BaseController
     /**
      * Store a newly created codelist item.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function storeItem($id)
     {
         $codelistGroup = CodelistGroup::findOrFail($id);
-
-        $this->validateWithBag('itemErrors', request(), [
-            'code' => [
-                'required',
-                Rule::unique('codelist_item')->where(function ($query) use ($codelistGroup) {
-                    $query->where('codelist_group_id', $codelistGroup->id);
-                })
-            ],
-            'title' => 'required',
-            'sort_order' => 'required|integer'
-        ]);
+        $this->validateWithBag(
+            'itemErrors',
+            request(),
+            [
+                'code' => [
+                    'required',
+                    Rule::unique('codelist_item')->where(
+                        function ($query) use ($codelistGroup) {
+                            $query->where('codelist_group_id', $codelistGroup->id);
+                        }
+                    ),
+                ],
+                'title'      => 'required',
+                'sort_order' => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
         if (CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save()) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::codelist.item_created', ['name' => request()->title]));
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::codelist.item_created', ['name' => request()->title])
+            );
         }
 
         return redirect()->back();
@@ -140,13 +161,13 @@ class CodelistController extends BaseController
     /**
      * Edit the codelist item.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\View\View
      */
     public function editItem($id)
     {
         $codelistItem = CodelistItem::findOrFail($id);
-
         $codelistGroup = CodelistGroup::with('items')->find($codelistItem->codelist_group_id);
 
         return view('admin::codelist.item', compact('codelistItem', 'codelistGroup'));
@@ -155,31 +176,38 @@ class CodelistController extends BaseController
     /**
      * Update the codelist item.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function updateItem($id)
     {
         $codelistItem = CodelistItem::findOrFail($id);
-
-        $this->validate(request(), [
-            'code' => [
-                'required',
-                Rule::unique('codelist_item')->where(function ($query) use ($codelistItem) {
-                    $query->where('codelist_group_id', $codelistItem->codelist_group_id);
-                })
-            ],
-            'title' => 'required',
-            'sort_order'  => 'required|integer'
-        ]);
+        $this->validate(
+            request(),
+            [
+                'code' => [
+                    'required',
+                    Rule::unique('codelist_item')->where(
+                        function ($query) use ($codelistItem) {
+                            $query->where('codelist_group_id', $codelistItem->codelist_group_id);
+                        }
+                    ),
+                ],
+                'title'      => 'required',
+                'sort_order' => 'required|integer',
+            ]
+        );
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
         if ($codelistItem->update(request()->all())) {
-            flash()->success(trans('admin::messages.success'),
-                trans('admin::codelist.item_updated', ['name' => request()->title]));
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::codelist.item_updated', ['name' => request()->title])
+            );
         }
 
         return redirect()->back();
@@ -188,7 +216,8 @@ class CodelistController extends BaseController
     /**
      * Delete the codelist item.
      *
-     * @param $id
+     * @param int $id CodelistGroup Id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroyItem($id)
@@ -198,7 +227,7 @@ class CodelistController extends BaseController
         if ($codelistItem->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
-                'msg' => trans('admin::codelist.item_deleted'),
+                'msg'   => trans('admin::codelist.item_deleted'),
             ];
         }
 
