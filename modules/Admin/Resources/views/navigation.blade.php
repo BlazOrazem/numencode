@@ -40,6 +40,7 @@
             <a href="{{ route('roles.index') }}"><i class="zmdi zmdi-settings"></i>Settings<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Settings</li>
+                <li><a href="{{ route('menus.index') }}">Menu Types</a></li>
                 <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
                 <li><a href="{{ route('roles.index') }}">Roles</a></li>
                 <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
@@ -49,5 +50,5 @@
             <a href="{{ route('tasks.index') }}"><i class="zmdi zmdi-format-align-justify"></i>Tasks</a>
         </li>
     </ul>
-    <input id="activeUrl" type="hidden" value="{{ url('/') }}/{{ request()->segment(1) }}{{ request()->segment(2) ? '/' . request()->segment(2) : '' }}">
+    <input id="activeUrl" type="hidden" value="{{ $activeUrl }}">
 </aside>

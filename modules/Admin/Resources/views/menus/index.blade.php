@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    {{ trans('admin::codelist.title') }}
+    {{ trans('admin::menus.title') }}
 @stop
 
 @section('content')
@@ -11,49 +11,48 @@
         <div class="col-lg-6">
             <div class="data-table data-info content-box">
                 <div class="head info-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::codelist.groups') }}</h5>
+                    <h5 class="content-title pull-left">{{ trans('admin::menus.types') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
                     </div>
                 </div>
-                <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+                <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
+                        <th>{{ trans('admin::tables.code') }}</th>
                         <th>{{ trans('admin::tables.title') }}</th>
                         <th>{{ trans('admin::tables.order') }}</th>
-                        @if ($admin->can('edit_codelist'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
+                        @if ($admin->can('edit_menus'))
+                            <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
                         @endif
-                        @if ($admin->can('delete_codelist'))
+                        @if ($admin->can('delete_menus'))
                             <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($codelistGroups as $group)
+                    @foreach ($menus as $menu)
                         <tr>
-                            <td>{{ $group->title }}</td>
+                            <td>{{ $menu->code }}</td>
+                            <td>{{ $menu->title }}</td>
                             <td class="text-right">
                                 <span class="badge badge-info">
-                                    {{ $group->sort_order }}
+                                    {{ $menu->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('edit_managers'))
+                            @if ($admin->can('edit_menus'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
-                                        'action' => route('codelist.edit', compact('group')),
-                                        'icon' => 'zmdi-collection-text',
+                                        'action' => route('menus.edit', compact('menu')),
                                     ])
                                 </td>
                             @endif
-                            @if ($admin->can('delete_managers'))
+                            @if ($admin->can('delete_menus'))
                                 <td class="text-center">
-                                    @if (!$group->items->count())
-                                        @include ('admin::components.button.delete', [
-                                            'action' => route('codelist.destroy', compact('group')),
-                                        ])
-                                    @endif
+                                    @include ('admin::components.button.delete', [
+                                        'action' => route('menus.destroy', compact('menu'))
+                                    ])
                                 </td>
                             @endif
                         </tr>
@@ -66,7 +65,7 @@
         <div class="col-lg-6">
             <div class="content-box">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::codelist.new_group') }}</h5>
+                    <h5 class="content-title pull-left">{{ trans('admin::menus.create') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -74,19 +73,24 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('codelist.store') }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('menus.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::forms.code'),
+                            'field' => 'code',
+                            'placeholder' => trans('admin::menus.placeholder.code'),
+                            'class' => 'snake-slug',
+                        ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
-                            'placeholder' => trans('admin::codelist.placeholder.group_title'),
+                            'placeholder' => trans('admin::menus.placeholder.title'),
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $codelistGroups->pluck('sort_order')->last() + 10,
-                            'errors' => $errors->roleErrors,
+                            'sortOrder' => $menus->pluck('sort_order')->last() + 10,
                         ])
                         @include ('admin::components.form.submit', [
-                            'button' => trans('admin::codelist.group_create'),
+                            'button' => trans('admin::menus.create'),
                         ])
                     </form>
                 </div>

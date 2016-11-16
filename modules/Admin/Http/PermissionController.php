@@ -41,9 +41,9 @@ class PermissionController extends BaseController
 
         if (Permission::create(
             [
-            'name' => snake_slug(request()->name),
-            'label' => ucfirst(request()->label),
-            'sort_order' => request()->sort_order,
+                'name'       => snake_slug(request()->name),
+                'label'      => ucfirst(request()->label),
+                'sort_order' => request()->sort_order,
             ]
         )) {
             flash()->success(
@@ -96,8 +96,8 @@ class PermissionController extends BaseController
 
         if ($permission->update(
             [
-                'name' => snake_slug(request()->name),
-                'label' => ucfirst(request()->label),
+                'name'       => snake_slug(request()->name),
+                'label'      => ucfirst(request()->label),
                 'sort_order' => request()->sort_order,
             ]
         )) {

@@ -17,5 +17,7 @@ class PageComposer
     public function compose(View $view)
     {
         $view->with('menus', Menu::getAllWithTree());
+
+        $view->with('activeUrl', url('/') . '/' . request()->segment(1) . (request()->segment(2) ? '/' . request()->segment(2) : ''));
     }
 }

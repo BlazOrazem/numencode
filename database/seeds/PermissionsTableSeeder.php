@@ -151,6 +151,24 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id' => '17',
+                'name' => 'edit_menus',
+                'label' => 'Admin can edit menu.',
+                'is_admin' => true,
+                'sort_order' => 240,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
+            [
+                'id' => '18',
+                'name' => 'delete_menus',
+                'label' => 'Admin can delete menu.',
+                'is_admin' => true,
+                'sort_order' => 250,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
         ];
 
         DB::table('permissions')->insert($items);

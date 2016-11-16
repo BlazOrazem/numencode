@@ -18,9 +18,8 @@ Route::resource('managers', 'ManagerController');
 // Users
 Route::resource('users', 'UserController');
 
-// Tasks
-Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
-Route::resource('tasks', 'TaskController');
+// Menu Types
+Route::resource('menus', 'MenuController');
 
 // Codelist
 Route::post('codelist/item/{group}', 'CodelistController@storeItem')->name('codelist.item.create');
@@ -33,3 +32,7 @@ Route::resource('codelist', 'CodelistController');
 Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign');
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
+
+// Tasks
+Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
+Route::resource('tasks', 'TaskController');

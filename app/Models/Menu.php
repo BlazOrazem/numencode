@@ -17,6 +17,13 @@ class Menu extends Model
     protected $table = 'menus';
 
     /**
+     * Disable timestamps.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -42,18 +49,21 @@ class Menu extends Model
     /**
      * Create page tree structure.
      *
-     * @param $code
+     * @param string $code Menu type code
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function buildTreeMenu($code)
     {
         $items = Page::with('url')->where('menu', $code)->get()->groupBy('parent_id');
-        
-        if (count($items)) {
+
+        if ($items->count()) {
             $items['root'] = $items[''];
             unset($items['']);
+        } else {
+            $items = collect(['root' => collect()]);
         }
-        
+
         return $items;
     }
 }
