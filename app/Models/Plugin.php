@@ -17,9 +17,16 @@ class Plugin extends Model
     protected $table = 'plugins';
 
     /**
+     * Disable timestamps.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'controller', 'method', 'sort_order', 'is_hidden'];
+    protected $fillable = ['title', 'description', 'action', 'sort_order', 'is_hidden'];
 }

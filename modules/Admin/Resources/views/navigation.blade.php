@@ -42,6 +42,7 @@
                 <li class="inside-title">Settings</li>
                 <li><a href="{{ route('menus.index') }}">Menu Types</a></li>
                 <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
+                <li><a href="{{ route('plugins.index') }}">Plugins</a></li>
                 <li><a href="{{ route('roles.index') }}">Roles</a></li>
                 <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
             </ul>

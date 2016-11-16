@@ -2,10 +2,12 @@
 
 return [
 
-    'name'  => 'Name',
-    'title' => 'Title',
-    'label' => 'Label',
-    'code'  => 'Code',
+    'name'        => 'Name',
+    'title'       => 'Title',
+    'label'       => 'Label',
+    'code'        => 'Code',
+    'action'      => 'Action',
+    'description' => 'Description',
 
     'order'             => 'Order',
     'order_label'       => 'Order',

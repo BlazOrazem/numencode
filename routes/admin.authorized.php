@@ -21,6 +21,9 @@ Route::resource('users', 'UserController');
 // Menu Types
 Route::resource('menus', 'MenuController');
 
+// Plugins
+Route::resource('plugins', 'PluginController');
+
 // Codelist
 Route::post('codelist/item/{group}', 'CodelistController@storeItem')->name('codelist.item.create');
 Route::patch('codelist/item/{item}', 'CodelistController@updateItem')->name('codelist.item.update');
