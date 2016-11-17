@@ -39,11 +39,12 @@ class PluginController extends BaseController
             return ajaxSuccess();
         }
 
-        if (Plugin::create(array_merge(request()->all(),
-            [
-                'is_hidden' => isset(request()->is_hidden),
-            ]
-        ))) {
+        if (Plugin::create(
+            array_merge(
+                request()->all(),
+                ['is_hidden' => isset(request()->is_hidden)]
+            )
+        )) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.created', ['name' => request()->title])
@@ -82,8 +83,8 @@ class PluginController extends BaseController
         $this->validate(
             request(),
             [
-                'code'       => ['required', Rule::unique('plugins')->ignore($id)],
-                'title'      => 'required',
+                'title'      => ['required', Rule::unique('plugins')->ignore($id)],
+                'action'     => 'required',
                 'sort_order' => 'required|integer',
             ]
         );
@@ -93,11 +94,10 @@ class PluginController extends BaseController
         }
 
         if ($plugin->update(
-            [
-                'code'       => snake_slug(request()->code),
-                'title'      => ucfirst(request()->title),
-                'sort_order' => request()->sort_order,
-            ]
+            array_merge(
+                request()->all(),
+                ['is_hidden' => isset(request()->is_hidden)]
+            )
         )) {
             flash()->success(
                 trans('admin::messages.success'),

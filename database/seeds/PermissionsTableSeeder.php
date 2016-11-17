@@ -169,6 +169,24 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id' => '19',
+                'name' => 'edit_plugins',
+                'label' => 'Admin can edit plugin.',
+                'is_admin' => true,
+                'sort_order' => 260,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
+            [
+                'id' => '20',
+                'name' => 'delete_plugins',
+                'label' => 'Admin can delete plugin.',
+                'is_admin' => true,
+                'sort_order' => 270,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
         ];
 
         DB::table('permissions')->insert($items);

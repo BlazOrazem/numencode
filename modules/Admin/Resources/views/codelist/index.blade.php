@@ -82,7 +82,7 @@
                             'placeholder' => trans('admin::codelist.placeholder.group_title'),
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $codelistGroups->pluck('sort_order')->last() + 10,
+                            'sortOrder' => $codelistGroups->max('sort_order') + 10,
                             'errors' => $errors->roleErrors,
                         ])
                         @include ('admin::components.form.submit', [

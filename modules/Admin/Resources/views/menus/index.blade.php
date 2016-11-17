@@ -87,7 +87,7 @@
                             'placeholder' => trans('admin::menus.placeholder.title'),
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $menus->pluck('sort_order')->last() + 10,
+                            'sortOrder' => $menus->max('sort_order') + 10,
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::menus.create'),

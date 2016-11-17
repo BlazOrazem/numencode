@@ -14,13 +14,13 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'label', 'sort_order'];
+    protected $fillable = ['name', 'label', 'is_admin', 'sort_order'];
 
-	/**
-	 * Permission can belongs to many roles.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
+    /**
+     * Permission can belongs to many roles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_permission');

@@ -9,8 +9,8 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <div class="data-table data-info content-box">
-                <div class="head info-bg clearfix">
+            <div class="data-table data-success content-box">
+                <div class="head success-bg clearfix">
                     <h5 class="content-title pull-left">{{ trans('admin::plugins.types') }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -32,26 +32,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($plugins as $plugin)
+                    @foreach ($plugins as $item)
                         <tr>
-                            <td>{{ $plugin->title }}</td>
-                            <td>{{ $plugin->description }}</td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->description }}</td>
                             <td class="text-right">
                                 <span class="badge badge-info">
-                                    {{ $plugin->sort_order }}
+                                    {{ $item->sort_order }}
                                 </span>
                             </td>
                             @if ($admin->can('edit_plugins'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
-                                        'action' => route('plugins.edit', compact('plugin')),
+                                        'action' => route('plugins.edit', compact('item'))
                                     ])
                                 </td>
                             @endif
                             @if ($admin->can('delete_plugins'))
                                 <td class="text-center">
                                     @include ('admin::components.button.delete', [
-                                        'action' => route('plugins.destroy', compact('plugin'))
+                                        'action' => route('plugins.destroy', compact('item'))
                                     ])
                                 </td>
                             @endif
@@ -64,8 +64,8 @@
 
         <div class="col-lg-6">
             <div class="content-box">
-                <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::plugins.create') }}</h5>
+                <div class="head warning-bg clearfix">
+                    <h5 class="content-title pull-left">{{ trans('admin::plugins.update') }}: {{ $plugin->title }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -73,39 +73,52 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('plugins.store') }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('plugins.update', [$plugin]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
+                        {{ method_field('patch') }}
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
                             'placeholder' => trans('admin::plugins.placeholder.title'),
+                            'entity' => $plugin,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.description'),
                             'field' => 'description',
                             'placeholder' => trans('admin::plugins.placeholder.description'),
+                            'entity' => $plugin,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.action'),
                             'field' => 'action',
                             'placeholder' => trans('admin::plugins.placeholder.action'),
+                            'entity' => $plugin,
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $plugins->max('sort_order') + 10,
+                            'sortOrder' => $plugin->sort_order,
                         ])
                         @include ('admin::components.form.checkbox', [
                             'label' => 'Is hidden?',
                             'field' => 'is_hidden',
-                            'type' => 'success',
+                            'type' => 'warning',
+                            'isChecked' => $plugin->is_hidden,
                         ])
                         @include ('admin::components.form.submit', [
-                            'button' => trans('admin::plugins.create'),
+                            'button' => trans('admin::plugins.update'),
+                            'type' => 'warning',
                         ])
                     </form>
                 </div>
             </div>
+            <div class="content-box">
+                <div class="content text-center">
+                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('plugins.index') }}">
+                        <i class="zmdi zmdi-caret-left-circle left"></i>
+                        {{ trans('admin::plugins.index') }}
+                    </a>
+                </div>
+            </div>
         </div>
-
     </div>
 
 @stop

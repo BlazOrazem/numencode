@@ -91,6 +91,12 @@
                         @include ('admin::components.form.order', [
                             'sortOrder' => $permission->sort_order,
                         ])
+                        @include ('admin::components.form.checkbox', [
+                            'label' => 'Is admin?',
+                            'field' => 'is_admin',
+                            'type' => 'warning',
+                            'isChecked' => $permission->is_admin,
+                        ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::permissions.update'),
                             'type' => 'warning',

@@ -87,7 +87,11 @@
                             'placeholder' => trans('admin::permissions.placeholder.label'),
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $permissions->pluck('sort_order')->last() + 10,
+                            'sortOrder' => $permissions->max('sort_order') + 10,
+                        ])
+                        @include ('admin::components.form.checkbox', [
+                            'label' => 'Is admin?',
+                            'field' => 'is_admin',
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::permissions.create'),

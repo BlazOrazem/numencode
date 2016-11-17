@@ -97,7 +97,7 @@
                             'placeholder' => trans('admin::roles.placeholder.label'),
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $roles->pluck('sort_order')->last() + 10,
+                            'sortOrder' => $roles->max('sort_order') + 10,
                         ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::roles.create'),

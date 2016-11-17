@@ -127,7 +127,7 @@
                             'errors' => $errors->itemErrors,
                         ])
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $codelistGroup->items->pluck('sort_order')->last() + 10,
+                            'sortOrder' => $codelistGroup->items->max('sort_order') + 10,
                             'errors' => $errors->itemErrors,
                         ])
                         @include ('admin::components.form.submit', [
