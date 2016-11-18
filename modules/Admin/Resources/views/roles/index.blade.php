@@ -2,7 +2,7 @@
 
 @section('title')
     {{ trans('admin::roles.title') }}
-@stop
+@endsection
 
 @section('content')
 
@@ -109,4 +109,4 @@
 
     </div>
 
-@stop
+@endsection

@@ -37,4 +37,4 @@
     </div>
     <!-- /.row -->
 
-@stop
+@endsection

@@ -41,4 +41,4 @@
     </div>
     <!-- /.row -->
 
-@stop
+@endsection

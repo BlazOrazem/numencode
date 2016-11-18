@@ -2,7 +2,7 @@
 
 @section('title')
     {{ trans('admin::codelist.title') }}
-@stop
+@endsection
 
 @section('content')
 
@@ -149,4 +149,4 @@
 
     </div>
 
-@stop
+@endsection

@@ -2,7 +2,7 @@
 
 @section('title')
     Managers
-@stop
+@endsection
 
 @section('content')
 
@@ -66,4 +66,4 @@
         </div>
     </div>
 
-@stop
+@endsection

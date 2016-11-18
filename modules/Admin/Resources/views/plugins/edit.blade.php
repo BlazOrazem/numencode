@@ -2,7 +2,7 @@
 
 @section('title')
     {{ trans('admin::plugins.title') }}
-@stop
+@endsection
 
 @section('content')
 
@@ -121,4 +121,4 @@
         </div>
     </div>
 
-@stop
+@endsection

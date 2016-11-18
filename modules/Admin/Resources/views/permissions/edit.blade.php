@@ -2,7 +2,7 @@
 
 @section('title')
     {{ trans('admin::permissions.title') }}
-@stop
+@endsection
 
 @section('content')
 
@@ -115,4 +115,4 @@
         </div>
     </div>
 
-@stop
+@endsection

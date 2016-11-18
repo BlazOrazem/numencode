@@ -2,7 +2,7 @@
 
 @section('title')
     Dashboard
-@stop
+@endsection
 
 @section('content')
 
@@ -1137,7 +1137,7 @@
         </div>
     </div>
 
-@stop
+@endsection
 
 @section('scripts')
     <script>
@@ -1481,4 +1481,4 @@
             document.getElementById('js-legend').innerHTML = myLine.generateLegend();
         }
     </script>
-@stop
+@endsection
