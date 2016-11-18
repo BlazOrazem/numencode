@@ -120,29 +120,50 @@ var PreLoader = (function () {
 var Responsive = (function () {
     return {
         init: function () {
-            if($(window).width() >= 1440){
+            Responsive.handleResponsiveElements();
+
+            $(window).resize(function() {
+                Responsive.handleResponsiveElements(true);
+            });
+
+            if ($(window).width() <= 1024) {
+                Responsive.changeTitlePosition();
+            }
+
+            $(window).resize(function(){
+                if ($(window).width() <= 1024) {
+                    Responsive.changeTitlePosition();
+                } else {
+                    var title = $(".page-title").remove();
+                    $(".navbar-container > .pull-left").html(title);
+                }
+            });
+        },
+
+        handleResponsiveElements: function (onResize) {
+            if ($(window).width() >= 1440) {
                 $(".side-panel").addClass("open");
                 $(".sidepanel-toggle").parent().addClass("open");
-                $("body").addClass("small-content");
-            }
-            else{
+                if (onResize) {
+                    $("body").addClass("fixed-sidebar-example small-content");
+                } else {
+                    $("body").addClass("small-content");
+                }
+            } else {
                 $(".side-panel").removeClass("open");
                 $(".sidepanel-toggle").parent().removeClass("open");
                 $("body").removeClass("fixed-sidebar-example small-content");
             }
+        },
 
-            $(window).resize(function(){
-                if($(window).width() >= 1440){
-                    $(".side-panel").addClass("open");
-                    $(".sidepanel-toggle").parent().addClass("open");
-                    $("body").addClass("fixed-sidebar-example small-content");
-                }
-                else{
-                    $(".side-panel").removeClass("open");
-                    $(".sidepanel-toggle").parent().removeClass("open");
-                    $("body").removeClass("fixed-sidebar-example small-content");
-                }
-            });
+        changeTitlePosition: function () {
+            var title = $(".page-title").remove();
+
+            if ($(".breadcrumb")[0]) {
+                $(".breadcrumb").eq(0).after(title);
+            } else {
+                $(".container-fluid > .row").eq(0).before(title);
+            }
         }
     };
 })();

@@ -360,30 +360,30 @@ $(function() {
 
 
 
-  function changeTitlePosition(){
-    var title = $(".page-title").remove();
-    
-    if($(".breadcrumb")[0]){
-      $(".breadcrumb").eq(0).after(title);
-    }
-    else{
-      $(".container-fluid > .row").eq(0).before(title);
-    }
-  }
-  
-  if($(window).width() <= 1024){
-    changeTitlePosition();
-  }
-
-  $(window).resize(function(){
-    if($(window).width() <= 1024){
-      changeTitlePosition();
-    }
-    else{
-      var title = $(".page-title").remove();
-      $(".navbar-container > .pull-left").html(title);
-    }
-  });
+  //function changeTitlePosition(){
+  //  var title = $(".page-title").remove();
+  //
+  //  if($(".breadcrumb")[0]){
+  //    $(".breadcrumb").eq(0).after(title);
+  //  }
+  //  else{
+  //    $(".container-fluid > .row").eq(0).before(title);
+  //  }
+  //}
+  //
+  //if($(window).width() <= 1024){
+  //  changeTitlePosition();
+  //}
+  //
+  //$(window).resize(function(){
+  //  if($(window).width() <= 1024){
+  //    changeTitlePosition();
+  //  }
+  //  else{
+  //    var title = $(".page-title").remove();
+  //    $(".navbar-container > .pull-left").html(title);
+  //  }
+  //});
 
   var locationHref = $(location).attr('pathname').replace("/", "");
   var currentPage = $('a[href="' + locationHref + '"]');
