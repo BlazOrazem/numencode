@@ -46,14 +46,19 @@ elixir(function(mix) {
     var adminResources = './modules/Admin/Resources/assets/';
     var publicPath = './public/themes/admin/';
 
-	mix.less([
-		adminResources + 'styles/app.less',
-		adminResources + 'styles/jstree/default/style.less'
-	], publicPath + 'css/app.css')
-	.sass([
-		adminResources + 'scss/style.scss'
-	], publicPath + 'css/common.css')
+    /*
+     |--------------------------------------------------------------------------
+     | Styles (SASS, LESS, CSS)
+     |--------------------------------------------------------------------------
+     */
+	mix.sass([
+        adminResources + 'scss/style.scss'
+    ], publicPath + 'css/app.css')
+    .less([
+		adminResources + 'jstree/style.less'
+	], publicPath + 'css/jstree.css')
     .styles([
+        adminResources + 'jstree/style.less',
 		adminResources + 'bower_components/bootstrap/dist/css/bootstrap.min.css',
         adminResources + 'bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css',
         adminResources + 'bower_components/animate.css/animate.min.css',
@@ -66,6 +71,11 @@ elixir(function(mix) {
 		adminResources + 'bower_components/bootstrap-sweetalert/lib/sweet-alert.css'
     ], publicPath + 'css/libs.css');
 
+    /*
+     |--------------------------------------------------------------------------
+     | Scripts (Javascript)
+     |--------------------------------------------------------------------------
+     */
     mix.scripts([
         adminResources + 'scripts/general.js',
         adminResources + 'scripts/http.js',
@@ -104,14 +114,13 @@ elixir(function(mix) {
      | Version the CSS and JS files to avoid caching issues.
      |
      */
-
     mix.version([
         publicPath + 'css/app.css',
-        publicPath + 'css/common.css',
         publicPath + 'css/libs.css',
+        publicPath + 'css/jstree.css',
         publicPath + 'js/app.js',
-        publicPath + 'js/common.js',
-        publicPath + 'js/libs.js'
+        publicPath + 'js/libs.js',
+        publicPath + 'js/common.js'
     ]);
 
 	/*
@@ -123,8 +132,8 @@ elixir(function(mix) {
 	//mix.copy(adminResources + 'bower_components/respondJs/dest/respond.min.js', publicPath + 'js/respond.min.js');
 	//mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', publicPath + 'fonts');
 	//mix.copy(adminResources + 'bower_components/DataTables/media/images', publicPath + 'images');
+	//mix.copy(adminResources + 'jstree/images', publicPath + 'images/jstree');
 	//mix.copy(adminResources + 'bower_components/DataTables/media/images', './public/build/themes/admin/images');
-
 	//mix.copy(adminResources + 'bower_components/material-design-iconic-font/dist/fonts', './public/build/themes/admin/fonts');
 
     /*
@@ -135,6 +144,5 @@ elixir(function(mix) {
      | Gulp watcher for tests, trigger with "gulp tdd".
      |
      */
-
     //mix.phpUnit();
 });
