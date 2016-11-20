@@ -21,4 +21,22 @@ $(document).ready(function() {
     FullScreenMode.init();
 
     Form.init();
+
+    ContentBlock.init();
+
+    FormComponents.init();
+
+    Notifications.init();
+
+    TimeDisplay.init();
+
+    Tooltips.init();
+
+    Popover.init();
+
+    CollapseFix.init();
+
+    SidePanel.init();
+
+    MenuToggle.init();
 });

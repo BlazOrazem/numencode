@@ -77,15 +77,12 @@ elixir(function(mix) {
      |--------------------------------------------------------------------------
      */
     mix.scripts([
-        adminResources + 'scripts/general.js',
+        //adminResources + 'scripts/general.js',
         adminResources + 'scripts/http.js',
         adminResources + 'scripts/app.js',
-        adminResources + 'scripts/init.js',
-        adminResources + 'scripts/form.js'
+        adminResources + 'scripts/form.js',
+        adminResources + 'scripts/init.js'
     ], publicPath + 'js/app.js')
-	.scripts([
-        adminResources + 'scripts/common.js'
-    ], publicPath + 'js/common.js')
     .scripts([
 		adminResources + 'bower_components/jquery/dist/jquery.min.js',
 		adminResources + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
@@ -120,7 +117,6 @@ elixir(function(mix) {
         publicPath + 'css/jstree.css',
         publicPath + 'js/app.js',
         publicPath + 'js/libs.js',
-        publicPath + 'js/common.js'
     ]);
 
 	/*
