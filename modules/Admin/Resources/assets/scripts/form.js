@@ -3,21 +3,21 @@ var Form = (function () {
     /**
      * Define form classes, currently set for Bootstrap 3 admin theme.
      */
-    var _formValidate = 'form-validate';
-    var _successColor = 'success-color';
-    var _inputSuccess = 'input-success';
-    var _formGroup = 'form-group';
-    var _helpBlock = 'help-block';
-    var _hasError = 'has-error';
+    var formValidate = 'form-validate';
+    var successColor = 'success-color';
+    var inputSuccess = 'input-success';
+    var formGroup = 'form-group';
+    var helpBlock = 'help-block';
+    var hasError = 'has-error';
 
     return {
         init: function () {
-            $('.' + _formValidate).bind('submit', function(e) {
+            $('.' + formValidate).bind('submit', function(e) {
                 e.preventDefault(e);
                 Form.validateForm($(this));
             });
 
-            $('.' + _formValidate + ' input').bind('blur', function() {
+            $('.' + formValidate + ' input').bind('blur', function() {
                 Form.validateInputField($(this));
             });
 
@@ -42,21 +42,21 @@ var Form = (function () {
         },
 
         getGroupFor: function (form, name) {
-            return form.find('[name=' + name + ']').closest('.' + _formGroup);
+            return form.find('[name=' + name + ']').closest('.' + formGroup);
         },
 
         failFor: function (item, errorMsg) {
-            item.addClass(_hasError);
-            item.find('label').removeClass(_successColor);
-            item.find('input').removeClass(_inputSuccess);
-            item.find('.' + _helpBlock).html(errorMsg.join(' '));
+            item.addClass(hasError);
+            item.find('label').removeClass(successColor);
+            item.find('input').removeClass(inputSuccess);
+            item.find('.' + helpBlock).html(errorMsg.join(' '));
         },
 
         successFor: function (item) {
-            item.removeClass(_hasError);
-            item.find('label').addClass(_successColor);
-            item.find('input').addClass(_inputSuccess);
-            item.find('.' + _helpBlock).html('');
+            item.removeClass(hasError);
+            item.find('label').addClass(successColor);
+            item.find('input').addClass(inputSuccess);
+            item.find('.' + helpBlock).html('');
         },
 
         validateForm: function (form) {
@@ -90,7 +90,7 @@ var Form = (function () {
                 .error(function(data) {
                     var item = Form.getGroupFor(form, fieldName);
 
-                    if (item.hasClass(_hasError)) {
+                    if (item.hasClass(hasError)) {
                         Form.successFor(item);
                     }
 

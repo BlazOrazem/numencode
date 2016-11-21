@@ -24,6 +24,9 @@ elixir.config.css.sass.folder = '';
 /* Set the JavaScripts source folder */
 elixir.config.js.folder = '';
 
+/* Source maps should be available */
+elixir.config.sourcemaps = true;
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -116,7 +119,7 @@ elixir(function(mix) {
         publicPath + 'css/libs.css',
         publicPath + 'css/jstree.css',
         publicPath + 'js/app.js',
-        publicPath + 'js/libs.js',
+        publicPath + 'js/libs.js'
     ]);
 
 	/*

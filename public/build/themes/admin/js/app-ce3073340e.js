@@ -51,11 +51,12 @@ var PreLoader = (function () {
     return {
         init: function () {
             $('#preloader').height($(window).height() + "px");
+
             $(window).on('load', function(){
                 setTimeout(function(){
                     $('body').css("overflow-y","visible");
-                    $('#preloader').fadeOut(400);
-                }, 800);
+                    $('#preloader').fadeOut(200);
+                }, 600);
             });
         }
     }
@@ -64,14 +65,18 @@ var PreLoader = (function () {
 var MetisMenu = (function () {
     return {
         init: function () {
+            $('.metismenu').metisMenu({
+                activeClass: 'active'
+            });
+
+            MetisMenu.handleActive();
+        },
+
+        handleActive: function () {
             var url = $('#activeUrl').val();
 
             $('.metismenu li a[href="'+ url +'"]').parent().addClass('active');
             $('.metismenu li a[href="'+ url +'"]').parentsUntil(".metismenu").last().addClass('active');
-
-            $('.metismenu').metisMenu({
-                activeClass: 'active'
-            });
 
             var locationHref = $(location).attr('pathname').replace("/", "");
             var currentPage = $('a[href="' + locationHref + '"]');
@@ -110,6 +115,13 @@ var JsTree = (function () {
 var DataTables = (function () {
     return {
         init: function () {
+            DataTables.initStandardTable();
+            DataTables.initSearchableTable();
+            DataTables.initPaginatableTable();
+            DataTables.handleSearchablePlaceholder();
+        },
+
+        initStandardTable: function () {
             $('.datatable:not(.search):not(.search-paginate)').DataTable({
                 dom: '<"clear-filter">rti',
                 info: false,
@@ -120,7 +132,9 @@ var DataTables = (function () {
                     "orderable": false
                 }]
             });
+        },
 
+        initSearchableTable: function () {
             $('.datatable.search:not(.paginate)').DataTable({
                 dom: '<"clear-filter">frti',
                 info: false,
@@ -132,7 +146,9 @@ var DataTables = (function () {
                     "orderable": false
                 }]
             });
+        },
 
+        initPaginatableTable: function () {
             $('.datatable.search.paginate').DataTable({
                 dom: '<"top"lf>rt<"bottom"ip><"clear">',
                 info: true,
@@ -144,8 +160,10 @@ var DataTables = (function () {
                     "orderable": false
                 }]
             });
+        },
 
-            $('.datatable').each(function() {
+        handleSearchablePlaceholder: function () {
+            $('.datatable.search').each(function() {
                 var dataTableInfo = $(this).closest('.data-table');
                 dataTableInfo.find('.dataTables_filter input').attr("placeholder", $(this).data('search'));
             });
@@ -156,12 +174,7 @@ var DataTables = (function () {
 var Responsive = (function () {
     return {
         init: function () {
-            // Full height of content
-            $('.container-fluid').css("min-height", $(window).height() - 150 + "px");
-
-            if($(window).resize()){
-                $('.container-fluid').css("min-height", $(window).height() - 150 + "px");
-            }
+            Responsive.handleFullContentHeight();
 
             Responsive.handleResponsiveElements();
 
@@ -181,6 +194,14 @@ var Responsive = (function () {
                     $(".navbar-container > .pull-left").html(title);
                 }
             });
+        },
+
+        handleFullContentHeight: function() {
+            $('.container-fluid').css("min-height", $(window).height() - 150 + "px");
+
+            if ($(window).resize()) {
+                $('.container-fluid').css("min-height", $(window).height() - 150 + "px");
+            }
         },
 
         handleResponsiveElements: function (onResize) {
@@ -214,8 +235,13 @@ var Responsive = (function () {
 var ScrollBar = (function () {
     return {
         init: function () {
-            // Scroll for body
-            if($(window).width() > 1024 && $("body").has(".navbar").length){
+            ScrollBar.handleBodyScroll();
+            ScrollBar.handleSidebarScroll();
+            ScrollBar.handleContentScroll();
+        },
+
+        handleBodyScroll: function() {
+            if ($(window).width() > 1024 && $("body").has(".navbar").length) {
                 $("body").mCustomScrollbar({
                     theme: "minimal-dark",
                     scrollInertia: 200,
@@ -227,9 +253,10 @@ var ScrollBar = (function () {
                     }
                 });
             }
+        },
 
-            // Scroll for sidebar
-            if($(window).width() > 768){
+        handleSidebarScroll: function() {
+            if ($(window).width() > 768) {
                 $(".sidebar").mCustomScrollbar({
                     theme: "minimal",
                     scrollInertia: 0,
@@ -237,13 +264,13 @@ var ScrollBar = (function () {
                         preventDefault: true
                     }
                 });
-            }
-            else{
+            } else {
                 $(".sidebar").css("overflow-y", "auto");
             }
+        },
 
-            // Content scroll
-            if($(".content-scroll")[0]){
+        handleContentScroll: function() {
+            if ($(".content-scroll")[0]) {
                 $(".content-scroll").mCustomScrollbar({
                     theme: "minimal-dark",
                     scrollInertia: 50
@@ -263,6 +290,8 @@ var WavesEffect = (function () {
 })();
 
 var MenuSearchBar = (function () {
+    var submitIcon = $('.searchbox-icon');
+
     return {
         init: function () {
             var submitIcon = $('.searchbox-icon'),
@@ -587,26 +616,36 @@ var Notifications = (function () {
 })();
 
 var TimeDisplay = (function () {
+    var datetime = null,
+        time = null,
+        date = null;
+
     return {
         init: function () {
-            var datetime = null,
-                time = null,
-                date = null;
-
-            var update = function () {
-                date = moment(new Date());
-                datetime.html(date.format('DD MMMM YYYY <br> dddd'));
-                time.html(date.format('H:mm:ss'));
-            }
+            //var datetime = null,
+            //    time = null,
+            //    date = null;
+            //
+            //var update = function () {
+            //    date = moment(new Date());
+            //    datetime.html(date.format('DD MMMM YYYY <br> dddd'));
+            //    time.html(date.format('H:mm:ss'));
+            //}
 
             //Current Time
-            if($('.current-date')[0] && $('.time')[0]) {
-                datetime = $('.current-date');
-                time = $('.time');
+            if ($('.current-date')[0] && $('.time')[0]) {
+                TimeDisplay.datetime = $('.current-date');
+                TimeDisplay.time = $('.time');
 
-                update();
-                setInterval(update, 1000);
+                TimeDisplay.update();
+                setInterval(TimeDisplay.update, 1000);
             }
+        },
+
+        update: function() {
+            TimeDisplay.date = moment(new Date());
+            TimeDisplay.datetime.html(TimeDisplay.date.format('DD MMMM YYYY <br> dddd'));
+            TimeDisplay.time.html(TimeDisplay.date.format('H:mm:ss'));
         }
     }
 })();
@@ -778,21 +817,21 @@ var Form = (function () {
     /**
      * Define form classes, currently set for Bootstrap 3 admin theme.
      */
-    var _formValidate = 'form-validate';
-    var _successColor = 'success-color';
-    var _inputSuccess = 'input-success';
-    var _formGroup = 'form-group';
-    var _helpBlock = 'help-block';
-    var _hasError = 'has-error';
+    var formValidate = 'form-validate';
+    var successColor = 'success-color';
+    var inputSuccess = 'input-success';
+    var formGroup = 'form-group';
+    var helpBlock = 'help-block';
+    var hasError = 'has-error';
 
     return {
         init: function () {
-            $('.' + _formValidate).bind('submit', function(e) {
+            $('.' + formValidate).bind('submit', function(e) {
                 e.preventDefault(e);
                 Form.validateForm($(this));
             });
 
-            $('.' + _formValidate + ' input').bind('blur', function() {
+            $('.' + formValidate + ' input').bind('blur', function() {
                 Form.validateInputField($(this));
             });
 
@@ -817,21 +856,21 @@ var Form = (function () {
         },
 
         getGroupFor: function (form, name) {
-            return form.find('[name=' + name + ']').closest('.' + _formGroup);
+            return form.find('[name=' + name + ']').closest('.' + formGroup);
         },
 
         failFor: function (item, errorMsg) {
-            item.addClass(_hasError);
-            item.find('label').removeClass(_successColor);
-            item.find('input').removeClass(_inputSuccess);
-            item.find('.' + _helpBlock).html(errorMsg.join(' '));
+            item.addClass(hasError);
+            item.find('label').removeClass(successColor);
+            item.find('input').removeClass(inputSuccess);
+            item.find('.' + helpBlock).html(errorMsg.join(' '));
         },
 
         successFor: function (item) {
-            item.removeClass(_hasError);
-            item.find('label').addClass(_successColor);
-            item.find('input').addClass(_inputSuccess);
-            item.find('.' + _helpBlock).html('');
+            item.removeClass(hasError);
+            item.find('label').addClass(successColor);
+            item.find('input').addClass(inputSuccess);
+            item.find('.' + helpBlock).html('');
         },
 
         validateForm: function (form) {
@@ -865,7 +904,7 @@ var Form = (function () {
                 .error(function(data) {
                     var item = Form.getGroupFor(form, fieldName);
 
-                    if (item.hasClass(_hasError)) {
+                    if (item.hasClass(hasError)) {
                         Form.successFor(item);
                     }
 
