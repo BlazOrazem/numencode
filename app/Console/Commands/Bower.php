@@ -36,9 +36,12 @@ class Bower extends Command
         $process = new Process($command);
         $process->run();
 
-        $success = $process->isSuccessful() ? 'Bower update for the admin theme executed successfully.' : 'Error executing Bower update for the admin theme.';
-        $output = $process->getOutput();
+        $this->comment($process->getOutput());
 
-        $this->comment(strip_tags($success));
+        if ($process->isSuccessful()) {
+            $this->info('Bower update for the admin theme executed successfully.' . "\n");
+        } else {
+            $this->error('Error executing Bower update for the admin theme.' . "\n");
+        }
     }
 }

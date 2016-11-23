@@ -622,17 +622,6 @@ var TimeDisplay = (function () {
 
     return {
         init: function () {
-            //var datetime = null,
-            //    time = null,
-            //    date = null;
-            //
-            //var update = function () {
-            //    date = moment(new Date());
-            //    datetime.html(date.format('DD MMMM YYYY <br> dddd'));
-            //    time.html(date.format('H:mm:ss'));
-            //}
-
-            //Current Time
             if ($('.current-date')[0] && $('.time')[0]) {
                 TimeDisplay.datetime = $('.current-date');
                 TimeDisplay.time = $('.time');

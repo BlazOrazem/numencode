@@ -32,9 +32,36 @@ class Gulp extends Command
         $process = new Process($command);
         $process->run();
 
-        $success = $process->isSuccessful() ? 'Gulp for the admin theme executed successfully.' : 'Error executing Gulp for the admin theme.';
-        $output = $process->getOutput();
+        foreach (explode("\n", $process->getOutput()) as $line) {
+            $this->comment($this->clean($line));
+        }
 
-        $this->comment(strip_tags($success));
+        if ($process->isSuccessful()) {
+            $this->info('Gulp for the admin theme executed successfully.' . "\n");
+        } else {
+            $this->error('Error executing Gulp for the admin theme.' . "\n");
+        }
+    }
+
+    /**
+     * Clean special characters from Gulp log.
+     *
+     * @param string $string String
+     *
+     * @return string
+     */
+    protected function clean($string)
+    {
+        $string = str_replace(
+            ['┌','┐','└','┘','─','│','┼','┬','┴','├','┤'],
+            [''],
+            $string
+        );
+
+        $output = preg_replace('!\s+!', ' ', $string);
+
+        $output = str_replace('() 1.', '()' . PHP_EOL . ' 1.', $output);
+
+        return $output;
     }
 }
