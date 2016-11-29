@@ -35,12 +35,12 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @internal void
+     * @return void
      */
     public function map()
     {
         Route::group([
-            'namespace' => $this->namespace,
+            'namespace'  => $this->namespace,
             'middleware' => 'web',
         ], function () {
             $this->mapDatabaseDrivenRoutes();
@@ -58,12 +58,14 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Public routes
+     *
+     * @return void
      */
     protected function mapPublicRoutes()
     {
         Route::group([
             'middleware' => 'localization',
-            'namespace' => $this->cmsNamespace,
+            'namespace'  => $this->cmsNamespace,
         ], function ($router) {
             require base_path('routes/public.php');
         });
@@ -88,7 +90,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => ['localization', 'isGuest'],
-            'namespace' => $this->cmsNamespace . 'Auth',
+            'namespace'  => $this->cmsNamespace . 'Auth',
         ], function ($router) {
             require base_path('routes/auth.guest.php');
         });
@@ -101,7 +103,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'isAuthenticated',
-            'namespace' => $this->cmsNamespace . 'Auth',
+            'namespace'  => $this->cmsNamespace . 'Auth',
         ], function ($router) {
             require base_path('routes/auth.authorized.php');
         });
@@ -114,7 +116,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'isGuest',
-            'namespace' => $this->cmsNamespace . 'Auth',
+            'namespace'  => $this->cmsNamespace . 'Auth',
         ], function ($router) {
             require base_path('routes/auth.socialite.php');
         });
@@ -127,7 +129,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'namespace' => $this->adminNamespace,
-            'prefix' => 'admin',
+            'prefix'    => 'admin',
         ], function ($router) {
             require base_path('routes/admin.guest.php');
         });
@@ -140,8 +142,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'isAdmin',
-            'namespace' => $this->adminNamespace,
-            'prefix' => 'admin',
+            'namespace'  => $this->adminNamespace,
+            'prefix'     => 'admin',
         ], function ($router) {
             require base_path('routes/admin.authorized.php');
         });
@@ -154,7 +156,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'localization',
-            'namespace' => $this->cmsNamespace,
+            'namespace'  => $this->cmsNamespace,
         ], function ($router) {
             if (app()->runningInConsole()) {
                 return;

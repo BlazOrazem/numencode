@@ -58,14 +58,13 @@ class MenuController extends BaseController
     /**
      * Show the menu edit form.
      *
-     * @param int $id Menu Id
+     * @param Menu $menu Menu type
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Menu $menu)
     {
         $menus = Menu::all();
-        $menu = Menu::find($id);
 
         return view('admin::menus.edit', compact('menus', 'menu'));
     }
@@ -73,14 +72,12 @@ class MenuController extends BaseController
     /**
      * Update the menu.
      *
-     * @param int $id Menu Id
+     * @param Menu $menu Menu type
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(Menu $menu)
     {
-        $menu = Menu::findOrFail($id);
-
         $this->validate(
             request(),
             [
@@ -113,15 +110,13 @@ class MenuController extends BaseController
     /**
      * Delete the menu type.
      *
-     * @param int $id Menu Id
+     * @param Menu $menu Menu type
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        $permission = Menu::findOrFail($id);
-
-        if ($permission->delete()) {
+        if ($menu->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
                 'msg'   => trans('admin::menus.deleted'),

@@ -52,32 +52,29 @@ class CodelistController extends BaseController
     /**
      * Show the codelist group edit form and codelist items for this group.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistGroup $codelist Codelist group
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(CodelistGroup $codelist)
     {
-        $codelistGroup = CodelistGroup::with('items')->find($id);
-
-        return view('admin::codelist.edit', compact('codelistGroup'));
+        return view('admin::codelist.edit', ['codelistGroup' => $codelist->with('items')->first()]);
     }
 
     /**
      * Update the codelist group.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistGroup $codelist Codelist group
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(CodelistGroup $codelist)
     {
-        $codelistGroup = CodelistGroup::findOrFail($id);
         $this->validateWithBag(
             'groupErrors',
             request(),
             [
-                'title'      => ['required', Rule::unique('codelist_group')->ignore($id)],
+                'title'      => ['required', Rule::unique('codelist_group')->ignore($codelist->id)],
                 'sort_order' => 'required|integer',
             ]
         );
@@ -86,7 +83,7 @@ class CodelistController extends BaseController
             return ajaxSuccess();
         }
 
-        if ($codelistGroup->update(request()->all())) {
+        if ($codelist->update(request()->all())) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::codelist.group_updated', ['name' => request()->title])
@@ -99,15 +96,14 @@ class CodelistController extends BaseController
     /**
      * Delete the codelist group.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistGroup $codelist Codelist group
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return array
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(CodelistGroup $codelist)
     {
-        $codelistGroup = CodelistGroup::findOrFail($id);
-
-        if ($codelistGroup->delete()) {
+        if ($codelist->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
                 'msg'   => trans('admin::codelist.group_deleted'),
@@ -120,13 +116,12 @@ class CodelistController extends BaseController
     /**
      * Store a newly created codelist item.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistGroup $codelist Codelist group
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeItem($id)
+    public function storeItem(CodelistGroup $codelist)
     {
-        $codelistGroup = CodelistGroup::findOrFail($id);
         $this->validateWithBag(
             'itemErrors',
             request(),
@@ -134,8 +129,8 @@ class CodelistController extends BaseController
                 'code' => [
                     'required',
                     Rule::unique('codelist_item')->where(
-                        function ($query) use ($codelistGroup) {
-                            $query->where('codelist_group_id', $codelistGroup->id);
+                        function ($query) use ($codelist) {
+                            $query->where('codelist_group_id', $codelist->id);
                         }
                     ),
                 ],
@@ -148,7 +143,7 @@ class CodelistController extends BaseController
             return ajaxSuccess();
         }
 
-        if (CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save()) {
+        if (CodelistItem::forGroup($codelist)->fill(request()->all())->save()) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::codelist.item_created', ['name' => request()->title])
@@ -161,36 +156,34 @@ class CodelistController extends BaseController
     /**
      * Edit the codelist item.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistItem $item Codelist item
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function editItem($id)
+    public function editItem(CodelistItem $item)
     {
-        $codelistItem = CodelistItem::findOrFail($id);
-        $codelistGroup = CodelistGroup::with('items')->find($codelistItem->codelist_group_id);
+        $codelistGroup = CodelistGroup::with('items')->find($item->codelist_group_id);
 
-        return view('admin::codelist.item', compact('codelistItem', 'codelistGroup'));
+        return view('admin::codelist.item', ['codelistItem' => $item, 'codelistGroup' => $codelistGroup]);
     }
 
     /**
      * Update the codelist item.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistItem $item Codelist item
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateItem($id)
+    public function updateItem(CodelistItem $item)
     {
-        $codelistItem = CodelistItem::findOrFail($id);
         $this->validate(
             request(),
             [
                 'code' => [
                     'required',
                     Rule::unique('codelist_item')->where(
-                        function ($query) use ($codelistItem) {
-                            $query->where('codelist_group_id', $codelistItem->codelist_group_id);
+                        function ($query) use ($item) {
+                            $query->where('codelist_group_id', $item->codelist_group_id);
                         }
                     ),
                 ],
@@ -203,7 +196,7 @@ class CodelistController extends BaseController
             return ajaxSuccess();
         }
 
-        if ($codelistItem->update(request()->all())) {
+        if ($item->update(request()->all())) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::codelist.item_updated', ['name' => request()->title])
@@ -216,15 +209,13 @@ class CodelistController extends BaseController
     /**
      * Delete the codelist item.
      *
-     * @param int $id CodelistGroup Id
+     * @param CodelistItem $item Codelist item
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroyItem($id)
+    public function destroyItem(CodelistItem $item)
     {
-        $codelistItem = CodelistItem::findOrFail($id);
-
-        if ($codelistItem->delete()) {
+        if ($item->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
                 'msg'   => trans('admin::codelist.item_deleted'),

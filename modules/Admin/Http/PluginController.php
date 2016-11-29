@@ -57,14 +57,13 @@ class PluginController extends BaseController
     /**
      * Show the plugin edit form.
      *
-     * @param int $id Plugin Id
+     * @param Plugin $plugin Plugin
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Plugin $plugin)
     {
         $plugins = Plugin::all();
-        $plugin = Plugin::find($id);
 
         return view('admin::plugins.edit', compact('plugins', 'plugin'));
     }
@@ -72,18 +71,16 @@ class PluginController extends BaseController
     /**
      * Update the plugin.
      *
-     * @param int $id Plugin Id
+     * @param Plugin $plugin Plugin
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(Plugin $plugin)
     {
-        $plugin = Plugin::findOrFail($id);
-
         $this->validate(
             request(),
             [
-                'title'      => ['required', Rule::unique('plugins')->ignore($id)],
+                'title'      => ['required', Rule::unique('plugins')->ignore($plugin->id)],
                 'action'     => 'required',
                 'sort_order' => 'required|integer',
             ]
@@ -111,15 +108,13 @@ class PluginController extends BaseController
     /**
      * Delete the plugin.
      *
-     * @param int $id Plugin Id
+     * @param Plugin $plugin Plugin
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Plugin $plugin)
     {
-        $permission = Plugin::findOrFail($id);
-
-        if ($permission->delete()) {
+        if ($plugin->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
                 'msg'   => trans('admin::plugins.deleted'),

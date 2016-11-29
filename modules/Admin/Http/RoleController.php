@@ -53,13 +53,14 @@ class RoleController extends BaseController
     /**
      * Show the role edit form and assign permissions to a given role.
      *
-     * @param int $id Role Id
+     * @param Role $role Role
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $role = Role::with('permissions', 'managers', 'users')->findOrFail($id);
+        $role = $role->with('permissions', 'managers', 'users')->first();
+
         $permissions = Permission::where('is_admin', $role->is_admin)->get();
 
         return view('admin::roles.edit', compact('role', 'permissions'));
@@ -68,18 +69,16 @@ class RoleController extends BaseController
     /**
      * Update the role.
      *
-     * @param int $id Role Id
+     * @param Role $role Role
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(Role $role)
     {
-        $role = Role::findOrFail($id);
-
         $this->validate(
             request(),
             [
-                'name'       => ['required', Rule::unique('roles')->ignore($id)],
+                'name'       => ['required', Rule::unique('roles')->ignore($role->id)],
                 'label'      => 'required',
                 'sort_order' => 'required|integer',
             ]
@@ -109,14 +108,12 @@ class RoleController extends BaseController
     /**
      * Delete the role.
      *
-     * @param int $id Role Id
+     * @param Role $role Role
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        $role = Role::findOrFail($id);
-
         if ($role->delete()) {
             return [
                 'title' => trans('admin::messages.success'),

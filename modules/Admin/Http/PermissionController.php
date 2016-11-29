@@ -58,14 +58,13 @@ class PermissionController extends BaseController
     /**
      * Show the permission edit form.
      *
-     * @param int $id Permission Id
+     * @param Permission $permission Permission
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
         $permissions = Permission::all();
-        $permission = Permission::find($id);
 
         return view('admin::permissions.edit', compact('permissions', 'permission'));
     }
@@ -73,18 +72,16 @@ class PermissionController extends BaseController
     /**
      * Update the permission.
      *
-     * @param int $id Permission Id
+     * @param Permission $permission Permission
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(Permission $permission)
     {
-        $permission = Permission::findOrFail($id);
-
         $this->validate(
             request(),
             [
-                'name'       => ['required', Rule::unique('permissions')->ignore($id)],
+                'name'       => ['required', Rule::unique('permissions')->ignore($permission->id)],
                 'label'      => 'required',
                 'sort_order' => 'required|integer',
             ]
@@ -113,14 +110,12 @@ class PermissionController extends BaseController
     /**
      * Delete the permission.
      *
-     * @param int $id Permission Id
+     * @param Permission $permission Permission
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        $permission = Permission::findOrFail($id);
-
         if ($permission->delete()) {
             return [
                 'title' => trans('admin::messages.success'),
