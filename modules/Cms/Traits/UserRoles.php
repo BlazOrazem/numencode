@@ -19,7 +19,8 @@ trait UserRoles
     /**
      * Assign a role to the entity.
      *
-     * @param $role
+     * @param string $role Role name
+     *
      * @return mixed
      */
     public function assignRole($role)
@@ -32,7 +33,8 @@ trait UserRoles
     /**
      * Determine if the entity has a given role.
      *
-     * @param $role
+     * @param string|object $role Role name
+     *
      * @return bool
      */
     public function hasRole($role)

@@ -19,9 +19,7 @@ use Numencode\Models\Scopes\SortableScope;
  *
  * You can change the sort field used by declaring:
  *   const SORT_ORDER = 'my_sort_order';
- *
  */
-
 trait Sortable
 {
     /**
@@ -31,13 +29,15 @@ trait Sortable
      */
     public static function bootSortable()
     {
-        static::created(function($model) {
-            $sortOrderColumn = $model->getSortOrderColumn();
+        static::created(
+            function ($model) {
+                $sortOrderColumn = $model->getSortOrderColumn();
 
-            if (!$model->$sortOrderColumn) {
-                $model->setSortableOrder($model->id);
+                if (!$model->$sortOrderColumn) {
+                    $model->setSortableOrder($model->id);
+                }
             }
-        });
+        );
 
         static::addGlobalScope(new SortableScope);
     }
@@ -45,6 +45,12 @@ trait Sortable
     /**
      * Sets the sort order of records to the specified orders.
      * If the orders is undefined, the record identifier is used.
+     *
+     * @param int|array $itemIds    Item ids
+     * @param null      $itemOrders Item orders
+     *
+     * @throws Exception
+     * @return void
      */
     public function setSortableOrder($itemIds, $itemOrders = null)
     {

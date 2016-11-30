@@ -28,7 +28,7 @@ class Gulp extends Command
      */
     public function handle()
     {
-        $command = "gulp --gulpfile gulpfile-admin.js";
+        $command = 'gulp --gulpfile gulpfile-admin.js';
         $process = new Process($command);
         $process->run();
 
@@ -53,7 +53,7 @@ class Gulp extends Command
     protected function clean($string)
     {
         $string = str_replace(
-            ['┌','┐','└','┘','─','│','┼','┬','┴','├','┤'],
+            ['┌', '┐', '└', '┘', '─', '│', '┼', '┬', '┴', '├', '┤'],
             [''],
             $string
         );

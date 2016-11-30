@@ -4,7 +4,6 @@ namespace Numencode\Http;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\ValidationException;
 
 abstract class Request extends FormRequest
 {
@@ -31,13 +30,18 @@ abstract class Request extends FormRequest
     /**
      * Extend validator with additional custom rules.
      *
-     * @param $rule
-     * @param $method
+     * @param string $rule   Rule
+     * @param string $method Method
+     *
+     * @return Validator
      */
     public function customRule($rule, $method)
     {
-        Validator::extend($rule, function ($attribute, $value, $parameters) use ($method) {
-            return app()->call([$this, $method], compact('attribute', 'value', 'parameters'));
-        });
+        Validator::extend(
+            $rule,
+            function ($attribute, $value, $parameters) use ($method) {
+                return app()->call([$this, $method], compact('attribute', 'value', 'parameters'));
+            }
+        );
     }
 }

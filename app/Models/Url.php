@@ -23,12 +23,12 @@ class Url extends Model
      */
     protected $fillable = ['action', 'uri', 'params'];
 
-	/**
-	 * Cast attributes to other types.
-	 *
-	 * @var array
-	 */
-	protected $casts = ['params' => 'object'];
+    /**
+     * Cast attributes to other types.
+     *
+     * @var array
+     */
+    protected $casts = ['params' => 'object'];
 
     /**
      * Disable timestamps for this table.

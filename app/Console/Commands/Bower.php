@@ -28,11 +28,11 @@ class Bower extends Command
      */
     public function handle()
     {
-        $command = "cd modules/Admin/Resources/assets/";
+        $command = 'cd modules/Admin/Resources/assets/';
         $process = new Process($command);
         $process->run();
 
-        $command = "bower update";
+        $command = 'bower update';
         $process = new Process($command);
         $process->run();
 

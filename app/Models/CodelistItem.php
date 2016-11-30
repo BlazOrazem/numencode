@@ -33,7 +33,8 @@ class CodelistItem extends Model
     /**
      * Create a new instance and associate it with the given codelist group.
      *
-     * @param CodelistGroup $codelistGroup
+     * @param CodelistGroup $codelistGroup Codelist group
+     *
      * @return static
      */
     public static function forGroup(CodelistGroup $codelistGroup)

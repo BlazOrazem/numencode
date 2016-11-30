@@ -17,7 +17,7 @@ class Authenticate
     /**
      * Create a new filter instance.
      *
-     * @param  Guard $auth
+     * @param Guard $auth Guard auth
      */
     public function __construct(Guard $auth)
     {
@@ -27,8 +27,9 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request Request
+     * @param \Closure                 $next    Closure
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)

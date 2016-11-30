@@ -46,14 +46,14 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Numencode\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'isAdmin' => \Admin\Http\Middleware\IsAdmin::class,
-        'isGuest' => \Cms\Http\Middleware\IsGuest::class,
+        'auth'            => \Numencode\Http\Middleware\Authenticate::class,
+        'auth.basic'      => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings'        => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can'             => \Illuminate\Auth\Middleware\Authorize::class,
+        'throttle'        => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'isAdmin'         => \Admin\Http\Middleware\IsAdmin::class,
+        'isGuest'         => \Cms\Http\Middleware\IsGuest::class,
         'isAuthenticated' => \Cms\Http\Middleware\IsAuthenticated::class,
-        'localization' => \Cms\Http\Middleware\Localization::class,
+        'localization'    => \Cms\Http\Middleware\Localization::class,
     ];
 }

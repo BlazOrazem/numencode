@@ -54,25 +54,29 @@ class User extends Authenticatable
 
     /**
      * Bootstrap application services for user.
+     *
+     * @return void
      */
     public static function boot()
     {
         parent::boot();
 
-        /**
-         * Set token for email address verification if user is not registered via social provider.
-         */
-        static::creating(function ($user) {
-            if ($user->is_verified) {
-                return;
+        // Set token for email address verification
+        // if user is not registered via social provider.
+        static::creating(
+            function ($user) {
+                if ($user->is_verified) {
+                    return;
+                }
+                $user->token = str_random(30);
             }
-
-            $user->token = str_random(30);
-        });
+        );
     }
 
     /**
      * Verify users' email address.
+     *
+     * @return void
      */
     public function verifyEmail()
     {
@@ -82,19 +86,20 @@ class User extends Authenticatable
         $this->save();
     }
 
-	/**
-	 * Get avatar
-	 *
-	 * @param int $width
-	 * @param null $height
-	 * @return \Intervention\Image\Image|null
-	 */
+    /**
+     * Get avatar
+     *
+     * @param int  $width  Avatar width
+     * @param null $height Avatar height
+     *
+     * @return \Intervention\Image\Image|null
+     */
     public function avatar($width = 100, $height = null)
     {
         $height = $height ?: $width;
 
         if (!$this->avatar) {
-            return null;
+            return;
         }
 
         return AvatarController::getAvatarImageUrl($this->avatar, $width, $height);

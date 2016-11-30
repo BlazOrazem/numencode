@@ -11,15 +11,17 @@ class SortableScope implements Scope
     /**
      * Applied scope.
      *
-     * @var
+     * @var $scopeApplied
      */
     protected $scopeApplied;
 
     /**
      * Apply the scope to a given Eloquent query builder.
      *
-     * @param BuilderBase $builder
-     * @param ModelBase $model
+     * @param BuilderBase $builder Builder base
+     * @param ModelBase   $model   Model base
+     *
+     * @return void
      */
     public function apply(BuilderBase $builder, ModelBase $model)
     {

@@ -25,12 +25,12 @@ class Content extends Model
      */
     protected $fillable = ['page_id', 'plugin_id', 'plugin_params', 'sort_order', 'is_hidden', 'title', 'lead', 'body'];
 
-	/**
-	 * Cast attributes to other types.
-	 *
-	 * @var array
-	 */
-	protected $casts = ['plugin_params' => 'object'];
+    /**
+     * Cast attributes to other types.
+     *
+     * @var array
+     */
+    protected $casts = ['plugin_params' => 'object'];
 
     /**
      * Disable timestamps for this table.
@@ -57,7 +57,7 @@ class Content extends Model
     public function renderPlugin()
     {
         if (!$this->plugin) {
-            return null;
+            return;
         }
 
         $action = explode('@', $this->plugin->action);
