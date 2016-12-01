@@ -2,8 +2,8 @@
 
 namespace Numencode\Models;
 
-use Admin\Traits\ManagerRoles;
 use Illuminate\Notifications\Notifiable;
+use Numencode\Models\Traits\ManagerRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Manager extends Authenticatable
@@ -35,16 +35,12 @@ class Manager extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that are dates.
      *
      * @var array
      */
-    protected $dates = [
-        'created_at', 'updated_at',
-    ];
+    protected $dates = ['created_at', 'updated_at'];
 }

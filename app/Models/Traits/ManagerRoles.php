@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Traits;
+namespace Numencode\Models\Traits;
 
 use Numencode\Models\Role;
 
