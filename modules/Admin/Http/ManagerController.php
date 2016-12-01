@@ -73,17 +73,14 @@ class ManagerController extends BaseController
     {
         $manager = Manager::findOrFail($id);
 
-        $this->validate(
-            request(),
-            [
-                'name'     => 'required|max:255',
-                'email'    => request()->email == $manager->email ? '' : 'required|email|max:255|unique:managers',
-                'password' => empty($this->password) ? '' : 'required|min:6',
-    //            'avatar'   => 'mimes:jpg,jpeg,png,gif,bmp',
-            ]
-        );
+        $this->validate(request(), [
+            'name'     => 'required|max:255',
+            'email'    => request()->email == $manager->email ? '' : 'required|email|max:255|unique:managers',
+            'password' => empty($this->password) ? '' : 'required|min:6',
+            //'avatar'   => 'mimes:jpg,jpeg,png,gif,bmp',
+        ]);
 
-//        $this->managers->updateManager($manager, $request);
+        //$this->managers->updateManager($manager, $request);
 
         flash()->success(
             trans('admin::messages.success'),

@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard'     => 'web',
         'passwords' => 'users',
     ],
 
@@ -37,15 +37,15 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
         ],
         'admin' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'managers',
         ],
         'api' => [
-            'driver' => 'token',
+            'driver'   => 'token',
             'provider' => 'users',
         ],
     ],
@@ -70,11 +70,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Numencode\Models\User::class,
+            'model'  => Numencode\Models\User::class,
         ],
         'managers' => [
             'driver' => 'eloquent',
-            'model' =>Numencode\Models\Manager::class,
+            'model'  => Numencode\Models\Manager::class,
         ],
 
         // 'users' => [
@@ -101,9 +101,9 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'email' => 'theme::emails.password',
-            'table' => 'password_resets',
-            'expire' => 60,
+            'email'    => 'theme::emails.password',
+            'table'    => 'password_resets',
+            'expire'   => 60,
         ],
     ],
 

@@ -27,13 +27,10 @@ class CodelistController extends BaseController
      */
     public function store()
     {
-        $this->validate(
-            request(),
-            [
-                'title'      => 'required|unique:codelist_group',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'title'      => 'required|unique:codelist_group',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
@@ -70,14 +67,10 @@ class CodelistController extends BaseController
      */
     public function update(CodelistGroup $codelist)
     {
-        $this->validateWithBag(
-            'groupErrors',
-            request(),
-            [
-                'title'      => ['required', Rule::unique('codelist_group')->ignore($codelist->id)],
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validateWithBag('groupErrors', request(), [
+            'title'      => ['required', Rule::unique('codelist_group')->ignore($codelist->id)],
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
@@ -122,22 +115,16 @@ class CodelistController extends BaseController
      */
     public function storeItem(CodelistGroup $codelist)
     {
-        $this->validateWithBag(
-            'itemErrors',
-            request(),
-            [
-                'code' => [
-                    'required',
-                    Rule::unique('codelist_item')->where(
-                        function ($query) use ($codelist) {
-                            $query->where('codelist_group_id', $codelist->id);
-                        }
-                    ),
-                ],
-                'title'      => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validateWithBag('itemErrors', request(), [
+            'code' => [
+                'required',
+                Rule::unique('codelist_item')->where(function ($query) use ($codelist) {
+                    $query->where('codelist_group_id', $codelist->id);
+                }),
+            ],
+            'title'      => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
@@ -176,21 +163,16 @@ class CodelistController extends BaseController
      */
     public function updateItem(CodelistItem $item)
     {
-        $this->validate(
-            request(),
-            [
-                'code' => [
-                    'required',
-                    Rule::unique('codelist_item')->where(
-                        function ($query) use ($item) {
-                            $query->where('codelist_group_id', $item->codelist_group_id);
-                        }
-                    ),
-                ],
-                'title'      => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'code' => [
+                'required',
+                Rule::unique('codelist_item')->where(function ($query) use ($item) {
+                    $query->where('codelist_group_id', $item->codelist_group_id);
+                }),
+            ],
+            'title'      => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();

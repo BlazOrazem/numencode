@@ -9,29 +9,29 @@ class RoutesTableSeeder extends Seeder
     {
         $items = [
             [
-                'id' => '1',
+                'id'     => '1',
                 'action' => 'PageController@index',
-                'uri' => 'new-page',
-                'params' => (object)['id' => 1],
+                'uri'    => 'new-page',
+                'params' => (object) ['id' => 1],
             ],
             [
-                'id' => '2',
+                'id'     => '2',
                 'action' => 'PageController@index',
-                'uri' => 'about-the-company',
-                'params' => (object)['id' => 2],
+                'uri'    => 'about-the-company',
+                'params' => (object) ['id' => 2],
             ],
             [
-                'id' => '3',
+                'id'     => '3',
                 'action' => 'PageController@index',
-                'uri' => 'contact',
-                'params' => (object)['id' => 3],
+                'uri'    => 'contact',
+                'params' => (object) ['id' => 3],
             ],
             [
-                'id' => '4',
+                'id'     => '4',
                 'action' => 'PageController@index',
-                'uri' => 'about-us',
-                'params' => (object)['id' => 4],
-            ]
+                'uri'    => 'about-us',
+                'params' => (object) ['id' => 4],
+            ],
         ];
 
         foreach ($items as $item) {
@@ -40,26 +40,26 @@ class RoutesTableSeeder extends Seeder
 
         $translationContent = Url::find(1);
         $translationContent->saveTranslation('sl', [
-            'uri' => 'sl/nova-stran',
-            'params' => (object)['id' => 1],
+            'uri'    => 'sl/nova-stran',
+            'params' => (object) ['id' => 1],
         ]);
 
         $translationContent = Url::find(2);
         $translationContent->saveTranslation('sl', [
-            'uri' => 'sl/o-podjetju',
-            'params' => (object)['id' => 2],
+            'uri'    => 'sl/o-podjetju',
+            'params' => (object) ['id' => 2],
         ]);
 
         $translationContent = Url::find(3);
         $translationContent->saveTranslation('sl', [
-            'uri' => 'sl/kontakt',
-            'params' => (object)['id' => 3],
+            'uri'    => 'sl/kontakt',
+            'params' => (object) ['id' => 3],
         ]);
 
         $translationContent = Url::find(4);
         $translationContent->saveTranslation('sl', [
-            'uri' => 'sl/o-nas',
-            'params' => (object)['id' => 4],
+            'uri'    => 'sl/o-nas',
+            'params' => (object) ['id' => 4],
         ]);
     }
 }

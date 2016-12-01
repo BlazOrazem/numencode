@@ -45,16 +45,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            TokenRepositoryInterface::class,
-            function ($app) {
-                $connection = $app['db']->connection();
-                $table = $app['config']['auth.passwords.users.table'];
-                $key = $app['config']['app.key'];
-                $expire = $app['config']->get('auth.passwords.users.expire', 60);
+        $this->app->bind(TokenRepositoryInterface::class, function ($app) {
+            $connection = $app['db']->connection();
+            $table = $app['config']['auth.passwords.users.table'];
+            $key = $app['config']['app.key'];
+            $expire = $app['config']->get('auth.passwords.users.expire', 60);
 
-                return new DbRepository($connection, $table, $key, $expire);
-            }
-        );
+            return new DbRepository($connection, $table, $key, $expire);
+        });
     }
 }

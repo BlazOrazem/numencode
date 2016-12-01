@@ -8,20 +8,20 @@ class PluginsTableSeeder extends Seeder
     {
         $items = [
             [
-                'id' => 1,
-                'title' => 'Tasks list',
+                'id'          => 1,
+                'title'       => 'Tasks list',
                 'description' => null,
-                'action' => 'TaskController@index',
-                'sort_order' => 10,
-                'is_hidden' => 0,
+                'action'      => 'TaskController@index',
+                'sort_order'  => 10,
+                'is_hidden'   => 0,
             ],
             [
-                'id' => 2,
-                'title' => 'Sample',
+                'id'          => 2,
+                'title'       => 'Sample',
                 'description' => null,
-                'action' => 'TaskController@sample',
-                'sort_order' => 20,
-                'is_hidden' => 0,
+                'action'      => 'TaskController@sample',
+                'sort_order'  => 20,
+                'is_hidden'   => 0,
             ],
         ];
 

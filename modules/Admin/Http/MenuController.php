@@ -26,26 +26,22 @@ class MenuController extends BaseController
      */
     public function store()
     {
-        $this->validate(
-            request(),
-            [
-                'code'       => 'required|unique:menus',
-                'title'      => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'code'       => 'required|unique:menus',
+            'title'      => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if (Menu::create(
-            [
+        if (Menu::create([
                 'code'       => snake_slug(request()->code),
                 'title'      => ucfirst(request()->title),
                 'sort_order' => request()->sort_order,
-            ]
-        )) {
+            ])
+        ) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::menus.created', ['name' => request()->title])
@@ -78,26 +74,22 @@ class MenuController extends BaseController
      */
     public function update(Menu $menu)
     {
-        $this->validate(
-            request(),
-            [
-                'code'       => ['required', Rule::unique('menus')->ignore($id)],
-                'title'      => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'code'       => ['required', Rule::unique('menus')->ignore($id)],
+            'title'      => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if ($menu->update(
-            [
+        if ($menu->update([
                 'code'       => snake_slug(request()->code),
                 'title'      => ucfirst(request()->title),
                 'sort_order' => request()->sort_order,
-            ]
-        )) {
+            ])
+        ) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::menus.updated', ['name' => request()->title])

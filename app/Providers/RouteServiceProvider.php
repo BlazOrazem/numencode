@@ -39,23 +39,21 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        Route::group(
-            [
-                'namespace'  => $this->namespace,
-                'middleware' => 'web',
-            ], function () {
-                $this->mapDatabaseDrivenRoutes();
-                $this->mapPublicRoutes();
-                $this->mapAuthRoutes();
-                $this->mapAuthGuestRoutes();
-                $this->mapAuthAuthorizedRoutes();
-                if (config('login.socialite')) {
-                    $this->mapAuthSocialiteRoutes();
-                }
-                $this->mapAdminGuestRoutes();
-                $this->mapAdminAuthorizedRoutes();
+        Route::group([
+            'namespace'  => $this->namespace,
+            'middleware' => 'web',
+        ], function () {
+            $this->mapDatabaseDrivenRoutes();
+            $this->mapPublicRoutes();
+            $this->mapAuthRoutes();
+            $this->mapAuthGuestRoutes();
+            $this->mapAuthAuthorizedRoutes();
+            if (config('login.socialite')) {
+                $this->mapAuthSocialiteRoutes();
             }
-        );
+            $this->mapAdminGuestRoutes();
+            $this->mapAdminAuthorizedRoutes();
+        });
     }
 
     /**
@@ -65,14 +63,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapPublicRoutes()
     {
-        Route::group(
-            [
-                'middleware' => 'localization',
-                'namespace'  => $this->cmsNamespace,
-            ], function ($router) {
-                require base_path('routes/public.php');
-            }
-        );
+        Route::group([
+            'middleware' => 'localization',
+            'namespace'  => $this->cmsNamespace,
+        ], function ($router) {
+            require base_path('routes/public.php');
+        });
     }
 
     /**
@@ -82,13 +78,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthRoutes()
     {
-        Route::group(
-            [
-                'namespace' => $this->cmsNamespace . 'Auth',
-            ], function ($router) {
-                require base_path('routes/auth.php');
-            }
-        );
+        Route::group([
+            'namespace' => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.php');
+        });
     }
 
     /**
@@ -98,14 +92,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthGuestRoutes()
     {
-        Route::group(
-            [
-                'middleware' => ['localization', 'isGuest'],
-                'namespace'  => $this->cmsNamespace . 'Auth',
-            ], function ($router) {
-                require base_path('routes/auth.guest.php');
-            }
-        );
+        Route::group([
+            'middleware' => ['localization', 'isGuest'],
+            'namespace'  => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.guest.php');
+        });
     }
 
     /**
@@ -115,14 +107,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthAuthorizedRoutes()
     {
-        Route::group(
-            [
-                'middleware' => 'isAuthenticated',
-                'namespace'  => $this->cmsNamespace . 'Auth',
-            ], function ($router) {
-                require base_path('routes/auth.authorized.php');
-            }
-        );
+        Route::group([
+            'middleware' => 'isAuthenticated',
+            'namespace'  => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.authorized.php');
+        });
     }
 
     /**
@@ -132,14 +122,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthSocialiteRoutes()
     {
-        Route::group(
-            [
-                'middleware' => 'isGuest',
-                'namespace'  => $this->cmsNamespace . 'Auth',
-            ], function ($router) {
-                require base_path('routes/auth.socialite.php');
-            }
-        );
+        Route::group([
+            'middleware' => 'isGuest',
+            'namespace'  => $this->cmsNamespace . 'Auth',
+        ], function ($router) {
+            require base_path('routes/auth.socialite.php');
+        });
     }
 
     /**
@@ -149,14 +137,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminGuestRoutes()
     {
-        Route::group(
-            [
-                'namespace' => $this->adminNamespace,
-                'prefix'    => 'admin',
-            ], function ($router) {
-                require base_path('routes/admin.guest.php');
-            }
-        );
+        Route::group([
+            'namespace' => $this->adminNamespace,
+            'prefix'    => 'admin',
+        ], function ($router) {
+            require base_path('routes/admin.guest.php');
+        });
     }
 
     /**
@@ -166,15 +152,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminAuthorizedRoutes()
     {
-        Route::group(
-            [
-                'middleware' => 'isAdmin',
-                'namespace'  => $this->adminNamespace,
-                'prefix'     => 'admin',
-            ], function ($router) {
-                require base_path('routes/admin.authorized.php');
-            }
-        );
+        Route::group([
+            'middleware' => 'isAdmin',
+            'namespace'  => $this->adminNamespace,
+            'prefix'     => 'admin',
+        ], function ($router) {
+            require base_path('routes/admin.authorized.php');
+        });
     }
 
     /**
@@ -184,39 +168,34 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapDatabaseDrivenRoutes()
     {
-        Route::group(
-            [
+        Route::group([
                 'middleware' => 'localization',
                 'namespace'  => $this->cmsNamespace,
-            ], function ($router) {
-                if (app()->runningInConsole()) {
-                    return;
-                }
-
-                $uri = substr(app()->request->getRequestUri(), 1);
-
-                $dbRoute = DB::table('routes')
-                    ->leftJoin('routes_i18n', 'routes.id', '=', 'routes_i18n.route_id')
-                    ->select('routes.*', 'routes_i18n.*')
-                    ->where('uri', $uri)
-                    ->first();
-
-                if (!$dbRoute) {
-                    return;
-                }
-
-                Route::get(
-                    $uri,
-                    function () use ($dbRoute) {
-                        $action = explode('@', $dbRoute->action);
-                        $controller = app()->make($this->cmsNamespace . $action[0]);
-                        $method = isset($action[1]) ? $action[1] : 'index';
-                        $params = $dbRoute->params ? json_decode($dbRoute->params, true) : [];
-
-                        return call_user_func_array([$controller, $method], $params);
-                    }
-                );
+        ], function ($router) {
+            if (app()->runningInConsole()) {
+                return;
             }
-        );
+
+            $uri = substr(app()->request->getRequestUri(), 1);
+
+            $dbRoute = DB::table('routes')
+                ->leftJoin('routes_i18n', 'routes.id', '=', 'routes_i18n.route_id')
+                ->select('routes.*', 'routes_i18n.*')
+                ->where('uri', $uri)
+                ->first();
+
+            if (!$dbRoute) {
+                return;
+            }
+
+            Route::get($uri, function () use ($dbRoute) {
+                $action = explode('@', $dbRoute->action);
+                $controller = app()->make($this->cmsNamespace . $action[0]);
+                $method = isset($action[1]) ? $action[1] : 'index';
+                $params = $dbRoute->params ? json_decode($dbRoute->params, true) : [];
+
+                return call_user_func_array([$controller, $method], $params);
+            });
+        });
     }
 }

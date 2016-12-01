@@ -63,14 +63,12 @@ class User extends Authenticatable
 
         // Set token for email address verification
         // if user is not registered via social provider.
-        static::creating(
-            function ($user) {
-                if ($user->is_verified) {
-                    return;
-                }
-                $user->token = str_random(30);
+        static::creating(function ($user) {
+            if ($user->is_verified) {
+                return;
             }
-        );
+            $user->token = str_random(30);
+        });
     }
 
     /**

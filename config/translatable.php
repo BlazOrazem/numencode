@@ -14,20 +14,19 @@ return [
    */
     'db_settings' => [
         'table_suffix' => '_i18n',
-        'locale_field' => 'locale'
+        'locale_field' => 'locale',
     ],
 
-
-   /*
-   |-----------------------------------------------------------
-   | Default query behavior
-   |-----------------------------------------------------------
-   |
-   | When fetching records, you have an option to only select
-   | translated results or even fallback to another locale.
-   | You may configure the default query behavior below.
-   |
-   */
+    /*
+    |-----------------------------------------------------------
+    | Default query behavior
+    |-----------------------------------------------------------
+    |
+    | When fetching records, you have an option to only select
+    | translated results or even fallback to another locale.
+    | You may configure the default query behavior below.
+    |
+    */
     'defaults' => [
         'only_translated' => false,
         'with_fallback'   => true,

@@ -27,14 +27,11 @@ class RoleController extends BaseController
      */
     public function store()
     {
-        $this->validate(
-            request(),
-            [
-                'name'        => 'required|unique:roles',
-                'label'       => 'required',
-                'sort_order'  => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'name'        => 'required|unique:roles',
+            'label'       => 'required',
+            'sort_order'  => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
@@ -75,27 +72,23 @@ class RoleController extends BaseController
      */
     public function update(Role $role)
     {
-        $this->validate(
-            request(),
-            [
-                'name'       => ['required', Rule::unique('roles')->ignore($role->id)],
-                'label'      => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'name'       => ['required', Rule::unique('roles')->ignore($role->id)],
+            'label'      => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if ($role->update(
-            [
+        if ($role->update([
                 'name' => snake_slug(request()->name),
                 'label' => ucfirst(request()->label),
                 'sort_order' => request()->sort_order,
                 'is_admin' => isset(request()->is_admin),
-            ]
-        )) {
+            ])
+        ) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::roles.updated', ['name' => request()->name])

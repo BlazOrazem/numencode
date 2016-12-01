@@ -26,26 +26,22 @@ class PermissionController extends BaseController
      */
     public function store()
     {
-        $this->validate(
-            request(),
-            [
-                'name'        => 'required|unique:permissions',
-                'label'       => 'required',
-                'sort_order'  => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'name'        => 'required|unique:permissions',
+            'label'       => 'required',
+            'sort_order'  => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if (Permission::create(
-            [
+        if (Permission::create([
                 'name'       => snake_slug(request()->name),
                 'label'      => ucfirst(request()->label),
                 'sort_order' => request()->sort_order,
-            ]
-        )) {
+            ])
+        ) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::permissions.created', ['name' => request()->name])
@@ -78,26 +74,22 @@ class PermissionController extends BaseController
      */
     public function update(Permission $permission)
     {
-        $this->validate(
-            request(),
-            [
-                'name'       => ['required', Rule::unique('permissions')->ignore($permission->id)],
-                'label'      => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'name'       => ['required', Rule::unique('permissions')->ignore($permission->id)],
+            'label'      => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if ($permission->update(
-            [
+        if ($permission->update([
                 'name'       => snake_slug(request()->name),
                 'label'      => ucfirst(request()->label),
                 'sort_order' => request()->sort_order,
-            ]
-        )) {
+            ])
+        ) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::permissions.updated', ['name' => request()->name])

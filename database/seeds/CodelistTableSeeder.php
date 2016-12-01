@@ -8,8 +8,8 @@ class CodelistTableSeeder extends Seeder
     {
         $items = [
             [
-                'id' => 1,
-                'title' => 'Page Layout',
+                'id'         => 1,
+                'title'      => 'Page Layout',
                 'sort_order' => '10',
             ],
         ];
@@ -18,18 +18,18 @@ class CodelistTableSeeder extends Seeder
 
         $items = [
             [
-                'id' => 1,
+                'id'                => 1,
                 'codelist_group_id' => 1,
-                'code' => 'default',
-                'title' => 'Default layout',
-                'sort_order' => '10',
+                'code'              => 'default',
+                'title'             => 'Default layout',
+                'sort_order'        => '10',
             ],
             [
-                'id' => 2,
+                'id'                => 2,
                 'codelist_group_id' => 1,
-                'code' => 'contact',
-                'title' => 'Contact page',
-                'sort_order' => '20',
+                'code'              => 'contact',
+                'title'             => 'Contact page',
+                'sort_order'        => '20',
             ],
         ];
 

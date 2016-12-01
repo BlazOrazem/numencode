@@ -8,15 +8,15 @@ class MenusTableSeeder extends Seeder
     {
         $items = [
             [
-                'id' => 1,
-                'code' => 'main',
-                'title' => 'Main Menu',
+                'id'         => 1,
+                'code'       => 'main',
+                'title'      => 'Main Menu',
                 'sort_order' => '10',
             ],
             [
-                'id' => 2,
-                'code' => 'corpo',
-                'title' => 'Corpo Menu',
+                'id'         => 2,
+                'code'       => 'corpo',
+                'title'      => 'Corpo Menu',
                 'sort_order' => '20',
             ],
         ];

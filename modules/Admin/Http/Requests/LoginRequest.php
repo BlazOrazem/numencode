@@ -24,15 +24,16 @@ class LoginRequest extends Request
         $this->customRule('login', 'checkLogin');
 
         return [
-            'email' => 'required|email',
-            'password' => 'required|login'
+            'email'    => 'required|email',
+            'password' => 'required|login',
         ];
     }
 
     /**
      * Validate manager login.
      *
-     * @param ManagerRepository $repository
+     * @param ManagerRepository $repository Manager repository
+     *
      * @return bool
      */
     public function checkLogin(ManagerRepository $repository)

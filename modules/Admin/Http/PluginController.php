@@ -26,25 +26,17 @@ class PluginController extends BaseController
      */
     public function store()
     {
-        $this->validate(
-            request(),
-            [
-                'title'      => 'required|unique:plugins',
-                'action'     => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'title'      => 'required|unique:plugins',
+            'action'     => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if (Plugin::create(
-            array_merge(
-                request()->all(),
-                ['is_hidden' => isset(request()->is_hidden)]
-            )
-        )) {
+        if (Plugin::create(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.created', ['name' => request()->title])
@@ -77,25 +69,17 @@ class PluginController extends BaseController
      */
     public function update(Plugin $plugin)
     {
-        $this->validate(
-            request(),
-            [
-                'title'      => ['required', Rule::unique('plugins')->ignore($plugin->id)],
-                'action'     => 'required',
-                'sort_order' => 'required|integer',
-            ]
-        );
+        $this->validate(request(), [
+            'title'      => ['required', Rule::unique('plugins')->ignore($plugin->id)],
+            'action'     => 'required',
+            'sort_order' => 'required|integer',
+        ]);
 
         if (request()->ajax()) {
             return ajaxSuccess();
         }
 
-        if ($plugin->update(
-            array_merge(
-                request()->all(),
-                ['is_hidden' => isset(request()->is_hidden)]
-            )
-        )) {
+        if ($plugin->update(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.updated', ['name' => request()->title])
