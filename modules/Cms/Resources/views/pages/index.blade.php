@@ -8,20 +8,8 @@
         <p>{{ $page->body }}</p>
     </div>
 
-@stop
+@endsection
 
-@if($page->getContents())
-    @section('plugins')
-        @foreach($page->getContents() as $content)
-            <h4>{{ $content->title }}</h4>
-            <p>{{ $content->lead }}</p>
-            <p>{{ $content->body }}</p>
-
-            <div class="row">
-                {!! $content->renderPlugin() !!}
-            </div>
-
-            <hr>
-        @endforeach
-    @stop
-@endif
+@section('plugins')
+    @each('theme::pages.content', $page->getContents(), 'content')
+@endsection

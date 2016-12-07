@@ -21,11 +21,11 @@ $style = [
 
 @section('title')
     We want to earn your deepest trust!
-@stop
+@endsection
 
 @section('intro')
     I want the name "Doe Product" to be synonymous in your mind with quality. More than synonymous--I want them to be one and the same. In fact, when you think "quality," "reliability," "versatility," or "power," I want you to think "Doe Product."
-@stop
+@endsection
 
 @section('content')
     <p style="{{ $style['paragraph'] }}">We are a leader. We work with leaders. And our long history of innovation and support keep you ahead of the curve on (list two primary product attributes). But we want you to think of our customer service on the same level as our technology.</p>
@@ -37,8 +37,8 @@ $style = [
         <li style="{{ $style['li-list'] }}">best product on the market</li>
     </ul>
     <p style="{{ $style['paragraph'] }}">And that's just the beginning. Take a moment to discover the new Doe Product. And then visit our new website to see how we've changed. We are committed to your satisfaction and welcome your feedback. We'll do all we can to make your Doe Product experience positive.</p>
-@stop
+@endsection
 
 @section('outro')
     As always, thank you for choosing Doe.
-@stop
+@endsection

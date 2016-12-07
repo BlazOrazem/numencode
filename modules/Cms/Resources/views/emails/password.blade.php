@@ -8,12 +8,12 @@
 
 @section('title')
     Reset Your Password
-@stop
+@endsection
 
 @section('intro')
     Click here to reset your password:
-@stop
+@endsection
 
 @section('outro')
     If you haven't requested password reset, please ignore this email.
-@stop
+@endsection

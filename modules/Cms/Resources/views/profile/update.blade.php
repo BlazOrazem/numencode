@@ -88,4 +88,4 @@
 
     </div>
 
-@stop
+@endsection

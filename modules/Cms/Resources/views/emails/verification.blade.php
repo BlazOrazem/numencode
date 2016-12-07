@@ -8,12 +8,12 @@
 
 @section('title')
     Verify Your E-mail Address
-@stop
+@endsection
 
 @section('intro')
     We just need you to verify your email address real quick!
-@stop
+@endsection
 
 @section('outro')
     Thanks, have a lovely day.
-@stop
+@endsection
