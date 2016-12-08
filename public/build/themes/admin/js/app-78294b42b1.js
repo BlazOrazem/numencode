@@ -74,9 +74,13 @@ var MetisMenu = (function () {
 
         handleActive: function () {
             var url = $('#activeUrl').val();
+            var item = $('.metismenu li a[href="'+ url +'"]');
+            var itemBlock = item.parentsUntil(".metismenu").last();
 
-            $('.metismenu li a[href="'+ url +'"]').parent().addClass('active');
-            $('.metismenu li a[href="'+ url +'"]').parentsUntil(".metismenu").last().addClass('active');
+            item.parent().addClass('active');
+
+            itemBlock.addClass('active');
+            itemBlock.find('ul.nav.collapse').addClass('in');
 
             var locationHref = $(location).attr('pathname').replace("/", "");
             var currentPage = $('a[href="' + locationHref + '"]');

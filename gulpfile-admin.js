@@ -54,12 +54,12 @@ elixir(function(mix) {
      | Styles (SASS, LESS, CSS)
      |--------------------------------------------------------------------------
      */
-	mix.sass([
+    mix.sass([
         adminResources + 'scss/style.scss'
     ], publicPath + 'css/app.css')
     .less([
 		adminResources + 'jstree/style.less'
-	], publicPath + 'css/jstree.css')
+    ], publicPath + 'css/jstree.css')
     .styles([
         adminResources + 'jstree/style.less',
 		adminResources + 'bower_components/bootstrap/dist/css/bootstrap.min.css',
