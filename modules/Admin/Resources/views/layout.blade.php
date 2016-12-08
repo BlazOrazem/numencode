@@ -37,13 +37,12 @@
     <![endif]-->
 </head>
 
+<body class="fixed-all fixed-sidebar p-blue s-blue n-blue">
 
-<body class="fixed-all fixed-sidebar fixed-all p-blue s-blue n-blue">
 <!--Preloader-->
 <div id="preloader">
     <div class="refresh-preloader"><div class="preloader"><i>.</i><i>.</i><i>.</i></div></div>
 </div>
-
 
 <div class="wrapper">
     <nav class="navbar navbar-blue">

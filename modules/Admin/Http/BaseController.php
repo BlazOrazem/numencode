@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Illuminate\Database\Eloquent\Model;
 use Numencode\Http\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade;
@@ -27,5 +28,26 @@ class BaseController extends Controller
     protected function js($data)
     {
         JavaScriptFacade::put($data);
+    }
+
+    /**
+     * Delete the given model entity.
+     *
+     * @param Model $model  Model to be deleted.
+     * @param string $msg   Message for a successful delete.
+     * @param string $title Title for a successful delete.
+     *
+     * @return array
+     */
+    protected function deleteThe(Model $model, $msg = 'messages.deleted', $title = 'messages.success')
+    {
+        if ($model->delete()) {
+            return [
+                'title' => trans("admin::$title"),
+                'msg'   => trans("admin::$msg"),
+            ];
+        }
+
+        return reportError();
     }
 }

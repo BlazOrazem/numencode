@@ -108,13 +108,6 @@ class PermissionController extends BaseController
      */
     public function destroy(Permission $permission)
     {
-        if ($permission->delete()) {
-            return [
-                'title' => trans('admin::messages.success'),
-                'msg'   => trans('admin::permissions.deleted'),
-            ];
-        }
-
-        return reportError();
+        return $this->deleteThe($permission, 'permissions.deleted');
     }
 }

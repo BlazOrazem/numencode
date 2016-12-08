@@ -75,7 +75,7 @@ class MenuController extends BaseController
     public function update(Menu $menu)
     {
         $this->validate(request(), [
-            'code'       => ['required', Rule::unique('menus')->ignore($id)],
+            'code'       => ['required', Rule::unique('menus')->ignore($menu->id)],
             'title'      => 'required',
             'sort_order' => 'required|integer',
         ]);
@@ -108,13 +108,6 @@ class MenuController extends BaseController
      */
     public function destroy(Menu $menu)
     {
-        if ($menu->delete()) {
-            return [
-                'title' => trans('admin::messages.success'),
-                'msg'   => trans('admin::menus.deleted'),
-            ];
-        }
-
-        return reportError();
+        return $this->deleteThe($menu, 'menus.deleted');
     }
 }

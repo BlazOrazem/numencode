@@ -3,6 +3,7 @@
 return [
 
     'success'      => 'Success',
+    'deleted'      => 'The item has been deleted.',
     'error'        => 'Error',
     'error_notice' => 'An unexpected error occurred while performing this action.',
 

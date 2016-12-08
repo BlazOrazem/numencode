@@ -98,13 +98,6 @@ class PluginController extends BaseController
      */
     public function destroy(Plugin $plugin)
     {
-        if ($plugin->delete()) {
-            return [
-                'title' => trans('admin::messages.success'),
-                'msg'   => trans('admin::plugins.deleted'),
-            ];
-        }
-
-        return reportError();
+        return $this->deleteThe($plugin, 'plugins.deleted');
     }
 }

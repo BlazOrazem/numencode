@@ -21,6 +21,9 @@
             <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
         </li>
         <li>
+            <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>
+        </li>
+        <li>
             <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Managers</li>

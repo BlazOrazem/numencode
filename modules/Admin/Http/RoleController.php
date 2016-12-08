@@ -107,14 +107,7 @@ class RoleController extends BaseController
      */
     public function destroy(Role $role)
     {
-        if ($role->delete()) {
-            return [
-                'title' => trans('admin::messages.success'),
-                'msg'   => trans('admin::roles.deleted'),
-            ];
-        }
-
-        return reportError();
+        return $this->deleteThe($role, 'roles.deleted');
     }
 
     /**

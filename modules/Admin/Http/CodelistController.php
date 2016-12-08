@@ -96,14 +96,7 @@ class CodelistController extends BaseController
      */
     public function destroy(CodelistGroup $codelist)
     {
-        if ($codelist->delete()) {
-            return [
-                'title' => trans('admin::messages.success'),
-                'msg'   => trans('admin::codelist.group_deleted'),
-            ];
-        }
-
-        return reportError();
+        return $this->deleteThe($codelist, 'codelist.group_deleted');
     }
 
     /**
@@ -197,13 +190,6 @@ class CodelistController extends BaseController
      */
     public function destroyItem(CodelistItem $item)
     {
-        if ($item->delete()) {
-            return [
-                'title' => trans('admin::messages.success'),
-                'msg'   => trans('admin::codelist.item_deleted'),
-            ];
-        }
-
-        return reportError();
+        return $this->deleteThe($item, 'codelist.item_deleted');
     }
 }
