@@ -73,11 +73,12 @@ var DataTables = (function () {
             DataTables.initStandardTable();
             DataTables.initSearchableTable();
             DataTables.initPaginatableTable();
+            DataTables.initNonSortableTable();
             DataTables.handleSearchablePlaceholder();
         },
 
         initStandardTable: function () {
-            $('.datatable:not(.search):not(.search-paginate)').DataTable({
+            $('.datatable:not(.search):not(.search-paginate):not(.non-sortable)').DataTable({
                 dom: '<"clear-filter">rti',
                 info: false,
                 paging: false,
@@ -114,6 +115,16 @@ var DataTables = (function () {
                     "targets": 'no-sort',
                     "orderable": false
                 }]
+            });
+        },
+
+        initNonSortableTable: function () {
+            $('.datatable.non-sortable').DataTable({
+                dom: '<"clear-filter">rti',
+                info: false,
+                paging: false,
+                ordering: false,
+                responsive: true
             });
         },
 
