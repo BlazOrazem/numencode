@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    {{ trans('admin::codelist.title') }}
+    @lang('admin::codelist.title')
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="content-box">
                 <div class="head info-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::codelist.update_group') }} {{ $codelistGroup->title }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::codelist.update_group') {{ $codelistGroup->title }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -51,7 +51,7 @@
         <div class="col-lg-6">
             <div class="data-table data-success content-box" data-id="codelist-items">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ $codelistGroup->title }} {{ trans('admin::codelist.items') }}</h5>
+                    <h5 class="content-title pull-left">{{ $codelistGroup->title }} @lang('admin::codelist.items')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -60,14 +60,14 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>{{ trans('admin::tables.title') }}</th>
-                        <th>{{ trans('admin::tables.code') }}</th>
-                        <th>{{ trans('admin::tables.order') }}</th>
+                        <th>@lang('admin::tables.title')</th>
+                        <th>@lang('admin::tables.code')</th>
+                        <th>@lang('admin::tables.order')</th>
                         @if ($admin->can('edit_codelist'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
+                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
                         @endif
                         @if ($admin->can('delete_codelist'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
+                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -105,7 +105,7 @@
         <div class="col-lg-6">
             <div class="content-box">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::codelist.new_item') }} {{ $codelistGroup->title }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::codelist.new_item'): {{ $codelistGroup->title }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -141,7 +141,7 @@
                 <div class="content text-center">
                     <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.index') }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
-                        {{ trans('admin::codelist.index') }}
+                        @lang('admin::codelist.index')
                     </a>
                 </div>
             </div>

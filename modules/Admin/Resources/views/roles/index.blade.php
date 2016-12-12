@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    {{ trans('admin::roles.title') }}
+    @lang('admin::roles.title')
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-lg-6">
             <div class="data-table data-info content-box">
                 <div class="head info-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::roles.roles') }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::roles.roles')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -20,15 +20,15 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>{{ trans('admin::tables.name') }}</th>
-                        <th>{{ trans('admin::tables.label') }}</th>
-                        <th>{{ trans('admin::tables.order') }}</th>
+                        <th>@lang('admin::tables.name')</th>
+                        <th>@lang('admin::tables.label')</th>
+                        <th>@lang('admin::tables.order')</th>
                         <th>Admin?</th>
                         @if ($admin->can('edit_roles'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.manage') }}</th>
+                            <th class="no-sort text-center">@lang('admin::tables.manage')</th>
                         @endif
                         @if ($admin->can('delete_roles'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
+                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -76,7 +76,7 @@
         <div class="col-lg-6">
             <div class="content-box">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::roles.create') }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::roles.create')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>

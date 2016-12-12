@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    {{ trans('admin::roles.title') }}
+    @lang('admin::roles.title')
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-lg-6">
             <div class="content-box">
                 <div class="head danger-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::roles.update') }}: {{ $role->name }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::roles.update'): {{ $role->name }}</h5>
 
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -58,7 +58,7 @@
                 <div class="content text-center">
                     <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('roles.index') }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
-                        {{ trans('admin::roles.index') }}
+                        @lang('admin::roles.index')
                     </a>
                 </div>
             </div>
@@ -76,10 +76,10 @@
                     <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                         <thead>
                         <tr>
-                            <th class="no-sort">{{ trans('admin::tables.picture') }}</th>
-                            <th>{{ trans('admin::tables.name') }}</th>
-                            <th>{{ trans('admin::tables.email') }}</th>
-                            <th>{{ trans('admin::tables.phone') }}</th>
+                            <th class="no-sort">@lang('admin::tables.picture')</th>
+                            <th>@lang('admin::tables.name')</th>
+                            <th>@lang('admin::tables.email')</th>
+                            <th>@lang('admin::tables.phone')</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -111,10 +111,10 @@
                     <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                         <thead>
                         <tr>
-                            <th class="no-sort">{{ trans('admin::tables.picture') }}</th>
-                            <th>{{ trans('admin::tables.name') }}</th>
-                            <th>{{ trans('admin::tables.nickname') }}</th>
-                            <th>{{ trans('admin::tables.email') }}</th>
+                            <th class="no-sort">@lang('admin::tables.picture')</th>
+                            <th>@lang('admin::tables.name')</th>
+                            <th>@lang('admin::tables.nickname')</th>
+                            <th>@lang('admin::tables.email')</th>
                         </tr>
                         </thead>
                         <tbody>

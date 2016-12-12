@@ -54,13 +54,13 @@
         var form = $(this).closest('form');
 
         swal({
-            title: "{{ trans('admin::flash.delete.title') }}",
-            text: "{{ trans('admin::flash.delete.notice') }}",
+            title: "@lang('admin::flash.delete.title')",
+            text: "@lang('admin::flash.delete.notice')",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: 'btn-warning',
-            confirmButtonText: "{{ trans('admin::flash.delete.confirm_button') }}",
-            cancelButtonText: "{{ trans('admin::flash.delete.cancel_button') }}",
+            confirmButtonText: "@lang('admin::flash.delete.confirm_button')",
+            cancelButtonText: "@lang('admin::flash.delete.cancel_button')",
             closeOnConfirm: false
         }, function () {
             swal({
@@ -84,13 +84,13 @@
         var htmlElement = form.closest(form.data('element'));
 
         swal({
-            title: "{{ trans('admin::flash.delete.title') }}",
-            text: "{{ trans('admin::flash.delete.notice') }}",
+            title: "@lang('admin::flash.delete.title')",
+            text: "@lang('admin::flash.delete.notice')",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#FFBB33",
-            confirmButtonText: "{{ trans('admin::flash.delete.confirm_button') }}",
-            cancelButtonText: "{{ trans('admin::flash.delete.cancel_button') }}",
+            confirmButtonText: "@lang('admin::flash.delete.confirm_button')",
+            cancelButtonText: "@lang('admin::flash.delete.cancel_button')",
             closeOnConfirm: false,
             closeOnCancel: true
         },

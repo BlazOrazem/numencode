@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    {{ trans('admin::permissions.title') }}
+    @lang('admin::permissions.title')
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-lg-6">
             <div class="data-table data-success content-box">
                 <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::permissions.permissions') }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::permissions.permissions')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -20,14 +20,14 @@
                 <table class="display datatable middle-align datatable-striped table" data-order='[[ 2, "asc" ]]'>
                     <thead>
                     <tr>
-                        <th>{{ trans('admin::tables.name') }}</th>
-                        <th>{{ trans('admin::tables.label') }}</th>
-                        <th>{{ trans('admin::tables.order') }}</th>
+                        <th>@lang('admin::tables.name')</th>
+                        <th>@lang('admin::tables.label')</th>
+                        <th>@lang('admin::tables.order')</th>
                         @if ($admin->can('edit_permissions'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.edit') }}</th>
+                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
                         @endif
                         @if ($admin->can('delete_permissions'))
-                            <th class="no-sort text-center">{{ trans('admin::tables.delete') }}</th>
+                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -65,7 +65,7 @@
         <div class="col-lg-6">
             <div class="content-box">
                 <div class="head warning-bg clearfix">
-                    <h5 class="content-title pull-left">{{ trans('admin::permissions.update') }}: {{ $permission->name }}</h5>
+                    <h5 class="content-title pull-left">@lang('admin::permissions.update'): {{ $permission->name }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -108,7 +108,7 @@
                 <div class="content text-center">
                     <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('permissions.index') }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
-                        {{ trans('admin::permissions.index') }}
+                        @lang('admin::permissions.index')
                     </a>
                 </div>
             </div>
