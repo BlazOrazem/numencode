@@ -1,5 +1,14 @@
 <ul class="nestable-list">
-    @foreach ($collection as $item)
+    @forelse ($collection as $item)
         @include ('admin::pages.structure-item')
-    @endforeach
+    @empty
+        <li class="nestable-item">
+            <div class="nestable-handle">
+                <div class="left">
+                    <i class="zmdi zmdi-folder-outline"></i>
+                    Menu type has no elements.
+                </div>
+            </div>
+        </li>
+    @endforelse
 </ul>
