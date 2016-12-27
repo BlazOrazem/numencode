@@ -70,14 +70,13 @@
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <i class="zmdi zmdi-account-circle"></i>
                         </a>
-
                         <div class="more-opt-container dropdown-menu">
-                            <a href="#"><i class="zmdi zmdi-account-o"></i>Account<span class="badge badge-warning">3</span></a>
+                            <a href="{{ route('managers.edit', compact('admin')) }}"><i class="zmdi zmdi-account-o"></i>Account</a>
                             <a href="#"><i class="zmdi zmdi-storage"></i>Storage <span class="badge badge-danger">2</span></a>
                             <a href="#"><i class="zmdi zmdi-calendar-note"></i>Calendar <span class="badge badge-success">2</span></a>
                             <a href="#"><i class="zmdi zmdi-chart-donut"></i>Analytics <span class="badge badge-success">7</span></a>
-                            <a href="#"><i class="zmdi zmdi-balance"></i>Balance <span class="badge badge-info">5</span></a>
-                            <a href="{{ route('admin.logout') }}"><i class="zmdi zmdi-run"></i>Exit</a>
+                            <a href="{{ route('log.viewer') }}" target="_blank"><i class="zmdi zmdi-developer-board"></i>Log Viewer</a>
+                            <a href="{{ route('admin.logout') }}"><i class="zmdi zmdi-power"></i>Logout</a>
                         </div>
                     </li>
                     <li class="notification dropdown">
@@ -85,7 +84,6 @@
                             <i class="zmdi zmdi-notifications"></i>
                             <span class="badge badge-primary">8</span>
                         </a>
-
                         <div class="dropdown-menu">
                             <h4 class="text-center info-color m-0">You have 19 new notifications</h4>
                             <div class="notification-container">
@@ -100,6 +98,11 @@
                                 <i class="zmdi zmdi-check"></i>
                             </div>
                         </div>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.logout') }}">
+                            <i class="zmdi zmdi-power"></i>
+                        </a>
                     </li>
                     <li>
                         <a class="sidepanel-toggle" href="#">

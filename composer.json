@@ -22,7 +22,8 @@
         "phpunit/phpunit": "~5.0",
         "phpspec/phpspec": "~2.1",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "rap2hpoutre/laravel-log-viewer": "^0.8.0"
     },
     "autoload": {
         "classmap": [

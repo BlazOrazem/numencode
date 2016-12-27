@@ -28,7 +28,8 @@
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Managers</li>
                 <li><a href="{{ route('managers.index') }}">List managers</a></li>
-                <li><a href="{{ route('managers.create') }}">Add new manager</a></li>
+                <li><a href="{{ route('managers.create') }}">Add manager</a></li>
+                <li><a href="{{ route('managers.edit', compact('admin')) }}">My Account</a></li>
             </ul>
         </li>
         <li>
@@ -48,6 +49,7 @@
                 <li><a href="{{ route('plugins.index') }}">Plugins</a></li>
                 <li><a href="{{ route('roles.index') }}">Roles</a></li>
                 <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
+                <li><a href="{{ route('log.viewer') }}" target="_blank">Log Viewer</a></li>
             </ul>
         </li>
         <li>

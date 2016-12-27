@@ -42,3 +42,6 @@ Route::resource('permissions', 'PermissionController');
 // Tasks
 Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
 Route::resource('tasks', 'TaskController');
+
+// Log Viewer
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('log.viewer');
