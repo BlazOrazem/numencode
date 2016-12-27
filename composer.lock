@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f6e0422cdc5f01fe0b7a9a21bab0088",
+    "content-hash": "378afd47026e1b96d80defd8c7a9d3e1",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1760,54 +1760,6 @@
                 "uuid"
             ],
             "time": "2016-11-22T19:21:44+00:00"
-        },
-        {
-            "name": "rap2hpoutre/laravel-log-viewer",
-            "version": "v0.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
-                "reference": "8e5eb2dde587db33e0f9302d3426655391d0c418"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/8e5eb2dde587db33e0f9302d3426655391d0c418",
-                "reference": "8e5eb2dde587db33e0f9302d3426655391d0c418",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "4.2.*|5.*",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/controllers"
-                ],
-                "psr-0": {
-                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "rap2hpoutre",
-                    "email": "raphaelht@gmail.com"
-                }
-            ],
-            "description": "A Laravel log reader",
-            "keywords": [
-                "laravel",
-                "log",
-                "log-reader",
-                "log-viewer",
-                "logging",
-                "lumen"
-            ],
-            "time": "2016-12-15T16:14:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3711,6 +3663,54 @@
                 "xunit"
             ],
             "time": "2016-12-08T20:27:08+00:00"
+        },
+        {
+            "name": "rap2hpoutre/laravel-log-viewer",
+            "version": "v0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
+                "reference": "8e5eb2dde587db33e0f9302d3426655391d0c418"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/8e5eb2dde587db33e0f9302d3426655391d0c418",
+                "reference": "8e5eb2dde587db33e0f9302d3426655391d0c418",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*|5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/controllers"
+                ],
+                "psr-0": {
+                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2hpoutre",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "A Laravel log reader",
+            "keywords": [
+                "laravel",
+                "log",
+                "log-reader",
+                "log-viewer",
+                "logging",
+                "lumen"
+            ],
+            "time": "2016-12-15T16:14:38+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -1,5 +1,5 @@
 <li class="nestable-item">
-    <div class="nestable-handle" style="display: flex; justify-content: space-between;">
+    <div class="nestable-handle" style="display: flex; justify-content: space-between; align-items: center;">
         <div class="left">
             <i class="zmdi zmdi-{{ isset($menu[$item->id]) ? 'folder' : 'file-text' }}"></i>
             {{ $item->title }}
