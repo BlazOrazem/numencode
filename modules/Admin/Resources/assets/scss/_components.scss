@@ -1656,14 +1656,14 @@ table.display{
 .nestable {
   position: relative;
 }
-//
 .nestable-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
 .nestable-list .nestable-list {
   padding-left: 30px;
   margin-top: 10px;
 }
-.nestable-collapsed .nestable-list { display: none; }
-//
+.nestable-collapsed .nestable-list {
+  display: none;
+}
 .nestable-item,
 .nestable-empty,
 .nestable-placeholder { display: block; position: relative; }
@@ -1674,13 +1674,11 @@ table.display{
   margin-bottom: 10px;
   border-radius: $border-radius;
 }
-
 .nestable-placeholder {
   @extend .nestable-handle;
   background-color: darken($bg-color, 8%);
   border-color: darken($bg-color, 12%);
 }
-
 .nestable-item > button {
   display: block;
   position: relative;
@@ -1705,7 +1703,6 @@ table.display{
     position: absolute;
     left: 0;
     bottom: 0;
-
     right: 0;
     line-height: inherit;
     text-rendering: auto;
@@ -1715,7 +1712,6 @@ table.display{
     font-size: 18px;
     content: '\f2fc';
     top: 2px;
-
   }
 
 
@@ -1781,6 +1777,112 @@ table.display{
   .list-group-item {
     margin-bottom: 10px;
     border-radius: $border-radius;
+  }
+}
+
+// custom nestable
+.nestable.page-structure {
+  .nestable-legend {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid rgba(121, 121, 121, 0.19);
+    border-radius: 3px;
+    padding: 5px 10px;
+    ul {
+      display: block;
+      list-style: none;
+      margin: 0;
+      li {
+        float: left;
+        width: 54px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 36px;
+        color: $grey;
+        font-weight: 600;
+      }
+      &.pull-left {
+        padding-left: 5px;
+        li {
+          width: auto;
+          text-align: left;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .nestable-item {
+    > button {
+      position: absolute;
+      top: -2px;
+    }
+    .nestable-handle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 10px;
+      margin-bottom: 5px;
+      
+      .left {
+        padding-left: 35px;
+        a {
+          color: $text-color;
+          &:hover {
+            color: $dark-blue;
+          }
+        }
+        i.zmdi {
+          color: $light-blue-grey;
+          font-size: 30px;
+          position: absolute;
+          top: 6px;
+          left: 15px;
+          &.zmdi-folder {
+            color: $grey;
+          }
+        }
+        &.drop {
+          margin-left: 30px;
+
+          i.zmdi {
+            left: 40px;
+          }
+        }
+      }
+      
+      .right {
+        > div {
+          float: left;
+          width: 54px;
+          margin: 5px 0 5px 0;
+          text-align: center;
+          &.checkbox i {
+            top: 3px;
+          }
+          .btn-info,
+          .btn-success,
+          .btn-danger {
+            width: 38px;
+            text-align: center;
+          }
+          .btn-danger {
+            background: lighten($danger-color, 10%);
+            min-width: auto;
+          }
+          .btn i {
+            margin-left: 0;
+          }
+        }
+        &.visible-xs {
+          height: 40px;
+        }
+      }
+    }
+    .nestable-list {
+      margin-top: 5px;
+    }
   }
 }
 

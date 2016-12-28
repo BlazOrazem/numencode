@@ -3,11 +3,15 @@ var PreLoader = (function () {
         init: function () {
             $('#preloader').height($(window).height() + "px");
 
+            //$(window).on('load', function(){
+            //    setTimeout(function(){
+            //        $('body').css("overflow-y","visible");
+            //        $('#preloader').fadeOut(200);
+            //    }, 600);
+            //});
             $(window).on('load', function(){
-                setTimeout(function(){
-                    $('body').css("overflow-y","visible");
-                    $('#preloader').fadeOut(200);
-                }, 600);
+                $('body').css("overflow-y","visible");
+                $('#preloader').fadeOut(200);
             });
         }
     }

@@ -7,7 +7,7 @@
 */
 
 // Homepage
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('sl/', 'HomeController@index');
 
 // Pages

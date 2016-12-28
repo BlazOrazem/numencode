@@ -65,7 +65,13 @@ a, a.btn, a.btn:hover, a.btn:focus, a.btn:active:focus{
   box-shadow: none;
 }
 
-a.btn.btn-info {
+a.btn.btn-info,
+a.btn.btn-info:focus {
+  color: $white;
+}
+
+a.btn.btn-success,
+a.btn.btn-success:focus {
   color: $white;
 }
 

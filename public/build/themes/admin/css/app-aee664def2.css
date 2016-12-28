@@ -3486,6 +3486,89 @@ table.display {
   margin-bottom: 10px;
   border-radius: 3px; }
 
+.nestable.page-structure .nestable-legend {
+  width: 100%;
+  display: inline-block;
+  border: 1px solid rgba(121, 121, 121, 0.19);
+  border-radius: 3px;
+  padding: 5px 10px; }
+  .nestable.page-structure .nestable-legend ul {
+    display: block;
+    list-style: none;
+    margin: 0; }
+    .nestable.page-structure .nestable-legend ul li {
+      float: left;
+      width: 54px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 36px;
+      color: #9E9E9E;
+      font-weight: 600; }
+    .nestable.page-structure .nestable-legend ul.pull-left {
+      padding-left: 5px; }
+      .nestable.page-structure .nestable-legend ul.pull-left li {
+        width: auto;
+        text-align: left;
+        margin-right: 10px; }
+
+.nestable.page-structure .nestable-item > button {
+  position: absolute;
+  top: -2px; }
+
+.nestable.page-structure .nestable-item .nestable-handle, .nestable.page-structure .nestable-item .nestable-placeholder {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: 5px; }
+  .nestable.page-structure .nestable-item .nestable-handle .left, .nestable.page-structure .nestable-item .nestable-placeholder .left {
+    padding-left: 35px; }
+    .nestable.page-structure .nestable-item .nestable-handle .left a, .nestable.page-structure .nestable-item .nestable-placeholder .left a {
+      color: #333; }
+      .nestable.page-structure .nestable-item .nestable-handle .left a:hover, .nestable.page-structure .nestable-item .nestable-placeholder .left a:hover {
+        color: #1976D2; }
+    .nestable.page-structure .nestable-item .nestable-handle .left i.zmdi, .nestable.page-structure .nestable-item .nestable-placeholder .left i.zmdi {
+      color: #CFD8DC;
+      font-size: 30px;
+      position: absolute;
+      top: 6px;
+      left: 15px; }
+      .nestable.page-structure .nestable-item .nestable-handle .left i.zmdi.zmdi-folder, .nestable.page-structure .nestable-item .nestable-placeholder .left i.zmdi.zmdi-folder {
+        color: #9E9E9E; }
+    .nestable.page-structure .nestable-item .nestable-handle .left.drop, .nestable.page-structure .nestable-item .nestable-placeholder .left.drop {
+      margin-left: 30px; }
+      .nestable.page-structure .nestable-item .nestable-handle .left.drop i.zmdi, .nestable.page-structure .nestable-item .nestable-placeholder .left.drop i.zmdi {
+        left: 40px; }
+  .nestable.page-structure .nestable-item .nestable-handle .right > div, .nestable.page-structure .nestable-item .nestable-placeholder .right > div {
+    float: left;
+    width: 54px;
+    margin: 5px 0 5px 0;
+    text-align: center; }
+    .nestable.page-structure .nestable-item .nestable-handle .right > div.checkbox i, .nestable.page-structure .nestable-item .nestable-placeholder .right > div.checkbox i {
+      top: 3px; }
+    .nestable.page-structure .nestable-item .nestable-handle .right > div .btn-info, .nestable.page-structure .nestable-item .nestable-placeholder .right > div .btn-info,
+    .nestable.page-structure .nestable-item .nestable-handle .right > div .btn-success,
+    .nestable.page-structure .nestable-item .nestable-placeholder .right > div .btn-success,
+    .nestable.page-structure .nestable-item .nestable-handle .right > div .btn-danger,
+    .nestable.page-structure .nestable-item .nestable-placeholder .right > div .btn-danger {
+      width: 38px;
+      text-align: center; }
+    .nestable.page-structure .nestable-item .nestable-handle .right > div .btn-danger, .nestable.page-structure .nestable-item .nestable-placeholder .right > div .btn-danger {
+      background: #ff9292;
+      min-width: auto; }
+    .nestable.page-structure .nestable-item .nestable-handle .right > div .btn i, .nestable.page-structure .nestable-item .nestable-placeholder .right > div .btn i {
+      margin-left: 0; }
+  .nestable.page-structure .nestable-item .nestable-handle .right.visible-xs, .nestable.page-structure .nestable-item .nestable-placeholder .right.visible-xs {
+    height: 40px; }
+
+.nestable.page-structure .nestable-item .nestable-list {
+  margin-top: 5px; }
+
 .sweet-alert {
   border-radius: 3px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16); }
@@ -4498,7 +4581,12 @@ a, a.btn, a.btn:hover, a.btn:focus, a.btn:active:focus {
   color: #49ceff;
   box-shadow: none; }
 
-a.btn.btn-info {
+a.btn.btn-info,
+a.btn.btn-info:focus {
+  color: #fff; }
+
+a.btn.btn-success,
+a.btn.btn-success:focus {
   color: #fff; }
 
 a.btn:hover {

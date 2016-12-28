@@ -39,4 +39,5 @@ $(document).ready(function() {
     SidePanel.init();
 
     MenuToggle.init();
+
 });
