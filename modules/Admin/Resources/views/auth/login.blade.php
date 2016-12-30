@@ -49,7 +49,7 @@
             <div class="table-cell">
                 <div class="login">
                     <h4 class="text-center">numencode<sup>&trade;</sup></h4>
-                    <form method="POST" action="{{ route('admin.login.action') }}" role="form">
+                    <form method="POST" action="{{ route('admin.login.post') }}" role="form">
                         {{ csrf_field() }}
                         @if (isset($ref))
                             <input type="hidden" name="ref" value="{{ $ref }}">

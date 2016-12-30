@@ -138,7 +138,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminGuestRoutes()
     {
         Route::group([
-            'namespace' => $this->adminNamespace,
+            'namespace' => $this->adminNamespace . 'Auth',
             'prefix'    => 'admin',
         ], function ($router) {
             require base_path('routes/admin.guest.php');

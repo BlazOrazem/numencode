@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Admin\Http\Requests\LoginRequest;
 use Admin\Repositories\ManagerRepository;
 
-class AuthController extends BaseController
+class LoginController extends BaseController
 {
     /**
      * Where to redirect after successful registration or login.
@@ -27,12 +27,13 @@ class AuthController extends BaseController
     /**
      * Page with login form.
      *
-     * @param Request $request
+     * @param Request $request Request
+     *
      * @return \Illuminate\View\View
      */
     public function getLogin(Request $request)
     {
-		$seasons = ['spring', 'summer', 'autumn', 'winter'];
+        $seasons = ['spring', 'summer', 'autumn', 'winter'];
         $season = $seasons[array_rand($seasons)];
 
         $view = view('admin::auth.login', compact('season'));
@@ -47,8 +48,9 @@ class AuthController extends BaseController
     /**
      * Create manager login.
      *
-     * @param LoginRequest $request
-     * @param ManagerRepository $repository
+     * @param LoginRequest      $request    Login request
+     * @param ManagerRepository $repository Manager repository
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(LoginRequest $request, ManagerRepository $repository)
@@ -73,8 +75,6 @@ class AuthController extends BaseController
 
         flash()->success(trans('messages.logout.title'), trans('messages.logout.content'));
 
-        event('manager.logged_out');
-
-        return redirect(route('admin.login'));
+        return redirect()->route('admin.login');
     }
 }

@@ -18,7 +18,8 @@ class ManagerRepository
     /**
      * Find a manager by email address.
      *
-     * @param $email
+     * @param string $email Managers' email
+     *
      * @return object|bool
      */
     public function getByEmail($email)
@@ -29,9 +30,10 @@ class ManagerRepository
     /**
      * Find a manager by login data.
      *
-     * @param $email
-     * @param $password
-     * @return object|null
+     * @param string $email    Managers' email
+     * @param string $password Managers' password
+     *
+     * @return object|null|bool
      */
     public function getByLogin($email, $password)
     {
@@ -39,29 +41,31 @@ class ManagerRepository
             return password_verify($password, $manager['password']) ? $manager : null;
         }
 
-        return null;
+        return false;
     }
 
     /**
      * Login manager.
      *
-     * @param Manager $manager
-     * @param bool $remember
+     * @param Manager $manager  Manager
+     * @param bool    $remember Remember login
+     *
+     * @return void
      */
     public function login(Manager $manager, $remember = false)
     {
         Auth::guard($this->guard)->login($manager, $remember);
 
         flash()->success(trans('messages.login.title', ['name' => $manager->name]), trans('messages.login.content'));
-
-        event('manager.logged_in', $manager);
     }
 
     /**
-     * Update manager's profile.
+     * Update manager profile.
      *
-     * @param Manager $manager
-     * @param Request $request
+     * @param Manager $manager Manager
+     * @param Request $request Request
+     *
+     * @return void
      */
     public function updateManager(Manager $manager, Request $request)
     {
@@ -73,7 +77,7 @@ class ManagerRepository
 //            if ($manager->avatar) {
 //                $this->deleteAvatarFile($manager);
 //            }
-//
+
 //            $manager->avatar = $this->makeAvatarFromFile($request->avatar);
 //            $manager->avatar_thumbnail = $this->makeAvatarFromFile($request->avatar, true);
 //        }
@@ -85,7 +89,5 @@ class ManagerRepository
         $manager->name = $request->name;
         $manager->phone = $request->phone;
         $manager->save();
-
-        event('manager.update_profile', $manager);
     }
 }

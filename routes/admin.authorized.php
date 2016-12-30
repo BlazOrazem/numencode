@@ -10,7 +10,7 @@
 Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
 // Authentication logout
-Route::get('logout', 'Auth\AuthController@getLogout')->name('admin.logout');
+Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 
 // Users
 Route::resource('pages', 'PageController');
