@@ -8,6 +8,18 @@
                     <i class="zmdi zmdi-folder-outline"></i>
                     Menu type has no elements.
                 </div>
+                <div class="right hidden-xs">
+                    <div></div>
+                    <div>
+                        @include ('admin::components.button.new', [
+                            'action' => route('home'),
+                            'icon' => 'zmdi-file-plus'
+                        ])
+                    </div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="right visible-xs"></div>
             </div>
         </li>
     @endforelse
