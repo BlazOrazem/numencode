@@ -2,9 +2,9 @@
 
 namespace Admin\Http;
 
-use Illuminate\Database\Eloquent\Model;
 use Numencode\Http\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class BaseController extends Controller
@@ -33,7 +33,7 @@ class BaseController extends Controller
     /**
      * Delete the given model entity.
      *
-     * @param Model $model  Model to be deleted.
+     * @param Model  $model Model to be deleted.
      * @param string $msg   Message for a successful delete.
      * @param string $title Title for a successful delete.
      *

@@ -3,19 +3,20 @@
 namespace Admin\Http;
 
 use Numencode\Models\Manager;
+use Illuminate\Validation\Rule;
 use Admin\Repositories\ManagerRepository;
 
 class ManagerController extends BaseController
 {
     /**
-     * The Manager Repository implementation.
+     * The Manager Repository.
      *
      * @var ManagerRepository
      */
     protected $managers;
 
     /**
-     * Create a new profile controller instance.
+     * Create a new manager controller instance.
      *
      * @param ManagerRepository $managers Manager repository
      */
@@ -41,7 +42,7 @@ class ManagerController extends BaseController
     /**
      * Show the form for creating a new manager.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -49,65 +50,85 @@ class ManagerController extends BaseController
     }
 
     /**
+     * Store a newly created manager.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        //        $this->validate(request(), [
+//            'title'      => 'required|unique:plugins',
+//            'action'     => 'required',
+//            'sort_order' => 'required|integer',
+//        ]);
+
+//        if (request()->ajax()) {
+//            return ajaxSuccess();
+//        }
+
+//        if (Plugin::create(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
+//            flash()->success(
+//                trans('admin::messages.success'),
+//                trans('admin::plugins.created', ['name' => request()->title])
+//            );
+//        }
+
+        return redirect()->route('manager.index');
+    }
+
+    /**
      * Show the form for editing the specified manager.
      *
-     * @param int $id Manager Id
+     * @param Manager $manager Manager
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Manager $manager)
     {
-        $manager = Manager::findOrFail($id);
-
         return view('admin::managers.edit', compact('manager'));
     }
 
     /**
-     * Update the specified manager in storage.
+     * Update the manager.
      *
-     * @param int $id Manager Id
+     * @param Manager $manager Manager
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(Manager $manager)
     {
-        $manager = Manager::findOrFail($id);
-
         $this->validate(request(), [
-            'name'     => 'required|max:255',
-            'email'    => request()->email == $manager->email ? '' : 'required|email|max:255|unique:managers',
-            'password' => empty($this->password) ? '' : 'required|min:6',
-            //'avatar'   => 'mimes:jpg,jpeg,png,gif,bmp',
+            'name'     => ['required', 'max:255', Rule::unique('managers')->ignore($manager->id)],
+            'email'    => ['required', 'email', Rule::unique('managers')->ignore($manager->id)],
+            'password' => empty(request()->password) ? '' : 'required|min:6',
+            'avatar'   => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
         ]);
+
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
 
         //$this->managers->updateManager($manager, $request);
 
-        flash()->success(
-            trans('admin::messages.success'),
-            trans('admin::messages.manager.updated', ['name' => $manager->name])
-        );
+        if ($manager->update(request()->all())) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::managers.updated', ['name' => request()->name])
+            );
+        }
 
-        return redirect()->back();
+        return redirect()->route('managers.index');
     }
 
     /**
      * Delete the manager.
      *
-     * @param int $id Manager Id
+     * @param Manager $manager Manager
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Manager $manager)
     {
-        $manager = Manager::findOrFail($id);
-
-        $manager->delete();
-
-        flash()->success(
-            trans('admin::messages.success'),
-            trans('admin::messages.manager.deleted'), 2000
-        );
-
-        return redirect()->back();
+        return $this->deleteThe($manager, 'managers.deleted');
     }
 }

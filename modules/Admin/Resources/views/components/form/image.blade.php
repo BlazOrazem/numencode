@@ -11,17 +11,20 @@
 
     @if (!$inlineForm)<div class="col-sm-9"> @endif
 
-        <input type="text"
+        <input type="file"
                name="{{ $field }}"
-               value="{{ old($field, (isset($entity) ? $entity->$field : '')) }}"
                class="form-control{{ isset($class) ? ' ' . $class : '' }}"
                id="{{ $fieldId }}"
-               placeholder="{{ isset($placeholder) ? $placeholder : '' }}"
                 >
         <span class="help-block">
             {!! isset($help) ? $help . '</br>' : '' !!}
             {{ $errors->first($field, ':message') }}
         </span>
+
+        @if(isset($entity) && $entity->$field)
+            <br class="clearfix">
+            <img src="{{ $entity->$field }}" class="img-responsive" width="250">
+        @endif
 
     @if (!$inlineForm)</div> @endif
 
