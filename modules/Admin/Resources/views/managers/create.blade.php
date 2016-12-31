@@ -10,7 +10,7 @@
 
         <div class="col-lg-8">
             <div class="content-box">
-                <div class="head success-bg clearfix">
+                <div class="head info-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::managers.create')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -19,15 +19,34 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('managers.store') }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('managers.store') }}" class="form-horizontal form-validate" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @include ('admin::components.form.text', [
-                            'label' => trans('admin::forms.name'),
+                            'label' => trans('admin::managers.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::managers.placeholder.name'),
                         ])
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::managers.email'),
+                            'field' => 'email',
+                            'placeholder' => trans('admin::managers.placeholder.email'),
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::managers.phone'),
+                            'field' => 'phone',
+                            'placeholder' => trans('admin::managers.placeholder.phone'),
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::managers.password'),
+                            'field' => 'password',
+                        ])
+                        @include ('admin::components.form.image', [
+                            'label' => trans('admin::managers.avatar'),
+                            'field' => 'avatar',
+                        ])
                         @include ('admin::components.form.submit', [
                             'button' => trans('admin::managers.create'),
+                            'type' => 'info',
                         ])
                     </form>
                 </div>

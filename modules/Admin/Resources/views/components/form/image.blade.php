@@ -23,7 +23,7 @@
 
         @if(isset($entity) && $entity->$field)
             <br class="clearfix">
-            <img src="{{ $entity->$field }}" class="img-responsive" width="250">
+            <img src="{{ $entity->$field }}" class="img-responsive img-thumbnail" width="250">
         @endif
 
     @if (!$inlineForm)</div> @endif

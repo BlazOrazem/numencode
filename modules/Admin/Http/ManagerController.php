@@ -56,24 +56,25 @@ class ManagerController extends BaseController
      */
     public function store()
     {
-        //        $this->validate(request(), [
-//            'title'      => 'required|unique:plugins',
-//            'action'     => 'required',
-//            'sort_order' => 'required|integer',
-//        ]);
+        $this->validate(request(), [
+            'name'     => 'required|max:255|unique:managers',
+            'email'    => 'required|email|unique:managers',
+            'password' => 'required|min:6',
+            'avatar'   => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
+        ]);
 
-//        if (request()->ajax()) {
-//            return ajaxSuccess();
-//        }
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
 
-//        if (Plugin::create(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
-//            flash()->success(
-//                trans('admin::messages.success'),
-//                trans('admin::plugins.created', ['name' => request()->title])
-//            );
-//        }
+        if (Manager::create(request()->all())) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::manager.created', ['name' => request()->name])
+            );
+        }
 
-        return redirect()->route('manager.index');
+        return redirect()->route('managers.index');
     }
 
     /**
