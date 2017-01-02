@@ -23,12 +23,8 @@
                         <th>@lang('admin::tables.code')</th>
                         <th>@lang('admin::tables.title')</th>
                         <th>@lang('admin::tables.order')</th>
-                        @if ($admin->can('edit_menus'))
-                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
-                        @endif
-                        @if ($admin->can('delete_menus'))
-                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
-                        @endif
+                        <th class="no-sort text-center">@lang('admin::tables.edit')</th>
+                        <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,20 +37,16 @@
                                     {{ $menu->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('edit_menus'))
-                                <td class="text-center">
-                                    @include ('admin::components.button.edit', [
-                                        'action' => route('menus.edit', compact('menu')),
-                                    ])
-                                </td>
-                            @endif
-                            @if ($admin->can('delete_menus'))
-                                <td class="text-center">
-                                    @include ('admin::components.button.delete', [
-                                        'action' => route('menus.destroy', compact('menu'))
-                                    ])
-                                </td>
-                            @endif
+                            <td class="text-center">
+                                @include ('admin::components.button.edit', [
+                                    'action' => route('menus.edit', compact('menu')),
+                                ])
+                            </td>
+                            <td class="text-center">
+                                @include ('admin::components.button.delete', [
+                                    'action' => route('menus.destroy', compact('menu'))
+                                ])
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

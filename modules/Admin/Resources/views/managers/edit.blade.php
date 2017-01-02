@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        @if ($admin->can('assign_manager_roles'))
+        @if ($admin->can('assign_manager_roles') && $admin->id != $manager->id)
             <div class="col-md-4">
                 <div class="data-table data-danger content-box">
                     <div class="head danger-bg clearfix">
