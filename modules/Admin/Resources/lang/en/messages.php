@@ -6,6 +6,7 @@ return [
     'deleted'      => 'The item has been deleted.',
     'error'        => 'Error',
     'error_notice' => 'An unexpected error occurred while performing this action.',
+    'error_auth'   => 'You are not authorized to perform this action.',
 
     'tasks' => [
         'submit_create' => 'Submit',

@@ -24,10 +24,8 @@
                         <th>@lang('admin::managers.email')</th>
                         <th>@lang('admin::managers.phone')</th>
                         <th>@lang('admin::tables.created')</th>
-                        @if ($admin->can('edit_managers'))
+                        @if ($admin->can('manage_managers'))
                             <th class="no-sort text-center">@lang('admin::tables.edit')</th>
-                        @endif
-                        @if ($admin->can('delete_managers'))
                             <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
@@ -42,14 +40,12 @@
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->phone }}</td>
                             <td>{{ $manager->created_at->format(config('numencode.dates.date')) }}</td>
-                            @if ($admin->can('edit_managers'))
+                            @if ($admin->can('manage_managers'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
                                         'action' => route('managers.edit', compact('manager')),
                                     ])
                                 </td>
-                            @endif
-                            @if ($admin->can('delete_managers'))
                                 <td class="text-center">
                                     @if ($admin->id != $manager->id)
                                         @include ('admin::components.button.delete', [

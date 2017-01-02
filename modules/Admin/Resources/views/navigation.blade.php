@@ -3,7 +3,7 @@
         <li class="profile-sidebar-container">
             <div class="profile-sidebar text-center">
                 <div class="profile-userpic">
-                    <img src="/{{ $admin->avatar }}" width="86" height="86" class="img-circle center-block" alt="{{ $admin->name }}">
+                    <img src="{{ $admin->avatar }}" width="86" height="86" class="img-circle center-block" alt="{{ $admin->name }}">
                     <span class="online"></span>
                 </div>
                 <div class="profile-usertitle">
@@ -23,15 +23,19 @@
         <li>
             <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>
         </li>
-        <li>
-            <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
-            <ul class="nav nav-inside collapse">
-                <li class="inside-title">Managers</li>
-                <li><a href="{{ route('managers.index') }}">List managers</a></li>
-                <li><a href="{{ route('managers.create') }}">Add manager</a></li>
-                <li><a href="{{ route('managers.edit', compact('admin')) }}">My Account</a></li>
-            </ul>
-        </li>
+        @if ($admin->can('view_managers'))
+            <li>
+                <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
+                <ul class="nav nav-inside collapse">
+                    <li class="inside-title">Managers</li>
+                    <li><a href="{{ route('managers.index') }}">List managers</a></li>
+                    @if ($admin->can('manage_managers'))
+                        <li><a href="{{ route('managers.create') }}">Add manager</a></li>
+                    @endif
+                    <li><a href="{{ route('managers.edit', compact('admin')) }}">My Account</a></li>
+                </ul>
+            </li>
+        @endif
         <li>
             <a href="#"><i class="zmdi zmdi-account-circle"></i>Users<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">

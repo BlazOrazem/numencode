@@ -16,7 +16,13 @@ Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 Route::resource('pages', 'PageController');
 
 // Managers
-Route::resource('managers', 'ManagerController');
+Route::post('managers', 'ManagerController@store')->name('managers.store')->middleware('permission:manage_managers');
+Route::get('managers', 'ManagerController@index')->name('managers.index')->middleware('permission:view_managers');
+Route::get('managers/create', 'ManagerController@create')->name('managers.create')->middleware('permission:manage_managers');
+Route::get('managers/{manager}', 'ManagerController@show')->name('managers.show')->middleware('permission:view_managers');
+Route::delete('managers/{manager}', 'ManagerController@destroy')->name('managers.destroy')->middleware('permission:manage_managers');
+Route::match(['PUT', 'PATCH'], 'managers/{manager}', 'ManagerController@update')->name('managers.update')->middleware('permission:manage_managers');
+Route::get('managers/{manager}/edit', 'ManagerController@edit')->name('managers.edit')->middleware('permission:manage_managers');
 
 // Users
 Route::resource('users', 'UserController');
