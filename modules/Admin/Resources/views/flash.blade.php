@@ -48,6 +48,25 @@
 @endif
 
 <script>
+    $('.btn-logout').on("click", function (e) {
+        e.preventDefault();
+
+        var target = $(this);
+
+        swal({
+            title: "@lang('admin::flash.logout.title')",
+            text: "@lang('admin::flash.logout.notice')",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonClass: 'btn-info',
+            confirmButtonText: "@lang('admin::flash.logout.confirm_button')",
+            cancelButtonText: "@lang('admin::flash.logout.cancel_button')",
+            closeOnConfirm: false
+        }, function () {
+            window.location.href = $(target).attr('href');
+        });
+    });
+
     $('.btn-confirmation').on("click", function (e) {
         e.preventDefault();
 

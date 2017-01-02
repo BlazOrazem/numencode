@@ -76,7 +76,7 @@
                             <a href="#"><i class="zmdi zmdi-calendar-note"></i>Calendar <span class="badge badge-success">2</span></a>
                             <a href="#"><i class="zmdi zmdi-chart-donut"></i>Analytics <span class="badge badge-success">7</span></a>
                             <a href="{{ route('log.viewer') }}" target="_blank"><i class="zmdi zmdi-developer-board"></i>Log Viewer</a>
-                            <a href="{{ route('admin.logout') }}"><i class="zmdi zmdi-power"></i>Logout</a>
+                            <a href="{{ route('admin.logout') }}" class="btn-logout"><i class="zmdi zmdi-power"></i>Logout</a>
                         </div>
                     </li>
                     <li class="notification dropdown">
@@ -100,7 +100,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="{{ route('admin.logout') }}">
+                        <a href="{{ route('admin.logout') }}" class="btn-logout">
                             <i class="zmdi zmdi-power"></i>
                         </a>
                     </li>
