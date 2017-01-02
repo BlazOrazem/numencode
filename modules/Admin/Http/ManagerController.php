@@ -67,14 +67,14 @@ class ManagerController extends BaseController
             return ajaxSuccess();
         }
 
-        if (Manager::create(request()->all())) {
-            flash()->success(
-                trans('admin::messages.success'),
-                trans('admin::manager.created', ['name' => request()->name])
-            );
-        }
+        $manager = $this->managers->create();
 
-        return redirect()->route('managers.index');
+        flash()->success(
+            trans('admin::messages.success'),
+            trans('admin::managers.created', ['name' => $manager->name])
+        );
+
+        return redirect()->route('managers.edit', [$manager]);
     }
 
     /**
@@ -109,16 +109,14 @@ class ManagerController extends BaseController
             return ajaxSuccess();
         }
 
-        //$this->managers->updateManager($manager, $request);
-
-        if ($manager->update(request()->all())) {
+        if ($this->managers->update($manager)) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::managers.updated', ['name' => request()->name])
             );
         }
 
-        return redirect()->route('managers.index');
+        return redirect()->back();
     }
 
     /**

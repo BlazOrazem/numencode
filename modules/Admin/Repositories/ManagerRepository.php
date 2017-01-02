@@ -2,8 +2,8 @@
 
 namespace Admin\Repositories;
 
-use Illuminate\Http\Request;
 use Numencode\Models\Manager;
+use Numencode\Utils\Imageable;
 use Illuminate\Support\Facades\Auth;
 
 class ManagerRepository
@@ -14,18 +14,6 @@ class ManagerRepository
      * @var $guard
      */
     protected $guard = 'admin';
-
-    /**
-     * Find a manager by email address.
-     *
-     * @param string $email Managers' email
-     *
-     * @return object|bool
-     */
-    public function getByEmail($email)
-    {
-        return Manager::where('email', $email)->first() ?: false;
-    }
 
     /**
      * Find a manager by login data.
@@ -45,6 +33,18 @@ class ManagerRepository
     }
 
     /**
+     * Find a manager by email address.
+     *
+     * @param string $email Managers' email
+     *
+     * @return object|bool
+     */
+    public function getByEmail($email)
+    {
+        return Manager::where('email', $email)->first() ?: false;
+    }
+
+    /**
      * Login manager.
      *
      * @param Manager $manager  Manager
@@ -55,39 +55,56 @@ class ManagerRepository
     public function login(Manager $manager, $remember = false)
     {
         Auth::guard($this->guard)->login($manager, $remember);
+    }
 
-        flash()->success(trans('messages.login.title', ['name' => $manager->name]), trans('messages.login.content'));
+    /**
+     * Create new manager.
+     *
+     * @return static Manager
+     */
+    public function create()
+    {
+        return Manager::create([
+            'name' => request()->name,
+            'email' => request()->email,
+            'phone' => request()->phone,
+            'password' => bcrypt(request()->password),
+            'avatar' => !empty(request()->avatar) ? Imageable::createFromFile(
+                request()->avatar, 'uploads/admin/avatars', config('login.avatar_width'), config('login.avatar_height')
+            ) : null,
+        ]);
     }
 
     /**
      * Update manager profile.
      *
      * @param Manager $manager Manager
-     * @param Request $request Request
      *
-     * @return void
+     * @return bool
      */
-    public function updateManager(Manager $manager, Request $request)
+    public function update(Manager $manager)
     {
-        if ($request->email != $manager->email) {
-            $manager->email = $request->email;
+        if (request()->email != $manager->email) {
+            $manager->email = request()->email;
         }
 
-//        if ($request->avatar) {
-//            if ($manager->avatar) {
-//                $this->deleteAvatarFile($manager);
-//            }
+        if (request()->avatar) {
+            if ($manager->avatar) {
+                Imageable::deleteFile($manager->avatar);
+            }
 
-//            $manager->avatar = $this->makeAvatarFromFile($request->avatar);
-//            $manager->avatar_thumbnail = $this->makeAvatarFromFile($request->avatar, true);
-//        }
-
-        if ($request->password) {
-            $manager->password = bcrypt($request->password);
+            $manager->avatar = Imageable::createFromFile(
+                request()->avatar, 'uploads/admin/avatars', config('login.avatar_width'), config('login.avatar_height')
+            );
         }
 
-        $manager->name = $request->name;
-        $manager->phone = $request->phone;
-        $manager->save();
+        if (request()->password) {
+            $manager->password = bcrypt(request()->password);
+        }
+
+        $manager->name = request()->name;
+        $manager->phone = request()->phone;
+
+        return $manager->save();
     }
 }

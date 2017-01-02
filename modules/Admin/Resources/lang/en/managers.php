@@ -29,4 +29,14 @@ return [
         'avatar-help'   => 'If no file is selected, avatar will not be changed.',
     ],
 
+    'login' => [
+        'title'   => 'Welcome :name!',
+        'content' => 'You have successfully logged in.',
+    ],
+
+    'logout' => [
+        'title'   => 'Logged out',
+        'content' => 'You have successfully logged out.',
+    ],
+
 ];

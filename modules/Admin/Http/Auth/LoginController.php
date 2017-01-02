@@ -33,10 +33,7 @@ class LoginController extends BaseController
      */
     public function getLogin(Request $request)
     {
-        $seasons = ['spring', 'summer', 'autumn', 'winter'];
-        $season = $seasons[array_rand($seasons)];
-
-        $view = view('admin::auth.login', compact('season'));
+        $view = view('admin::auth.login', ['season' => $this->getSeason()]);
 
         if (isset($_GET['ref'])) {
             $view->with('ref', strip_tags($_GET['ref']));
@@ -59,7 +56,10 @@ class LoginController extends BaseController
 
         $repository->login($manager, $request->remember);
 
-        flash()->success(trans('messages.login.title', ['name' => $manager->name]), trans('messages.login.content'));
+        flash()->success(
+            trans('admin::managers.login.title', ['name' => $manager->name]),
+            trans('admin::managers.login.content')
+        );
 
         return isset($request->ref) ? redirect($request->ref) : redirect($this->redirectPath);
     }
@@ -73,8 +73,27 @@ class LoginController extends BaseController
     {
         Auth::guard($this->guard)->logout();
 
-        flash()->success(trans('messages.logout.title'), trans('messages.logout.content'));
+        flash()->success(
+            trans('admin::managers.logout.title'),
+            trans('admin::managers.logout.content')
+        );
 
         return redirect()->route('admin.login');
+    }
+
+
+    /**
+     * Get season name for today.
+     *
+     * @return string
+     */
+    protected function getSeason() {
+        $seasonDates = ['/12/21'=>'winter','/09/21'=>'autumn','/06/21'=>'summer','/03/21'=>'spring','/01/01'=>'winter'];
+
+        foreach ($seasonDates AS $key => $value) {
+            if (strtotime("now") >= strtotime(date("Y") . $key)) {
+                return $value;
+            }
+        }
     }
 }

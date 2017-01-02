@@ -21,7 +21,7 @@ class LoginRequest extends Request
      */
     public function rules()
     {
-        $this->customRule('login', 'checkLogin');
+        $this->customRule('login', 'validateLogin');
 
         return [
             'email'    => 'required|email',
@@ -36,7 +36,7 @@ class LoginRequest extends Request
      *
      * @return bool
      */
-    public function checkLogin(ManagerRepository $repository)
+    public function validateLogin(ManagerRepository $repository)
     {
         if ($this->email && $this->password) {
             $this->resolvedManager = $repository->getByLogin($this->email, $this->password);
