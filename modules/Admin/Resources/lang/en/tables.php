@@ -19,4 +19,7 @@ return [
     'manage' => 'Manage',
     'delete' => 'Delete',
 
+    'created' => 'Created at',
+    'updated' => 'Updated at',
+
 ];

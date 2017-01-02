@@ -5,6 +5,7 @@ namespace Admin\Http;
 use Numencode\Models\Manager;
 use Illuminate\Validation\Rule;
 use Admin\Repositories\ManagerRepository;
+use Numencode\Models\Role;
 
 class ManagerController extends BaseController
 {
@@ -86,7 +87,9 @@ class ManagerController extends BaseController
      */
     public function edit(Manager $manager)
     {
-        return view('admin::managers.edit', compact('manager'));
+        $roles = $this->admin->can('assign_manager_roles') ? Role::where('is_admin', true)->get() : null;
+
+        return view('admin::managers.edit', compact('manager', 'roles'));
     }
 
     /**

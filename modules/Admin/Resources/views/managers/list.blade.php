@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    Managers
+    @lang('admin::managers.title')
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <div class="data-table data-info content-box" data-id="manager-list">
                 <div class="head info-bg clearfix">
-                    <h5 class="content-title pull-left">Managers</h5>
+                    <h5 class="content-title pull-left">@lang('admin::managers.title')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -20,15 +20,15 @@
                     <thead>
                     <tr>
                         <th class="no-sort"></th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Created at</th>
+                        <th>@lang('admin::managers.name')</th>
+                        <th>@lang('admin::managers.email')</th>
+                        <th>@lang('admin::managers.phone')</th>
+                        <th>@lang('admin::tables.created')</th>
                         @if ($admin->can('edit_managers'))
-                            <th class="no-sort text-center">Edit</th>
+                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
                         @endif
                         @if ($admin->can('delete_managers'))
-                            <th class="no-sort text-center">Delete</th>
+                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -41,7 +41,7 @@
                             <td>{{ $manager->name }}</td>
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->phone }}</td>
-                            <td>{{ $manager->created_at }}</td>
+                            <td>{{ $manager->created_at->format(config('numencode.dates.date')) }}</td>
                             @if ($admin->can('edit_managers'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [

@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Numencode\Models\Manager;
 use Numencode\Models\Role;
 use Illuminate\Validation\Rule;
 use Numencode\Models\Permission;
@@ -123,5 +124,16 @@ class RoleController extends BaseController
         $role = Role::findOrFail($roleId);
 
         $role->permissions()->toggle($permissionId);
+    }
+
+    /**
+     * Assign or un-assign role to a given manager.
+     *
+     * @param Manager $manager
+     * @param Role $role
+     */
+    public function assignManagerRole(Manager $manager, Role $role)
+    {
+        $manager->roles()->toggle($role->id);
     }
 }

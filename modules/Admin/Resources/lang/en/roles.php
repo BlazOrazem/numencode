@@ -15,6 +15,7 @@ return [
     'deleted' => 'Role has been successfully deleted.',
 
     'index' => 'Back to roles',
+    'manage' => 'Manage roles',
 
     'placeholder' => [
         'name'  => 'Enter role name',

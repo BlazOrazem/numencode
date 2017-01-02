@@ -35,7 +35,8 @@ Route::get('codelist/item/{item}/edit', 'CodelistController@editItem')->name('co
 Route::resource('codelist', 'CodelistController');
 
 // Roles and Permissions
-Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign');
+Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign.permissions');
+Route::post('roles/manager/{manager}/{role}', 'RoleController@assignManagerRole')->name('roles.assign.manager');
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
 

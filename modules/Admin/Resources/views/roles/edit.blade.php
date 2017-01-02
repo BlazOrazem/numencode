@@ -162,7 +162,7 @@
                                     <input class="toggle toggle-danger"
                                            type="checkbox"
                                            name="toggle"
-                                           data-toggle="{{ route('roles.assign', [$role->id, $item->id]) }}"
+                                           data-toggle="{{ route('roles.assign.permissions', [$role->id, $item->id]) }}"
                                            {{ in_array($item->id, $role->permissions()->pluck('id')->toArray()) ? 'checked' : '' }}
                                     >
                                     <i></i>
