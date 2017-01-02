@@ -128,6 +128,14 @@ class ManagerController extends BaseController
      */
     public function destroy(Manager $manager)
     {
+        if (in_array($manager->id, config('numencode.protected_managers'))) {
+            return [
+                'type' => 'error',
+                'title' => trans("admin::messages.error"),
+                'msg'   => trans("admin::managers.delete_failed"),
+            ];
+        }
+
         return $this->deleteThe($manager, 'managers.deleted');
     }
 }

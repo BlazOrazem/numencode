@@ -58,7 +58,7 @@
             text: "@lang('admin::flash.delete.notice')",
             type: "warning",
             showCancelButton: true,
-            confirmButtonClass: 'btn-warning',
+            confirmButtonClass: 'btn-danger',
             confirmButtonText: "@lang('admin::flash.delete.confirm_button')",
             cancelButtonText: "@lang('admin::flash.delete.cancel_button')",
             closeOnConfirm: false
@@ -101,8 +101,11 @@
                     type: 'POST',
                     data: inputData,
                     success: function(data) {
-                        htmlElement.remove();
-                        swal(data.title, data.msg, "success");
+                        var messageType = data.type ? data.type : "success";
+                        if (messageType != 'error') {
+                            htmlElement.remove();
+                        }
+                        swal(data.title, data.msg, messageType);
                     }
                 });
             }

@@ -11,6 +11,7 @@ return [
     'updated' => 'Manager :name updated.',
 
     'deleted' => 'Manager has been successfully deleted.',
+    'delete_failed' => 'This manager cannot be deleted.',
 
     'index' => 'Back to manager list',
 

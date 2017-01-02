@@ -7,11 +7,6 @@ return [
     'error'        => 'Error',
     'error_notice' => 'An unexpected error occurred while performing this action.',
 
-    'manager' => [
-        'updated' => 'Manager :name has been successfully updated.',
-        'deleted' => 'Manager has been successfully deleted.',
-    ],
-
     'tasks' => [
         'submit_create' => 'Submit',
         'submit_update' => 'Update a task',
