@@ -33,7 +33,7 @@ trait ManagerRoles
     /**
      * Determine if the entity has a given role.
      *
-     * @param string $role Role name
+     * @param string|object $role Role name
      *
      * @return bool
      */

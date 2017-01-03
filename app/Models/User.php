@@ -2,8 +2,8 @@
 
 namespace Numencode\Models;
 
-use Cms\Traits\UserRoles;
 use Cms\Http\Auth\AvatarController;
+use Numencode\Models\Traits\UserRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

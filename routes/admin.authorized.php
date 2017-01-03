@@ -12,7 +12,7 @@ Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 // Authentication logout
 Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 
-// Users
+// Pages
 Route::resource('pages', 'PageController');
 
 // Managers
@@ -27,7 +27,13 @@ Route::match(['PUT', 'PATCH'], 'managers/{manager}', 'ManagerController@update')
 Route::delete('managers/{manager}', 'ManagerController@destroy')->name('managers.destroy')->middleware('permission:manage_managers');
 
 // Users
-Route::resource('users', 'UserController');
+Route::post('users', 'UserController@store')->name('users.store')->middleware('permission:manage_users');
+Route::get('users', 'UserController@index')->name('users.index')->middleware('permission:view_users');
+Route::get('users/create', 'UserController@create')->name('users.create')->middleware('permission:manage_users');
+Route::get('users/{user}', 'UserController@show')->name('users.show')->middleware('permission:view_users');
+Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:manage_users');
+Route::match(['PUT', 'PATCH'], 'users/{user}', 'UserController@update')->name('users.update')->middleware('permission:manage_users');
+Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:manage_users');
 
 // Menu Types
 Route::post('menus', 'MenuController@store')->name('menus.store')->middleware('permission:manage_menus');
@@ -63,6 +69,7 @@ Route::delete('codelist/{codelist}', 'CodelistController@destroy')->name('codeli
 // Roles and Permissions
 Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign.permissions')->middleware('permission:manage_roles|assign_permissions|manage_permissions');
 Route::post('roles/manager/{manager}/{role}', 'RoleController@assignManagerRole')->name('roles.assign.manager')->middleware('permission:manage_roles');
+Route::post('roles/user/{user}/{role}', 'RoleController@assignUserRole')->name('roles.assign.user')->middleware('permission:manage_roles');
 Route::post('roles', 'RoleController@store')->name('roles.store')->middleware('permission:manage_roles');
 Route::get('roles', 'RoleController@index')->name('roles.index')->middleware('permission:view_roles|manage_roles');
 Route::get('roles/create', 'RoleController@create')->name('roles.create')->middleware('permission:manage_roles');

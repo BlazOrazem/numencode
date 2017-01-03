@@ -2,10 +2,10 @@
 
 namespace Admin\Http;
 
+use Numencode\Models\Role;
 use Numencode\Models\Manager;
 use Illuminate\Validation\Rule;
 use Admin\Repositories\ManagerRepository;
-use Numencode\Models\Role;
 
 class ManagerController extends BaseController
 {

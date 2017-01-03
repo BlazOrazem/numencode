@@ -1,81 +1,77 @@
 @extends('admin::layout')
 
+@section('title')
+    @lang('admin::users.title')
+@endsection
+
 @section('content')
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">
-                Users
-            </h1>
-        </div>
-    </div>
-
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Application users list
+            <div class="data-table data-info content-box" data-id="user-list">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">@lang('admin::users.title')</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                    </div>
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table data-table table-striped table-bordered table-hover" data-order='[[ 1, "asc" ]]'>
-                        <thead>
+                <table data-search="Search" class="display datatable search paginate middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+                    <thead>
+                    <tr>
+                        <th class="no-sort"></th>
+                        <th>@lang('admin::users.name')</th>
+                        <th>@lang('admin::users.nickname')</th>
+                        <th>@lang('admin::users.email')</th>
+                        <th class="no-sort text-right">@lang('admin::users.is_verified')</th>
+                        <th>@lang('admin::tables.created')</th>
+                        @if ($admin->can('manage_users'))
+                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
+                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
+                        @endif
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($users as $user)
                         <tr>
-                            <th class="no-sort" width="50"></th>
-                            <th>Name</th>
-                            <th>Nickname</th>
-                            <th>Email</th>
-                            <th>Created at</th>
-                            {{--@if ($admin->can('edit_managers'))--}}
-                                {{--<th class="no-sort text-center" width="30">Edit</th>--}}
-                            {{--@endif--}}
-                            {{--@if ($admin->can('delete_managers'))--}}
-                                {{--<th class="no-sort text-center" width="30">Delete</th>--}}
-                            {{--@endif--}}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($users as $item)
-                            <tr>
+                            <td class="text-center">
+                                <img src="{{ $user->avatar }}" width="50" height="50" class="img-circle">
+                            </td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->nickname }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td class="text-right">
+                                <label>
+                                    <input class="toggle toggle-info"
+                                           type="checkbox"
+                                           name="toggle"
+                                           disabled
+                                            {{ $user->is_verified ? 'checked' : '' }}
+                                            >
+                                    <i></i>
+                                </label>
+                            </td>
+                            <td>{{ $user->created_at->format(config('numencode.dates.date')) }}</td>
+                            @if ($admin->can('manage_users'))
                                 <td class="text-center">
-                                    <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
+                                    @include ('admin::components.button.edit', [
+                                        'action' => route('users.edit', compact('user')),
+                                    ])
                                 </td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->nickname }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->created_at }}</td>
-                                {{--@if ($admin->can('edit_managers'))--}}
-                                    {{--<td class="text-center">--}}
-                                        {{--<a href="/admin/manager/{{ $item->id }}/edit">--}}
-                                            {{--<i class="glyphicon glyphicon-pencil"></i>--}}
-                                        {{--</a>--}}
-                                    {{--</td>--}}
-                                {{--@endif--}}
-                                {{--@if ($admin->can('delete_managers'))--}}
-                                    {{--<td class="text-center">--}}
-                                        {{--@if ($admin->id != $item->id)--}}
-                                            {{--<form method="POST" action="/admin/manager/{{ $item->id }}" >--}}
-                                                {{--{{ csrf_field() }}--}}
-                                                {{--{{ method_field('DELETE') }}--}}
-                                                {{--<button type="submit" class="btn btn-link btn-confirmation">--}}
-                                                    {{--<i class="glyphicon glyphicon-trash"></i>--}}
-                                                {{--</button>--}}
-                                            {{--</form>--}}
-                                        {{--@endif--}}
-                                    {{--</td>--}}
-                                {{--@endif--}}
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.panel-body -->
+                                <td class="text-center">
+                                    @if ($admin->id != $user->id)
+                                        @include ('admin::components.button.delete', [
+                                            'action' => route('users.destroy', compact('user'))
+                                        ])
+                                    @endif
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
 
 @endsection

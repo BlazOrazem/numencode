@@ -1,0 +1,58 @@
+@extends('admin::layout')
+
+@section('title')
+    @lang('admin::users.title')
+@endsection
+
+@section('content')
+
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="content-box">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">@lang('admin::users.create')</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <form method="POST" action="{{ route('users.store') }}" class="form-horizontal form-validate" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::users.name'),
+                            'field' => 'name',
+                            'placeholder' => trans('admin::users.placeholder.name'),
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::users.nickname'),
+                            'field' => 'nickname',
+                            'placeholder' => trans('admin::users.placeholder.nickname'),
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::users.email'),
+                            'field' => 'email',
+                            'placeholder' => trans('admin::users.placeholder.email'),
+                        ])
+                        @include ('admin::components.form.text', [
+                            'label' => trans('admin::users.password'),
+                            'field' => 'password',
+                        ])
+                        @include ('admin::components.form.image', [
+                            'label' => trans('admin::users.avatar'),
+                            'field' => 'avatar',
+                        ])
+                        @include ('admin::components.form.submit', [
+                            'button' => trans('admin::users.create'),
+                            'type' => 'info',
+                        ])
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+@endsection

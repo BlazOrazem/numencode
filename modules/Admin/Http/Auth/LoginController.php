@@ -81,7 +81,6 @@ class LoginController extends BaseController
         return redirect()->route('admin.login');
     }
 
-
     /**
      * Get season name for today.
      *

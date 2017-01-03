@@ -25,7 +25,7 @@
                 <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>
             </li>
         @endif
-        @if ($admin->can('view_managers'))
+        @if ($admin->can('view_managers') || $admin->can('manage_managers'))
             <li>
                 <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
                 <ul class="nav nav-inside collapse">
@@ -38,14 +38,14 @@
                 </ul>
             </li>
         @endif
-        @if ($admin->can('view_users'))
+        @if ($admin->can('view_users') || $admin->can('manage_users'))
             <li>
                 <a href="#"><i class="zmdi zmdi-account-circle"></i>Users<span class="zmdi arrow"></span></a>
                 <ul class="nav nav-inside collapse">
                     <li class="inside-title">Users</li>
                     <li><a href="{{ route('users.index') }}">List users</a></li>
                     @if ($admin->can('manage_users'))
-                        <li><a href="{{ route('managers.create') }}">Add new user</a></li>
+                        <li><a href="{{ route('users.create') }}">Add new user</a></li>
                     @endif
                 </ul>
             </li>
