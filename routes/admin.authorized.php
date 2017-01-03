@@ -59,10 +59,23 @@ Route::match(['PUT', 'PATCH'], 'codelist/{codelist}', 'CodelistController@update
 Route::delete('codelist/{codelist}', 'CodelistController@destroy')->name('codelist.destroy')->middleware('permission:manage_codelist');
 
 // Roles and Permissions
-Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign.permissions');
-Route::post('roles/manager/{manager}/{role}', 'RoleController@assignManagerRole')->name('roles.assign.manager');
-Route::resource('roles', 'RoleController');
-Route::resource('permissions', 'PermissionController');
+Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign.permissions')->middleware('permission:manage_roles|assign_permissions|manage_permissions');
+Route::post('roles/manager/{manager}/{role}', 'RoleController@assignManagerRole')->name('roles.assign.manager')->middleware('permission:manage_roles');
+Route::post('roles', 'RoleController@store')->name('roles.store')->middleware('permission:manage_roles');
+Route::get('roles', 'RoleController@index')->name('roles.index')->middleware('permission:view_roles|manage_roles');
+Route::get('roles/create', 'RoleController@create')->name('roles.create')->middleware('permission:manage_roles');
+Route::get('roles/{role}', 'RoleController@show')->name('roles.show')->middleware('permission:manage_roles');
+Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:manage_roles');
+Route::get('roles/{role}/show', 'RoleController@show')->name('roles.show')->middleware('permission:view_roles');
+Route::match(['PUT', 'PATCH'], 'roles/{role}', 'RoleController@update')->name('roles.update')->middleware('permission:manage_roles');
+Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:manage_roles');
+Route::post('permissions', 'PermissionController@store')->name('permissions.store')->middleware('permission:manage_permissions');
+Route::get('permissions', 'PermissionController@index')->name('permissions.index')->middleware('permission:manage_permissions');
+Route::get('permissions/create', 'PermissionController@create')->name('permissions.create')->middleware('permission:manage_permissions');
+Route::get('permissions/{permission}', 'PermissionController@show')->name('permissions.show')->middleware('permission:manage_permissions');
+Route::get('permissions/{permission}/edit', 'PermissionController@edit')->name('permissions.edit')->middleware('permission:manage_permissions');
+Route::match(['PUT', 'PATCH'], 'permissions/{permission}', 'PermissionController@update')->name('permissions.update')->middleware('permission:manage_permissions');
+Route::delete('permissions/{permission}', 'PermissionController@destroy')->name('permissions.destroy')->middleware('permission:manage_permissions');
 
 // Tasks
 Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');

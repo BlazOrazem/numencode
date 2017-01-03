@@ -23,12 +23,8 @@
                         <th>@lang('admin::tables.name')</th>
                         <th>@lang('admin::tables.label')</th>
                         <th>@lang('admin::tables.order')</th>
-                        @if ($admin->can('edit_permissions'))
-                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
-                        @endif
-                        @if ($admin->can('delete_permissions'))
-                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
-                        @endif
+                        <th class="no-sort text-center">@lang('admin::tables.edit')</th>
+                        <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,20 +37,16 @@
                                     {{ $item->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('edit_permissions'))
-                                <td class="text-center">
-                                    @include ('admin::components.button.edit', [
-                                        'action' => route('permissions.edit', compact('item'))
-                                    ])
-                                </td>
-                            @endif
-                            @if ($admin->can('delete_permissions'))
-                                <td class="text-center">
-                                    @include ('admin::components.button.delete', [
-                                        'action' => route('permissions.destroy', compact('item'))
-                                    ])
-                                </td>
-                            @endif
+                            <td class="text-center">
+                                @include ('admin::components.button.edit', [
+                                    'action' => route('permissions.edit', compact('item'))
+                                ])
+                            </td>
+                            <td class="text-center">
+                                @include ('admin::components.button.delete', [
+                                    'action' => route('permissions.destroy', compact('item'))
+                                ])
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

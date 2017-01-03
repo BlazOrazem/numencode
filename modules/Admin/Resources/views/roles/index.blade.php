@@ -24,10 +24,11 @@
                         <th>@lang('admin::tables.label')</th>
                         <th>@lang('admin::tables.order')</th>
                         <th>Admin?</th>
-                        @if ($admin->can('edit_roles'))
-                            <th class="no-sort text-center">@lang('admin::tables.manage')</th>
+                        @if ($admin->can('view_roles') && !$admin->can('manage_roles'))
+                            <th>Permissions</th>
                         @endif
-                        @if ($admin->can('delete_roles'))
+                        @if ($admin->can('manage_roles'))
+                            <th class="no-sort text-center">@lang('admin::tables.manage')</th>
                             <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
@@ -49,15 +50,21 @@
                                     </button>
                                 @endif
                             </td>
-                            @if ($admin->can('edit_roles'))
+                            @if ($admin->can('view_roles') && !$admin->can('manage_roles'))
+                                <td class="text-center">
+                                    @include ('admin::components.button.edit', [
+                                        'action' => route('roles.show', compact('item')),
+                                        'icon' => 'zmdi-collection-text'
+                                    ])
+                                </td>
+                            @endif
+                            @if ($admin->can('manage_roles'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
                                         'action' => route('roles.edit', compact('item')),
                                         'icon' => 'zmdi-collection-text'
                                     ])
                                 </td>
-                            @endif
-                            @if ($admin->can('delete_roles'))
                                 <td class="text-center">
                                     @if ($item->isDeletable())
                                         @include ('admin::components.button.delete', [
@@ -73,39 +80,41 @@
             </div>
         </div>
 
-        <div class="col-lg-6">
-            <div class="content-box">
-                <div class="head success-bg clearfix">
-                    <h5 class="content-title pull-left">@lang('admin::roles.create')</h5>
-                    <div class="functions-btns pull-right">
-                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
-                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+        @if ($admin->can('manage_roles'))
+            <div class="col-lg-6">
+                <div class="content-box">
+                    <div class="head success-bg clearfix">
+                        <h5 class="content-title pull-left">@lang('admin::roles.create')</h5>
+                        <div class="functions-btns pull-right">
+                            <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                            <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
+                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal form-validate">
+                            {{ csrf_field() }}
+                            @include ('admin::components.form.text', [
+                                'label' => trans('admin::forms.name'),
+                                'field' => 'name',
+                                'placeholder' => trans('admin::roles.placeholder.name'),
+                            ])
+                            @include ('admin::components.form.text', [
+                                'label' => trans('admin::forms.label'),
+                                'field' => 'label',
+                                'placeholder' => trans('admin::roles.placeholder.label'),
+                            ])
+                            @include ('admin::components.form.order', [
+                                'sortOrder' => $roles->max('sort_order') + 10,
+                            ])
+                            @include ('admin::components.form.submit', [
+                                'button' => trans('admin::roles.create'),
+                            ])
+                        </form>
                     </div>
                 </div>
-                <div class="content">
-                    <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal form-validate">
-                        {{ csrf_field() }}
-                        @include ('admin::components.form.text', [
-                            'label' => trans('admin::forms.name'),
-                            'field' => 'name',
-                            'placeholder' => trans('admin::roles.placeholder.name'),
-                        ])
-                        @include ('admin::components.form.text', [
-                            'label' => trans('admin::forms.label'),
-                            'field' => 'label',
-                            'placeholder' => trans('admin::roles.placeholder.label'),
-                        ])
-                        @include ('admin::components.form.order', [
-                            'sortOrder' => $roles->max('sort_order') + 10,
-                        ])
-                        @include ('admin::components.form.submit', [
-                            'button' => trans('admin::roles.create'),
-                        ])
-                    </form>
-                </div>
             </div>
-        </div>
+        @endif
 
     </div>
 

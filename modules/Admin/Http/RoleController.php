@@ -22,6 +22,21 @@ class RoleController extends BaseController
     }
 
     /**
+     * Show the role with assigned permissions.
+     *
+     * @param Role $role Role
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show(Role $role)
+    {
+        $roles = Role::all();
+        $permissions = Permission::where('is_admin', $role->is_admin)->get();
+
+        return view('admin::roles.show', compact('role', 'roles', 'permissions'));
+    }
+
+    /**
      * Store a newly created role.
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -57,8 +72,6 @@ class RoleController extends BaseController
      */
     public function edit(Role $role)
     {
-        $role = $role->with('permissions', 'managers', 'users')->first();
-
         $permissions = Permission::where('is_admin', $role->is_admin)->get();
 
         return view('admin::roles.edit', compact('role', 'permissions'));

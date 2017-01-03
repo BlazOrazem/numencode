@@ -66,7 +66,7 @@
                 @if ($admin->can('view_roles') || $admin->can('manage_roles'))
                     <li><a href="{{ route('roles.index') }}">Roles</a></li>
                 @endif
-                @if ($admin->can('view_roles') || $admin->can('manage_permissions'))
+                @if ($admin->can('manage_permissions'))
                     <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
                 @endif
                 <li><a href="{{ route('log.viewer') }}" target="_blank">Log Viewer</a></li>
