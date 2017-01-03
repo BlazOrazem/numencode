@@ -15,10 +15,12 @@ return [
     'phone'    => 'Phone',
     'nickname' => 'Nickname',
 
+    'show'   => 'View',
     'edit'   => 'Edit',
     'manage' => 'Manage',
     'delete' => 'Delete',
 
+    'date'    => 'Date',
     'created' => 'Created at',
     'updated' => 'Updated at',
 

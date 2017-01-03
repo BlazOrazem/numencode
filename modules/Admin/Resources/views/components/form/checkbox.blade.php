@@ -13,7 +13,7 @@
 
         <div class="checkbox checkbox-alt checkbox-{{ isset($type) ? $type : 'success' }}">
             <label>
-                <input type="checkbox" name="{{ $field }}" {{ isset($isChecked) && $isChecked == true ? 'checked' : '' }}>
+                <input type="checkbox" value="1" name="{{ $field }}" {{ isset($isChecked) && $isChecked == true ? 'checked' : '' }}>
                 <i></i>
             </label>
         </div>

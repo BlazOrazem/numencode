@@ -25,6 +25,14 @@
                 <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>
             </li>
         @endif
+        <li>
+            <a href="#"><i class="zmdi zmdi-format-align-justify"></i>Tasks<span class="zmdi arrow"></span></a>
+            <ul class="nav nav-inside collapse">
+                <li class="inside-title">Tasks</li>
+                <li><a href="{{ route('tasks.index') }}">List tasks</a></li>
+                <li><a href="{{ route('tasks.create') }}">Add new task</a></li>
+            </ul>
+        </li>
         @if ($admin->can('view_managers') || $admin->can('manage_managers'))
             <li>
                 <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
@@ -71,9 +79,6 @@
                 @endif
                 <li><a href="{{ route('log.viewer') }}" target="_blank">Log Viewer</a></li>
             </ul>
-        </li>
-        <li>
-            <a href="{{ route('tasks.index') }}"><i class="zmdi zmdi-format-align-justify"></i>Tasks</a>
         </li>
     </ul>
     <input id="activeUrl" type="hidden" value="{{ $activeUrl }}">

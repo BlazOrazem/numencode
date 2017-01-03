@@ -86,9 +86,9 @@ Route::get('permissions/{permission}/edit', 'PermissionController@edit')->name('
 Route::match(['PUT', 'PATCH'], 'permissions/{permission}', 'PermissionController@update')->name('permissions.update')->middleware('permission:manage_permissions');
 Route::delete('permissions/{permission}', 'PermissionController@destroy')->name('permissions.destroy')->middleware('permission:manage_permissions');
 
-// Tasks
-Route::get('tasks/api', 'TaskController@api')->name('admin.tasks.api');
-Route::resource('tasks', 'TaskController');
-
 // Log Viewer
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('log.viewer');
+
+// Tasks Plugin
+Route::post('tasks/complete/{task}', 'TaskController@complete')->name('tasks.complete');
+Route::resource('tasks', 'TaskController');

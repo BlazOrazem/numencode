@@ -3,7 +3,6 @@
 namespace Admin\Http;
 
 use Numencode\Models\Task;
-use Illuminate\Http\Request;
 
 class TaskController extends BaseController
 {
@@ -20,15 +19,14 @@ class TaskController extends BaseController
     }
 
     /**
-     * Show the specific task.
+     * Show the given task.
      *
-     * @param $id
+     * @param Task $task Task
+     *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        $task = Task::findOrFail($id);
-
         return view('admin::tasks.show', compact('task'));
     }
 
@@ -39,81 +37,100 @@ class TaskController extends BaseController
      */
     public function create()
     {
-        return view('admin::tasks.create', [
-            'task' => new Task,
-        ]);
+        return view('admin::tasks.create');
     }
 
     /**
      * Store a newly created task.
      *
-     * @param  Request                           $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
+        $this->validate(request(), [
             'title' => 'required',
             'body'  => 'required',
         ]);
 
-        Task::create($request->all());
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
 
-        flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.created'));
+        if (Task::create(request()->all())) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::tasks.created', ['name' => request()->title])
+            );
+        }
 
         return redirect()->route('tasks.index');
     }
 
     /**
-     * Show the form for editing the task.
+     * Show the task edit form.
      *
-     * @param $id
+     * @param Task $task Task
+     *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        $task = Task::findOrFail($id);
-
         return view('admin::tasks.edit', compact('task'));
     }
 
     /**
      * Update the task.
      *
-     * @param Request $request
-     * @param $id
+     * @param Task $task Task
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Task $task)
     {
-        $task = Task::findOrFail($id);
-
-        $this->validate($request, [
+        $this->validate(request(), [
             'title' => 'required',
             'body'  => 'required',
         ]);
 
-        if ($task->update($request->all())) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.updated'));
+        if (request()->ajax()) {
+            return ajaxSuccess();
         }
 
-        return redirect()->back();
+        if ($task->update([
+            'title' => request()->title,
+            'body' => request()->body,
+            'completed' => isset(request()->completed),
+        ])
+        ) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::tasks.updated', ['name' => request()->title])
+            );
+        }
+
+        return redirect()->route('tasks.index');
+    }
+
+    /**
+     * Complete a task.
+     *
+     * @param Task $task Task
+     */
+    public function complete(Task $task)
+    {
+        $task->completed = !$task->completed;
+        $task->save();
     }
 
     /**
      * Delete the task.
      *
-     * @param $id
+     * @param Task $task Task
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        $task = Task::findOrFail($id);
-
-        if ($task->delete()) {
-            flash()->success(trans('admin::messages.success'), trans('admin::messages.tasks.deleted'));
-        }
-
-        return redirect()->back();
+        return $this->deleteThe($task, 'tasks.deleted');
     }
 }

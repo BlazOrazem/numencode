@@ -59,11 +59,9 @@
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @if ($admin->id != $user->id)
-                                        @include ('admin::components.button.delete', [
-                                            'action' => route('users.destroy', compact('user'))
-                                        ])
-                                    @endif
+                                    @include ('admin::components.button.delete', [
+                                        'action' => route('users.destroy', compact('user'))
+                                    ])
                                 </td>
                             @endif
                         </tr>

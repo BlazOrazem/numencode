@@ -1,77 +1,72 @@
 @extends('admin::layout')
 
+@section('title')
+    @lang('admin::tasks.title')
+@endsection
+
 @section('content')
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Tasks</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="{{ route('tasks.create') }}" class="btn btn-success">Create new Task</a>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="dataTable_wrapper">
-                        <table width="100%" class="table data-table table-striped table-hover" data-order='[[ 3, "desc" ]]'>
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Completed</th>
-                                <th>Created at</th>
-                                <th width="30" class="no-sort text-center">Show</th>
-                                <th width="30" class="no-sort text-center">Edit</th>
-                                <th width="30" class="no-sort text-center">Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($tasks as $task)
-                            <tr>
-                                <td>{{ $task->id }}</td>
-                                <td>{{ $task->title }}</td>
-                                <td>
-                                    @if ($task->completed)
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    @endif
-                                </td>
-                                <td>{{ $task->created_at }}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('tasks.show', compact('task')) }}">
-                                        <i class="glyphicon glyphicon-list-alt"></i>
-                                    </a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ route('tasks.edit', compact('task')) }}">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                </td>
-                                <td class="text-center">
-                                    <form method="POST" action="{{ route('tasks.destroy', compact('task')) }}">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-link btn-confirmation">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+            <div class="data-table data-info content-box" data-id="task-list">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">@lang('admin::tasks.title')</h5>
+                    <div class="functions-btns pull-right">
+                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
+                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
                     </div>
-                    <!-- /.table-responsive -->
                 </div>
-                <!-- /.panel-body -->
+                <table data-search="Search" class="display datatable search paginate middle-align datatable-striped table" data-order='[[ 0, "asc" ]]'>
+                    <thead>
+                    <tr>
+                        <th>@lang('admin::tasks.name')</th>
+                        <th>@lang('admin::tasks.body')</th>
+                        <th class="no-sort text-right">@lang('admin::tasks.completed')</th>
+                        <th>@lang('admin::tables.date')</th>
+                        <th class="no-sort text-center">@lang('admin::tables.show')</th>
+                        <th class="no-sort text-center">@lang('admin::tables.edit')</th>
+                        <th class="no-sort text-center">@lang('admin::tables.delete')</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($tasks as $task)
+                        <tr>
+                            <td>{{ $task->title }}</td>
+                            <td>{{ $task->body }}</td>
+                            <td class="text-right">
+                                <label>
+                                    <input class="toggle toggle-info"
+                                           type="checkbox"
+                                           name="toggle"
+                                           data-toggle="{{ route('tasks.complete', [$task->id]) }}"
+                                            {{ $task->completed ? 'checked' : '' }}
+                                            >
+                                    <i></i>
+                                </label>
+                            </td>
+                            <td>{{ $task->created_at->format(config('numencode.dates.date')) }}</td>
+                            <td class="text-center">
+                                @include ('admin::components.button.edit', [
+                                    'action' => route('tasks.show', compact('task')),
+                                    'icon' => 'zmdi-search'
+                                ])
+                            </td>
+                            <td class="text-center">
+                                @include ('admin::components.button.edit', [
+                                    'action' => route('tasks.edit', compact('task')),
+                                ])
+                            </td>
+                            <td class="text-center">
+                                @include ('admin::components.button.delete', [
+                                    'action' => route('tasks.destroy', compact('task'))
+                                ])
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-6 -->
     </div>
-    <!-- /.row -->
 
 @endsection
