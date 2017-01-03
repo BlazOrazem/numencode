@@ -71,7 +71,7 @@
                             <i class="zmdi zmdi-account-circle"></i>
                         </a>
                         <div class="more-opt-container dropdown-menu">
-                            <a href="{{ route('managers.edit', compact('admin')) }}"><i class="zmdi zmdi-account-o"></i>Account</a>
+                            <a href="{{ route('managers.profile') }}"><i class="zmdi zmdi-account-o"></i>Account</a>
                             <a href="#"><i class="zmdi zmdi-storage"></i>Storage <span class="badge badge-danger">2</span></a>
                             <a href="#"><i class="zmdi zmdi-calendar-note"></i>Calendar <span class="badge badge-success">2</span></a>
                             <a href="#"><i class="zmdi zmdi-chart-donut"></i>Analytics <span class="badge badge-success">7</span></a>

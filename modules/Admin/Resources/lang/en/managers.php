@@ -10,6 +10,9 @@ return [
     'update'  => 'Update manager',
     'updated' => 'Manager :name updated.',
 
+    'profile'         => 'Update my profile',
+    'profile_updated' => 'Profile successfully updated.',
+
     'deleted' => 'Manager has been successfully deleted.',
     'delete_failed' => 'This manager cannot be deleted.',
 

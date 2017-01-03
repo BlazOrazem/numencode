@@ -8,7 +8,7 @@
                 </div>
                 <div class="profile-usertitle">
                     <div class="name">
-                        {{ $admin->name }}
+                        <a href="{{ route('managers.profile') }}">{{ $admin->name }}</a>
                     </div>
                     <div class="city">
                         <i class="zmdi zmdi-email"></i>{{ $admin->email }}
@@ -34,7 +34,7 @@
                     @if ($admin->can('manage_managers'))
                         <li><a href="{{ route('managers.create') }}">Add manager</a></li>
                     @endif
-                    <li><a href="{{ route('managers.edit', compact('admin')) }}">My Account</a></li>
+                    <li><a href="{{ route('managers.profile') }}">My profile</a></li>
                 </ul>
             </li>
         @endif

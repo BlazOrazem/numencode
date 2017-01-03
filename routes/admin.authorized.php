@@ -19,6 +19,8 @@ Route::resource('pages', 'PageController');
 Route::post('managers', 'ManagerController@store')->name('managers.store')->middleware('permission:manage_managers');
 Route::get('managers', 'ManagerController@index')->name('managers.index')->middleware('permission:view_managers');
 Route::get('managers/create', 'ManagerController@create')->name('managers.create')->middleware('permission:manage_managers');
+Route::get('managers/profile', 'ManagerController@profile')->name('managers.profile');
+Route::match(['PUT', 'PATCH'], 'managers/profile', 'ManagerController@updateProfile')->name('managers.profile.update');
 Route::get('managers/{manager}', 'ManagerController@show')->name('managers.show')->middleware('permission:view_managers');
 Route::get('managers/{manager}/edit', 'ManagerController@edit')->name('managers.edit')->middleware('permission:manage_managers');
 Route::match(['PUT', 'PATCH'], 'managers/{manager}', 'ManagerController@update')->name('managers.update')->middleware('permission:manage_managers');

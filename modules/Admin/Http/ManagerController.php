@@ -123,6 +123,44 @@ class ManagerController extends BaseController
     }
 
     /**
+     * Show the form for editing the profile.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function profile()
+    {
+        return view('admin::managers.profile');
+    }
+
+    /**
+     * Update the profile.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateProfile()
+    {
+        $this->validate(request(), [
+            'name'     => ['required', 'max:255', Rule::unique('managers')->ignore($this->admin->id)],
+            'email'    => ['required', 'email', Rule::unique('managers')->ignore($this->admin->id)],
+            'password' => empty(request()->password) ? '' : 'required|min:6',
+            'avatar'   => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
+        ]);
+
+        if (request()->ajax()) {
+            return ajaxSuccess();
+        }
+
+        if ($this->managers->update($this->admin)) {
+            flash()->success(
+                trans('admin::messages.success'),
+                trans('admin::managers.profile_updated')
+            );
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Delete the manager.
      *
      * @param Manager $manager Manager
