@@ -87,7 +87,7 @@ class ManagerController extends BaseController
      */
     public function edit(Manager $manager)
     {
-        $roles = $this->admin->can('assign_manager_roles') ? Role::where('is_admin', true)->get() : null;
+        $roles = $this->admin()->can('assign_manager_roles') ? Role::where('is_admin', true)->get() : null;
 
         return view('admin::managers.edit', compact('manager', 'roles'));
     }
@@ -140,8 +140,8 @@ class ManagerController extends BaseController
     public function updateProfile()
     {
         $this->validate(request(), [
-            'name'     => ['required', 'max:255', Rule::unique('managers')->ignore($this->admin->id)],
-            'email'    => ['required', 'email', Rule::unique('managers')->ignore($this->admin->id)],
+            'name'     => ['required', 'max:255', Rule::unique('managers')->ignore($this->admin()->id)],
+            'email'    => ['required', 'email', Rule::unique('managers')->ignore($this->admin()->id)],
             'password' => empty(request()->password) ? '' : 'required|min:6',
             'avatar'   => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
         ]);
@@ -150,7 +150,7 @@ class ManagerController extends BaseController
             return ajaxSuccess();
         }
 
-        if ($this->managers->update($this->admin)) {
+        if ($this->managers->update($this->admin())) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::managers.profile_updated')

@@ -6,6 +6,10 @@
 
 @section('content')
 
+    {{--@if (session()->has('flash_message'))--}}
+        {{--<h1>{{ print_r(session('flash_message')) }}</h1>--}}
+    {{--@endif--}}
+
     <div class="row">
 
         <div class="col-md-8">
@@ -19,7 +23,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('managers.profile.update') }}" class="form-horizontal form-validate" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('managers.profile.update') }}" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include ('admin::components.form.text', [

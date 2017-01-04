@@ -10,21 +10,21 @@ use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 class BaseController extends Controller
 {
     /**
-     * Logged in manager.
-     *
-     * @var $admin
-     */
-    protected $admin;
-
-    /**
      * Create a new BaseController instance.
      */
     public function __construct()
     {
-        $this->admin = Auth::guard('admin')->user();
 
-        view()->share('admin', $this->admin);
-        view()->share('signedIn', (bool) Auth::guard('admin')->check());
+    }
+
+    /**
+     * Return logged in manager.
+     *
+     * @return \Numencode\Models\Manager
+     */
+    public function admin()
+    {
+        return Auth::guard('admin')->user();
     }
 
     /**

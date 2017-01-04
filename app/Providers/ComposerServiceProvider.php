@@ -14,7 +14,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['admin::layout', 'admin::pages.index'], 'Admin\Http\ViewComposers\PageComposer');
+        View::composer('admin::*', 'Admin\Http\ViewComposers\PageComposer');
 
         View::composer('theme::layouts.*', 'Cms\Http\ViewComposers\PageComposer');
     }
