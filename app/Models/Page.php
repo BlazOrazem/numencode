@@ -26,13 +26,6 @@ class Page extends Model
     protected $fillable = ['parent_id', 'layout', 'title', 'lead', 'body', 'sort_order', 'is_hidden'];
 
     /**
-     * The attributes that are dates.
-     *
-     * @var array
-     */
-    protected $dates = ['created_at', 'updated_at'];
-
-    /**
      * Page belongs to url.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -71,14 +71,15 @@
                             <i class="zmdi zmdi-account-circle"></i>
                         </a>
                         <div class="more-opt-container dropdown-menu">
+                            <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
                             <a href="{{ route('managers.profile') }}"><i class="zmdi zmdi-account-o"></i>Account</a>
-                            <a href="#"><i class="zmdi zmdi-storage"></i>Storage <span class="badge badge-danger">2</span></a>
                             <a href="#"><i class="zmdi zmdi-calendar-note"></i>Calendar <span class="badge badge-success">2</span></a>
-                            <a href="#"><i class="zmdi zmdi-chart-donut"></i>Analytics <span class="badge badge-success">7</span></a>
                             <a href="{{ route('log.viewer') }}" target="_blank"><i class="zmdi zmdi-developer-board"></i>Log Viewer</a>
+                            <a href="#"><i class="zmdi zmdi-info-outline"></i>About</a>
                             <a href="{{ route('admin.logout') }}" class="btn-logout"><i class="zmdi zmdi-power"></i>Logout</a>
                         </div>
                     </li>
+                    {{--
                     <li class="notification dropdown">
                         <a class="dropdown-toggle">
                             <i class="zmdi zmdi-notifications"></i>
@@ -99,6 +100,7 @@
                             </div>
                         </div>
                     </li>
+                    --}}
                     <li>
                         <a href="{{ route('admin.logout') }}" class="btn-logout">
                             <i class="zmdi zmdi-power"></i>
@@ -145,7 +147,7 @@
         @yield('content')
     </div>
 
-    <footer class="page-footer">&copy; {{ date('Y') }} numencode<sup>&trade;</sup> All rights reserved.</footer>
+    {{--<footer class="page-footer">&copy; {{ date('Y') }} numencode<sup>&trade;</sup> All rights reserved.</footer>--}}
 </div>
 
 @include('admin::footer')

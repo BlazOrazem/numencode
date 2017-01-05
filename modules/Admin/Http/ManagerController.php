@@ -14,18 +14,18 @@ class ManagerController extends BaseController
      *
      * @var ManagerRepository
      */
-    protected $managers;
+    protected $managerRepository;
 
     /**
      * Create a new manager controller instance.
      *
-     * @param ManagerRepository $managers Manager repository
+     * @param ManagerRepository $managerRepository Manager repository
      */
-    public function __construct(ManagerRepository $managers)
+    public function __construct(ManagerRepository $managerRepository)
     {
         parent::__construct();
 
-        $this->managers = $managers;
+        $this->managerRepository = $managerRepository;
     }
 
     /**
@@ -68,7 +68,7 @@ class ManagerController extends BaseController
             return ajaxSuccess();
         }
 
-        $manager = $this->managers->create();
+        $manager = $this->managerRepository->create();
 
         flash()->success(
             trans('admin::messages.success'),
@@ -112,7 +112,7 @@ class ManagerController extends BaseController
             return ajaxSuccess();
         }
 
-        if ($this->managers->update($manager)) {
+        if ($this->managerRepository->update($manager)) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::managers.updated', ['name' => request()->name])
@@ -150,7 +150,7 @@ class ManagerController extends BaseController
             return ajaxSuccess();
         }
 
-        if ($this->managers->update($this->admin())) {
+        if ($this->managerRepository->update($this->admin())) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::managers.profile_updated')

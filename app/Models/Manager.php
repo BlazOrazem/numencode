@@ -4,31 +4,19 @@ namespace Numencode\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Numencode\Models\Traits\ManagerRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Manager extends Authenticatable
 {
-    use ManagerRoles, Notifiable;
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'managers';
+    use ManagerRoles, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-        'avatar',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'phone', 'avatar'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -42,5 +30,5 @@ class Manager extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = ['deleted_at'];
 }

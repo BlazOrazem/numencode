@@ -39,18 +39,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token', 'is_verified', 'token',
-    ];
-
-    /**
-     * The attributes that are dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at', 'updated_at',
-    ];
+    protected $hidden = ['password', 'remember_token', 'is_verified', 'token'];
 
     /**
      * Bootstrap application services for user.
