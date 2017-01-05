@@ -14,7 +14,8 @@
         "laracasts/utilities": "^2.1",
         "barryvdh/laravel-debugbar": "~2.0@dev",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "laraplus/translatable": "^1.0"
+        "laraplus/translatable": "^1.0",
+        "spatie/laravel-analytics": "^1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

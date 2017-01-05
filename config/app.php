@@ -167,6 +167,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laraplus\Data\TranslatableServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -194,6 +195,7 @@ return [
     'aliases' => [
 
         'App'          => Illuminate\Support\Facades\App::class,
+        'Analytics'    => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
         'Auth'         => Illuminate\Support\Facades\Auth::class,
         'Blade'        => Illuminate\Support\Facades\Blade::class,

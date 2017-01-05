@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="content-box">
                 <div class="head head-with-btns clearfix">
-                    <h5 class="content-title text-color pull-left">Total sales statistics</h5>
+                    <h5 class="content-title text-color pull-left">Website analytics</h5>
                     <div class="functions-btns pull-right">
                         <button type="button" class="btn btn-info">
                             Week
@@ -1436,30 +1436,21 @@
             labels : ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"],
             datasets : [
                 {
-                    label: "Mens goods",
-                    fillColor : "rgba(73, 206, 255, 0.5)",
-                    strokeColor : "rgba(73, 206, 255, 0.7)",
-                    pointColor : "rgba(73, 206, 255, 0.9)",
-                    pointStrokeColor : "#fff",
-                    pointHighlightFill : "rgba(255, 193, 7, 1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-                },
-                {
-                    label: "Women goods",
-                    fillColor : "rgba(255, 187, 51, 0.5)",
-                    strokeColor : "rgba(255, 187, 51, 0.7)",
-                    pointColor : "rgba(255, 187, 51, 0.9)",
-                    pointStrokeColor : "#fff",
-                    pointHighlightFill : "rgba(244, 67, 54, 1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-                },
-                {
-                    label: "Children goods",
+                    label: "Page views",
                     fillColor : "rgba(153, 204, 0, 0.5)",
                     strokeColor : "rgba(153, 204, 0, 0.7)",
                     pointColor : "rgba(153, 204, 0, 0.9)",
                     pointStrokeColor : "#fff",
                     pointHighlightFill : "rgba(33, 150, 243, 1)",
+                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                },
+                {
+                    label: "Visitors",
+                    fillColor : "rgba(73, 206, 255, 0.5)",
+                    strokeColor : "rgba(73, 206, 255, 0.7)",
+                    pointColor : "rgba(73, 206, 255, 0.9)",
+                    pointStrokeColor : "#fff",
+                    pointHighlightFill : "rgba(255, 193, 7, 1)",
                     data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
                 }
             ]

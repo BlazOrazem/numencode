@@ -2,6 +2,8 @@
 
 namespace Admin\Http;
 
+use Analytics;
+
 class DashboardController extends BaseController
 {
     /**
@@ -11,6 +13,9 @@ class DashboardController extends BaseController
      */
     public function index()
     {
+//        $analyticsData = Analytics::getVisitorsAndPageViews(7);
+//        dd($analyticsData);
+
         return view('admin::pages.dashboard');
     }
 }
