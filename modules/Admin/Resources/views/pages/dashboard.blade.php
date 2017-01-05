@@ -1432,6 +1432,10 @@
         // Some more charts for dashboard
         var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 
+//        var dayNames = $.each(vars.dates, function( index, value ) {
+//            alert( index + ": " + value );
+//        });
+
         var lineChartData = {
             labels : ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"],
             datasets : [

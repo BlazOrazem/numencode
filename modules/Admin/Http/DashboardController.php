@@ -13,8 +13,19 @@ class DashboardController extends BaseController
      */
     public function index()
     {
-//        $analyticsData = Analytics::getVisitorsAndPageViews(7);
+        $analyticsData = Analytics::getVisitorsAndPageViews(6);
 //        dd($analyticsData);
+
+        $dates = [];
+        foreach ($analyticsData as $item) {
+            $dates[$item['date']->format('l')] = [
+                'visitors' => $item['visitors'],
+                'pageViews' => $item['pageViews'],
+            ];
+        }
+
+        $this->js(['dates' => $dates]);
+//        dd($dates);
 
         return view('admin::pages.dashboard');
     }
