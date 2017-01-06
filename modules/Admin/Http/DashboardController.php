@@ -3,6 +3,7 @@
 namespace Admin\Http;
 
 use Analytics;
+use Carbon\Carbon;
 
 class DashboardController extends BaseController
 {
@@ -13,20 +14,45 @@ class DashboardController extends BaseController
      */
     public function index()
     {
-        $analyticsData = Analytics::getVisitorsAndPageViews(6);
-//        dd($analyticsData);
+//        $data = Analytics::getTopKeywords();
+//        $data = Analytics::getTopReferrers();
+//        $data = Analytics::getMostVisitedPages();
+//        $data = Analytics::getActiveUsers();
 
-        $dates = [];
-        foreach ($analyticsData as $item) {
-            $dates[$item['date']->format('l')] = [
-                'visitors' => $item['visitors'],
-                'pageViews' => $item['pageViews'],
-            ];
-        }
+        // Sessions
+//        list($startDate, $endDate) = $this->calculateNumberOfDays(6);
+//        $data = Analytics::performQuery($startDate, $endDate, 'ga:sessions')->totalsForAllResults;
+//        $data = Analytics::performQuery($startDate, $endDate, 'ga:sessions', ['dimensions' => 'ga:userType']);
+//        dd($data);
 
-        $this->js(['dates' => $dates]);
-//        dd($dates);
+        // New sessions pie chart (new visitor / returning visitor)
+//        list($startDate, $endDate) = $this->calculateNumberOfDays(6);
+//        $data = Analytics::performQuery($startDate, $endDate, 'ga:percentNewSessions')->totalsForAllResults;
+//        dd($data);
+
+
+        $analyticsData = Analytics::getVisitorsAndPageViews(6)->toArray();
+
+        $this->js(['weekDays' => array_map(function ($item) {
+            return strtoupper($item['date']->format('l'));
+        }, $analyticsData)]);
+
+        $this->js(['visitors' => array_map(function ($item) {
+            return $item['visitors'];
+        }, $analyticsData)]);
+
+        $this->js(['pageViews' => array_map(function ($item) {
+            return $item['pageViews'];
+        }, $analyticsData)]);
 
         return view('admin::pages.dashboard');
+    }
+
+    protected function calculateNumberOfDays($numberOfDays)
+    {
+        $endDate = Carbon::today();
+        $startDate = Carbon::today()->subDays($numberOfDays);
+
+        return [$startDate, $endDate];
     }
 }

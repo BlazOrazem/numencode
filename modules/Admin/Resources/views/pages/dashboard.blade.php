@@ -35,72 +35,50 @@
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="content-box warning-bg white">
-                <div class="head clearfix">
-                    <h5 class="content-title pull-left">Orders</h5>
-                    <div class="functions-btns pull-right">
-                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
-                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
-                    </div>
+            <div class="content-box p-20 info-bg white f-s-16 text-center">
+                <div>
+                    <p>Logged in as<br /><strong>{{ $admin->name }}</strong></p>
+                    <span class="current-date"></span>
                 </div>
-                <div class="content">
-                    <div id="line-chart-3" class="flot-chart"></div>
-                    <p class="text-uppercase zero-m">Total orders</p>
-                    <p class="zero-m f-30">45,245,659</p>
-                </div>
+                <span class="time" style="font-size: 50px; font-weight: 400; letter-spacing: 0; margin-top: 30px; line-height: 50px;"></span>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="content-box">
                 <div class="head clearfix">
-                    <h5 class="content-title text-color pull-left">Implementation of a plan</h5>
-                    <div class="functions-btns pull-right">
-                        <a class="refresh-btn text-color" href="#"><i class="zmdi zmdi-refresh"></i></a>
-                        <a class="fullscreen-btn text-color" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn text-color" href="#"><i class="zmdi zmdi-close"></i></a>
-                    </div>
-                </div>
-                <div class="p-l-20">
-                    <button type="button" class="btn btn-info m-b-5">
-                        Week
-                    </button>
-                    <button type="button" class="btn btn-warning m-b-5">
-                        Month
-                    </button>
+                    <h5 class="content-title text-color">Visitors</h5>
                 </div>
                 <div class="content">
-                    <div class="easychart text-right" data-percent="55"></div>
+                    <div class="visitors-chart text-right" data-percent="68"></div>
+                    <div class="p-absolute t-50 l-20">
+                        <p class="zero-m">New visitors</p>
+                        <p class="zero-m success-color f-20">70%</p>
+                    </div>
                     <div class="p-absolute b-20 l-20">
-                        <p class="text-uppercase zero-m">Profit</p>
-                        <p class="zero-m danger-color f-30">254,395</p>
+                        <p class="zero-m">Returning<br />visitors</p>
+                        <p class="zero-m info-color f-20">30%</p>
                     </div>
                 </div>
-                <!-- Used for demo purposes. Remove if it is needed-->
-                <div class="visible-lg visible-md" style="height: 6px;"></div>
+                <div class="visible-lg visible-md" style="height: 7px;"></div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="content-box success-bg white">
                 <div class="head clearfix">
-                    <h5 class="content-title pull-left">Visitors</h5>
-                    <div class="functions-btns pull-right">
-                        <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
-                        <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
-                    </div>
+                    <h5 class="content-title">Visitors</h5>
                 </div>
                 <div class="content">
-                    <div id="line-chart-4" class="flot-chart"></div>
-                    <p class="text-uppercase zero-m">Total visitors</p>
+                    <p class="text-uppercase zero-m">Visitors</p>
+                    <p class="f-30">15,654,700</p>
+                    <p class="text-uppercase zero-m">Sessions</p>
                     <p class="zero-m f-30">15,654,700</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="content-box info-bg white">
+            <div class="content-box warning-bg white">
                 <div class="head clearfix">
-                    <h5 class="content-title pull-left">Returns</h5>
+                    <h5 class="content-title pull-left">Sessions</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -108,7 +86,6 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div id="line-chart-2" class="flot-chart"></div>
                     <p class="text-uppercase zero-m">Total returns</p>
                     <p class="zero-m f-30">573,935</p>
                 </div>
@@ -1278,166 +1255,9 @@
             });
         });
 
-
-
-//        $('#table1').DataTable({
-//            "dom": '<"toolbar tool1">rtip',
-//            info: true,
-//            paging: true,
-//            responsive: true
-//        });
-//
-//        $("div.tool1").html('<h5 class="zero-m">Info table</h5>');
-//
-//        $('#table2').DataTable({
-//            "dom": '<"toolbar tool2"><"clear-filter">frtip',
-//            info: false,
-//            paging: false,
-//            responsive: true,
-//            "oLanguage": { "sSearch": "" }
-//        });
-//
-//        $("div.tool2").html('<h5 class="zero-m">Danger table</h5>');
-//
-//        $('.dataTables_filter input').attr("placeholder", "Search");
-
-
-        // Pie chart
-        $(function() {
-            $('.easychart').easyPieChart({
-                barColor: "#F44336",
-                trackColor: '#cccccc',
-                size: 115,
-                lineWidth: 15,
-                scaleLength: 0
-            });
-        });
-
-
-        // Data for charts
-        $(function () {
-            /* Make some random data for the Chart*/
-
-            var d1 = [];
-            for (var i = 0; i <= 10; i += 1) {
-                d1.push([i, parseInt(Math.random() * 100)]);
-            }
-
-            var d2 = [];
-            for (var i = 0; i <= 10; i += 1) {
-                d2.push([i, parseInt(Math.random() * 100)]);
-            }
-
-            var d3 = [];
-            for (var i = 0; i <= 10; i += 1) {
-                d3.push([i, parseInt(Math.random() * 100)]);
-            }
-
-            var d4 = [];
-            for (var i = 0; i <= 50; i += 1) {
-                d4.push([i, parseInt(Math.random() * 100)]);
-            }
-
-            /* Chart Options */
-
-            var options = {
-                series: {
-                    shadowSize: 0,
-                    label: "Qty",
-                    lines: {
-                        show: true,
-                        lineWidth: 2
-                    },
-                    points: {
-                        show: true
-                    }
-                },
-                grid: {
-                    margin: 10,
-                    show: false,
-                    hoverable: true,
-                    clickable: true
-                },
-                yaxis: {
-                    max: 100,
-                    min: 0
-                },
-                legend: {
-                    show: false
-                },
-                tooltip: {
-                    show: true,
-                    cssClass: "flot-tooltip",
-                    defaultTheme: false,
-                    content: '%y.2',
-                    shifts: {
-                        x: 1,
-                        y: -45
-                    }
-                }
-            };
-
-            var options2 = {
-                series: {
-                    shadowSize: 5,
-                    label: "Qty",
-                    lines: {
-                        show: true,
-                        lineWidth: 2
-                    }
-                },
-                grid: {
-                    margin: 10,
-                    show: false,
-                    hoverable: true,
-                    clickable: false
-                },
-                legend: {
-                    show: false
-                },
-                tooltip: {
-                    show: true,
-                    cssClass: "flot-tooltip",
-                    defaultTheme: false,
-                    content: '%y.2',
-                    shifts: {
-                        x: 1,
-                        y: -45
-                    }
-                }
-            };
-
-            /* Let's create the chart */
-            if ($("#line-chart-2")[0]) {
-                $.plot($("#line-chart-2"), [
-                    {data: d2, color: '#fff' }
-                ], options);
-            }
-
-            if ($("#line-chart-3")[0]) {
-                $.plot($("#line-chart-3"), [
-                    {data: d3, color: '#fff' }
-                ], options);
-            }
-
-            if ($("#line-chart-4")[0]) {
-                $.plot($("#line-chart-4"), [
-                    {data: d4, color: '#fff' }
-                ], options2);
-            }
-
-        });
-
-
-        // Some more charts for dashboard
-        var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-
-//        var dayNames = $.each(vars.dates, function( index, value ) {
-//            alert( index + ": " + value );
-//        });
-
+        // Google Analytics data
         var lineChartData = {
-            labels : ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"],
+            labels : vars.weekDays,
             datasets : [
                 {
                     label: "Page views",
@@ -1446,7 +1266,7 @@
                     pointColor : "rgba(153, 204, 0, 0.9)",
                     pointStrokeColor : "#fff",
                     pointHighlightFill : "rgba(33, 150, 243, 1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                    data : vars.pageViews
                 },
                 {
                     label: "Visitors",
@@ -1455,7 +1275,7 @@
                     pointColor : "rgba(73, 206, 255, 0.9)",
                     pointStrokeColor : "#fff",
                     pointHighlightFill : "rgba(255, 193, 7, 1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                    data : vars.visitors
                 }
             ]
 
@@ -1465,8 +1285,7 @@
             var ctx = document.getElementById("chart-line").getContext("2d");
             var myLine = new Chart(ctx).Line(lineChartData, {
                 scaleShowVerticalLines: false,
-//        scaleShowLabels: false,
-//        maintainAspectRatio: true,
+                scaleShowLabels: true,
                 datasetStrokeWidth : 6,
                 pointDotRadius : 6,
                 responsive: true,
@@ -1475,5 +1294,16 @@
 
             document.getElementById('js-legend').innerHTML = myLine.generateLegend();
         }
+
+        // Visitors
+        $(function() {
+            $('.visitors-chart').easyPieChart({
+                barColor: "#99cc00",
+                trackColor: '#49ceff',
+                size: 115,
+                lineWidth: 15,
+                scaleLength: 0
+            });
+        });
     </script>
 @endsection
