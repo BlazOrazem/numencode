@@ -21,13 +21,23 @@
             <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
         </li>
         <li>
-            <a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-view-dashboard"></i>TPL Elements</a>
+            <a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-case-check"></i>TPL Elements</a>
         </li>
         @if ($admin->can('view_pages'))
             <li>
                 <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>
             </li>
         @endif
+        <li>
+            <a href="#"><i class="zmdi zmdi-collection-text"></i>Contents<span class="zmdi arrow"></span></a>
+            <ul class="nav nav-inside collapse">
+                <li class="inside-title">Contents</li>
+                @if ($admin->can('manage_contents'))
+                    <li><a href="{{ route('contents.index') }}">Always displayed contents</a></li>
+                @endif
+                <li><a href="{{ route('admin.dashboard') }}">Dictionary WIP</a></li>
+            </ul>
+        </li>
         <li>
             <a href="#"><i class="zmdi zmdi-format-align-justify"></i>Tasks<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">

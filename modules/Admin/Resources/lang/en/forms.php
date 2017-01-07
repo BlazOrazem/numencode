@@ -4,6 +4,7 @@ return [
 
     'name'        => 'Name',
     'title'       => 'Title',
+    'lead'        => 'Lead',
     'label'       => 'Label',
     'code'        => 'Code',
     'action'      => 'Action',
