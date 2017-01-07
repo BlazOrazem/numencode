@@ -20,6 +20,9 @@
         <li>
             <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
         </li>
+        <li>
+            <a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-view-dashboard"></i>TPL Elements</a>
+        </li>
         @if ($admin->can('view_pages'))
             <li>
                 <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>

@@ -8,6 +8,7 @@
 
 // Admin dashboard
 Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+Route::get('/elements', 'DashboardController@elements')->name('admin.elements');
 
 // Authentication logout
 Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
