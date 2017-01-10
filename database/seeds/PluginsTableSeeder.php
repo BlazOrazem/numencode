@@ -1,5 +1,6 @@
 <?php
 
+use Numencode\Models\Plugin;
 use Illuminate\Database\Seeder;
 
 class PluginsTableSeeder extends Seeder
@@ -12,6 +13,7 @@ class PluginsTableSeeder extends Seeder
                 'title'       => 'Tasks list',
                 'description' => null,
                 'action'      => 'TaskController@index',
+                'params'      => null,
                 'sort_order'  => 10,
                 'is_hidden'   => 0,
             ],
@@ -20,11 +22,20 @@ class PluginsTableSeeder extends Seeder
                 'title'       => 'Sample',
                 'description' => null,
                 'action'      => 'TaskController@sample',
+                'params'      => (object)   [
+                                                'id' => [
+                                                    'selection' => "\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id')",
+                                                ],
+                                                'name' => 'text',
+                                                'surname' => 'text',
+                                            ],
                 'sort_order'  => 20,
                 'is_hidden'   => 0,
             ],
         ];
 
-        DB::table('plugins')->insert($items);
+        foreach ($items as $item) {
+            Plugin::forceCreate($item);
+        }
     }
 }

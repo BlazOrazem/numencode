@@ -18,6 +18,7 @@ class CreatePluginsTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('action')->nullable();
+            $table->text('params')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_hidden')->default(0);
         });

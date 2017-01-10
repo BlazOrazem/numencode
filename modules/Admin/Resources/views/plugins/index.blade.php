@@ -87,6 +87,34 @@
                                 'field' => 'action',
                                 'placeholder' => trans('admin::plugins.placeholder.action'),
                             ])
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Param</label>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="params[]" class="form-control" placeholder="Param name">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="form-control selectpicker" data-style="btn-info">
+                                                <option value="">- select type -</option>
+                                                <option value="text">Integer</option>
+                                                <option value="text">String</option>
+                                                <option value="model">Collection</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <br />
+                                            <input type="text" name="params[]" class="form-control" placeholder="Collection query">
+                                            <span class="help-block">
+                                                <pre>\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id');</pre>
+                                                {{--{"id":{"selection":"\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id')"},"name":"text","surname":"text"}--}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $plugins->max('sort_order') + 10,
                             ])
@@ -106,4 +134,12 @@
 
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+
+        });
+    </script>
 @endsection

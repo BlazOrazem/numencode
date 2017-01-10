@@ -24,9 +24,16 @@ class Plugin extends Model
     public $timestamps = false;
 
     /**
+     * Cast attributes to other types.
+     *
+     * @var array
+     */
+    protected $casts = ['params' => 'object'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'action', 'sort_order', 'is_hidden'];
+    protected $fillable = ['title', 'description', 'action', 'params', 'sort_order', 'is_hidden'];
 }
