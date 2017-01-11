@@ -115,14 +115,11 @@ class PluginController extends BaseController
         }
 
         return $this->renderPluginForm($plugin);
-//        return ['form' => $this->renderPlugin($plugin->params)];
-
-//        return ['form' => $plugin->params];
     }
 
     public function testRender()
     {
-        $plugin = Plugin::find(1);
+        $plugin = Plugin::find(2);
 
         return $this->renderPluginForm($plugin);
     }
@@ -135,6 +132,16 @@ class PluginController extends BaseController
      */
     protected function renderPluginForm(Plugin $plugin)
     {
-        return view('admin::plugins.form', ['params' => $plugin->params]);
+        $data = collect($plugin->params)->map(function ($item) {
+            if ($item->type == 'select') {
+                $item->options = eval("return " . $item->options . ';');
+            }
+
+            $item->label = ucfirst($item->name);
+
+            return $item;
+        });
+
+        return view('admin::plugins.form', compact('data'));
     }
 }

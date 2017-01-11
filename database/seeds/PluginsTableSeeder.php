@@ -23,11 +23,19 @@ class PluginsTableSeeder extends Seeder
                 'description' => null,
                 'action'      => 'TaskController@sample',
                 'params'      => (object)   [
-                                                'id' => [
-                                                    'selection' => "\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id')",
+                                                [
+                                                    'type' => 'text',
+                                                    'name' => 'name',
                                                 ],
-                                                'name' => 'text',
-                                                'surname' => 'text',
+                                                [
+                                                    'type' => 'text',
+                                                    'name' => 'surname',
+                                                ],
+                                                [
+                                                    'type' => 'select',
+                                                    'name' => 'id',
+                                                    'options' => "\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id')",
+                                                ],
                                             ],
                 'sort_order'  => 20,
                 'is_hidden'   => 0,

@@ -94,9 +94,7 @@
                                 'placeholder' => trans('admin::contents.placeholder.plugin'),
                                 'dataAttribute' => 'data-api="' . route('plugins.api') . '"',
                             ])
-                            <div class="result">
-
-                            </div>
+                            <div class="plugin-form"></div>
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $contents->max('sort_order') + 10,
                             ])
@@ -122,25 +120,16 @@
                     dataType: 'html',
                     method: 'POST',
                     beforeSend: function (xhr) {
-//                        xhr.setRequestHeader("Content-Type", "application/json");
-//                        xhr.setRequestHeader("Accept", "application/json");
                         xhr.setRequestHeader('X-CSRF-TOKEN', http.token());
                     },
                     data: data
                 });
             };
 
-
             $('select.plugin').on('change', function() {
                 http.postHtml($('select.plugin').data('api'), {id: this.value})
                     .success(function(data) {
-//                        if ($.inArray(data, 'success')) {
-//                            return;
-//                        }
-//                        if ($.inArray(data, 'form')) {
-//
-//                        }
-                        $('.result').html(data);
+                        $('.plugin-form').html(data);
                     })
                     .error(function() {
                         console.log('An error occured.');
