@@ -90,8 +90,13 @@
                                 'label' => trans('admin::contents.plugin'),
                                 'field' => 'plugin_id',
                                 'data' => $plugins,
+                                'class' => 'plugin',
                                 'placeholder' => trans('admin::contents.placeholder.plugin'),
+                                'dataAttribute' => 'data-api="' . route('plugins.api') . '"',
                             ])
+                            <div class="result">
+
+                            </div>
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $contents->max('sort_order') + 10,
                             ])
@@ -106,4 +111,41 @@
 
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            http.postHtml = function (url, data) {
+                return $.ajax({
+                    url: url,
+                    dataType: 'html',
+                    method: 'POST',
+                    beforeSend: function (xhr) {
+//                        xhr.setRequestHeader("Content-Type", "application/json");
+//                        xhr.setRequestHeader("Accept", "application/json");
+                        xhr.setRequestHeader('X-CSRF-TOKEN', http.token());
+                    },
+                    data: data
+                });
+            };
+
+
+            $('select.plugin').on('change', function() {
+                http.postHtml($('select.plugin').data('api'), {id: this.value})
+                    .success(function(data) {
+//                        if ($.inArray(data, 'success')) {
+//                            return;
+//                        }
+//                        if ($.inArray(data, 'form')) {
+//
+//                        }
+                        $('.result').html(data);
+                    })
+                    .error(function() {
+                        console.log('An error occured.');
+                    });
+            })
+        });
+    </script>
 @endsection

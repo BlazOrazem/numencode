@@ -55,7 +55,9 @@ Route::match(['PUT', 'PATCH'], 'menus/{menu}', 'MenuController@update')->name('m
 Route::delete('menus/{menu}', 'MenuController@destroy')->name('menus.destroy')->middleware('permission:manage_menus');
 
 // Plugins
+Route::post('plugins/api', 'PluginController@api')->name('plugins.api');
 Route::post('plugins', 'PluginController@store')->name('plugins.store')->middleware('permission:manage_plugins');
+Route::get('plugins/render', 'PluginController@testRender');
 Route::get('plugins', 'PluginController@index')->name('plugins.index')->middleware('permission:view_plugins');
 Route::get('plugins/create', 'PluginController@create')->name('plugins.create')->middleware('permission:manage_plugins');
 Route::get('plugins/{plugin}', 'PluginController@show')->name('plugins.show')->middleware('permission:view_plugins');

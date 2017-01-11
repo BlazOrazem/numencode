@@ -28,7 +28,6 @@ class ContentController extends BaseController
     public function store()
     {
         $this->validate(request(), [
-            'position'   => 'required',
             'sort_order' => 'required|integer',
         ]);
 

@@ -100,4 +100,41 @@ class PluginController extends BaseController
     {
         return $this->deleteThe($plugin, 'plugins.deleted');
     }
+
+    /**
+     * Call plugin api.
+     *
+     * @return void
+     */
+    public function api()
+    {
+        $plugin = Plugin::findOrFail(request()->id);
+
+        if (!$plugin->params) {
+            return ajaxSuccess();
+        }
+
+        return $this->renderPluginForm($plugin);
+//        return ['form' => $this->renderPlugin($plugin->params)];
+
+//        return ['form' => $plugin->params];
+    }
+
+    public function testRender()
+    {
+        $plugin = Plugin::find(1);
+
+        return $this->renderPluginForm($plugin);
+    }
+
+    /**
+     * Create form for plugin params.
+     *
+     * @param Plugin $plugin Plugin
+     * @return \Illuminate\View\View
+     */
+    protected function renderPluginForm(Plugin $plugin)
+    {
+        return view('admin::plugins.form', ['params' => $plugin->params]);
+    }
 }

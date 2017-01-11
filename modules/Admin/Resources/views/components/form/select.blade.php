@@ -15,6 +15,9 @@
                 id="{{ $fieldId }}"
                 class="form-control selectpicker{{ isset($class) ? ' ' . $class : '' }}"
                 data-style="{{ isset($style) ? 'btn-' . $style : 'btn-info' }}"
+                @if (isset($dataAttribute))
+                    {!! $dataAttribute !!}
+                @endif
                 >
             @if (isset($placeholder))
                 <option value="">{{ $placeholder }}</option>
