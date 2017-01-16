@@ -2,21 +2,13 @@
 
 namespace Admin\Http;
 
+use Auth;
 use Numencode\Http\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class BaseController extends Controller
 {
-    /**
-     * Create a new BaseController instance.
-     */
-    public function __construct()
-    {
-
-    }
-
     /**
      * Return logged in manager.
      *

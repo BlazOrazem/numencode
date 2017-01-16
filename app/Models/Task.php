@@ -28,4 +28,14 @@ class Task extends Model
      * @var array
      */
     protected $casts = ['completed' => 'boolean'];
+
+    /**
+     * Get all tasks
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTaskSelection()
+    {
+        return static::orderBy('title')->get()->pluck('title', 'id');
+    }
 }

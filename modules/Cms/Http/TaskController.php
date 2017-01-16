@@ -19,16 +19,16 @@ class TaskController extends BaseController
     }
 
     /**
-     * TODO Sample method
-     *
-     * For testing purposes: append contents on the page.
-     * This method will be removed soon.
+     * Show a single task.
      *
      * @param $params
      * @return \Illuminate\View\View
      */
-    public function sample($params)
+    public function show($params)
     {
-        return view('theme::tasks.sample', ['sample' => $params]);
+        return view('theme::tasks.show', [
+            'data' => $params,
+            'task' => Task::find($params->task_id),
+        ]);
     }
 }

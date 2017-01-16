@@ -4,6 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default namespace for app models.
+    |--------------------------------------------------------------------------
+    |
+    | This is the default namespace for the application models.
+    | The use of double leading and trailing backslashes is mandatory.
+    |
+    */
+
+    'models_namespace' => '\\Numencode\\Models\\',
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Date formats.
     |--------------------------------------------------------------------------
     |
@@ -22,7 +35,7 @@ return [
     | Un-deletable managers.
     |--------------------------------------------------------------------------
     |
-    | Managers with IDs in this array cannot be deleted from the database.
+    | Managers with ID's in this array cannot be deleted from the database.
     |
     */
 

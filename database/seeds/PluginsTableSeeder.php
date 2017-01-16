@@ -19,9 +19,9 @@ class PluginsTableSeeder extends Seeder
             ],
             [
                 'id'          => 2,
-                'title'       => 'Sample',
+                'title'       => 'Show Task',
                 'description' => null,
-                'action'      => 'TaskController@sample',
+                'action'      => 'TaskController@show',
                 'params'      => (object)   [
                                                 [
                                                     'type' => 'text',
@@ -33,8 +33,11 @@ class PluginsTableSeeder extends Seeder
                                                 ],
                                                 [
                                                     'type' => 'select',
-                                                    'name' => 'id',
-                                                    'options' => "\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id')",
+                                                    'name' => 'task_id',
+                                                    'options' => [
+                                                        'model'  => 'Task',
+                                                        'method' => 'getTaskSelection',
+                                                    ],
                                                 ],
                                             ],
                 'sort_order'  => 20,

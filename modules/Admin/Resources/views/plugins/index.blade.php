@@ -88,30 +88,29 @@
                                 'placeholder' => trans('admin::plugins.placeholder.action'),
                             ])
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-3">Param</label>
+                            <div class="form-group params">
+                                <label class="control-label col-sm-3">Param 1</label>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <input type="text" name="params[]" class="form-control" placeholder="Param name">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <select class="form-control selectpicker" data-style="btn-info">
+                                        <div class="col-sm-6 type-picker">
+                                            <select class="form-control selectpicker type" data-style="btn-info">
                                                 <option value="">- select type -</option>
-                                                <option value="text">Integer</option>
-                                                <option value="text">String</option>
-                                                <option value="model">Collection</option>
+                                                <option value="text">Text</option>
+                                                <option value="select">Select</option>
+                                                <option value="radio">Radio buttons</option>
+                                                <option value="checkbox">Checkboxes</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <br />
-                                            <input type="text" name="params[]" class="form-control" placeholder="Collection query">
-                                            <span class="help-block">
-                                                <pre>\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id');</pre>
-                                                {{--{"id":{"selection":"\\Numencode\\Models\\User::whereNotNull('is_verified')->get()->pluck('name', 'id')"},"name":"text","surname":"text"}--}}
-                                            </span>
-                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <a href="#" class="btn btn-default btn-link addParam">Add a parameter</a>
                                 </div>
                             </div>
 
@@ -139,7 +138,23 @@
 @section('scripts')
     <script>
         $(function() {
+            $('select.type').on('change', function() {
+                if (this.value == 'text') {
+                    return;
+                }
 
+                $("div.type-picker").after(
+                    "<div class='col-sm-12'><br />" +
+                        "<input type='text' name='params[]' class='form-control' placeholder='Select options'>" +
+                        "<span class='help-block'>Enter options divided with comma or Model@method collection." +
+                    "</div>"
+                );
+
+//                var $elem = $( "#elem" ).data( "arr", [ 1 ] ),
+//                    $clone = $elem.clone( true )
+//                    // Deep copy to prevent data sharing
+//                    .data( "arr", $.extend( [], $elem.data( "arr" ) ) );
+            });
         });
     </script>
 @endsection

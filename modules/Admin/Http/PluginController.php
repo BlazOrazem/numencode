@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Illuminate\Support\Facades\App;
 use Numencode\Models\Plugin;
 use Illuminate\Validation\Rule;
 
@@ -134,7 +135,7 @@ class PluginController extends BaseController
     {
         $data = collect($plugin->params)->map(function ($item) {
             if ($item->type == 'select') {
-                $item->options = eval("return " . $item->options . ';');
+                $item->options = $this->handleSelectOptions($item->options);
             }
 
             $item->label = ucfirst($item->name);
@@ -143,5 +144,24 @@ class PluginController extends BaseController
         });
 
         return view('admin::plugins.form', compact('data'));
+    }
+
+    /**
+     * Handle options for select box based on given data.
+     *
+     * @param object $data Data for building the list of options
+     *
+     * @return array
+     */
+    protected function handleSelectOptions($data)
+    {
+        if (is_string($data)) {
+            $data = explode(',', $data);
+            return array_combine($data, $data);
+        }
+
+        $namespace = isset($data->namespace) ? $data->namespace : config('numencode.models_namespace');
+
+        return app()->call([$namespace . $data->model, $data->method]);
     }
 }

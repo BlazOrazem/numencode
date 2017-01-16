@@ -2,30 +2,18 @@
 
 namespace Cms\Http;
 
+use Auth;
 use Numencode\Http\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
 {
     /**
-     * Authenticated user implementation.
+     * Return logged in user.
      *
-     * @var User
+     * @return \Numencode\Models\User
      */
-    protected $user;
-
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
+    public function user()
     {
-        $this->middleware(function ($request, $next) {
-            $this->user = Auth::user();
-
-            view()->share('user', $this->user);
-            view()->share('signedIn', (bool)Auth::check());
-
-            return $next($request);
-        });
+        return Auth::guard()->user();
     }
 }
