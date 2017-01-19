@@ -88,24 +88,28 @@
                                 'placeholder' => trans('admin::plugins.placeholder.action'),
                             ])
 
-                            <div class="form-group params">
-                                <label class="control-label col-sm-3">Param</label>
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <input type="text" name="params[1][name]" class="form-control" placeholder="Param name">
-                                        </div>
-                                        <div class="col-sm-6 type-picker">
-                                            <select name="params[1][type]" class="form-control selectpicker type" data-style="btn-info">
-                                                <option value="">- select type -</option>
-                                                <option value="text">Text</option>
-                                                <option value="select">Select</option>
-                                                <option value="radio">Radio buttons</option>
-                                                <option value="checkbox">Checkboxes</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                            {{--<div class="form-group params">--}}
+                                {{--<label class="control-label col-sm-3">Param</label>--}}
+                                {{--<div class="col-sm-9">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="col-sm-6">--}}
+                                            {{--<input type="text" name="params[1][name]" class="form-control" placeholder="Param name">--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-sm-6 type-picker">--}}
+                                            {{--<select name="params[1][type]" class="form-control selectpicker type" data-style="btn-info">--}}
+                                                {{--<option value="">- select type -</option>--}}
+                                                {{--<option value="text">Text</option>--}}
+                                                {{--<option value="select">Select</option>--}}
+                                                {{--<option value="radio">Radio buttons</option>--}}
+                                                {{--<option value="checkbox">Checkboxes</option>--}}
+                                            {{--</select>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                            <div class="params">
+                                <plugin-param></plugin-param>
                             </div>
 
                             <div class="form-group add-param-group">
@@ -137,46 +141,74 @@
 
 @section('scripts')
     <script>
-        var PluginParamSelector = (function () {
-            return {
-                init: function () {
-                    $('.addParam').on('click', function(e){
-                        e.preventDefault();
-                        var newParamGroup = $('div.params:last').clone(true);
-                        newParamGroup.find('input, select').each(function(){
-                            this.name = this.name.replace(/\[(\d+)\]/,function(str,p1){return '[' + (parseInt(p1,10)+1) + ']'});
-                        }).end().prependTo('.add-param-group');
-                        PluginSelectPicker.init();
-                    });
-
-                    PluginSelectPicker.init();
-                }
-            }
-        })();
-
-        var PluginSelectPicker = (function () {
-            return {
-                init: function () {
-                    $('select.type').on('change', function() {
-                        if (this.value == 'text') {
-                            return;
-                        }
-
-                        var num = parseInt(this.name.match(/[\d\.]+/g));
-
-                        $(this).closest("div.type-picker").after(
-                                "<div class='col-sm-12'><br />" +
-                                "<input type='text' name='params[" + num + "][options]' class='form-control' placeholder='Select options'>" +
-                                "<span class='help-block'>Enter options divided with comma or Model@method collection.</span>" +
-                                "</div>"
-                        );
-                    });
-                }
-            }
-        })();
-
-        $(document).ready(function() {
-            PluginParamSelector.init();
+        Vue.component('plugin-param', {
+            template: `
+                <div class="form-group params">
+                    <label class="control-label col-sm-3">Param</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" name="params[1][name]" class="form-control" placeholder="Param name">
+                            </div>
+                            <div class="col-sm-6 type-picker">
+                                <select name="params[1][type]" class="form-control selectpicker type" data-style="btn-info">
+                                    <option value="">- select type -</option>
+                                    <option value="text">Text</option>
+                                    <option value="select">Select</option>
+                                    <option value="radio">Radio buttons</option>
+                                    <option value="checkbox">Checkboxes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
         });
+
+        new Vue({
+           el: '.params'
+        });
+
+        {{--var PluginParamSelector = (function () {--}}
+            {{--return {--}}
+                {{--init: function () {--}}
+                    {{--$('.addParam').on('click', function(e){--}}
+                        {{--e.preventDefault();--}}
+                        {{--var newParamGroup = $('div.params:last').clone(true);--}}
+                        {{--newParamGroup.find('input, select').each(function(){--}}
+                            {{--this.name = this.name.replace(/\[(\d+)\]/,function(str,p1){return '[' + (parseInt(p1,10)+1) + ']'});--}}
+                        {{--}).end().prependTo('.add-param-group');--}}
+                        {{--PluginSelectPicker.init();--}}
+                    {{--});--}}
+
+                    {{--PluginSelectPicker.init();--}}
+                {{--}--}}
+            {{--}--}}
+        {{--})();--}}
+
+        {{--var PluginSelectPicker = (function () {--}}
+            {{--return {--}}
+                {{--init: function () {--}}
+                    {{--$('select.type').on('change', function() {--}}
+                        {{--if (this.value == 'text') {--}}
+                            {{--return;--}}
+                        {{--}--}}
+
+                        {{--var num = parseInt(this.name.match(/[\d\.]+/g));--}}
+
+                        {{--$(this).closest("div.type-picker").after(--}}
+                                {{--"<div class='col-sm-12'><br />" +--}}
+                                {{--"<input type='text' name='params[" + num + "][options]' class='form-control' placeholder='Select options'>" +--}}
+                                {{--"<span class='help-block'>Enter options divided with comma or Model@method collection.</span>" +--}}
+                                {{--"</div>"--}}
+                        {{--);--}}
+                    {{--});--}}
+                {{--}--}}
+            {{--}--}}
+        {{--})();--}}
+
+        {{--$(document).ready(function() {--}}
+            {{--PluginParamSelector.init();--}}
+        {{--});--}}
     </script>
 @endsection
