@@ -37,7 +37,14 @@ class PluginController extends BaseController
             return ajaxSuccess();
         }
 
-        if (Plugin::create(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
+        if (Plugin::create([
+            'title' => request()->title,
+            'description' => request()->description,
+            'action' => request()->action,
+            'params' => isset(request()->params) ? request()->params : null,
+            'sort_order' => request()->sort_order,
+            'is_hidden' => isset(request()->is_hidden),
+        ])) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.created', ['name' => request()->title])
@@ -155,13 +162,15 @@ class PluginController extends BaseController
      */
     protected function handleSelectOptions($data)
     {
-        if (is_string($data)) {
-            $data = explode(',', $data);
-            return array_combine($data, $data);
+        if (strpos($data, '@') !== false){
+            $namespace = isset($data->namespace) ? $data->namespace : config('numencode.models_namespace');
+            $data = explode('@', $data);
+
+            return app()->call([$namespace . $data[0], $data[1]]);
         }
-
-        $namespace = isset($data->namespace) ? $data->namespace : config('numencode.models_namespace');
-
-        return app()->call([$namespace . $data->model, $data->method]);
+        
+        $data = explode(',', $data);
+        
+        return array_combine($data, $data);
     }
 }

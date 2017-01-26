@@ -69,7 +69,7 @@
                             <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                         </div>
                     </div>
-                    <div class="content" id="plugin-component">
+                    <div id="plugin-component" class="content">
                         <form method="POST" action="{{ route('plugins.store') }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
                             @include ('admin::components.form.text', [
@@ -88,40 +88,38 @@
                                 'placeholder' => trans('admin::plugins.placeholder.action'),
                             ])
 
-                            <div>
-                                <plugin-param v-for="param in params" :index="param.index" inline-template>
-                                    <div class="form-group params">
-                                        <label class="control-label col-sm-3">Param</label>
-                                        <div class="col-sm-9">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <input type="text" :name="'params['+index+'][name]'" class="form-control" placeholder="Param name">
-                                                </div>
-                                                <div class="col-sm-6 type-picker">
-                                                    <select v-model="type" :name="'params['+index+'][type]'" class="form-control selectpicker type" data-style="btn-info">
-                                                        <option value="">- select type -</option>
-                                                        <option value="text">Text</option>
-                                                        <option value="select">Select</option>
-                                                        <option value="radio">Radio buttons</option>
-                                                        <option value="checkbox">Checkboxes</option>
-                                                    </select>
-                                                </div>
+                            <plugin-param v-for="param in params" :index="param.index" inline-template>
+                                <div class="form-group params">
+                                    <label class="control-label col-sm-3">Param @{{ index+1 }}</label>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="text" :name="'params['+index+'][name]'" class="form-control" placeholder="Param name">
                                             </div>
-                                            <div class="row" v-if="showOptions">
-                                                <div class="col-sm-12"><br />
-                                                    <input type="text" :name="'params['+index+'][value]'" class="form-control" placeholder="Select options">
-                                                    <span class="help-block">Enter options divided with comma or Model@method collection.</span>
-                                                </div>
+                                            <div class="col-sm-6 type-picker">
+                                                <select v-model="type" :name="'params['+index+'][type]'" class="form-control selectpicker type" data-style="btn-info">
+                                                    <option value="">- select type -</option>
+                                                    <option value="text">Text</option>
+                                                    <option value="select">Select</option>
+                                                    <option value="radio">Radio buttons</option>
+                                                    <option value="checkbox">Checkboxes</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row" v-if="showOptions">
+                                            <div class="col-sm-12"><br />
+                                                <input type="text" :name="'params['+index+'][options]'" class="form-control" placeholder="Select options">
+                                                <span class="help-block">Enter options divided with comma or Model@method collection.</span>
                                             </div>
                                         </div>
                                     </div>
-                                </plugin-param>
-                            </div>
+                                </div>
+                            </plugin-param>
 
                             <div class="form-group add-param-group">
                                 <div class="col-sm-9 col-sm-offset-3">
-                                    <a href="#" class="btn btn-default btn-link" @click.prevent="addParam">Add a parameter</a>
-                                    <a href="#" class="btn btn-danger btn-link" v-if="params.length" @click.prevent="removeParam">Remove parameter</a>
+                                    <a href="#" class="btn btn-primary btn-link" @click.prevent="addParam">Add parameter</a>
+                                    <a href="#" class="btn btn-danger btn-link pull-right" v-if="params.length" @click.prevent="removeParam">Remove parameter</a>
                                 </div>
                             </div>
 

@@ -22,24 +22,21 @@ class PluginsTableSeeder extends Seeder
                 'title'       => 'Show Task',
                 'description' => null,
                 'action'      => 'TaskController@show',
-                'params'      => (object)   [
-                                                [
-                                                    'type' => 'text',
-                                                    'name' => 'name',
-                                                ],
-                                                [
-                                                    'type' => 'text',
-                                                    'name' => 'surname',
-                                                ],
-                                                [
-                                                    'type' => 'select',
-                                                    'name' => 'task_id',
-                                                    'options' => [
-                                                        'model'  => 'Task',
-                                                        'method' => 'getTaskSelection',
-                                                    ],
-                                                ],
-                                            ],
+                'params'      => [
+                                    [
+                                        'type' => 'text',
+                                        'name' => 'name',
+                                    ],
+                                    [
+                                        'type' => 'text',
+                                        'name' => 'surname',
+                                    ],
+                                    [
+                                        'type' => 'select',
+                                        'name' => 'task_id',
+                                        'options' => 'Task@getTaskSelection',
+                                    ],
+                                ],
                 'sort_order'  => 20,
                 'is_hidden'   => 0,
             ],
