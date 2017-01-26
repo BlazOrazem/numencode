@@ -69,7 +69,7 @@
                             <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                         </div>
                     </div>
-                    <div class="content">
+                    <div class="content" id="plugin-component">
                         <form method="POST" action="{{ route('plugins.store') }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
                             @include ('admin::components.form.text', [
@@ -88,33 +88,40 @@
                                 'placeholder' => trans('admin::plugins.placeholder.action'),
                             ])
 
-                            {{--<div class="form-group params">--}}
-                                {{--<label class="control-label col-sm-3">Param</label>--}}
-                                {{--<div class="col-sm-9">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<input type="text" name="params[1][name]" class="form-control" placeholder="Param name">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-6 type-picker">--}}
-                                            {{--<select name="params[1][type]" class="form-control selectpicker type" data-style="btn-info">--}}
-                                                {{--<option value="">- select type -</option>--}}
-                                                {{--<option value="text">Text</option>--}}
-                                                {{--<option value="select">Select</option>--}}
-                                                {{--<option value="radio">Radio buttons</option>--}}
-                                                {{--<option value="checkbox">Checkboxes</option>--}}
-                                            {{--</select>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
-                            <div class="params">
-                                <plugin-param></plugin-param>
+                            <div>
+                                <plugin-param v-for="param in params" :index="param.index" inline-template>
+                                    <div class="form-group params">
+                                        <label class="control-label col-sm-3">Param</label>
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" :name="'params['+index+'][name]'" class="form-control" placeholder="Param name">
+                                                </div>
+                                                <div class="col-sm-6 type-picker">
+                                                    <select v-model="type" :name="'params['+index+'][type]'" class="form-control selectpicker type" data-style="btn-info">
+                                                        <option value="">- select type -</option>
+                                                        <option value="text">Text</option>
+                                                        <option value="select">Select</option>
+                                                        <option value="radio">Radio buttons</option>
+                                                        <option value="checkbox">Checkboxes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" v-if="showOptions">
+                                                <div class="col-sm-12"><br />
+                                                    <input type="text" :name="'params['+index+'][value]'" class="form-control" placeholder="Select options">
+                                                    <span class="help-block">Enter options divided with comma or Model@method collection.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </plugin-param>
                             </div>
 
                             <div class="form-group add-param-group">
                                 <div class="col-sm-9 col-sm-offset-3">
-                                    <a href="#" class="btn btn-default btn-link addParam">Add a parameter</a>
+                                    <a href="#" class="btn btn-default btn-link" @click.prevent="addParam">Add a parameter</a>
+                                    <a href="#" class="btn btn-danger btn-link" v-if="params.length" @click.prevent="removeParam">Remove parameter</a>
                                 </div>
                             </div>
 
@@ -142,73 +149,34 @@
 @section('scripts')
     <script>
         Vue.component('plugin-param', {
-            template: `
-                <div class="form-group params">
-                    <label class="control-label col-sm-3">Param</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <input type="text" name="params[1][name]" class="form-control" placeholder="Param name">
-                            </div>
-                            <div class="col-sm-6 type-picker">
-                                <select name="params[1][type]" class="form-control selectpicker type" data-style="btn-info">
-                                    <option value="">- select type -</option>
-                                    <option value="text">Text</option>
-                                    <option value="select">Select</option>
-                                    <option value="radio">Radio buttons</option>
-                                    <option value="checkbox">Checkboxes</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
+            props: ['index'],
+            data: function() {
+                return {
+                    type: ''
+                };
+            },
+            computed: {
+                showOptions: function() {
+                    return $.inArray(this.type, ["select", "radio", "checkbox"]) != -1;
+                }
+            }
         });
 
         new Vue({
-           el: '.params'
+           el: '#plugin-component',
+            data: {
+                params: [],
+                index: 0
+            },
+            methods: {
+                addParam: function() {
+                    this.params.push({ index: this.index++ });
+                },
+                removeParam: function() {
+                    this.index--;
+                    this.params.splice(this.index-1, 1);
+                }
+            }
         });
-
-        {{--var PluginParamSelector = (function () {--}}
-            {{--return {--}}
-                {{--init: function () {--}}
-                    {{--$('.addParam').on('click', function(e){--}}
-                        {{--e.preventDefault();--}}
-                        {{--var newParamGroup = $('div.params:last').clone(true);--}}
-                        {{--newParamGroup.find('input, select').each(function(){--}}
-                            {{--this.name = this.name.replace(/\[(\d+)\]/,function(str,p1){return '[' + (parseInt(p1,10)+1) + ']'});--}}
-                        {{--}).end().prependTo('.add-param-group');--}}
-                        {{--PluginSelectPicker.init();--}}
-                    {{--});--}}
-
-                    {{--PluginSelectPicker.init();--}}
-                {{--}--}}
-            {{--}--}}
-        {{--})();--}}
-
-        {{--var PluginSelectPicker = (function () {--}}
-            {{--return {--}}
-                {{--init: function () {--}}
-                    {{--$('select.type').on('change', function() {--}}
-                        {{--if (this.value == 'text') {--}}
-                            {{--return;--}}
-                        {{--}--}}
-
-                        {{--var num = parseInt(this.name.match(/[\d\.]+/g));--}}
-
-                        {{--$(this).closest("div.type-picker").after(--}}
-                                {{--"<div class='col-sm-12'><br />" +--}}
-                                {{--"<input type='text' name='params[" + num + "][options]' class='form-control' placeholder='Select options'>" +--}}
-                                {{--"<span class='help-block'>Enter options divided with comma or Model@method collection.</span>" +--}}
-                                {{--"</div>"--}}
-                        {{--);--}}
-                    {{--});--}}
-                {{--}--}}
-            {{--}--}}
-        {{--})();--}}
-
-        {{--$(document).ready(function() {--}}
-            {{--PluginParamSelector.init();--}}
-        {{--});--}}
     </script>
 @endsection
