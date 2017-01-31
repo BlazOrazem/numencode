@@ -68,7 +68,7 @@
                                 <span class="white f-s-16 m-l-5">Remember me</span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-block btn-lg btn-primary">Login</button>
+                        <button name="Login" type="submit" class="btn btn-block btn-lg btn-primary">Login</button>
                     </form>
                 </div>
             </div>

@@ -4,6 +4,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    */
+
+    'name' => 'Numencode',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
@@ -39,7 +51,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +111,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -116,7 +128,9 @@ return [
     |
     */
 
-    'log' => 'single',
+    'log' => env('APP_LOG', 'single'),
+
+    'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
     /*
     |--------------------------------------------------------------------------
@@ -158,14 +172,16 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /**
-         * Custom Service Providers...
+         * Package Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
         Laraplus\Data\TranslatableServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
 
@@ -199,6 +215,8 @@ return [
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
         'Auth'         => Illuminate\Support\Facades\Auth::class,
         'Blade'        => Illuminate\Support\Facades\Blade::class,
+        'Broadcast'    => Illuminate\Support\Facades\Broadcast::class,
+        'Bus'          => Illuminate\Support\Facades\Bus::class,
         'Cache'        => Illuminate\Support\Facades\Cache::class,
         'Config'       => Illuminate\Support\Facades\Config::class,
         'Cookie'       => Illuminate\Support\Facades\Cookie::class,

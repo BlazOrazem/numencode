@@ -23,8 +23,6 @@ class UserController extends BaseController
      */
     public function __construct(UserRepository $userRepository)
     {
-        parent::__construct();
-
         $this->userRepository = $userRepository;
     }
 
@@ -103,7 +101,7 @@ class UserController extends BaseController
     {
         $this->validate(request(), [
             'name'     => 'required|max:255',
-            'email'    => 'required|email|unique:users',
+            'email'    => ['required', 'email', Rule::unique('users')->ignore($user->id)],
             'password' => empty(request()->password) ? '' : 'required|min:6',
             'avatar'   => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
         ]);
