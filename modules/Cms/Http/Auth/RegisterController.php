@@ -29,12 +29,10 @@ class RegisterController extends BaseController
     /**
      * Create a new RegisterController instance.
      *
-     * @param UserMailer $mailer
+     * @param UserMailer $mailer User mailer
      */
     public function __construct(UserMailer $mailer)
     {
-        parent::__construct();
-
         $this->mailer = $mailer;
     }
 

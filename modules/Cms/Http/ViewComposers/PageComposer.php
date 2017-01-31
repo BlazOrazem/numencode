@@ -12,7 +12,7 @@ class PageComposer
     /**
      * Bind data to the view.
      *
-     * @param  View  $view Instance of Illuminate\View\View
+     * @param View $view Instance of Illuminate\View\View
      *
      * @return void
      */
@@ -30,7 +30,8 @@ class PageComposer
     /**
      * Build navigation tree structure.
      *
-     * @param Menu $menu
+     * @param Menu $menu Menu
+     *
      * @return mixed
      */
     public function buildMenu(Menu $menu)

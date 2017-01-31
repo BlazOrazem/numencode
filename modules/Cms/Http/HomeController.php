@@ -11,7 +11,7 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        if ($this->user) {
+        if ($this->user()) {
             return view('theme::pages.home');
         }
 
