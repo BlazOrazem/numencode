@@ -145,8 +145,6 @@ class PluginController extends BaseController
                 $item->options = $this->handleSelectOptions($item->options);
             }
 
-            $item->label = ucfirst($item->name);
-
             return $item;
         });
 

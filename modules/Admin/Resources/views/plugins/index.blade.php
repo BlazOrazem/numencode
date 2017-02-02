@@ -94,9 +94,15 @@
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-6">
+                                                <input type="text" :name="'params['+index+'][label]'" class="form-control" placeholder="Param label">
+                                            </div>
+                                            <div class="col-sm-6">
                                                 <input type="text" :name="'params['+index+'][name]'" class="form-control" placeholder="Param name">
                                             </div>
-                                            <div class="col-sm-6 type-picker">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 type-picker">
+                                                <br />
                                                 <select v-model="type" :name="'params['+index+'][type]'" class="form-control selectpicker type" data-style="btn-info">
                                                     <option value="">- select type -</option>
                                                     <option value="text">Text</option>
@@ -107,7 +113,8 @@
                                             </div>
                                         </div>
                                         <div class="row" v-if="showOptions">
-                                            <div class="col-sm-12"><br />
+                                            <div class="col-sm-12">
+                                                <br />
                                                 <input type="text" :name="'params['+index+'][options]'" class="form-control" placeholder="Select options">
                                                 <span class="help-block">Enter options divided with comma or Model@method collection.</span>
                                             </div>
