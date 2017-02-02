@@ -24,16 +24,19 @@ class PluginsTableSeeder extends Seeder
                 'action'      => 'TaskController@show',
                 'params'      => [
                                     [
-                                        'type' => 'text',
-                                        'name' => 'name',
+                                        'label' => 'Name',
+                                        'name'  => 'name',
+                                        'type'  => 'text',
                                     ],
                                     [
-                                        'type' => 'text',
-                                        'name' => 'surname',
+                                        'label' => 'Surname',
+                                        'name'  => 'surname',
+                                        'type'  => 'text',
                                     ],
                                     [
-                                        'type' => 'select',
-                                        'name' => 'task_id',
+                                        'label'   => 'Task',
+                                        'name'    => 'task_id',
+                                        'type'    => 'select',
                                         'options' => 'Task@getTaskSelection',
                                     ],
                                 ],
