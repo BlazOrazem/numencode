@@ -67,6 +67,6 @@ class ForgotPasswordController extends BaseController
             trans('theme::messages.password_reset.link_sent', ['email' => $request->email]), 'success'
         );
 
-        return redirect(getRoute('login'));
+        return redirect(get_route('login'));
     }
 }

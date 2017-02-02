@@ -63,7 +63,7 @@ class ManagerController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         $manager = $this->managerRepository->create();
@@ -107,7 +107,7 @@ class ManagerController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($this->managerRepository->update($manager)) {
@@ -145,7 +145,7 @@ class ManagerController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($this->managerRepository->update($this->admin())) {

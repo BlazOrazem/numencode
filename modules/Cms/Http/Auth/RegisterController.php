@@ -91,7 +91,7 @@ class RegisterController extends BaseController
             );
 
             if (!$this->guard()->check()) {
-                return redirect(getRoute('login'));
+                return redirect(get_route('login'));
             }
         } else {
             flash()->overlay(trans('messages.error'), trans('messages.email_verified.error'), 'error');

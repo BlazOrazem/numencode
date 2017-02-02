@@ -53,7 +53,7 @@ class TaskController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Task::create(request()->all())) {
@@ -93,7 +93,7 @@ class TaskController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($task->update([

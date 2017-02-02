@@ -49,6 +49,6 @@ class BaseController extends Controller
             ];
         }
 
-        return reportError();
+        return report_error();
     }
 }

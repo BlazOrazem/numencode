@@ -36,7 +36,7 @@
                         <li><a href="#">My posts</a></li>
                     @endcan
                 @else
-                    <li><a href="{{ getRoute('register') }}">Register</a></li>
+                    <li><a href="{{ get_route('register') }}">Register</a></li>
                 @endif
             </ul>
             @if ($signedIn)

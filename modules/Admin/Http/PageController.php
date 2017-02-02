@@ -31,7 +31,7 @@ class PageController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Menu::create([
@@ -79,7 +79,7 @@ class PageController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($menu->update([

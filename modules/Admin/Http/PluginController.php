@@ -34,7 +34,7 @@ class PluginController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Plugin::create([
@@ -84,7 +84,7 @@ class PluginController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($plugin->update(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
@@ -119,7 +119,7 @@ class PluginController extends BaseController
         $plugin = Plugin::findOrFail(request()->id);
 
         if (!$plugin->params) {
-            return ajaxSuccess();
+            return success();
         }
 
         return $this->renderPluginForm($plugin);

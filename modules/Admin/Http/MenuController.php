@@ -33,7 +33,7 @@ class MenuController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Menu::create([
@@ -81,7 +81,7 @@ class MenuController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($menu->update([

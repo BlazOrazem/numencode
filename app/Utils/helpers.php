@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('getRoute')) {
+if (! function_exists('get_route')) {
     /**
      * Creates an URL to route alias
      *
@@ -9,7 +9,7 @@ if (! function_exists('getRoute')) {
      *
      * @return mixed
      */
-    function getRoute($alias, $locale = null)
+    function get_route($alias, $locale = null)
     {
         $url = app()->make(\Illuminate\Contracts\Routing\UrlGenerator::class);
 
@@ -48,13 +48,13 @@ if (! function_exists('flash')) {
     }
 }
 
-if (! function_exists('reportError')) {
+if (! function_exists('report_error')) {
     /**
      * Report error notice to user.
      *
      * @return array
      */
-    function reportError()
+    function report_error()
     {
         return [
             'title' => trans('admin::messages.error'),
@@ -63,17 +63,15 @@ if (! function_exists('reportError')) {
     }
 }
 
-if (! function_exists('ajaxSuccess')) {
+if (! function_exists('success')) {
     /**
-     * Standardized successful Ajax response.
+     * Standardized success response.
      *
      * @return array
      */
-    function ajaxSuccess()
+    function success()
     {
-        return [
-            'success' => true,
-        ];
+        return ['success' => true];
     }
 }
 

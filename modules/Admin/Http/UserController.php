@@ -63,7 +63,7 @@ class UserController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         $user = $this->userRepository->create();
@@ -107,7 +107,7 @@ class UserController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($this->userRepository->update($user)) {

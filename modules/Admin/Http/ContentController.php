@@ -32,7 +32,7 @@ class ContentController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Content::create(request()->all())) {
@@ -72,7 +72,7 @@ class ContentController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($content->update(request()->all())) {

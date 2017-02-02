@@ -33,7 +33,7 @@ class PermissionController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Permission::create([
@@ -81,7 +81,7 @@ class PermissionController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($permission->update([

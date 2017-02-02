@@ -33,7 +33,7 @@ class CodelistController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (CodelistGroup::create(request()->all())) {
@@ -73,7 +73,7 @@ class CodelistController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($codelist->update(request()->all())) {
@@ -120,7 +120,7 @@ class CodelistController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (CodelistItem::forGroup($codelist)->fill(request()->all())->save()) {
@@ -168,7 +168,7 @@ class CodelistController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($item->update(request()->all())) {

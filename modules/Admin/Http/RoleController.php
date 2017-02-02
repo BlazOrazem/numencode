@@ -51,7 +51,7 @@ class RoleController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if (Role::create(request()->all())) {
@@ -94,7 +94,7 @@ class RoleController extends BaseController
         ]);
 
         if (request()->ajax()) {
-            return ajaxSuccess();
+            return success();
         }
 
         if ($role->update([

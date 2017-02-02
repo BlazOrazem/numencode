@@ -72,7 +72,7 @@
             <div class="row omb_row-sm-offset-2">
                 <div class="col-xs-12 col-sm-12 col-md-8">
                     <p class="omb_forgotPwd">
-                        Already have an account? <a href="{{ getRoute('login') }}">Login here</a>.
+                        Already have an account? <a href="{{ get_route('login') }}">Login here</a>.
                     </p>
                 </div>
             </div>

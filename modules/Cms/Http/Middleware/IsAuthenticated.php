@@ -36,7 +36,7 @@ class IsAuthenticated
     public function handle(Request $request, Closure $next)
     {
         if (!$this->auth->check()) {
-            return redirect(getRoute('login') . '?ref=profile');
+            return redirect(get_route('login') . '?ref=profile');
         }
 
         return $next($request);
