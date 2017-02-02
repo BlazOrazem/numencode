@@ -1,7 +1,7 @@
 @extends('theme::emails.partials.layout', [
     'action' => [
         'title' => 'Verify My Email Address',
-        'url' => route("register.verify", ['token' => $user->token]),
+        'url' => route("register.verify", ['token' => $data->token]),
         'color' => 'green',
     ],
 ])

@@ -30,12 +30,13 @@ class IsAuthenticated
      *
      * @param Request $request
      * @param callable $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
         if (!$this->auth->check()) {
-            return redirect(route('login') . '?ref=profile');
+            return redirect(getRoute('login') . '?ref=profile');
         }
 
         return $next($request);

@@ -3,6 +3,7 @@
 namespace Numencode\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 use Illuminate\Auth\Passwords\DatabaseTokenRepository as DbRepository;
 
@@ -51,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             $key = $app['config']['app.key'];
             $expire = $app['config']->get('auth.passwords.users.expire', 60);
 
-            return new DbRepository($connection, $table, $key, $expire);
+            return new DbRepository($connection, app(Hasher::class), $table, $key, $expire);
         });
     }
 }

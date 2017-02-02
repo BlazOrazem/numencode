@@ -2,9 +2,10 @@
 
 namespace Cms\Http\Auth;
 
-use Cms\Mailers\UserMailer;
+use Mail;
 use Cms\Http\BaseController;
 use Illuminate\Http\Request;
+use Cms\Mail\EmailVerification;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends BaseController
@@ -17,23 +18,6 @@ class LoginController extends BaseController
      * @var string
      */
     protected $redirectTo = '/';
-
-    /**
-     * Mailer class.
-     *
-     * @var UserMailer
-     */
-    protected $mailer;
-
-    /**
-     * Create a new LoginController instance.
-     *
-     * @param UserMailer $mailer User mailer
-     */
-    public function __construct(UserMailer $mailer)
-    {
-        $this->mailer = $mailer;
-    }
 
     /**
      * Show the application's login form.
@@ -54,14 +38,15 @@ class LoginController extends BaseController
     /**
      * The user has been authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param \Illuminate\Http\Request $request Request
+     * @param object                   $user    User
+     *
      * @return mixed
      */
     protected function authenticated(Request $request, $user)
     {
         if (config('login.verification') && !$user->is_verified) {
-            $this->mailer->sendEmailVerificationTo($user);
+            Mail::to($user)->send(new EmailVerification($user));
         }
 
         flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
@@ -72,7 +57,8 @@ class LoginController extends BaseController
     /**
      * Log the user out of the application.
      *
-     * @param  Request  $request
+     * @param Request $request Request
+     *
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)

@@ -2,10 +2,11 @@
 
 namespace Cms\Http\Auth;
 
+use Mail;
 use Validator;
 use Numencode\Models\User;
-use Cms\Mailers\UserMailer;
 use Cms\Http\BaseController;
+use Cms\Mail\EmailVerification;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends BaseController
@@ -20,26 +21,10 @@ class RegisterController extends BaseController
     protected $redirectTo = '/';
 
     /**
-     * Mailer class.
-     *
-     * @var UserMailer
-     */
-    protected $mailer;
-
-    /**
-     * Create a new RegisterController instance.
-     *
-     * @param UserMailer $mailer User mailer
-     */
-    public function __construct(UserMailer $mailer)
-    {
-        $this->mailer = $mailer;
-    }
-
-    /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data Data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -55,7 +40,8 @@ class RegisterController extends BaseController
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data User data
+     *
      * @return User
      */
     protected function create(array $data)
@@ -70,7 +56,7 @@ class RegisterController extends BaseController
         ]);
 
         if (config('login.verification')) {
-            $this->mailer->sendEmailVerificationTo($user);
+            Mail::to($user)->send(new EmailVerification($user));
         }
 
         return $user;
@@ -89,7 +75,8 @@ class RegisterController extends BaseController
     /**
      * Verify user's email address.
      *
-     * @param $token
+     * @param string $token User's token for email verification.
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function verifyEmail($token)
@@ -104,7 +91,7 @@ class RegisterController extends BaseController
             );
 
             if (!$this->guard()->check()) {
-                return redirect(route('login'));
+                return redirect(getRoute('login'));
             }
         } else {
             flash()->overlay(trans('messages.error'), trans('messages.email_verified.error'), 'error');

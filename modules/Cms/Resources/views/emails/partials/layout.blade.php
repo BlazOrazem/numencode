@@ -72,7 +72,7 @@ $style = [
                 <tr>
                     <td style="{{ $style['email-masthead'] }}">
                         <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                            {{ env('mail_from_name') }}
+                            {{ env('MAIL_FROM_NAME') }}
                         </a>
                     </td>
                 </tr>
@@ -133,7 +133,7 @@ $style = [
 
                                     <!-- Salutation -->
                                     <p style="{{ $style['paragraph'] }} {{ $style['paragraph-center'] }}">
-                                        Regards, {{ env('mail_from_name') }}
+                                        Regards, {{ env('MAIL_FROM_NAME') }}
                                     </p>
 
                                     <!-- Sub Copy -->

@@ -3,6 +3,7 @@
 namespace Numencode\Models;
 
 use Cms\Http\Auth\AvatarController;
+use Cms\Http\Auth\ForgotPasswordController;
 use Numencode\Models\Traits\UserRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

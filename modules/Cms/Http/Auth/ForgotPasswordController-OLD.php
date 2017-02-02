@@ -2,26 +2,20 @@
 
 namespace Cms\Http\Auth;
 
-use Mail;
 use Numencode\Models\User;
-use Cms\Mail\PasswordReset;
-use Cms\Http\BaseController;
 use Illuminate\Http\Request;
+use Cms\Http\BaseController;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 
 class ForgotPasswordController extends BaseController
 {
-    /**
-     * Token repository
-     *
-     * @var TokenRepositoryInterface
-     */
     protected $tokens;
+    protected $redirectTo = '/';
 
     /**
      * Create a new ForgotPasswordController instance.
      *
-     * @param TokenRepositoryInterface $tokens Token repository
+     * @param TokenRepositoryInterface $tokens
      */
     public function __construct(TokenRepositoryInterface $tokens)
     {
@@ -41,8 +35,7 @@ class ForgotPasswordController extends BaseController
     /**
      * Send a reset link to the given user.
      *
-     * @param Request $request Request
-     *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function sendResetLinkEmail(Request $request)
@@ -60,13 +53,13 @@ class ForgotPasswordController extends BaseController
             return redirect(route('password.forget'));
         }
 
-        Mail::to($user)->send(new PasswordReset($this->tokens->create($user)));
+//        $this->mailer->sendPasswordResetTo($user, $this->tokens->create($user));
 
         flash()->overlay(
             trans('theme::messages.password_reset.forgotten'),
             trans('theme::messages.password_reset.link_sent', ['email' => $request->email]), 'success'
         );
 
-        return redirect(getRoute('login'));
+        return redirect($this->redirectTo);
     }
 }
