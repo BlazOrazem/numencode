@@ -35,7 +35,14 @@ class ContentController extends BaseController
             return success();
         }
 
-        if (Content::create(request()->all())) {
+        if (Content::create([
+            'title'         => request()->title,
+            'lead'          => request()->lead,
+            'body'          => request()->body,
+            'plugin_id'     => isset(request()->plugin_id) ? request()->plugin_id : null,
+            'plugin_params' => isset(request()->params) ? request()->params : null,
+            'sort_order'    => request()->sort_order,
+        ])) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::contents.created')
@@ -54,7 +61,9 @@ class ContentController extends BaseController
      */
     public function edit(Content $content)
     {
-        return view('admin::contents.edit', compact('content'));
+        $plugins = Plugin::orderBy('title')->get();
+
+        return view('admin::contents.edit', compact('content', 'plugins'));
     }
 
     /**
