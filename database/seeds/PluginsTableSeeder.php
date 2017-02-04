@@ -15,7 +15,7 @@ class PluginsTableSeeder extends Seeder
                 'action'      => 'TaskController@index',
                 'params'      => null,
                 'sort_order'  => 10,
-                'is_hidden'   => 0,
+                'is_hidden'   => null,
             ],
             [
                 'id'          => 2,
@@ -41,7 +41,7 @@ class PluginsTableSeeder extends Seeder
                                     ],
                                 ],
                 'sort_order'  => 20,
-                'is_hidden'   => 0,
+                'is_hidden'   => null,
             ],
         ];
 

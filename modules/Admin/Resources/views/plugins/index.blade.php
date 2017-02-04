@@ -7,8 +7,7 @@
 @section('content')
 
     <div class="row">
-
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="data-table data-info content-box">
                 <div class="head info-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::plugins.types')</h5>
@@ -57,9 +56,11 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        @if ($admin->can('manage_plugins'))
-            <div class="col-lg-6">
+    @if ($admin->can('manage_plugins'))
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="content-box">
                     <div class="head success-bg clearfix">
                         <h5 class="content-title pull-left">@lang('admin::plugins.create')</h5>
@@ -145,9 +146,8 @@
                     </div>
                 </div>
             </div>
-        @endif
-
-    </div>
+        </div>
+    @endif
 
 @endsection
 

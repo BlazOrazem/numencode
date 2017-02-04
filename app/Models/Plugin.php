@@ -4,10 +4,11 @@ namespace Numencode\Models;
 
 use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Numencode\Models\Traits\HiddenFilter;
 
 class Plugin extends Model
 {
-    use Sortable;
+    use Sortable, HiddenFilter;
 
     /**
      * The database table used by the model.

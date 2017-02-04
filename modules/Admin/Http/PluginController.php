@@ -15,7 +15,7 @@ class PluginController extends BaseController
      */
     public function index()
     {
-        $plugins = Plugin::all();
+        $plugins = Plugin::withoutGlobalScope('hidden')->get();
 
         return view('admin::plugins.index', compact('plugins'));
     }
@@ -37,14 +37,10 @@ class PluginController extends BaseController
             return success();
         }
 
-        if (Plugin::create([
-            'title' => request()->title,
-            'description' => request()->description,
-            'action' => request()->action,
+        if (Plugin::create(array_merge(request()->all(), [
             'params' => isset(request()->params) ? request()->params : null,
-            'sort_order' => request()->sort_order,
-            'is_hidden' => isset(request()->is_hidden),
-        ])) {
+            'is_hidden' => isset(request()->is_hidden) ?: null,
+        ]))) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.created', ['name' => request()->title])
@@ -63,9 +59,25 @@ class PluginController extends BaseController
      */
     public function edit(Plugin $plugin)
     {
-        $plugins = Plugin::all();
+        $params = [];
 
-        return view('admin::plugins.edit', compact('plugins', 'plugin'));
+        if ($plugin->params) {
+            foreach ($plugin->params as $key => $param) {
+                $params[$key] = [
+                    'index' => $key,
+                    'name'  => $param->name,
+                    'type'  => $param->type,
+                ];
+
+                if (isset($param->options)) {
+                    $params[$key]['options'] = $param->options;
+                }
+            }
+        }
+
+        $this->js(['plugin_params' => $params]);
+
+        return view('admin::plugins.edit', compact('plugin'));
     }
 
     /**
@@ -87,7 +99,11 @@ class PluginController extends BaseController
             return success();
         }
 
-        if ($plugin->update(array_merge(request()->all(), ['is_hidden' => isset(request()->is_hidden)]))) {
+        if ($plugin->update(array_merge(request()->all(), [
+            'params' => isset(request()->params) ? request()->params : null,
+            'is_hidden' => isset(request()->is_hidden) ?: null,
+        ]))) {
+
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.updated', ['name' => request()->title])
