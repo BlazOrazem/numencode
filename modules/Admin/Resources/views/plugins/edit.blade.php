@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div id="plugin-component" class="content">
-                    <form method="POST" action="{{ route('plugins.update', [$plugin]) }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('plugins.update', [$plugin]) }}" class="form-horizontal">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include ('admin::components.form.text', [
@@ -41,15 +41,21 @@
                             'entity' => $plugin,
                         ])
 
-                        <plugin-param v-for="param in params" :index="param.index" :name="param.name" :type="param.type" :options="param.options" inline-template>
+                        <plugin-param v-for="param in params" :param="param" inline-template>
                             <div class="form-group params">
                                 <label class="control-label col-sm-3">Param @{{ index+1 }}</label>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-sm-6">
+                                            <input type="text" :name="'params['+index+'][label]'" :value="label" class="form-control" placeholder="Param label">
+                                        </div>
+                                        <div class="col-sm-6">
                                             <input type="text" :name="'params['+index+'][name]'" :value="name" class="form-control" placeholder="Param name">
                                         </div>
-                                        <div class="col-sm-6 type-picker">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 type-picker">
+                                            <br />
                                             <select v-model="type" :name="'params['+index+'][type]'" class="form-control selectpicker type" data-style="btn-info">
                                                 <option value="">- select type -</option>
                                                 <option value="text">Text</option>
@@ -108,7 +114,16 @@
 @section('scripts')
     <script>
         Vue.component('plugin-param', {
-            props: ['index', 'name', 'type', 'options'],
+            props: ['param'],
+            data: function() {
+                return {
+                    index: this.param.index,
+                    label: this.param.label,
+                    name: this.param.name,
+                    type: this.param.type,
+                    options: typeof this.param.options !== 'undefined' ? this.param.options : ''
+                };
+            },
             computed: {
                 showOptions: function() {
                     return $.inArray(this.type, ["select", "radio", "checkbox"]) != -1;
@@ -119,8 +134,8 @@
         new Vue({
             el: '#plugin-component',
             data: {
-                index: vars.plugin_params.length,
-                params: vars.plugin_params
+                params: vars.plugin_params,
+                index: vars.plugin_params.length
             },
             methods: {
                 addParam: function() {

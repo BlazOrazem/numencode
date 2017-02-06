@@ -25,9 +25,9 @@ class ContentsTableSeeder extends Seeder
                 'page_id'       => 1,
                 'plugin_id'     => 2,
                 'plugin_params' => [
-                                        'task_id' => '10',
-                                        'name'    => 'John',
-                                        'surname' => 'Doe',
+                                        'task_id'    => '10',
+                                        'first_name' => 'John',
+                                        'last_name'  => 'Doe',
                                     ],
                 'title'         => 'Sample plugin',
                 'lead'          => 'Eng lead lorem ipsum.',

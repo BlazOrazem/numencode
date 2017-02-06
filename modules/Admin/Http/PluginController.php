@@ -64,9 +64,10 @@ class PluginController extends BaseController
         if ($plugin->params) {
             foreach ($plugin->params as $key => $param) {
                 $params[$key] = [
-                    'index' => $key,
-                    'name'  => $param->name,
-                    'type'  => $param->type,
+                    'index'   => $key,
+                    'label'   => $param->label,
+                    'name'    => $param->name,
+                    'type'    => $param->type,
                 ];
 
                 if (isset($param->options)) {

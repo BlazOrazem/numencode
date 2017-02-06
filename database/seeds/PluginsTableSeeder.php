@@ -24,13 +24,13 @@ class PluginsTableSeeder extends Seeder
                 'action'      => 'TaskController@show',
                 'params'      => [
                                     [
-                                        'label' => 'Name',
-                                        'name'  => 'name',
+                                        'label' => 'First name',
+                                        'name'  => 'first_name',
                                         'type'  => 'text',
                                     ],
                                     [
-                                        'label' => 'Surname',
-                                        'name'  => 'surname',
+                                        'label' => 'Last name',
+                                        'name'  => 'last_name',
                                         'type'  => 'text',
                                     ],
                                     [
