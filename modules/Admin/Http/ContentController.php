@@ -15,9 +15,10 @@ class ContentController extends BaseController
     public function index()
     {
         $contents = Content::whereNull('page_id')->get();
-        $plugins = Plugin::orderBy('title')->get();
 
-        return view('admin::contents.index', compact('contents', 'plugins'));
+        $this->js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
+
+        return view('admin::contents.index', compact('contents'));
     }
 
     /**

@@ -35,7 +35,8 @@
     "jquery-idletimer": "^1.0.1",
     "peity": "^3.2.0",
     "morris.js": "^0.5.1",
-    "vue": "^2.1.10"
+    "vue": "^2.1.10",
+    "vue-resource": "^1.2.0"
   },
   "overrides": {
     "bootstrap": {

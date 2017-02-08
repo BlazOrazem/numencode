@@ -26,6 +26,18 @@ http.post = function (url, data) {
     });
 };
 
+http.postHtml = function (url, data) {
+    return $.ajax({
+        url: url,
+        dataType: 'html',
+        method: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-CSRF-TOKEN', http.token());
+        },
+        data: data
+    });
+};
+
 http.put = function (url, data) {
     data._method = 'PUT';
     return http.post(url, data);

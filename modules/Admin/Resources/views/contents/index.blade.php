@@ -69,8 +69,8 @@
                             <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                         </div>
                     </div>
-                    <div class="content">
-                        <form method="POST" action="{{ route('contents.store') }}" class="form-horizontal form-validate">
+                    <div id="content-component" class="content">
+                        <form method="POST" action="{{ route('contents.store') }}" class="form-horizontal">
                             {{ csrf_field() }}
                             @include ('admin::components.form.text', [
                                 'label' => trans('admin::forms.title'),
@@ -87,15 +87,22 @@
                                 'field' => 'body',
                                 'placeholder' => trans('admin::contents.placeholder.body'),
                             ])
-                            @include ('admin::components.form.select', [
-                                'label' => trans('admin::contents.plugin'),
-                                'field' => 'plugin_id',
-                                'data' => $plugins,
-                                'class' => 'plugin',
-                                'placeholder' => trans('admin::contents.placeholder.plugin'),
-                                'dataAttribute' => 'data-api="' . route('plugins.api') . '"',
-                            ])
-                            <div class="plugin-form"></div>
+
+                            <plugin-params route="{{ route('plugins.api') }}" inline-template>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="pluginId" class="control-label col-sm-3 ">Custom plugin</label>
+                                        <div class="col-sm-9">
+                                            <select v-on:change="changed" name="plugin_id" v-model="selected.plugin_id" class="form-control selectpicker">
+                                                <option value="">---</option>
+                                                <option v-for="plugin in plugins" :value="plugin.id">@{{ plugin.title }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-html="html"></div>
+                                </div>
+                            </plugin-params>
+
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $contents->max('sort_order') + 10,
                             ])
@@ -113,28 +120,31 @@
 
 @section('scripts')
     <script>
-        $(function() {
-            http.postHtml = function (url, data) {
-                return $.ajax({
-                    url: url,
-                    dataType: 'html',
-                    method: 'POST',
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('X-CSRF-TOKEN', http.token());
-                    },
-                    data: data
-                });
-            };
+        Vue.component('plugin-params', {
+            props: ['route'],
+            data: function(){
+                return {
+                    html: '',
+                    plugins: vars.plugins,
+                    selected: {
+                        plugin_id: ''
+                    }
+                }
+            },
+            methods: {
+                changed: function() {
+                    if (this.selected.plugin_id) {
+                        http.postHtml(this.route, {id: this.selected.plugin_id})
+                            .success(function(data) {
+                                this.html = data;
+                            }.bind(this));
+                    }
+                }
+            }
+        });
 
-            $('select.plugin').on('change', function() {
-                http.postHtml($('select.plugin').data('api'), {id: this.value})
-                    .success(function(data) {
-                        $('.plugin-form').html(data);
-                    })
-                    .error(function() {
-                        console.log('An error occured.');
-                    });
-            })
+        new Vue({
+            el: '#content-component'
         });
     </script>
 @endsection
