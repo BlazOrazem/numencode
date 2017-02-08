@@ -5,21 +5,21 @@ namespace Numencode\Console\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-class Bower extends Command
+class Npm extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'admin:bower';
+    protected $signature = 'admin:npm';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Run Bower update for admin theme';
+    protected $description = 'Run NPM update for admin theme';
 
     /**
      * Execute the console command.
@@ -28,16 +28,16 @@ class Bower extends Command
      */
     public function handle()
     {
-        $command = 'cd modules/Admin/Resources/assets/vendor && bower update';
+        $command = 'cd modules/Admin/Resources/assets/vendor && npm install';
         $process = new Process($command);
         $process->run();
 
         $this->comment($process->getOutput());
 
         if ($process->isSuccessful()) {
-            $this->info('Bower update for the admin theme executed successfully.' . "\n");
+            $this->info('NPM update for the admin theme executed successfully.' . "\n");
         } else {
-            $this->error('Error executing Bower update for the admin theme.' . "\n");
+            $this->error('Error executing NPM update for the admin theme.' . "\n");
         }
     }
 }

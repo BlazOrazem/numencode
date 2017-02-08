@@ -1,5 +1,0 @@
-suites:
-    main:
-        namespace: Numencode
-        psr4_prefix: Numencode
-        src_path: app

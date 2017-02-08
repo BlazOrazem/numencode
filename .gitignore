@@ -1,10 +1,12 @@
-.idea
 /bower_components
 /node_modules
 /notes
+/public/storage
+/public/hot
+/storage/*.key
 /vendor
-.env
+/.idea
 _ide_helper.php
 Homestead.yaml
 Homestead.json
-Envoy.blade.php
+.env

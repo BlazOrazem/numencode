@@ -146,8 +146,6 @@
     <div class="container-fluid">
         @yield('content')
     </div>
-
-    {{--<footer class="page-footer">&copy; {{ date('Y') }} numencode<sup>&trade;</sup> All rights reserved.</footer>--}}
 </div>
 
 @include('admin::footer')

@@ -22,9 +22,8 @@
     <title>Numencode CMS</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('themes/admin/css/common.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('themes/admin/css/libs.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <!--
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />

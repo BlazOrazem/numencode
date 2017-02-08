@@ -10,8 +10,12 @@
     <title>Numencode</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('themes/default/css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('themes/default/css/libs.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ mix('/themes/default/css/app.css') }}" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+        <script src="themes/default/js/html5shiv.min.js"></script>
+        <script src="themes/default/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -100,8 +104,9 @@
     </div>
 </nav>
 
-<script src="{{ elixir('themes/default/js/app.js') }}"></script>
-<script src="{{ elixir('themes/default/js/libs.js') }}"></script>
+<script src="{{ mix('/themes/default/js/manifest.js') }}"></script>
+<script src="{{ mix('/themes/default/js/vendor.js') }}"></script>
+<script src="{{ mix('/themes/default/js/app.js') }}"></script>
 
 @include('theme::flash')
 

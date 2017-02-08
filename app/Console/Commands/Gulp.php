@@ -28,7 +28,7 @@ class Gulp extends Command
      */
     public function handle()
     {
-        $command = 'gulp --gulpfile gulpfile-admin.js';
+        $command = 'cd modules/Admin/Resources/assets/vendor && gulp';
         $process = new Process($command);
         $process->run();
 

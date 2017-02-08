@@ -1,0 +1,37 @@
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Awesome Bootstrap Checkbox
+@import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
+
+// Sweet Alert 2
+@import "node_modules/sweetalert2/src/sweetalert2.scss";
+
+// Font Awesome
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+// Login Form
+@import "login-register-form";
+
+body {
+  padding-top: 40px;
+}
+
+.user-avatar-small {
+  margin-top: 5px;
+  border-radius: 10px;
+}
+.user-avatar-big {
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.user-avatar-update {
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.jumbotron {
+  text-align: center;
+}
