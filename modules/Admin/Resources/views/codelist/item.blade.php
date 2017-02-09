@@ -7,8 +7,7 @@
 @section('content')
 
     <div class="row">
-
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="data-table data-success content-box">
                 <div class="head success-bg clearfix">
                     <h5 class="content-title pull-left">{{ $codelistGroup->title }} @lang('admin::codelist.items')</h5>
@@ -23,10 +22,8 @@
                         <th>@lang('admin::tables.title')</th>
                         <th>@lang('admin::tables.code')</th>
                         <th>@lang('admin::tables.order')</th>
-                        @if ($admin->can('edit_codelist'))
+                        @if ($admin->can('manage_codelist'))
                             <th class="no-sort text-center">@lang('admin::tables.edit')</th>
-                        @endif
-                        @if ($admin->can('delete_codelist'))
                             <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
@@ -41,14 +38,12 @@
                                     {{ $item->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('edit_codelist'))
+                            @if ($admin->can('manage_codelist'))
                                 <td class="text-center">
                                     @include ('admin::components.button.edit', [
                                         'action' => route('codelist.item.edit', compact('item'))
                                     ])
                                 </td>
-                            @endif
-                            @if ($admin->can('delete_codelist'))
                                 <td class="text-center">
                                     @include ('admin::components.button.delete', [
                                         'action' => route('codelist.item.destroy', compact('item'))
@@ -61,8 +56,10 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        <div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="content-box">
                 <div class="head warning-bg clearfix">
                     <h5 class="content-title pull-left">{{ $codelistItem->title }}</h5>
@@ -110,7 +107,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection

@@ -8,7 +8,6 @@
 
     @if ($admin->can('manage_codelist'))
         <div class="row">
-
             <div class="col-md-12">
                 <div class="content-box">
                     <div class="head info-bg clearfix">
@@ -29,6 +28,7 @@
                                 'entity' => $codelistGroup,
                                 'errors' => $errors->groupErrors,
                                 'inline' => true,
+                                'required' => true,
                             ])
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $codelistGroup->sort_order,
@@ -44,13 +44,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
     @endif
 
     <div class="row">
-
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="data-table data-success content-box" data-id="codelist-items">
                 <div class="head success-bg clearfix">
                     <h5 class="content-title pull-left">{{ $codelistGroup->title }} @lang('admin::codelist.items')</h5>
@@ -64,10 +62,10 @@
                     <tr>
                         <th>@lang('admin::tables.title')</th>
                         <th>@lang('admin::tables.code')</th>
-                        <th>@lang('admin::tables.order')</th>
+                        <th width="60" class="text-right">@lang('admin::tables.order')</th>
                         @if ($admin->can('manage_codelist'))
-                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
-                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.edit')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -99,9 +97,11 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        <div class="col-lg-6">
-            @if ($admin->can('manage_codelist'))
+    @if ($admin->can('manage_codelist'))
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="content-box">
                     <div class="head success-bg clearfix">
                         <h5 class="content-title pull-left">@lang('admin::codelist.new_item'): {{ $codelistGroup->title }}</h5>
@@ -118,12 +118,14 @@
                                 'field' => 'title',
                                 'placeholder' => trans('admin::codelist.placeholder.item_title'),
                                 'errors' => $errors->itemErrors,
+                                'required' => true,
                             ])
                             @include ('admin::components.form.text', [
                                 'label' => trans('admin::forms.code'),
                                 'field' => 'code',
                                 'placeholder' => trans('admin::codelist.placeholder.item_code'),
                                 'errors' => $errors->itemErrors,
+                                'required' => true,
                             ])
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $codelistGroup->items->max('sort_order') + 10,
@@ -135,8 +137,10 @@
                         </form>
                     </div>
                 </div>
-            @endif
-
+            </div>
+        </div>
+    @endif
+        <div class="row">
             <div class="content-box">
                 <div class="content text-center">
                     <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.index') }}">
@@ -147,6 +151,5 @@
             </div>
         </div>
 
-    </div>
 
 @endsection

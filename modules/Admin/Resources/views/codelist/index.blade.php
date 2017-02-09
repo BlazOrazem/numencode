@@ -7,8 +7,7 @@
 @section('content')
 
     <div class="row">
-
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="data-table data-info content-box">
                 <div class="head info-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::codelist.groups')</h5>
@@ -21,10 +20,10 @@
                     <thead>
                     <tr>
                         <th>@lang('admin::tables.title')</th>
-                        <th>@lang('admin::tables.order')</th>
-                        <th class="no-sort text-center">@lang('admin::tables.manage')</th>
+                        <th width="60" class="text-right">@lang('admin::tables.order')</th>
+                        <th width="60" class="no-sort text-center">@lang('admin::tables.manage')</th>
                         @if ($admin->can('manage_codelist'))
-                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -33,7 +32,7 @@
                         <tr>
                             <td>{{ $group->title }}</td>
                             <td class="text-right">
-                                <span class="badge badge-info">
+                                <span class="badge badge-info f-s-14">
                                     {{ $group->sort_order }}
                                 </span>
                             </td>
@@ -58,16 +57,17 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        @if ($admin->can('manage_codelist'))
-            <div class="col-lg-6">
+    @if ($admin->can('manage_codelist'))
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="content-box">
                     <div class="head success-bg clearfix">
                         <h5 class="content-title pull-left">@lang('admin::codelist.new_group')</h5>
                         <div class="functions-btns pull-right">
                             <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                             <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                         </div>
                     </div>
                     <div class="content">
@@ -77,6 +77,7 @@
                                 'label' => trans('admin::forms.title'),
                                 'field' => 'title',
                                 'placeholder' => trans('admin::codelist.placeholder.group_title'),
+                                'required' => true,
                             ])
                             @include ('admin::components.form.order', [
                                 'sortOrder' => $codelistGroups->max('sort_order') + 10,
@@ -89,8 +90,7 @@
                     </div>
                 </div>
             </div>
-        @endif
-
-    </div>
+        </div>
+    @endif
 
 @endsection

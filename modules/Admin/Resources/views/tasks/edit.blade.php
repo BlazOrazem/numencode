@@ -8,7 +8,7 @@
 
     <div class="row">
 
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="content-box">
                 <div class="head info-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::tasks.update'): {{ $task->name }}</h5>
@@ -28,12 +28,14 @@
                             'field' => 'title',
                             'placeholder' => trans('admin::tasks.placeholder.title'),
                             'entity' => $task,
+                            'required' => true,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::tasks.body'),
                             'field' => 'body',
                             'placeholder' => trans('admin::tasks.placeholder.body'),
                             'entity' => $task,
+                            'required' => true,
                         ])
                         @include ('admin::components.form.checkbox', [
                             'label' => trans('admin::tasks.completed'),
