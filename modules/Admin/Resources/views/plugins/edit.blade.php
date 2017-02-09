@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div id="plugin-component" class="content">
-                    <form method="POST" action="{{ route('plugins.update', [$plugin]) }}" class="form-horizontal">
+                    <form method="POST" action="{{ route('plugins.update', [$plugin]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include ('admin::components.form.text', [

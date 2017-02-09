@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div id="content-component" class="content">
-                        <form method="POST" action="{{ route('contents.store') }}" class="form-horizontal">
+                        <form method="POST" action="{{ route('contents.store') }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
                             @include ('admin::components.form.text', [
                                 'label' => trans('admin::forms.title'),

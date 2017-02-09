@@ -876,7 +876,7 @@ var Form = (function () {
         },
 
         getGroupFor: function (form, name) {
-            return form.find('[name=' + name + ']').closest('.' + formGroup);
+            return form.find('[name="' + name + '"]').closest('.' + formGroup);
         },
 
         failFor: function (item, errorMsg) {
