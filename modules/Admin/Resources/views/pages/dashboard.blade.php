@@ -46,7 +46,7 @@
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="content-box p-20 info-bg white f-s-16 text-center">
+            <div class="content-box p-20 base-bg white f-s-16 text-center">
                 <div>
                     <p>Logged in as<br /><strong>{{ $admin->name }}</strong></p>
                     <span class="current-date"></span>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="p-absolute b-20 l-20">
                         <p class="zero-m">Returning<br />visitors</p>
-                        <p class="zero-m info-color f-20 visitorsReturn">0%</p>
+                        <p class="zero-m base-color f-20 visitorsReturn">0%</p>
                     </div>
                 </div>
                 <div class="visible-lg visible-md" style="height: 6px;"></div>
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="content-box warning-bg white text-center">
+            <div class="content-box info-bg white text-center">
                 <div class="head clearfix">
                     <h5 class="content-title" style="width: 100%;">Website traffic</h5>
                 </div>

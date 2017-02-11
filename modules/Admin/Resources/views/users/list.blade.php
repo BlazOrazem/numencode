@@ -8,8 +8,8 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="data-table data-info content-box" data-id="user-list">
-                <div class="head info-bg clearfix">
+            <div class="data-table data-base content-box" data-id="user-list">
+                <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::users.title')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -26,8 +26,8 @@
                         <th class="no-sort text-right">@lang('admin::users.is_verified')</th>
                         <th>@lang('admin::tables.created')</th>
                         @if ($admin->can('manage_users'))
-                            <th class="no-sort text-center">@lang('admin::tables.edit')</th>
-                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.edit')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -42,7 +42,7 @@
                             <td>{{ $user->email }}</td>
                             <td class="text-right">
                                 <label>
-                                    <input class="toggle toggle-info"
+                                    <input class="toggle toggle-base"
                                            type="checkbox"
                                            name="toggle"
                                            disabled

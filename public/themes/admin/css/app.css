@@ -54,6 +54,10 @@ body {
   color: #333 !important;
 }
 
+.base-color {
+  color: #2196F3;
+}
+
 .default-color {
   color: #ccc;
 }
@@ -76,6 +80,10 @@ body {
 
 .danger-color {
   color: #ff5f5f !important;
+}
+
+.base-bg {
+  background: #2196F3 !important;
 }
 
 .default-bg {
@@ -2820,7 +2828,7 @@ body .dataTables_wrapper .dataTables_paginate a.paginate_button, body .dataTable
   margin: 0 !important;
   border: 1px solid #ddd !important;
   border-left: 0 !important;
-  color: #49ceff !important;
+  color: #2196F3 !important;
 }
 
 body .dataTables_wrapper .dataTables_paginate a.paginate_button:hover, body .dataTables_wrapper .dataTables_paginate a.paginate_button:active, body .dataTables_wrapper .dataTables_paginate a.paginate_button:focus, body .dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover, body .dataTables_wrapper .dataTables_paginate a.paginate_button.current:active, body .dataTables_wrapper .dataTables_paginate a.paginate_button.current:focus {
@@ -2968,6 +2976,18 @@ table.display tr:last-child td:last-child {
   .dataTables_wrapper .dataTables_length select {
     color: #9E9E9E;
   }
+}
+
+.data-base thead tr {
+  background: #297ec2 !important;
+}
+
+.data-base tbody tr td.sorting_1 {
+  color: #2196F3;
+}
+
+.data-base .dataTables_wrapper {
+  background: #2196F3;
 }
 
 .data-danger thead tr {
@@ -5608,6 +5628,17 @@ label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check:b
   box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
 }
 
+.checkbox.checkbox-base input[type=checkbox]:checked + .checkbox-material .check,
+label.checkbox-inline.checkbox-base input[type=checkbox]:checked + .checkbox-material .check {
+  color: #2196F3;
+  border-color: #2196F3;
+}
+
+.checkbox.checkbox-base input[type=checkbox]:checked + .checkbox-material .check:before,
+label.checkbox-inline.checkbox-base input[type=checkbox]:checked + .checkbox-material .check:before {
+  color: #2196F3;
+}
+
 .checkbox.checkbox-primary input[type=checkbox]:checked + .checkbox-material .check,
 label.checkbox-inline.checkbox-primary input[type=checkbox]:checked + .checkbox-material .check {
   color: #aa66cc;
@@ -6124,6 +6155,11 @@ a, a.btn, a.btn:hover, a.btn:focus, a.btn:active:focus {
   box-shadow: none;
 }
 
+a.btn.btn-base,
+a.btn.btn-base:focus {
+  color: #fff;
+}
+
 a.btn.btn-info,
 a.btn.btn-info:focus {
   color: #fff;
@@ -6154,6 +6190,10 @@ a.btn:hover {
 
 .btn-group.raised {
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+
+.btn-group .btn-base, .btn-group .btn-base:active:focus {
+  border-color: #2196F3;
 }
 
 .btn-group .btn-default, .btn-group .btn-default:active:focus {
@@ -6291,6 +6331,10 @@ a.btn.btn-sm {
   line-height: 1.2;
 }
 
+.btn-base, .btn-base.disabled, .btn-base.disabled:hover, .btn-dbase.disabled:focus, .btn-base.disabled:active, .btn-base[disabled], .btn-base[disabled]:hover, .btn-base[disabled]:focus, .btn-base:hover, .btn-base:focus, .btn-base:active, .btn-base:active:focus, .open > .dropdown-toggle.btn-base:focus, .open > .dropdown-toggle.btn-base, .open > .dropdown-toggle.btn-base:hover {
+  background: #2196F3;
+}
+
 .btn-default, .btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled:active, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus, .open > .dropdown-toggle.btn-default:focus, .open > .dropdown-toggle.btn-default, .open > .dropdown-toggle.btn-default:hover {
   background: #ccc;
   color: #fff;
@@ -6349,6 +6393,10 @@ a.btn.btn-sm {
   display: inline-block;
 }
 
+.label-default, .badge-base {
+  background-color: #2196F3;
+}
+
 .label-default, .badge-default {
   background-color: #ccc;
 }
@@ -6386,7 +6434,7 @@ a.btn.btn-sm {
 }
 
 .badge {
-  border-radius: 18px;
+  border-radius: 8px;
   font-weight: 400;
 }
 
@@ -6622,8 +6670,8 @@ ol.list li:before {
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-  border: 1px solid #49ceff;
-  background: #49ceff;
+  border: 1px solid #2196F3;
+  background: #2196F3;
   color: #fff;
 }
 
@@ -7260,6 +7308,10 @@ input.qtyplus:focus, input.qtyminus:focus {
   cursor: not-allowed;
 }
 
+.checkbox-base input[type="checkbox"]:checked + i::after {
+  color: #2196F3;
+}
+
 .checkbox-primary input[type="checkbox"]:checked + i::after {
   color: #aa66cc;
 }
@@ -7292,6 +7344,11 @@ input.qtyplus:focus, input.qtyminus:focus {
 .checkbox-alt.checkbox-primary input[type="checkbox"]:checked + i::before {
   background-color: #aa66cc;
   border-color: #aa66cc;
+}
+
+.checkbox-alt.checkbox-base input[type="checkbox"]:checked + i::before {
+  background-color: #2196F3;
+  border-color: #2196F3;
 }
 
 .checkbox-alt.checkbox-danger input[type="checkbox"]:checked + i::before {
@@ -7735,6 +7792,14 @@ input.toggle-primary:checked + i:before {
 
 input.toggle-primary:checked + i:after {
   background-color: #aa66cc;
+}
+
+input.toggle-base:checked + i:before {
+  background-color: #51adf6;
+}
+
+input.toggle-base:checked + i:after {
+  background-color: #2196F3;
 }
 
 input.toggle-success:checked + i:before {

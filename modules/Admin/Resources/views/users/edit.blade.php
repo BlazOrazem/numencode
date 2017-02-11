@@ -7,15 +7,13 @@
 @section('content')
 
     <div class="row">
-
-        <div class="col-md-8">
+        <div class="col-lg-12">
             <div class="content-box">
-                <div class="head info-bg clearfix">
+                <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::users.update') : {{ $user->name }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                     </div>
                 </div>
                 <div class="content">
@@ -27,18 +25,21 @@
                             'field' => 'name',
                             'placeholder' => trans('admin::users.placeholder.name'),
                             'entity' => $user,
+                            'required' => true,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::users.nickname'),
                             'field' => 'nickname',
                             'placeholder' => trans('admin::users.placeholder.nickname'),
                             'entity' => $user,
+                            'required' => true,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::users.email'),
                             'field' => 'email',
                             'placeholder' => trans('admin::users.placeholder.email'),
                             'entity' => $user,
+                            'required' => true,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::users.password'),
@@ -52,18 +53,19 @@
                             'help' => trans('admin::users.placeholder.avatar-help'),
                         ])
                         @include ('admin::components.form.submit', [
-                            'button' => trans('admin::users.update'),
-                            'type' => 'info',
+                            'button' => trans('admin::users.update')
                         ])
                     </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        @if ($admin->can('assign_user_roles'))
-            <div class="col-md-4">
-                <div class="data-table data-danger content-box">
-                    <div class="head danger-bg clearfix">
+    @if ($admin->can('assign_user_roles'))
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="data-table data-base content-box">
+                    <div class="head base-bg clearfix">
                         <h5 class="content-title pull-left">Roles for {{ $user->name }}</h5>
 
                         <div class="functions-btns pull-right">
@@ -76,7 +78,7 @@
                         <tr>
                             <th>Role</th>
                             <th>Description</th>
-                            <th class="no-sort">Assigned?</th>
+                            <th width="100" class="no-sort text-center">Assigned?</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -86,7 +88,7 @@
                                 <td>{{ $item->label }}</td>
                                 <td class="text-center">
                                     <label>
-                                        <input class="toggle toggle-danger"
+                                        <input class="toggle toggle-base"
                                                type="checkbox"
                                                name="toggle"
                                                data-toggle="{{ route('roles.assign.user', [$user, $item]) }}"
@@ -100,16 +102,20 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="content-box">
-                    <div class="content text-center">
-                        <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('roles.index') }}">
-                            @lang('admin::roles.manage')
-                        </a>
-                    </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="content-box">
+                <div class="content text-center">
+                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('roles.index') }}">
+                        @lang('admin::roles.manage')
+                    </a>
                 </div>
             </div>
-        @endif
-
+        </div>
     </div>
 
 @endsection

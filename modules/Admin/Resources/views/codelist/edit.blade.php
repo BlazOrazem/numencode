@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="content-box">
-                    <div class="head info-bg clearfix">
+                    <div class="head base-bg clearfix">
                         <h5 class="content-title pull-left">@lang('admin::codelist.update_group') {{ $codelistGroup->title }}</h5>
                         <div class="functions-btns pull-right">
                             <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -37,7 +37,6 @@
                             ])
                             @include ('admin::components.form.submit', [
                                 'button' => trans('admin::codelist.group_update'),
-                                'type' => 'info',
                                 'inline' => true,
                             ])
                         </form>
@@ -49,8 +48,8 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="data-table data-success content-box" data-id="codelist-items">
-                <div class="head success-bg clearfix">
+            <div class="data-table data-info content-box" data-id="codelist-items">
+                <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">{{ $codelistGroup->title }} @lang('admin::codelist.items')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -75,7 +74,7 @@
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->code }}</td>
                             <td class="text-right">
-                                <span class="badge badge-info">
+                                <span class="badge badge-base">
                                     {{ $item->sort_order }}
                                 </span>
                             </td>
@@ -103,8 +102,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
-                    <div class="head success-bg clearfix">
-                        <h5 class="content-title pull-left">@lang('admin::codelist.new_item'): {{ $codelistGroup->title }}</h5>
+                    <div class="head base-bg clearfix">
+                        <h5 class="content-title pull-left">@lang('admin::codelist.new_item') {{ $codelistGroup->title }}</h5>
                         <div class="functions-btns pull-right">
                             <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                             <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>

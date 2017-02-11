@@ -11,7 +11,7 @@
 
     @if (!$inlineForm)<div class="col-sm-9"> @endif
 
-        <div class="checkbox checkbox-alt checkbox-{{ isset($type) ? $type : 'success' }}">
+        <div class="checkbox checkbox-alt checkbox-{{ isset($type) ? $type : 'base' }}">
             <label>
                 <input type="checkbox" value="1" name="{{ $field }}" {{ isset($isChecked) && $isChecked == true ? 'checked' : '' }}>
                 <i></i>

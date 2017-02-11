@@ -14,7 +14,6 @@
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                     </div>
                 </div>
                 <div class="content">

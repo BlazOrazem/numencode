@@ -51,6 +51,10 @@ body{
   color: $text-color !important;
 }
 
+.base-color{
+  color: $base-color;
+}
+
 .default-color{
   color: $default-color;
 }
@@ -73,6 +77,10 @@ body{
 
 .danger-color{
   color: $danger-color !important;
+}
+
+.base-bg{
+  background: $base-color !important;
 }
 
 .default-bg{
@@ -98,10 +106,10 @@ body{
 .danger-bg{
   background: $danger-color !important;
 }
+
 .black-bg{
   background: $text-color !important;
 }
-
 
 
 /*Shadows*/

@@ -13,7 +13,7 @@ return [
     'groups' => 'Codelist groups',
 
     'new_group'    => 'Create new codelist group',
-    'update_group' => 'Update group:',
+    'update_group' => 'Update group :',
 
     'index'       => 'Back to Codelist',
     'index_group' => 'Back to Codelist group',
@@ -28,7 +28,7 @@ return [
 
     'items' => 'Codelist items',
 
-    'new_item' => 'Add new item to:',
+    'new_item' => 'Add new item to :',
 
     'item_create'  => 'Create new item',
     'item_created' => 'Codelist item :name created.',

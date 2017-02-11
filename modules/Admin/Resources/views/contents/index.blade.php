@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="data-table data-info content-box">
-                <div class="head info-bg clearfix">
+                <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::contents.title')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -20,10 +20,10 @@
                     <thead>
                     <tr>
                         <th>@lang('admin::tables.title')</th>
-                        <th>@lang('admin::tables.order')</th>
-                        <th class="no-sort text-center">@lang('admin::tables.manage')</th>
+                        <th width="60" class="text-right">@lang('admin::tables.order')</th>
                         @if ($admin->can('manage_contents'))
-                            <th class="no-sort text-center">@lang('admin::tables.delete')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.manage')</th>
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
@@ -32,17 +32,17 @@
                         <tr>
                             <td>{{ $content->title }}</td>
                             <td class="text-right">
-                                <span class="badge badge-info">
+                                <span class="badge badge-base">
                                     {{ $content->sort_order }}
                                 </span>
                             </td>
-                            <td class="text-center">
-                                @include ('admin::components.button.edit', [
-                                    'action' => route('contents.edit', compact('content')),
-                                    'icon' => 'zmdi-collection-text',
-                                ])
-                            </td>
-                            @if ($admin->can('manage_codelist'))
+                            @if ($admin->can('manage_contents'))
+                                <td class="text-center">
+                                    @include ('admin::components.button.edit', [
+                                        'action' => route('contents.edit', compact('content')),
+                                        'icon' => 'zmdi-collection-text',
+                                    ])
+                                </td>
                                 <td class="text-center">
                                     @include ('admin::components.button.delete', [
                                         'action' => route('contents.destroy', compact('content')),
@@ -61,12 +61,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
-                    <div class="head success-bg clearfix">
+                    <div class="head base-bg clearfix">
                         <h5 class="content-title pull-left">@lang('admin::contents.create')</h5>
                         <div class="functions-btns pull-right">
                             <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                             <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                            <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                         </div>
                     </div>
                     <div id="content-component" class="content">
@@ -104,10 +103,10 @@
                             </plugin-params>
 
                             @include ('admin::components.form.order', [
-                                'sortOrder' => $contents->max('sort_order') + 10,
+                                'sortOrder' => $contents->max('sort_order') + 10
                             ])
                             @include ('admin::components.form.submit', [
-                                'button' => trans('admin::contents.create'),
+                                'button' => trans('admin::contents.create')
                             ])
                         </form>
                     </div>

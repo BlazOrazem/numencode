@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="data-table data-info content-box">
-                <div class="head info-bg clearfix">
+                <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::codelist.groups')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -21,8 +21,8 @@
                     <tr>
                         <th>@lang('admin::tables.title')</th>
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
-                        <th width="60" class="no-sort text-center">@lang('admin::tables.manage')</th>
                         @if ($admin->can('manage_codelist'))
+                            <th width="60" class="no-sort text-center">@lang('admin::tables.manage')</th>
                             <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
@@ -32,17 +32,17 @@
                         <tr>
                             <td>{{ $group->title }}</td>
                             <td class="text-right">
-                                <span class="badge badge-info f-s-14">
+                                <span class="badge badge-base f-s-14">
                                     {{ $group->sort_order }}
                                 </span>
                             </td>
-                            <td class="text-center">
-                                @include ('admin::components.button.edit', [
-                                    'action' => route('codelist.edit', compact('group')),
-                                    'icon' => 'zmdi-collection-text',
-                                ])
-                            </td>
                             @if ($admin->can('manage_codelist'))
+                                <td class="text-center">
+                                    @include ('admin::components.button.edit', [
+                                        'action' => route('codelist.edit', compact('group')),
+                                        'icon' => 'zmdi-collection-text',
+                                    ])
+                                </td>
                                 <td class="text-center">
                                     @if (!$group->items->count())
                                         @include ('admin::components.button.delete', [
@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
-                    <div class="head success-bg clearfix">
+                    <div class="head base-bg clearfix">
                         <h5 class="content-title pull-left">@lang('admin::codelist.new_group')</h5>
                         <div class="functions-btns pull-right">
                             <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>

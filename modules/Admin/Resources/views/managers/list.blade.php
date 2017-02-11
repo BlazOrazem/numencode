@@ -8,8 +8,8 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="data-table data-info content-box" data-id="manager-list">
-                <div class="head info-bg clearfix">
+            <div class="data-table data-base content-box" data-id="manager-list">
+                <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::managers.title')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>

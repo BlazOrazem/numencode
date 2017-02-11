@@ -7,15 +7,13 @@
 @section('content')
 
     <div class="row">
-
         <div class="col-lg-12">
             <div class="content-box">
-                <div class="head warning-bg clearfix">
-                    <h5 class="content-title pull-left">@lang('admin::plugins.update'): {{ $plugin->title }}</h5>
+                <div class="head base-bg clearfix">
+                    <h5 class="content-title pull-left">@lang('admin::plugins.update') : {{ $plugin->title }}</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
-                        <a class="close-btn" href="#"><i class="zmdi zmdi-close"></i></a>
                     </div>
                 </div>
                 <div id="plugin-component" class="content">
@@ -27,6 +25,7 @@
                             'field' => 'title',
                             'placeholder' => trans('admin::plugins.placeholder.title'),
                             'entity' => $plugin,
+                            'required' => true,
                         ])
                         @include ('admin::components.form.text', [
                             'label' => trans('admin::forms.description'),
@@ -39,6 +38,7 @@
                             'field' => 'action',
                             'placeholder' => trans('admin::plugins.placeholder.action'),
                             'entity' => $plugin,
+                            'required' => true,
                         ])
 
                         <plugin-param v-for="param in params" :param="param" inline-template>
@@ -83,7 +83,7 @@
                         </div>
 
                         @include ('admin::components.form.order', [
-                            'sortOrder' => $plugin->sort_order,
+                            'sortOrder' => $plugin->sort_order
                         ])
                         @include ('admin::components.form.checkbox', [
                             'label' => 'Is hidden?',
@@ -92,8 +92,7 @@
                             'isChecked' => $plugin->is_hidden,
                         ])
                         @include ('admin::components.form.submit', [
-                            'button' => trans('admin::plugins.update'),
-                            'type' => 'warning',
+                            'button' => trans('admin::plugins.update')
                         ])
                     </form>
                 </div>

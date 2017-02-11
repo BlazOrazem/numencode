@@ -65,6 +65,11 @@ a, a.btn, a.btn:hover, a.btn:focus, a.btn:active:focus{
   box-shadow: none;
 }
 
+a.btn.btn-base,
+a.btn.btn-base:focus {
+  color: $white;
+}
+
 a.btn.btn-info,
 a.btn.btn-info:focus {
   color: $white;
@@ -93,23 +98,26 @@ a.btn:hover{
   &.raised{
     @include shadow(1);
   }
+  .btn-base, .btn-base:active:focus {
+    border-color: $base-color;
+  }
   .btn-default, .btn-default:active:focus {
-  border-color: $default-color;
+    border-color: $default-color;
   }
   .btn-primary, .btn-primary:active:focus {
-  border-color: $primary-color;
+    border-color: $primary-color;
   }
   .btn-success, .btn-success:active:focus {
-  border-color: $success-color;
+    border-color: $success-color;
   }
   .btn-info, .btn-info:active:focus {
-  border-color: $info-color;
+    border-color: $info-color;
   }
   .btn-warning, .btn-warning:active:focus {
-  border-color: $warning-color;
+    border-color: $warning-color;
   }
   .btn-danger, .btn-danger:active:focus {
-  border-color: $danger-color;
+    border-color: $danger-color;
   }
 }
 
@@ -220,6 +228,10 @@ a.btn.btn-sm{
 }
 
 //Colors
+.btn-base, .btn-base.disabled, .btn-base.disabled:hover, .btn-dbase.disabled:focus, .btn-base.disabled:active, .btn-base[disabled], .btn-base[disabled]:hover, .btn-base[disabled]:focus, .btn-base:hover, .btn-base:focus, .btn-base:active, .btn-base:active:focus, .open>.dropdown-toggle.btn-base:focus, .open>.dropdown-toggle.btn-base, .open>.dropdown-toggle.btn-base:hover{
+  background: $base-color;
+}
+
 .btn-default, .btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled:active, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus, .open>.dropdown-toggle.btn-default:focus , .open>.dropdown-toggle.btn-default, .open>.dropdown-toggle.btn-default:hover{
   background: $default-color;
   color: $white;
@@ -280,6 +292,10 @@ a.btn.btn-sm{
   display: inline-block;
 }
 
+.label-default, .badge-base{
+  background-color: $base-color;
+}
+
 .label-default, .badge-default{
   background-color: $default-color;
 }
@@ -317,7 +333,7 @@ a.btn.btn-sm{
 }
 
 .badge{
-  border-radius: 18px;
+  border-radius: 8px;
   font-weight: 400;
 }
 
@@ -506,8 +522,8 @@ ol.list li{
     }
   }
   >li.active>a, >li.active>a:focus, >li.active>a:hover{
-    border: 1px solid $info-color;
-    background: $info-color;
+    border: 1px solid $base-color;
+    background: $base-color;
     color: $white;
   }
 }
@@ -1115,6 +1131,10 @@ input.qtyplus, input.qtyminus{
   cursor: not-allowed;
 }
 
+.checkbox-base input[type="checkbox"]:checked + i::after {
+  color: $base-color;
+}
+
 .checkbox-primary input[type="checkbox"]:checked + i::after{
   color: $primary-color;
 }
@@ -1147,6 +1167,11 @@ input.qtyplus, input.qtyminus{
   &.checkbox-primary input[type="checkbox"]:checked + i::before{
     background-color: $primary-color;
     border-color: $primary-color;
+  }
+
+  &.checkbox-base input[type="checkbox"]:checked + i::before {
+    background-color: $base-color;
+    border-color: $base-color;
   }
 
   &.checkbox-danger input[type="checkbox"]:checked + i::before{
@@ -1542,6 +1567,12 @@ input.toggle-primary:checked + i:before {
 }
 input.toggle-primary:checked + i:after {
   background-color: $primary-color;
+}
+input.toggle-base:checked + i:before {
+  background-color: lighten($base-color, 10%);
+}
+input.toggle-base:checked + i:after {
+  background-color: $base-color;
 }
 input.toggle-success:checked + i:before {
   background-color: lighten($success-color, 8%);

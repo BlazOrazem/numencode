@@ -115,7 +115,7 @@ body .dataTables_wrapper .dataTables_paginate {
     margin: 0 !important;
     border: 1px solid #ddd !important;
     border-left: 0 !important;
-    color: $info-color !important;
+    color: $base-color !important;
     &:hover, &:active, &:focus{
       background: $white;
       color: $info-color !important;
@@ -249,6 +249,18 @@ table.display{
     select {
       color: $grey;
     }
+  }
+}
+
+.data-base{
+  thead tr{
+    background: desaturate(darken($base-color, 8), 25) !important;
+  }
+  tbody tr td.sorting_1{
+    color: $base-color;
+  }
+  .dataTables_wrapper{
+    background: $base-color;
   }
 }
 
@@ -2661,6 +2673,14 @@ label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check:b
           box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
 }
 
+.checkbox.checkbox-base input[type=checkbox]:checked + .checkbox-material .check,
+label.checkbox-inline.checkbox-base input[type=checkbox]:checked + .checkbox-material .check {
+  color: $base-color;
+  border-color: $base-color;
+  &:before{
+    color: $base-color;
+  }
+}
 
 .checkbox.checkbox-primary input[type=checkbox]:checked + .checkbox-material .check,
 label.checkbox-inline.checkbox-primary input[type=checkbox]:checked + .checkbox-material .check {
