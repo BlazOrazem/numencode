@@ -25,10 +25,8 @@
     <link href="{{ elixir('themes/admin/css/libs.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
 
-    <!--
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    -->
+    <link rel="icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
 
     <!--[if lt IE 9]>
         <script src="themes/admin/js/html5shiv.min.js"></script>
@@ -67,7 +65,7 @@
                                 <span class="white f-s-16 m-l-5">Remember me</span>
                             </div>
                         </div>
-                        <button name="Login" type="submit" class="btn btn-block btn-lg btn-primary">Login</button>
+                        <button name="Login" type="submit" class="btn btn-block btn-lg btn-base">Login</button>
                     </form>
                 </div>
             </div>

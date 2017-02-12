@@ -26,10 +26,8 @@
     <link href="{{ elixir('themes/admin/css/jstree.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
 
-    <!--
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    -->
+    <link rel="icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
 
     <!--[if lt IE 9]>
         <script src="themes/admin/js/html5shiv.min.js"></script>

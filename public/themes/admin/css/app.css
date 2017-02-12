@@ -3593,17 +3593,17 @@ table.display tr:last-child td:last-child {
 
 .task-list .todo i:before {
   border-radius: 3px;
-  background: #99cc00;
+  background: #49ceff;
   border: 0;
 }
 
 .task-list .todo .trash {
-  color: #99cc00;
+  color: #49ceff;
   line-height: 42px;
 }
 
 .task-list .todo .checked-todo.list-group-item {
-  background: #99cc00;
+  background: #49ceff;
 }
 
 .task-list .todo .checked-todo .trash, .task-list .todo .checked-todo label {

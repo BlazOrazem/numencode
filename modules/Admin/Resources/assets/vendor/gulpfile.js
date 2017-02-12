@@ -110,7 +110,7 @@ elixir(function(mix) {
         'bower_components/jstree/dist/jstree.js',
         'bower_components/bootstrap-select/dist/js/bootstrap-select.js',
         'bower_components/bootstrap-sweetalert/lib/sweet-alert.js',
-        //'bower_components/tinymce/jquery.tinymce.min.js',
+        'bower_components/jquery-ui-sortable-min/jquery-ui-sortable-min.js',
         'bower_components/tinymce/tinymce.min.js'
     ], publicPath + 'js/libs.js');
 

@@ -822,16 +822,16 @@ table.display{
     }
     i:before{
       border-radius: $border-radius;
-      background: $success-color;
+      background: $info-color;
       border: 0;
     }
     .trash{
-      color: $success-color;
+      color: $info-color;
       line-height: 42px;
     }
     .checked-todo{
       &.list-group-item {
-        background: $success-color;
+        background: $info-color;
       }
       .trash, label{
         color: $white;

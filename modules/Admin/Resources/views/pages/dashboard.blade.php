@@ -12,13 +12,13 @@
                 <div class="head head-with-btns clearfix">
                     <h5 class="content-title text-color pull-left">Website analytics</h5>
                     <div class="functions-btns pull-right">
-                        <button type="button" class="btn btn-info analytics-switch" data-period="week">
+                        <button type="button" class="btn btn-base analytics-switch" data-period="week">
                             Week
                         </button>
-                        <button type="button" class="btn btn-warning analytics-switch" data-period="month">
+                        <button type="button" class="btn btn-info analytics-switch" data-period="month">
                             Month
                         </button>
-                        <button type="button" class="btn btn-warning analytics-switch" data-period="year">
+                        <button type="button" class="btn btn-info analytics-switch" data-period="year">
                             Year
                         </button>
                     </div>
@@ -96,6 +96,134 @@
                     <p class="f-30 avgSessionDuration">0</p>
                     <p class="text-uppercase zero-m">Currently active visiors</p>
                     <p class="zero-m f-30">{{ $activeVisitors }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="content-box task-list">
+                <div class="head head-with-btns info-bg clearfix">
+                    <h5 class="content-title pull-left">Task List</h5>
+                    <div class="functions-btns pull-right">
+                        <form action="#" id="add_todo" class="form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control name-of-todo" placeholder="New task">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-base">Add task</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="panel zero-m">
+                        <div class="panel-body todo p-0">
+                            <ul class="list-group zero-m">
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Searches
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Advertising
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Links
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Advertising
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Links
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Social media
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Searches
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Links
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Links
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="checkbox checkbox-base">
+                                        <label>
+                                            <input type="checkbox">
+                                            <i></i>
+                                            Advertising
+                                        </label>
+                                    </div>
+                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,15 +328,15 @@
         // Analytics switch
         $('.analytics-switch').on("click", function () {
             $('.analytics-switch').each(function(index) {
-                if ($(this).hasClass('btn-info')) {
-                    $(this).removeClass('btn-info');
+                if ($(this).hasClass('btn-base')) {
+                    $(this).removeClass('btn-base');
                 }
-                if (!$(this).hasClass('btn-warning')) {
-                    $(this).addClass('btn-warning');
+                if (!$(this).hasClass('btn-info')) {
+                    $(this).addClass('btn-info');
                 }
             });
 
-            $(this).removeClass('btn-warning').addClass('btn-info');
+            $(this).removeClass('btn-info').addClass('btn-base');
 
             $('div.analytics-chart').hide();
 
@@ -276,11 +404,60 @@
         $(function() {
             $('.visitors-chart').easyPieChart({
                 barColor: "#99cc00",
-                trackColor: '#49ceff',
+                trackColor: '#2196f3',
                 size: 115,
                 lineWidth: 15,
                 scaleLength: 0
             });
+        });
+
+        // Task list
+        $(".todo ul").sortable();
+
+        $(document).on('mouseover', '.list-group .checkbox', function () {
+            $('.list-group input:checkbox').each(function () {
+                $(this).on("change", function () {
+                    if ($(this).is(":checked")) {
+                        $(this).closest(".list-group-item").addClass("checked-todo");
+                    } else {
+                        $(this).closest(".list-group-item").removeClass("checked-todo");
+                    }
+                });
+            });
+        });
+
+        $("#add_todo").on('submit', function (e) {
+            e.preventDefault();
+
+            var $toDo = $(this).find('.name-of-todo'), toDo_name = $toDo.val();
+
+            if (toDo_name.length >= 3) {
+
+                var newid = "new" + "" + Math.random().toString(36).substring(11);
+                // Create Event Entry
+                $(".todo ul").append(
+                    '<li id="' + 'item-' + newid + '" class="list-group-item"><div class="checkbox checkbox-info"><label><input type="checkbox"><i></i>' + toDo_name + '</label></div><a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a></li>'
+                );
+
+                var eventObject = {
+                    title: $.trim($("#" + newid).text()),
+                    className: $("#" + newid).attr("data-bg"), // use the element's text as the event title
+                    stick: true
+                };
+
+                // store the Event Object in the DOM element so we can get to it later
+                $("#" + newid).data('eventObject', eventObject);
+
+                // Reset input
+                $toDo.val('').focus();
+            } else {
+                $toDo.focus();
+            }
+        });
+
+        $(document).on('click', '.trash', function (e) {
+            var clearedCompItem = $(this).closest(".list-group-item").remove();
+            e.preventDefault();
         });
     </script>
 @endsection
