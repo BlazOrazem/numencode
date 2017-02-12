@@ -60,24 +60,24 @@ $ php artisan db:seed
 
 ## Frontend workflow with Laravel Mix
 
-1. Install [Node.js](https://nodejs.org/) on your system.
-2. Install dependencies with [npm](https://www.npmjs.com/):
+First install [Node.js](https://nodejs.org/) on your system.
+Next install dependencies with [npm](https://www.npmjs.com/):
 ```bash
 $ npm install
 ```
 
-3. Alternatively you can install dependencies with [Yarn](https://yarnpkg.com/):
+Alternatively you can install dependencies with [Yarn](https://yarnpkg.com/):
 ```bash
 $ npm install --global yarn
 $ yarn install
 ```
 
-4. Resources for the default theme (styles and scripts) are stored in:
+Resources for the default theme (styles and scripts) are stored in:
 ~~~
 /modules/Cms/Resources/assets/
 ~~~
 
-5. After the changes in styles and/or scripts run Laravel Mix:
+After the changes in styles and/or scripts run Laravel Mix:
 
 Development mode (non-minified code):
 ```bash
