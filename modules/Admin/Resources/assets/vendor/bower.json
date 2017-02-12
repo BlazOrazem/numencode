@@ -36,7 +36,8 @@
     "peity": "^3.2.0",
     "morris.js": "^0.5.1",
     "vue": "^2.1.10",
-    "vue-resource": "^1.2.0"
+    "vue-resource": "^1.2.0",
+    "tinymce": "^4.5.3"
   },
   "overrides": {
     "bootstrap": {

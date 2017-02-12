@@ -184,6 +184,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
 
         /*
          * Application Service Providers...

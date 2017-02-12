@@ -17,7 +17,8 @@
         "laravel/framework": "5.4.*",
         "laravel/socialite": "~3.0",
         "laravel/tinker": "~1.0",
-        "spatie/laravel-analytics": "^1.4"
+        "spatie/laravel-analytics": "^1.4",
+        "unisharp/laravel-filemanager": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
