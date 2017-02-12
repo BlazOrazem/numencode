@@ -65,15 +65,18 @@ $ php artisan db:seed
 ```bash
 $ npm install
 ```
+
 3. Alternatively you can install dependencies with [Yarn](https://yarnpkg.com/):
 ```bash
 $ npm install --global yarn
 $ yarn install
 ```
+
 4. Resources for the default theme (styles and scripts) are stored in:
 ~~~
 /modules/Cms/Resources/assets/
 ~~~
+
 5. After the changes in styles and/or scripts run Laravel Mix:
 
 Development mode (non-minified code):
@@ -92,7 +95,9 @@ $ npm run watch
 ## Demo credentials
 
 **Back-office:** should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
+
 **Username:** info@numencode.com
+
 **Password:** q1w2e3
 
 ## License
