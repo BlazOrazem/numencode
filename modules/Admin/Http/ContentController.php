@@ -62,9 +62,9 @@ class ContentController extends BaseController
      */
     public function edit(Content $content)
     {
-        $plugins = Plugin::orderBy('title')->get();
+        $this->js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
-        return view('admin::contents.edit', compact('content', 'plugins'));
+        return view('admin::contents.edit', compact('content'));
     }
 
     /**

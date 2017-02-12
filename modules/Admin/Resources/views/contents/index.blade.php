@@ -81,11 +81,6 @@
                                 'field' => 'lead',
                                 'placeholder' => trans('admin::contents.placeholder.lead'),
                             ])
-                            {{--@include ('admin::components.form.textarea', [--}}
-                                {{--'label' => trans('admin::forms.description'),--}}
-                                {{--'field' => 'body',--}}
-                                {{--'placeholder' => trans('admin::contents.placeholder.body'),--}}
-                            {{--])--}}
 
                             <div class="form-group">
                                 <label class="control-label col-sm-3">

@@ -16,7 +16,7 @@
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
                     </div>
                 </div>
-                <div class="content">
+                <div id="content-component" class="content">
                     <form method="POST" action="{{ route('contents.update', [$content]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         @include ('admin::components.form.text', [
@@ -31,12 +31,7 @@
                             'placeholder' => trans('admin::contents.placeholder.lead'),
                             'entity' => $content,
                         ])
-                        {{--@include ('admin::components.form.textarea', [--}}
-                            {{--'label' => trans('admin::forms.description'),--}}
-                            {{--'field' => 'body',--}}
-                            {{--'placeholder' => trans('admin::contents.placeholder.body'),--}}
-                            {{--'entity' => $content,--}}
-                        {{--])--}}
+
                         <div class="form-group">
                             <label class="control-label col-sm-3">
                                 Description
@@ -45,15 +40,32 @@
                                 <textarea name="body" class="form-control" id="my-editor">{{ old('body', $content->body) }}</textarea>
                             </div>
                         </div>
-                        @include ('admin::components.form.select', [
-                            'label' => trans('admin::contents.plugin'),
-                            'field' => 'plugin_id',
-                            'data' => $plugins,
-                            'class' => 'plugin',
-                            'placeholder' => trans('admin::contents.placeholder.plugin'),
-                            'dataAttribute' => 'data-api="' . route('plugins.api') . '"',
-                        ])
-                        <div class="plugin-form"></div>
+
+                        {{--@include ('admin::components.form.select', [--}}
+                            {{--'label' => trans('admin::contents.plugin'),--}}
+                            {{--'field' => 'plugin_id',--}}
+                            {{--'data' => $plugins,--}}
+                            {{--'class' => 'plugin',--}}
+                            {{--'placeholder' => trans('admin::contents.placeholder.plugin'),--}}
+                            {{--'dataAttribute' => 'data-api="' . route('plugins.api') . '"',--}}
+                        {{--])--}}
+                        {{--<div class="plugin-form"></div>--}}
+
+                        <plugin-params route="{{ route('plugins.api') }}" inline-template>
+                            <div>
+                                <div class="form-group">
+                                    <label for="pluginId" class="control-label col-sm-3 ">Custom plugin</label>
+                                    <div class="col-sm-9">
+                                        <select v-on:change="changed" name="plugin_id" v-model="selected.plugin_id" class="form-control selectpicker">
+                                            <option value="">---</option>
+                                            <option v-for="plugin in plugins" :value="plugin.id">@{{ plugin.title }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div v-html="html"></div>
+                            </div>
+                        </plugin-params>
+
                         @include ('admin::components.form.order', [
                             'sortOrder' => $content->sort_order,
                         ])
@@ -70,28 +82,31 @@
 
 @section('scripts')
     <script>
-        $(function() {
-            http.postHtml = function (url, data) {
-                return $.ajax({
-                    url: url,
-                    dataType: 'html',
-                    method: 'POST',
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('X-CSRF-TOKEN', http.token());
-                    },
-                    data: data
-                });
-            };
+        Vue.component('plugin-params', {
+            props: ['route'],
+            data: function(){
+                return {
+                    html: '',
+                    plugins: vars.plugins,
+                    selected: {
+                        plugin_id: ''
+                    }
+                }
+            },
+            methods: {
+                changed: function() {
+                    if (this.selected.plugin_id) {
+                        http.postHtml(this.route, {id: this.selected.plugin_id})
+                                .success(function(data) {
+                                    this.html = data;
+                                }.bind(this));
+                    }
+                }
+            }
+        });
 
-            $('select.plugin').on('change', function() {
-                http.postHtml($('select.plugin').data('api'), {id: this.value})
-                    .success(function(data) {
-                        $('.plugin-form').html(data);
-                    })
-                    .error(function() {
-                        console.log('An error occured.');
-                    });
-            })
+        new Vue({
+            el: '#content-component'
         });
 
         var editor_config = {
