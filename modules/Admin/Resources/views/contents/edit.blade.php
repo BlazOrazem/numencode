@@ -41,16 +41,6 @@
                             </div>
                         </div>
 
-                        {{--@include ('admin::components.form.select', [--}}
-                            {{--'label' => trans('admin::contents.plugin'),--}}
-                            {{--'field' => 'plugin_id',--}}
-                            {{--'data' => $plugins,--}}
-                            {{--'class' => 'plugin',--}}
-                            {{--'placeholder' => trans('admin::contents.placeholder.plugin'),--}}
-                            {{--'dataAttribute' => 'data-api="' . route('plugins.api') . '"',--}}
-                        {{--])--}}
-                        {{--<div class="plugin-form"></div>--}}
-
                         <plugin-params route="{{ route('plugins.api') }}" inline-template>
                             <div>
                                 <div class="form-group">
@@ -93,13 +83,32 @@
                     }
                 }
             },
+            mounted: function() {
+                if (vars.plugin_id) {
+                    this.load();
+                }
+            },
             methods: {
+                load: function() {
+                    http.postHtml(this.route, {id: vars.plugin_id})
+                        .success(function(data) {
+                            this.html = data;
+                        }.bind(this));
+
+                    this.selected.plugin_id = vars.plugin_id;
+
+                    setTimeout(function(){
+                        $.each(vars.plugin_params, function(index, value){
+                            $('#content-component [name="params[' + index + ']"]').val(value).change();
+                        });
+                    }, 2000);
+                },
                 changed: function() {
                     if (this.selected.plugin_id) {
                         http.postHtml(this.route, {id: this.selected.plugin_id})
-                                .success(function(data) {
-                                    this.html = data;
-                                }.bind(this));
+                            .success(function(data) {
+                                this.html = data;
+                            }.bind(this));
                     }
                 }
             }

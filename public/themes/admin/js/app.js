@@ -109,7 +109,11 @@ var MetisMenu = (function () {
 var JsTree = (function () {
     return {
         init: function () {
-            $('.jstree').jstree({
+            var tree = $('.jstree');
+            tree.bind('loaded.jstree', function(event, data) {
+                data.instance.open_all();
+            });
+            tree.jstree({
                 'core' : {
                     'themes' : {
                         'responsive': false
