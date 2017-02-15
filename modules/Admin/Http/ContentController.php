@@ -4,9 +4,27 @@ namespace Admin\Http;
 
 use Numencode\Models\Plugin;
 use Numencode\Models\Content;
+use Admin\Repositories\PluginRepository;
 
 class ContentController extends BaseController
 {
+    /**
+     * The Plugin Repository.
+     *
+     * @var PluginRepository
+     */
+    protected $pluginRepository;
+
+    /**
+     * Create a new plugin controller instance.
+     *
+     * @param PluginRepository $pluginRepository Plugin repository
+     */
+    public function __construct(PluginRepository $pluginRepository)
+    {
+        $this->pluginRepository = $pluginRepository;
+    }
+
     /**
      * Display a listing of the always displayed contents.
      *
@@ -62,14 +80,19 @@ class ContentController extends BaseController
      */
     public function edit(Content $content)
     {
+        $plugin = Plugin::find($content->plugin_id);
+
         if ($content->plugin_id) {
             $this->js(['plugin_id' => $content->plugin_id]);
-            $this->js(['plugin_params' => $content->plugin_params]);
+            $pluginForm = $this->pluginRepository->renderPluginForm($plugin, $content->plugin_params);
         }
 
         $this->js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
-        return view('admin::contents.edit', compact('content'));
+        return view('admin::contents.edit', [
+            'content' => $content,
+            'pluginForm' => isset($pluginForm) ? $pluginForm : null]
+        );
     }
 
     /**

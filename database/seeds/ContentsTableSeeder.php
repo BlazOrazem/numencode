@@ -64,6 +64,18 @@ class ContentsTableSeeder extends Seeder
                 'sort_order'    => 40,
                 'is_hidden'     => null,
             ],
+            [
+                'id'            => 5,
+                'page_id'       => null,
+                'plugin_id'     => null,
+                'plugin_params' => null,
+                'title'         => 'Sample standalone content without a plugin',
+                'lead'          => 'Eng lead lorem ipsum.',
+                'body'          => 'EN Lorem ipsum dolor sit amet.',
+                'position'      => 'center',
+                'sort_order'    => 50,
+                'is_hidden'     => null,
+            ],
         ];
 
         foreach ($items as $item) {
@@ -94,6 +106,13 @@ class ContentsTableSeeder extends Seeder
         $translationContent = Content::find(4);
         $translationContent->saveTranslation('sl', [
             'title' => 'Testna prosto stoječa vsebina z vtičnikom',
+            'lead'  => 'Slo lead lorem ipsum.',
+            'body'  => 'SL Lorem ipsum dolor sit amet.',
+        ]);
+
+        $translationContent = Content::find(5);
+        $translationContent->saveTranslation('sl', [
+            'title' => 'Testna prosto stoječa vsebina brez vtičnika',
             'lead'  => 'Slo lead lorem ipsum.',
             'body'  => 'SL Lorem ipsum dolor sit amet.',
         ]);

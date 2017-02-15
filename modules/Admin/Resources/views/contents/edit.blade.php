@@ -76,7 +76,7 @@
             props: ['route'],
             data: function(){
                 return {
-                    html: '',
+                    html: `{!! $pluginForm !!}`,
                     plugins: vars.plugins,
                     selected: {
                         plugin_id: ''
@@ -84,24 +84,13 @@
                 }
             },
             mounted: function() {
-                if (vars.plugin_id) {
-                    this.load();
-                }
+                this.load();
             },
             methods: {
                 load: function() {
-                    http.postHtml(this.route, {id: vars.plugin_id})
-                        .success(function(data) {
-                            this.html = data;
-                        }.bind(this));
-
-                    this.selected.plugin_id = vars.plugin_id;
-
-                    setTimeout(function(){
-                        $.each(vars.plugin_params, function(index, value){
-                            $('#content-component [name="params[' + index + ']"]').val(value).change();
-                        });
-                    }, 2000);
+                    if (vars.plugin_id) {
+                        this.selected.plugin_id = vars.plugin_id;
+                    }
                 },
                 changed: function() {
                     if (this.selected.plugin_id) {

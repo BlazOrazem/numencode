@@ -2,12 +2,30 @@
 
 namespace Admin\Http;
 
-use Illuminate\Support\Facades\App;
+//use Illuminate\Support\Facades\App;
 use Numencode\Models\Plugin;
 use Illuminate\Validation\Rule;
+use Admin\Repositories\PluginRepository;
 
 class PluginController extends BaseController
 {
+    /**
+     * The Plugin Repository.
+     *
+     * @var PluginRepository
+     */
+    protected $pluginRepository;
+
+    /**
+     * Create a new plugin controller instance.
+     *
+     * @param PluginRepository $pluginRepository Plugin repository
+     */
+    public function __construct(PluginRepository $pluginRepository)
+    {
+        $this->pluginRepository = $pluginRepository;
+    }
+
     /**
      * Display a listing of the plugin.
      *
@@ -139,53 +157,13 @@ class PluginController extends BaseController
             return success();
         }
 
-        return $this->renderPluginForm($plugin);
+        return $this->pluginRepository->renderPluginForm($plugin);
     }
 
     public function testRender()
     {
         $plugin = Plugin::find(2);
 
-        return $this->renderPluginForm($plugin);
-    }
-
-    /**
-     * Create form for plugin params.
-     *
-     * @param Plugin $plugin Plugin
-     * @return \Illuminate\View\View
-     */
-    protected function renderPluginForm(Plugin $plugin)
-    {
-        $data = collect($plugin->params)->map(function ($item) {
-            if ($item->type == 'select') {
-                $item->options = $this->handleSelectOptions($item->options);
-            }
-
-            return $item;
-        });
-
-        return view('admin::plugins.form', compact('data'));
-    }
-
-    /**
-     * Handle options for select box based on given data.
-     *
-     * @param object $data Data for building the list of options
-     *
-     * @return array
-     */
-    protected function handleSelectOptions($data)
-    {
-        if (strpos($data, '@') !== false){
-            $namespace = isset($data->namespace) ? $data->namespace : config('numencode.models_namespace');
-            $data = explode('@', $data);
-
-            return app()->call([$namespace . $data[0], $data[1]]);
-        }
-        
-        $data = explode(',', $data);
-        
-        return array_combine($data, $data);
+        return $this->pluginRepository->renderPluginForm($plugin);
     }
 }
