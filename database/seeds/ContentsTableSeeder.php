@@ -57,7 +57,7 @@ class ContentsTableSeeder extends Seeder
                                         'first_name' => 'John',
                                         'last_name'  => 'Doe',
                                     ],
-                'title'         => 'Sample standalone content with a plugin',
+                'title'         => 'Sample standalone content with a select plugin',
                 'lead'          => 'Eng lead lorem ipsum.',
                 'body'          => 'EN Lorem ipsum dolor sit amet.',
                 'position'      => 'center',
@@ -74,6 +74,38 @@ class ContentsTableSeeder extends Seeder
                 'body'          => 'EN Lorem ipsum dolor sit amet.',
                 'position'      => 'center',
                 'sort_order'    => 50,
+                'is_hidden'     => null,
+            ],
+            [
+                'id'            => 6,
+                'page_id'       => null,
+                'plugin_id'     => 3,
+                'plugin_params' => [
+                    'task_id'    => '10',
+                    'first_name' => 'John',
+                    'last_name'  => 'Doe',
+                ],
+                'title'         => 'Sample standalone content with a radio plugin',
+                'lead'          => 'Eng lead lorem ipsum.',
+                'body'          => 'EN Lorem ipsum dolor sit amet.',
+                'position'      => 'center',
+                'sort_order'    => 60,
+                'is_hidden'     => null,
+            ],
+            [
+                'id'            => 7,
+                'page_id'       => null,
+                'plugin_id'     => 4,
+                'plugin_params' => [
+                    'task_id'    => '10',
+                    'first_name' => 'John',
+                    'last_name'  => 'Doe',
+                ],
+                'title'         => 'Sample standalone content with a checkbox plugin',
+                'lead'          => 'Eng lead lorem ipsum.',
+                'body'          => 'EN Lorem ipsum dolor sit amet.',
+                'position'      => 'center',
+                'sort_order'    => 80,
                 'is_hidden'     => null,
             ],
         ];
@@ -105,7 +137,7 @@ class ContentsTableSeeder extends Seeder
 
         $translationContent = Content::find(4);
         $translationContent->saveTranslation('sl', [
-            'title' => 'Testna prosto stoječa vsebina z vtičnikom',
+            'title' => 'Testna prosto stoječa vsebina z vtičnikom - select',
             'lead'  => 'Slo lead lorem ipsum.',
             'body'  => 'SL Lorem ipsum dolor sit amet.',
         ]);
@@ -113,6 +145,20 @@ class ContentsTableSeeder extends Seeder
         $translationContent = Content::find(5);
         $translationContent->saveTranslation('sl', [
             'title' => 'Testna prosto stoječa vsebina brez vtičnika',
+            'lead'  => 'Slo lead lorem ipsum.',
+            'body'  => 'SL Lorem ipsum dolor sit amet.',
+        ]);
+
+        $translationContent = Content::find(6);
+        $translationContent->saveTranslation('sl', [
+            'title' => 'Testna prosto stoječa vsebina z vtičnikom - radio',
+            'lead'  => 'Slo lead lorem ipsum.',
+            'body'  => 'SL Lorem ipsum dolor sit amet.',
+        ]);
+
+        $translationContent = Content::find(7);
+        $translationContent->saveTranslation('sl', [
+            'title' => 'Testna prosto stoječa vsebina z vtičnikom - checkbox',
             'lead'  => 'Slo lead lorem ipsum.',
             'body'  => 'SL Lorem ipsum dolor sit amet.',
         ]);

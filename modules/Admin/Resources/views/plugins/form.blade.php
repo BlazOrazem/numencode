@@ -28,4 +28,50 @@
         </div>
     @endif
 
+    @if ($item->type == 'radio')
+        <div class="form-group">
+            <label class="control-label col-sm-3">
+                {{ $item->label }}
+            </label>
+            <div class="col-sm-9">
+                <div class="btn-group" data-toggle="buttons">
+                    @foreach($item->options as $key => $option)
+                        <label class="btn btn-primary {{ isset($data->$itemName) && $data->$itemName == $key ? 'active' : '' }}">
+                            <input type="radio"
+                                   name="params[{{ $itemName }}]"
+                                   value="{{ $key }}"
+                                   autocomplete="off"
+                                   {{ isset($data->$itemName) && $data->$itemName == $key ? 'checked' : '' }}
+                                    > {{ $option }}
+                        </label>
+                        <div class="clearfix"></div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if ($item->type == 'checkbox')
+        <div class="form-group">
+            <label class="control-label col-sm-3">
+                {{ $item->label }}
+            </label>
+            <div class="col-sm-9">
+                <div class="btn-group" data-toggle="buttons">
+                    @foreach($item->options as $key => $option)
+                        <label class="btn btn-primary {{ isset($data->$itemName) && $data->$itemName == $key ? 'active' : '' }}">
+                            <input type="checkbox"
+                                   name="params[{{ $itemName }}][]"
+                                   value="{{ $key }}"
+                                   autocomplete="off"
+                                   {{ isset($data->$itemName) && $data->$itemName == $key ? 'checked' : '' }}
+                                    > {{ $option }}
+                        </label>
+                        <div class="clearfix"></div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+
 @endforeach

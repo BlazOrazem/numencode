@@ -16,7 +16,7 @@ class PluginRepository
     public function renderPluginForm(Plugin $plugin, $data = null)
     {
         $elements = collect($plugin->params)->map(function ($item) {
-            if ($item->type == 'select') {
+            if (in_array($item->type, ["select", "radio", "checkbox"])) {
                 $item->options = $this->handleSelectOptions($item->options);
             }
 

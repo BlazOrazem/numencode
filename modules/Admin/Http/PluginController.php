@@ -2,7 +2,6 @@
 
 namespace Admin\Http;
 
-//use Illuminate\Support\Facades\App;
 use Numencode\Models\Plugin;
 use Illuminate\Validation\Rule;
 use Admin\Repositories\PluginRepository;
@@ -162,7 +161,7 @@ class PluginController extends BaseController
 
     public function testRender()
     {
-        $plugin = Plugin::find(2);
+        $plugin = Plugin::find(3);
 
         return $this->pluginRepository->renderPluginForm($plugin);
     }
