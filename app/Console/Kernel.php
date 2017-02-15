@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         \Numencode\Console\Commands\Npm::class,
         \Numencode\Console\Commands\TruncateTable::class,
         \Numencode\Console\Commands\Yarn::class,
+        \Spatie\MigrateFresh\Commands\MigrateFresh::class,
     ];
 
     /**
