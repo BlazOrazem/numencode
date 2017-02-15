@@ -48,6 +48,22 @@ class ContentsTableSeeder extends Seeder
                 'sort_order'    => 30,
                 'is_hidden'     => null,
             ],
+            [
+                'id'            => 4,
+                'page_id'       => null,
+                'plugin_id'     => 2,
+                'plugin_params' => [
+                                        'task_id'    => '10',
+                                        'first_name' => 'John',
+                                        'last_name'  => 'Doe',
+                                    ],
+                'title'         => 'Sample standalone content with a plugin',
+                'lead'          => 'Eng lead lorem ipsum.',
+                'body'          => 'EN Lorem ipsum dolor sit amet.',
+                'position'      => 'center',
+                'sort_order'    => 40,
+                'is_hidden'     => null,
+            ],
         ];
 
         foreach ($items as $item) {
@@ -73,6 +89,13 @@ class ContentsTableSeeder extends Seeder
             'title' => 'Nekaj besedila tukaj',
             'lead'  => 'To je vsebina s testnim besedilom.',
             'body'  => 'SL Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in erat at enim egestas mattis sit amet mattis diam. Aliquam eu blandit sem. Fusce eget lobortis metus. Vestibulum laoreet magna at tellus eleifend convallis. Maecenas ac tristique magna. Aliquam tincidunt arcu sed quam rutrum, sit amet placerat tellus efficitur. Morbi semper libero augue, eget sodales nisi volutpat ut. Cras tincidunt libero id mi varius, ac ultrices nibh placerat. Vivamus porttitor dictum nisl a sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper sem augue, vel euismod orci convallis non. Sed nisl mauris, blandit eu finibus sed, tempor eget velit. Proin feugiat elementum felis, non viverra dui ornare at.',
+        ]);
+
+        $translationContent = Content::find(4);
+        $translationContent->saveTranslation('sl', [
+            'title' => 'Testna prosto stoječa vsebina z vtičnikom',
+            'lead'  => 'Slo lead lorem ipsum.',
+            'body'  => 'SL Lorem ipsum dolor sit amet.',
         ]);
     }
 }
