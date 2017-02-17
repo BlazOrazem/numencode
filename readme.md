@@ -45,11 +45,6 @@ Edit .env file and enter your credentials for database, etc.
 $ vi .env
 ```
 
-Set the application key
-```bash
-$ php artisan key:generate
-```
-
 Install the project
 ```bash
 $ php artisan project:install
@@ -123,8 +118,6 @@ Resources for the admin theme (styles and scripts) are stored in:
 ~~~
 
 After the changes in styles and/or scripts run Gulp in directory 'modules/Admin/Resources/assets/vendor':
-
-Development mode (non-minified code):
 ```bash
 $ gulp
 ```

@@ -51,6 +51,9 @@ class ProjectInstall extends Command
             DB::commit();
         }
 
+        $this->comment(PHP_EOL . 'Setting up application key...' . PHP_EOL);
+        $this->call('key:generate');
+
         $this->comment(PHP_EOL . 'Running database migrations...' . PHP_EOL);
         $this->call('migrate');
 
@@ -64,6 +67,6 @@ class ProjectInstall extends Command
 
         $this->comment(PHP_EOL . 'Project is successfully installed.' . PHP_EOL);
 
-        $this->comment(PHP_EOL . 'You can now login to admin dashboard: ' . env('APP_URL') . 'admin' . PHP_EOL);
+        $this->comment(PHP_EOL . 'You can now login to admin dashboard: ' . env('APP_URL') . '/admin' . PHP_EOL);
     }
 }
