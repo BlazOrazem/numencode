@@ -57,6 +57,13 @@ class ProjectInstall extends Command
         $this->comment(PHP_EOL . 'Running database seeders...' . PHP_EOL);
         $this->call('db:seed');
 
-        $this->comment(PHP_EOL . 'Project is successfully installed. You can now login to admin dashboard.' . PHP_EOL);
+        $email = $this->ask('Enter the email address for the admin account:');
+        $password = bcrypt($this->secret('Enter the password for the admin account:'));
+
+        DB::statement("UPDATE `managers` SET `email` = '{$email}', `password` = '{$password}' WHERE `id` = 1");
+
+        $this->comment(PHP_EOL . 'Project is successfully installed.' . PHP_EOL);
+
+        $this->comment(PHP_EOL . 'You can now login to admin dashboard: ' . env('APP_URL') . 'admin' . PHP_EOL);
     }
 }

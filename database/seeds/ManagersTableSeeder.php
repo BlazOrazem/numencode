@@ -24,7 +24,7 @@ class ManagersTableSeeder extends Seeder
             [
                 'id'         => '2',
                 'name'       => 'Manager Developer',
-                'email'      => 'dev@numencode.com',
+                'email'      => 'manager@dev.app',
                 'password'   => '$2y$10$5QYFCfkd5lSOxX20i0w2p.hwSupOP.YcJxRRoL8073FzXQXADTDZy',
                 'phone'      => $faker->phoneNumber,
                 'avatar'     => '/uploads/sample02_600x600.jpg',

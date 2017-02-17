@@ -14,11 +14,13 @@ that displays content or interacts with the user.
 ## Official Documentation
 
 Documentation for the **Numencode** can be found on the [Numencode website](http://www.numencode.com/page/docs/).
+
 **The application is still in development mode.**
 
 ## About the Author
 
 **Numencode** was created by and is maintained by [Blaz Orazem](http://www.orazem.si/).
+
 Follow [@blazorazem](https://twitter.com/blazorazem) on Twitter.
 
 ## Installation
@@ -48,20 +50,24 @@ Set the application key
 $ php artisan key:generate
 ```
 
-Run database migrations
+Install the project
 ```bash
-$ php artisan migrate
+$ php artisan project:install
 ```
 
-Seed the database with records
-```bash
-$ php artisan db:seed
-```
+You will be prompted for the admin account email and password.
 
-## Frontend workflow with Laravel Mix
+## Admin Dashboard
 
-First install [Node.js](https://nodejs.org/) on your system.
-Next install dependencies with [npm](https://www.npmjs.com/):
+The URL for the admin dashboard should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
+
+The credentials are set by the php artisan project:install command.
+
+## Front-end workflow with Laravel Mix
+
+Install [Node.js](https://nodejs.org/) on your system.
+
+Go to your project root folder and install npm dependencies with [npm](https://www.npmjs.com/):
 ```bash
 $ npm install
 ```
@@ -91,14 +97,37 @@ Watch mode (runs in the background and watches files for changes):
 ```bash
 $ npm run watch
 ```
+## Back-end workflow with Laravel Elixir
 
-## Demo credentials
+Install [Node.js](https://nodejs.org/) and [Bower](https://bower.io/#install-bower) on your system.
 
-**Back-office:** should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
+From the project root directory navigate to:
+```bash
+$ cd modules/Admin/Resources/assets/vendor
+```
 
-**Username:** info@numencode.com
+Install npm dependencies with [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/):
+```bash
+$ npm install
+$ yarn install
+```
 
-**Password:** q1w2e3
+Install Bower dependencies:
+```bash
+$ bower install
+```
+
+Resources for the admin theme (styles and scripts) are stored in:
+~~~
+/modules/Admin/Resources/assets/
+~~~
+
+After the changes in styles and/or scripts run Gulp in directory 'modules/Admin/Resources/assets/vendor':
+
+Development mode (non-minified code):
+```bash
+$ gulp
+```
 
 ## License
 
