@@ -53,16 +53,16 @@ elixir(function(mix) {
      | Application Styles and Scripts
      |--------------------------------------------------------------------------
      */
-    //mix.sass([
-    //    '../sass/style.scss'
-    //], publicPath + 'css/app.css');
+    mix.sass([
+        '../sass/style.scss'
+    ], publicPath + 'css/app.css');
 
-    mix.scripts([
-        '../js/http.js',
-        '../js/app.js',
-        '../js/form.js',
-        '../js/init.js'
-    ], publicPath + 'js/app.js');
+    //mix.scripts([
+    //    '../js/http.js',
+    //    '../js/app.js',
+    //    '../js/form.js',
+    //    '../js/init.js'
+    //], publicPath + 'js/app.js');
 
     /*
      |--------------------------------------------------------------------------

@@ -19,6 +19,7 @@ class CreateManagersTable extends Migration
             $table->string('password', 60);
             $table->string('phone')->nullable();
             $table->string('avatar', 255)->nullable();
+            $table->text('tasks');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

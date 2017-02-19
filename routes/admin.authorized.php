@@ -26,6 +26,7 @@ Route::delete('contents/{content}', 'ContentController@destroy')->name('contents
 Route::resource('pages', 'PageController');
 
 // Managers
+Route::post('managers/tasks', 'ManagerController@saveTasks')->name('managers.tasks.save');
 Route::post('managers', 'ManagerController@store')->name('managers.store')->middleware('permission:manage_managers');
 Route::get('managers', 'ManagerController@index')->name('managers.index')->middleware('permission:view_managers');
 Route::get('managers/create', 'ManagerController@create')->name('managers.create')->middleware('permission:manage_managers');

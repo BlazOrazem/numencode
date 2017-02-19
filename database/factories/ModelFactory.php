@@ -13,6 +13,7 @@ $factory->define(Numencode\Models\Manager::class, function (Faker\Generator $fak
         'password'       => bcrypt(str_random(10)),
         'phone'          => $faker->phoneNumber,
         'avatar'         => '/uploads/sample0' . rand(1, 3) . '_600x600.jpg',
+        'tasks'          => null,
         'remember_token' => str_random(10),
     ];
 });

@@ -177,4 +177,12 @@ class ManagerController extends BaseController
 
         return $this->deleteThe($manager, 'managers.deleted');
     }
+
+    /**
+     * Save managers tasks.
+     */
+    public function saveTasks()
+    {
+        $this->admin()->update(['tasks' => request()->all()]);
+    }
 }

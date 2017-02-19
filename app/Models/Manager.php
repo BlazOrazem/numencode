@@ -16,7 +16,7 @@ class Manager extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'phone', 'avatar'];
+    protected $fillable = ['name', 'email', 'password', 'phone', 'avatar', 'tasks'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -31,4 +31,11 @@ class Manager extends Authenticatable
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Cast attributes to other types.
+     *
+     * @var array
+     */
+    protected $casts = ['tasks' => 'object'];
 }

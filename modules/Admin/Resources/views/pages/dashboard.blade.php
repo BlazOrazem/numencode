@@ -101,131 +101,65 @@
         </div>
     </div>
 
+
     <div class="row">
         <div class="col-lg-12">
-            <div class="content-box task-list">
-                <div class="head head-with-btns info-bg clearfix">
-                    <h5 class="content-title pull-left">Task List</h5>
-                    <div class="functions-btns pull-right">
-                        <form action="#" id="add_todo" class="form-inline">
-                            <div class="form-group">
-                                <input type="text" class="form-control name-of-todo" placeholder="New task">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-base">Add task</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="panel zero-m">
-                        <div class="panel-body todo p-0">
-                            <ul class="list-group zero-m">
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Searches
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Advertising
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Links
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Advertising
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Links
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Social media
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Searches
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Links
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Links
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="checkbox checkbox-base">
-                                        <label>
-                                            <input type="checkbox">
-                                            <i></i>
-                                            Advertising
-                                        </label>
-                                    </div>
-                                    <a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a>
-                                </li>
-                            </ul>
+            <section id="todo-app">
+                <div class="content-box top-box">
+                    <div class="head head-with-btns clearfix">
+                        <h5 class="content-title text-color pull-left">My Tasks</h5>
+                        <div class="functions-btns pull-right">
+                            <button type="button" @click.prevent="filterAll" :class="{ btn: true, 'btn-info': visibility != 'all', 'btn-base': visibility == 'all' }">
+                                All
+                            </button>
+                            <button type="button" @click.prevent="filterActive" :class="{ btn: true, 'btn-info': visibility != 'active', 'btn-base': visibility == 'active' }">
+                                Active
+                            </button>
+                            <button type="button" @click.prevent="filterCompleted" :class="{ btn: true, 'btn-info': visibility != 'completed', 'btn-base': visibility == 'completed' }">
+                                Completed
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="content-box">
+                    <header class="header">
+                        <input class="new-todo"
+                               autofocus autocomplete="off"
+                               placeholder="What needs to be done?"
+                               v-model="newTodo"
+                               @keyup.enter="addTodo">
+                    </header>
+                    <section class="main" v-show="todos.length" v-cloak>
+                        <input class="toggle-all" type="checkbox" v-model="allDone">
+                        <ul class="todo-list">
+                            <li v-for="todo in filteredTodos"
+                                class="todo"
+                                :key="todo.id"
+                                :class="{ completed: todo.completed, editing: todo == editedTodo }">
+                                <div class="view">
+                                    <input class="toggle" type="checkbox" v-model="todo.completed">
+                                    <label @dblclick="editTodo(todo)">@{{ todo.title }}</label>
+                                    <button class="destroy" @click="removeTodo(todo)"></button>
+                                </div>
+                                <input class="edit" type="text"
+                                       v-model="todo.title"
+                                       v-todo-focus="todo == editedTodo"
+                                @blur="doneEdit(todo)"
+                                @keyup.enter="doneEdit(todo)"
+                                @keyup.esc="cancelEdit(todo)">
+                            </li>
+                        </ul>
+                    </section>
+                    <footer class="footer" v-show="todos.length" v-cloak>
+                        <span class="todo-count">
+                          <strong>@{{ remaining }}</strong> @{{ remaining | pluralize }} left
+                        </span>
+                        <button class="btn btn-info clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+                            Clear completed
+                        </button>
+                    </footer>
+                </div>
+            </section>
         </div>
     </div>
 
@@ -410,54 +344,125 @@
                 scaleLength: 0
             });
         });
+    </script>
 
-        // Task list
-        $(".todo ul").sortable();
+    <script>
+        var todoStorage = {
+            save: function (todos) {
+                http.post('/admin/managers/tasks', todos);
+            }
+        };
 
-        $(document).on('mouseover', '.list-group .checkbox', function () {
-            $('.list-group input:checkbox').each(function () {
-                $(this).on("change", function () {
-                    if ($(this).is(":checked")) {
-                        $(this).closest(".list-group-item").addClass("checked-todo");
-                    } else {
-                        $(this).closest(".list-group-item").removeClass("checked-todo");
+        var filters = {
+            all: function (todos) {
+                return todos;
+            },
+            active: function (todos) {
+                return todos.filter(function (todo) {
+                    return !todo.completed;
+                })
+            },
+            completed: function (todos) {
+                return todos.filter(function (todo) {
+                    return todo.completed;
+                })
+            }
+        };
+
+        var app = new Vue({
+            data: {
+                todos: vars.manager_tasks || [],
+                newTodo: '',
+                editedTodo: null,
+                visibility: 'all'
+            },
+            watch: {
+                todos: {
+                    handler: function (todos) {
+                        todoStorage.save(todos);
+                    },
+                    deep: true
+                }
+            },
+            computed: {
+                filteredTodos: function () {
+                    return filters[this.visibility](this.todos);
+                },
+                remaining: function () {
+                    return filters.active(this.todos).length;
+                },
+                allDone: {
+                    get: function () {
+                        return this.remaining === 0;
+                    },
+                    set: function (value) {
+                        this.todos.forEach(function (todo) {
+                            todo.completed = value;
+                        })
                     }
-                });
-            });
-        });
-
-        $("#add_todo").on('submit', function (e) {
-            e.preventDefault();
-
-            var $toDo = $(this).find('.name-of-todo'), toDo_name = $toDo.val();
-
-            if (toDo_name.length >= 3) {
-
-                var newid = "new" + "" + Math.random().toString(36).substring(11);
-                // Create Event Entry
-                $(".todo ul").append(
-                    '<li id="' + 'item-' + newid + '" class="list-group-item"><div class="checkbox checkbox-info"><label><input type="checkbox"><i></i>' + toDo_name + '</label></div><a class="trash pull-right"><span class="zmdi zmdi-close f-s-16"></span></a></li>'
-                );
-
-                var eventObject = {
-                    title: $.trim($("#" + newid).text()),
-                    className: $("#" + newid).attr("data-bg"), // use the element's text as the event title
-                    stick: true
-                };
-
-                // store the Event Object in the DOM element so we can get to it later
-                $("#" + newid).data('eventObject', eventObject);
-
-                // Reset input
-                $toDo.val('').focus();
-            } else {
-                $toDo.focus();
+                }
+            },
+            filters: {
+                pluralize: function (n) {
+                    return n === 1 ? 'item' : 'items';
+                }
+            },
+            methods: {
+                addTodo: function () {
+                    var value = this.newTodo && this.newTodo.trim();
+                    if (!value) {
+                        return;
+                    }
+                    this.todos.push({
+                        id: todoStorage.uid++,
+                        title: value,
+                        completed: false
+                    })
+                    this.newTodo = '';
+                },
+                removeTodo: function (todo) {
+                    this.todos.splice(this.todos.indexOf(todo), 1);
+                },
+                editTodo: function (todo) {
+                    this.beforeEditCache = todo.title;
+                    this.editedTodo = todo;
+                },
+                doneEdit: function (todo) {
+                    if (!this.editedTodo) {
+                        return;
+                    }
+                    this.editedTodo = null
+                    todo.title = todo.title.trim()
+                    if (!todo.title) {
+                        this.removeTodo(todo);
+                    }
+                },
+                cancelEdit: function (todo) {
+                    this.editedTodo = null;
+                    todo.title = this.beforeEditCache;
+                },
+                filterAll: function () {
+                    this.visibility = 'all';
+                },
+                filterActive: function () {
+                    this.visibility = 'active';
+                },
+                filterCompleted: function () {
+                    this.visibility = 'completed';
+                },
+                removeCompleted: function () {
+                    this.todos = filters.active(this.todos);
+                }
+            },
+            directives: {
+                'todo-focus': function (el, value) {
+                    if (value) {
+                        el.focus();
+                    }
+                }
             }
         });
 
-        $(document).on('click', '.trash', function (e) {
-            var clearedCompItem = $(this).closest(".list-group-item").remove();
-            e.preventDefault();
-        });
+        app.$mount('#todo-app');
     </script>
 @endsection
