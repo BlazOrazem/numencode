@@ -87,7 +87,7 @@ class LoginController extends BaseController
      * @return string
      */
     protected function getSeason() {
-        $seasonDates = ['/12/21'=>'winter','/09/21'=>'autumn','/06/21'=>'summer','/03/21'=>'spring','/01/01'=>'winter'];
+        $seasonDates = ['/12/20'=>'winter','/09/20'=>'autumn','/06/20'=>'summer','/03/20'=>'spring','/01/01'=>'winter'];
 
         foreach ($seasonDates AS $key => $value) {
             if (strtotime("now") >= strtotime(date("Y") . $key)) {
