@@ -100,7 +100,7 @@ class DashboardController extends BaseController
         $this->js(['yearPageViews' => array_map(function ($item) {
             return $item['pageViews'];
         }, $yearAnalyticsData)]);
-    
+
         $this->js(['manager_tasks' => $this->admin()->tasks]);
 
         return view('admin::pages.dashboard', [
