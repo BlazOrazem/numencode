@@ -5,7 +5,6 @@ namespace Admin\Http;
 use Auth;
 use Numencode\Http\Controller;
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class BaseController extends Controller
 {
@@ -17,18 +16,6 @@ class BaseController extends Controller
     public function admin()
     {
         return Auth::guard('admin')->user();
-    }
-
-    /**
-     * Pass data to Javascript
-     *
-     * @param string $data Data
-     *
-     * @return void
-     */
-    protected function js($data)
-    {
-        JavaScriptFacade::put($data);
     }
 
     /**

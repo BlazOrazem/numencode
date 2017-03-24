@@ -42,29 +42,29 @@
         </div>
     @endforeach
 
-    @section('scripts')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Nestable/2012-10-15/jquery.nestable.min.js"></script>
-        <script>
-            (function ($) {
-                $.fn.NestableList = function () {
-                    if (! this.length) return;
-                    if (typeof $.fn.nestable != 'undefined') {
-                        this.nestable({
-                            rootClass: 'nestable',
-                            listNodeName: 'ul',
-                            listClass: 'nestable-list',
-                            itemClass: 'nestable-item',
-                            dragClass: 'nestable-drag',
-                            handleClass: 'nestable-handle-off',
-                            collapsedClass: 'nestable-collapsed',
-                            placeClass: 'nestable-placeholder',
-                            emptyClass: 'nestable-empty'
-                        });
-                    }
-                };
-                $('.nestable').NestableList();
-            }(jQuery));
-        </script>
-    @endsection
+@endsection
 
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Nestable/2012-10-15/jquery.nestable.min.js"></script>
+    <script>
+        (function ($) {
+            $.fn.NestableList = function () {
+                if (! this.length) return;
+                if (typeof $.fn.nestable != 'undefined') {
+                    this.nestable({
+                        rootClass: 'nestable',
+                        listNodeName: 'ul',
+                        listClass: 'nestable-list',
+                        itemClass: 'nestable-item',
+                        dragClass: 'nestable-drag',
+                        handleClass: 'nestable-handle-off',
+                        collapsedClass: 'nestable-collapsed',
+                        placeClass: 'nestable-placeholder',
+                        emptyClass: 'nestable-empty'
+                    });
+                }
+            };
+            $('.nestable').NestableList();
+        }(jQuery));
+    </script>
 @endsection

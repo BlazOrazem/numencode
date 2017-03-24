@@ -34,9 +34,21 @@ class ContentController extends BaseController
     {
         $contents = Content::whereNull('page_id')->get();
 
-        $this->js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
-
         return view('admin::contents.index', compact('contents'));
+    }
+
+    /**
+     * Show the always displayed content create form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        $contents = Content::whereNull('page_id')->get();
+
+        js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
+
+        return view('admin::contents.create', compact('contents'));
     }
 
     /**
@@ -83,11 +95,11 @@ class ContentController extends BaseController
         $plugin = Plugin::find($content->plugin_id);
 
         if ($content->plugin_id) {
-            $this->js(['plugin_id' => $content->plugin_id]);
+            js(['plugin_id' => $content->plugin_id]);
             $pluginForm = $this->pluginRepository->renderPluginForm($plugin, $content->plugin_params);
         }
 
-        $this->js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
+        js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
         return view('admin::contents.edit', [
             'content' => $content,

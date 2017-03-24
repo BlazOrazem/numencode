@@ -93,7 +93,7 @@ class PluginController extends BaseController
             }
         }
 
-        $this->js(['plugin_params' => $params]);
+        js(['plugin_params' => $params]);
 
         return view('admin::plugins.edit', compact('plugin'));
     }

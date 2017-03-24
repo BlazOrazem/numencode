@@ -1,8 +1,22 @@
 <?php
 
+if (! function_exists('js')) {
+    /**
+     * Pass data to Javascript.
+     *
+     * @param mixed $data Data to be passed to JavaScript.
+     *
+     * @return array
+     */
+    function js($data)
+    {
+        Laracasts\Utilities\JavaScript\JavaScriptFacade::put($data);
+    }
+}
+
 if (! function_exists('get_route')) {
     /**
-     * Creates an URL to route alias
+     * Creates an URL to route alias.
      *
      * @param string      $alias  Uri alias
      * @param string|null $locale Set locale or fallback to default
