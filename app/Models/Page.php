@@ -12,18 +12,18 @@ class Page extends Model
     use Translatable, Sortable, HiddenFilter;
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'pages';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['parent_id', 'layout', 'title', 'lead', 'body', 'sort_order', 'is_hidden'];
+
+    /**
+     * Eager load selected relations.
+     *
+     * @var array
+     */
+    protected $with = ['url'];
 
     /**
      * Page belongs to url.
@@ -43,6 +43,26 @@ class Page extends Model
     public function contents()
     {
         return $this->hasMany(Content::class);
+    }
+
+    /**
+     * Page can have many sub pages.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany(static::class, 'parent_id');
+    }
+
+    /**
+     * Return URL hyperlink.
+     *
+     * @return string
+     */
+    public function getLinkAttribute()
+    {
+        return $this->url ? $this->url->uri : '#';
     }
 
     /**

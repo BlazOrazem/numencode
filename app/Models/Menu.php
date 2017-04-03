@@ -10,13 +10,6 @@ class Menu extends Model
     use Sortable;
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'menus';
-
-    /**
      * Disable timestamps.
      *
      * @var bool
@@ -31,39 +24,12 @@ class Menu extends Model
     protected $fillable = ['code', 'title', 'sort_order'];
 
     /**
-     * Return all menus with page tree structure.
+     * Menu has many pages.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public static function getAllWithTree()
+    public function items()
     {
-        $menus = Menu::all();
-
-        foreach ($menus as &$menu) {
-            $menu->tree = static::buildTreeMenu($menu->code);
-        }
-
-        return $menus;
-    }
-
-    /**
-     * Create page tree structure.
-     *
-     * @param string $code Menu type code
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public static function buildTreeMenu($code)
-    {
-        $items = Page::with('url')->where('menu', $code)->get()->groupBy('parent_id');
-
-        if ($items->count()) {
-            $items['root'] = $items[''];
-            unset($items['']);
-        } else {
-            $items = collect(['root' => collect()]);
-        }
-
-        return $items;
+        return $this->hasMany(Page::class, 'menu', 'code');
     }
 }

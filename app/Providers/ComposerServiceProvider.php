@@ -3,6 +3,7 @@
 namespace Numencode\Providers;
 
 use View;
+use Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -17,6 +18,10 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('admin::*', 'Admin\Http\ViewComposers\PageComposer');
 
         View::composer('theme::*', 'Cms\Http\ViewComposers\PageComposer');
+
+        Blade::directive('menu', function ($expression) {
+            return '<?php echo (new \Numencode\Utils\MenuBuilder(' . $expression . ')); ?>';
+        });
     }
 
     /**

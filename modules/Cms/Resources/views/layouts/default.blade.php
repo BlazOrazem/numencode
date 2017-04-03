@@ -54,28 +54,13 @@
                     <img src="{{ $user->avatar }}" height="40" class="navbar-right user-avatar-small">
                 @endif
             @endif
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
 
 <hr>
 
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false" aria-controls="main-menu">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Main menu</a>
-        </div>
-        <div id="main-menu" class="collapse navbar-collapse">
-            @include ('theme::menus.main_list', ['collection' => $mainMenu['root'], 'class' => 'nav navbar-nav'])
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+@menu('main')
 
 <div class="container">
     @yield('content')
@@ -87,22 +72,7 @@
 
 <hr>
 
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#corpo-menu" aria-expanded="false" aria-controls="corpo-menu">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Corpo menu</a>
-        </div>
-        <div id="corpo-menu" class="collapse navbar-collapse">
-            @include ('theme::menus.corpo_list', ['collection' => $corpoMenu['root'], 'class' => 'nav navbar-nav'])
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+@menu('corpo')
 
 <script src="{{ mix('/themes/default/js/manifest.js') }}"></script>
 <script src="{{ mix('/themes/default/js/vendor.js') }}"></script>
