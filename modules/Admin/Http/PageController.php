@@ -18,6 +18,20 @@ class PageController extends BaseController
     }
 
     /**
+     * Show the form for creating a new page.
+     *
+     * @param Menu $menu Menu
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create(Menu $menu)
+    {
+        $menus = Menu::all();
+
+        return view('admin::pages.create', compact('menu', 'menus'));
+    }
+
+    /**
      * Store a newly created menu.
      *
      * @return \Illuminate\Http\RedirectResponse

@@ -23,7 +23,10 @@ Route::match(['PUT', 'PATCH'], 'contents/{content}', 'ContentController@update')
 Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy')->middleware('permission:manage_contents');
 
 // Pages
-Route::resource('pages', 'PageController');
+//Route::resource('pages', 'PageController');
+Route::post('pages', 'PageController@store')->name('pages.store');
+Route::get('pages', 'PageController@index')->name('pages.index');
+Route::get('pages/create/{menu?}', 'PageController@create')->name('pages.create');
 
 // Managers
 Route::post('managers/tasks', 'ManagerController@saveTasks')->name('managers.tasks.save');

@@ -24,7 +24,7 @@
                             <div class="nestable-legend">
                                 <ul class="pull-left">
                                     <li>@include ('admin::components.button.new', ['action' => route('home'), 'icon' => 'zmdi-file-plus'])</li>
-                                    <li>Add new page</li>
+                                    <li><a href="{{ route('pages.create', compact('menu')) }}">Add new page</a></li>
                                 </ul>
                                 <ul class="pull-right hidden-xs">
                                     <li>Active</li>

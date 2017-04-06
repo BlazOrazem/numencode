@@ -1,7 +1,8 @@
 @php ($inlineForm = isset($inline))
 @php ($fieldId = camel_case($field) . '-' . str_random(10))
+@php ($required = isset($required) ? true : false)
 
-<div class="form-group{{ $errors->has($field) ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has($field) ? ' has-error' : '' }}{{ $required ? ' has-icon' : '' }}">
 
     @if (isset($label))
         <label for="{{ $fieldId }}" class="control-label @if (!$inlineForm)col-sm-3 @endif">
@@ -26,6 +27,7 @@
             <option value="{{ $selectItem->id }}">{{ $selectItem->title }}</option>
             @endforeach
         </select>
+        @if ($required)<span class="zmdi zmdi-star-outline f-s-18 form-icon"></span> @endif
 
         <span class="help-block">
             {!! isset($help) ? $help . '</br>' : '' !!}
