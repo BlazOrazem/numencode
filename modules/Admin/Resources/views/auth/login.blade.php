@@ -48,7 +48,7 @@
                     <h4 class="text-center">numencode<sup>&trade;</sup></h4>
                     <form method="POST" action="{{ route('admin.login.post') }}" role="form">
                         {{ csrf_field() }}
-                        @if (isset($ref))
+                        @if(isset($ref))
                             <input type="hidden" name="ref" value="{{ $ref }}">
                         @endif
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">

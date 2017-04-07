@@ -24,14 +24,14 @@
                         <th>@lang('admin::managers.email')</th>
                         <th>@lang('admin::managers.phone')</th>
                         <th>@lang('admin::tables.created')</th>
-                        @if ($admin->can('manage_managers'))
+                        @if($admin->can('manage_managers'))
                             <th class="no-sort text-center">@lang('admin::tables.edit')</th>
                             <th class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($managers as $manager)
+                    @foreach($managers as $manager)
                         <tr>
                             <td class="text-center">
                                 <img src="{{ $manager->avatar }}" width="50" height="50" class="img-circle">
@@ -40,15 +40,15 @@
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->phone }}</td>
                             <td>{{ $manager->created_at->format(config('numencode.dates.date')) }}</td>
-                            @if ($admin->can('manage_managers'))
+                            @if($admin->can('manage_managers'))
                                 <td class="text-center">
-                                    @include ('admin::components.button.edit', [
+                                    @include('admin::components.button.edit', [
                                         'action' => route('managers.edit', compact('manager')),
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @if ($admin->id != $manager->id)
-                                        @include ('admin::components.button.delete', [
+                                    @if($admin->id != $manager->id)
+                                        @include('admin::components.button.delete', [
                                             'action' => route('managers.destroy', compact('manager'))
                                         ])
                                     @endif

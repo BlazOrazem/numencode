@@ -21,26 +21,26 @@
                     <form method="POST" action="{{ route('tasks.update', [$task]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::tasks.name'),
                             'field' => 'title',
                             'placeholder' => trans('admin::tasks.placeholder.title'),
                             'entity' => $task,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::tasks.body'),
                             'field' => 'body',
                             'placeholder' => trans('admin::tasks.placeholder.body'),
                             'entity' => $task,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => trans('admin::tasks.completed'),
                             'field' => 'completed',
-                            'isChecked' => $task->completed,
+                            'checked' => $task->completed,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::tasks.update')
                         ])
                     </form>

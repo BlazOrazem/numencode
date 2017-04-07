@@ -28,7 +28,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($roles as $item)
+                    @foreach($roles as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
@@ -38,14 +38,14 @@
                                 </span>
                             </td>
                             <td class="text-center text-success">
-                                @if ($item->is_admin)
+                                @if($item->is_admin)
                                     <button type="submit" class="btn btn-success">
                                         <i class="zmdi zmdi-shield-check"></i>
                                     </button>
                                 @endif
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('roles.show', compact('item')),
                                     'icon' => 'zmdi-collection-text'
                                 ])
@@ -75,14 +75,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($permissions as $item)
+                    @foreach($permissions as $item)
                         <tr>
                             <td>{{ $item->label }}</td>
                             <td class="text-right">
                                 <label>
                                     <input class="toggle toggle-danger"
                                            type="checkbox"
-                                            @if ($admin->can('assign_permissions'))
+                                            @if($admin->can('assign_permissions'))
                                                 name="toggle"
                                                 data-toggle="{{ route('roles.assign.permissions', [$role->id, $item->id]) }}"
                                             @else

@@ -19,27 +19,27 @@
                 <div class="content">
                     <form method="POST" action="{{ route('permissions.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::permissions.placeholder.name'),
                             'class' => 'snake-slug',
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.label'),
                             'field' => 'label',
                             'placeholder' => trans('admin::permissions.placeholder.label'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $permissions->max('sort_order') + 10
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => 'Is admin?',
                             'field' => 'is_admin',
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::permissions.create')
                         ])
                     </form>
@@ -69,7 +69,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($permissions as $item)
+                    @foreach($permissions as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
@@ -79,12 +79,12 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('permissions.edit', compact('item'))
                                 ])
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.delete', [
+                                @include('admin::components.button.delete', [
                                     'action' => route('permissions.destroy', compact('item'))
                                 ])
                             </td>

@@ -118,7 +118,7 @@
 
     <div class="side-panel">
         <ul class="nav nav-tabs nav-justified m-0">
-            @foreach ($menus as $menu)
+            @foreach($menus as $menu)
                 <li class="{{ $loop->first ? 'active' : '' }}">
                     <a href="#tab-side-{{ $menu->id }}" data-toggle="tab">
                         <i class="zmdi zmdi-menu"></i>
@@ -128,12 +128,12 @@
             @endforeach
         </ul>
         <div class="tab-content">
-            @foreach ($menus as $menu)
+            @foreach($menus as $menu)
                 <div class="tab-pane fade {{ $loop->first ? 'in active' : '' }}" id="tab-side-{{ $menu->id }}">
                     <div class="side-title">{{ $menu->title }}</div>
                     <div class="p-15">
                         <div class="jstree">
-                            @include ('admin::menus.list', ['collection' => $menu->tree['root'], 'menu' => $menu->tree])
+                            @include('admin::menus.list', ['collection' => $menu->tree['root'], 'menu' => $menu->tree])
                         </div>
                     </div>
                 </div>

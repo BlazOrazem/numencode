@@ -20,35 +20,35 @@
                 <div class="content">
                     <form method="POST" action="{{ route('pages.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        @include ('admin::components.form.select', [
+                        @include('admin::components.form.select', [
                             'label' => trans('admin::pages.menu'),
                             'field' => 'menu',
                             'placeholder' => trans('admin::pages.placeholder.menu'),
                             'data' => $menus,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::pages.name'),
                             'field' => 'title',
                             'placeholder' => trans('admin::pages.placeholder.title'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::pages.lead'),
                             'field' => 'lead',
                             'placeholder' => trans('admin::pages.placeholder.lead'),
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::pages.body'),
                             'field' => 'body',
                             'placeholder' => trans('admin::pages.placeholder.body'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => trans('admin::pages.completed'),
                             'field' => 'completed',
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::pages.create')
                         ])
                         <div class="form-group">

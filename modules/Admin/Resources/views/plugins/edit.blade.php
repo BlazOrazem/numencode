@@ -20,20 +20,20 @@
                     <form method="POST" action="{{ route('plugins.update', [$plugin]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
                             'placeholder' => trans('admin::plugins.placeholder.title'),
                             'entity' => $plugin,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.description'),
                             'field' => 'description',
                             'placeholder' => trans('admin::plugins.placeholder.description'),
                             'entity' => $plugin,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.action'),
                             'field' => 'action',
                             'placeholder' => trans('admin::plugins.placeholder.action'),
@@ -82,16 +82,16 @@
                             </div>
                         </div>
 
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $plugin->sort_order
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => 'Is hidden?',
                             'field' => 'is_hidden',
                             'type' => 'warning',
-                            'isChecked' => $plugin->is_hidden,
+                            'checked' => $plugin->is_hidden,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::plugins.update')
                         ])
                     </form>

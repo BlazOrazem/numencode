@@ -23,14 +23,14 @@
                         <th>@lang('admin::tables.description')</th>
                         <th>@lang('admin::tables.action')</th>
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
-                        @if ($admin->can('manage_plugins'))
+                        @if($admin->can('manage_plugins'))
                             <th width="60" class="no-sort text-center">@lang('admin::tables.edit')</th>
                             <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($plugins as $plugin)
+                    @foreach($plugins as $plugin)
                         <tr>
                             <td>{{ $plugin->title }}</td>
                             <td>{{ $plugin->description }}</td>
@@ -40,14 +40,14 @@
                                     {{ $plugin->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('manage_plugins'))
+                            @if($admin->can('manage_plugins'))
                                 <td class="text-center">
-                                    @include ('admin::components.button.edit', [
+                                    @include('admin::components.button.edit', [
                                         'action' => route('plugins.edit', compact('plugin')),
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @include ('admin::components.button.delete', [
+                                    @include('admin::components.button.delete', [
                                         'action' => route('plugins.destroy', compact('plugin'))
                                     ])
                                 </td>
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    @if ($admin->can('manage_plugins'))
+    @if($admin->can('manage_plugins'))
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
@@ -74,18 +74,18 @@
                     <div id="plugin-component" class="content">
                         <form method="POST" action="{{ route('plugins.store') }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
-                            @include ('admin::components.form.text', [
+                            @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.title'),
                                 'field' => 'title',
                                 'placeholder' => trans('admin::plugins.placeholder.title'),
                                 'required' => true,
                             ])
-                            @include ('admin::components.form.text', [
+                            @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.description'),
                                 'field' => 'description',
                                 'placeholder' => trans('admin::plugins.placeholder.description'),
                             ])
-                            @include ('admin::components.form.text', [
+                            @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.action'),
                                 'field' => 'action',
                                 'placeholder' => trans('admin::plugins.placeholder.action'),
@@ -134,14 +134,14 @@
                                 </div>
                             </div>
 
-                            @include ('admin::components.form.order', [
+                            @include('admin::components.form.order', [
                                 'sortOrder' => $plugins->max('sort_order') + 10
                             ])
-                            @include ('admin::components.form.checkbox', [
+                            @include('admin::components.form.checkbox', [
                                 'label' => 'Is hidden?',
                                 'field' => 'is_hidden',
                             ])
-                            @include ('admin::components.form.submit', [
+                            @include('admin::components.form.submit', [
                                 'button' => trans('admin::plugins.create')
                             ])
                         </form>

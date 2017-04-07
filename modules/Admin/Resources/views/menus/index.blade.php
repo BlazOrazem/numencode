@@ -27,7 +27,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($menus as $menu)
+                    @foreach($menus as $menu)
                         <tr>
                             <td>{{ $menu->code }}</td>
                             <td>{{ $menu->title }}</td>
@@ -37,12 +37,12 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('menus.edit', compact('menu')),
                                 ])
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.delete', [
+                                @include('admin::components.button.delete', [
                                     'action' => route('menus.destroy', compact('menu'))
                                 ])
                             </td>
@@ -67,23 +67,23 @@
                 <div class="content">
                     <form method="POST" action="{{ route('menus.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.code'),
                             'field' => 'code',
                             'placeholder' => trans('admin::menus.placeholder.code'),
                             'class' => 'snake-slug',
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
                             'placeholder' => trans('admin::menus.placeholder.title'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $menus->max('sort_order') + 10,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::menus.create')
                         ])
                     </form>

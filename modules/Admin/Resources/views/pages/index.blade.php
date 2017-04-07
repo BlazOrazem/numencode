@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @foreach ($menus as $menu)
+    @foreach($menus as $menu)
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
@@ -23,7 +23,7 @@
                         <div class="nestable page-structure">
                             <div class="nestable-legend">
                                 <ul class="pull-left">
-                                    <li>@include ('admin::components.button.new', ['action' => route('home'), 'icon' => 'zmdi-file-plus'])</li>
+                                    <li>@include('admin::components.button.new', ['action' => route('home'), 'icon' => 'zmdi-file-plus'])</li>
                                     <li><a href="{{ route('pages.create', compact('menu')) }}">Add new page</a></li>
                                 </ul>
                                 <ul class="pull-right hidden-xs">
@@ -33,7 +33,7 @@
                                     <li>Delete</li>
                                 </ul>
                             </div>
-                            @include ('admin::pages.structure-list', ['collection' => $menu->tree['root'], 'menu' => $menu->tree, 'level' => 1])
+                            @include('admin::pages.structure-list', ['collection' => $menu->tree['root'], 'menu' => $menu->tree, 'level' => 1])
                         </div>
 
                     </div>

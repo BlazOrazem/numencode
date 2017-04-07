@@ -23,17 +23,17 @@
                         <th>@lang('admin::tables.label')</th>
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
                         <th width="60" class="text-center">Admin?</th>
-                        @if ($admin->can('view_roles') && !$admin->can('manage_roles'))
+                        @if($admin->can('view_roles') && !$admin->can('manage_roles'))
                             <th width="60" class="text-center">Permissions</th>
                         @endif
-                        @if ($admin->can('manage_roles'))
+                        @if($admin->can('manage_roles'))
                             <th width="60" class="no-sort text-center">@lang('admin::tables.manage')</th>
                             <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($roles as $item)
+                    @foreach($roles as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
@@ -43,30 +43,30 @@
                                 </span>
                             </td>
                             <td class="text-center text-success">
-                                @if ($item->is_admin)
+                                @if($item->is_admin)
                                     <button type="submit" class="btn btn-success">
                                         <i class="zmdi zmdi-shield-check"></i>
                                     </button>
                                 @endif
                             </td>
-                            @if ($admin->can('view_roles') && !$admin->can('manage_roles'))
+                            @if($admin->can('view_roles') && !$admin->can('manage_roles'))
                                 <td class="text-center">
-                                    @include ('admin::components.button.edit', [
+                                    @include('admin::components.button.edit', [
                                         'action' => route('roles.show', compact('item')),
                                         'icon' => 'zmdi-collection-text'
                                     ])
                                 </td>
                             @endif
-                            @if ($admin->can('manage_roles'))
+                            @if($admin->can('manage_roles'))
                                 <td class="text-center">
-                                    @include ('admin::components.button.edit', [
+                                    @include('admin::components.button.edit', [
                                         'action' => route('roles.edit', compact('item')),
                                         'icon' => 'zmdi-collection-text'
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @if ($item->isDeletable())
-                                        @include ('admin::components.button.delete', [
+                                    @if($item->isDeletable())
+                                        @include('admin::components.button.delete', [
                                             'action' => route('roles.destroy', compact('item'))
                                         ])
                                     @endif
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    @if ($admin->can('manage_roles'))
+    @if($admin->can('manage_roles'))
         <div class="row">
             <div class="col-lg-12">
                 <div class="content-box">
@@ -94,22 +94,22 @@
                     <div class="content">
                         <form method="POST" action="{{ route('roles.store') }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
-                            @include ('admin::components.form.text', [
+                            @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.name'),
                                 'field' => 'name',
                                 'placeholder' => trans('admin::roles.placeholder.name'),
                                 'required' => true,
                             ])
-                            @include ('admin::components.form.text', [
+                            @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.label'),
                                 'field' => 'label',
                                 'placeholder' => trans('admin::roles.placeholder.label'),
                                 'required' => true,
                             ])
-                            @include ('admin::components.form.order', [
+                            @include('admin::components.form.order', [
                                 'sortOrder' => $roles->max('sort_order') + 10
                             ])
-                            @include ('admin::components.form.submit', [
+                            @include('admin::components.form.submit', [
                                 'button' => trans('admin::roles.create')
                             ])
                         </form>

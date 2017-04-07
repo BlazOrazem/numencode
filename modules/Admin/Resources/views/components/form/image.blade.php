@@ -1,15 +1,17 @@
-@php ($inlineForm = isset($inline))
-@php ($fieldId = camel_case($field) . '-' . str_random(10))
+@php($inline = isset($inline))
+@php($fieldId = camel_case($field) . '-' . str_random(10))
 
 <div class="form-group{{ $errors->has($field) ? ' has-error' : '' }}">
 
-    @if (isset($label))
-        <label for="{{ $fieldId }}" class="control-label @if (!$inlineForm)col-sm-3 @endif">
+    @if(isset($label))
+        <label for="{{ $fieldId }}" class="control-label{{ !$inline ? ' col-sm-3' : '' }}">
             {{ $label }}
         </label>
     @endif
 
-    @if (!$inlineForm)<div class="col-sm-9"> @endif
+    @if(!$inline)
+        <div class="col-sm-9">
+    @endif
 
         <input type="file"
                name="{{ $field }}"
@@ -26,6 +28,8 @@
             <img src="{{ $entity->$field }}" class="img-responsive img-thumbnail" width="250">
         @endif
 
-    @if (!$inlineForm)</div> @endif
+    @if(!$inline)
+        </div>
+    @endif
 
 </div>

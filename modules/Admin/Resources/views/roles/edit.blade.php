@@ -17,11 +17,10 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('roles.update', [$role]) }}"
-                          class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('roles.update', [$role]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::roles.placeholder.name'),
@@ -29,22 +28,22 @@
                             'class' => 'snake-slug',
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.label'),
                             'field' => 'label',
                             'placeholder' => trans('admin::roles.placeholder.label'),
                             'entity' => $role,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $role->sort_order,
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => 'Admin role?',
                             'field' => 'is_admin',
-                            'isChecked' => $role->is_admin,
+                            'checked' => $role->is_admin,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::roles.update')
                         ])
                     </form>
@@ -72,7 +71,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($permissions as $item)
+                    @foreach($permissions as $item)
                         <tr>
                             <td>{{ $item->label }}</td>
                             <td>{{ $item->name }}</td>
@@ -95,7 +94,7 @@
         </div>
     </div>
 
-    @if ($role->is_admin)
+    @if($role->is_admin)
         <div class="row">
             <div class="col-lg-12">
                 <div class="data-table data-base content-box">
@@ -116,7 +115,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($role->managers as $item)
+                        @foreach($role->managers as $item)
                             <tr>
                                 <td>
                                     <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
@@ -133,7 +132,7 @@
         </div>
     @endif
 
-    @if (!$role->is_admin)
+    @if(!$role->is_admin)
         <div class="row">
             <div class="col-lg-12">
                 <div class="data-table data-base content-box">
@@ -154,7 +153,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($role->users as $item)
+                        @foreach($role->users as $item)
                             <tr>
                                 <td>
                                     <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">

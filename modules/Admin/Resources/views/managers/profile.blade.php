@@ -21,38 +21,38 @@
                     <form method="POST" action="{{ route('managers.profile.update') }}" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::managers.placeholder.name'),
                             'entity' => $admin,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.email'),
                             'field' => 'email',
                             'placeholder' => trans('admin::managers.placeholder.email'),
                             'entity' => $admin,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.phone'),
                             'field' => 'phone',
                             'placeholder' => trans('admin::managers.placeholder.phone'),
                             'entity' => $admin,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.password'),
                             'field' => 'password',
                             'help' => trans('admin::managers.placeholder.password-help'),
                         ])
-                        @include ('admin::components.form.image', [
+                        @include('admin::components.form.image', [
                             'label' => trans('admin::managers.avatar'),
                             'field' => 'avatar',
                             'entity' => $admin,
                             'help' => trans('admin::managers.placeholder.avatar-help'),
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::managers.profile')
                         ])
                     </form>

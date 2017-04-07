@@ -20,7 +20,7 @@
                     <form method="POST" action="{{ route('menus.update', [$menu]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.code'),
                             'field' => 'code',
                             'placeholder' => trans('admin::menus.placeholder.code'),
@@ -28,17 +28,17 @@
                             'class' => 'snake-slug',
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
                             'placeholder' => trans('admin::menus.placeholder.title'),
                             'entity' => $menu,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $menu->sort_order,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::menus.update')
                         ])
                     </form>
@@ -76,7 +76,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($menus as $item)
+                    @foreach($menus as $item)
                         <tr>
                             <td>{{ $item->code }}</td>
                             <td>{{ $item->title }}</td>
@@ -86,12 +86,12 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('menus.edit', compact('item'))
                                 ])
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.delete', [
+                                @include('admin::components.button.delete', [
                                     'action' => route('menus.destroy', compact('item'))
                                 ])
                             </td>

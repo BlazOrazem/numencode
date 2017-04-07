@@ -21,38 +21,38 @@
                     <form method="POST" action="{{ route('managers.update', [$manager]) }}" class="form-horizontal form-validate" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::managers.placeholder.name'),
                             'entity' => $manager,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.email'),
                             'field' => 'email',
                             'placeholder' => trans('admin::managers.placeholder.email'),
                             'entity' => $manager,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.phone'),
                             'field' => 'phone',
                             'placeholder' => trans('admin::managers.placeholder.phone'),
                             'entity' => $manager,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::managers.password'),
                             'field' => 'password',
                             'help' => trans('admin::managers.placeholder.password-help'),
                         ])
-                        @include ('admin::components.form.image', [
+                        @include('admin::components.form.image', [
                             'label' => trans('admin::managers.avatar'),
                             'field' => 'avatar',
                             'entity' => $manager,
                             'help' => trans('admin::managers.placeholder.avatar-help'),
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::managers.update')
                         ])
                     </form>
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        @if ($admin->can('assign_manager_roles') && $admin->id != $manager->id)
+        @if($admin->can('assign_manager_roles') && $admin->id != $manager->id)
             <div class="col-md-4">
                 <div class="data-table data-danger content-box">
                     <div class="head danger-bg clearfix">
@@ -80,7 +80,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($roles as $item)
+                        @foreach($roles as $item)
                             <tr>
                                 <td>{{ ucfirst($item->name) }}</td>
                                 <td>{{ $item->label }}</td>

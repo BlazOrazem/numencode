@@ -1,23 +1,28 @@
-@php ($inlineForm = isset($inline))
-@php ($fieldId = camel_case($field) . '-' . str_random(10))
+@php($inline = isset($inline))
+@php($checked = isset($checked))
+@php($fieldId = camel_case($field) . '-' . str_random(10))
 
 <div class="form-group">
 
-    @if (isset($label))
-        <label for="{{ $fieldId }}" class="control-label @if (!$inlineForm)col-sm-3 @endif">
+    @if(isset($label))
+        <label for="{{ $fieldId }}" class="control-label{{ !$inline ? ' col-sm-3' : '' }}">
             {{ $label }}
         </label>
     @endif
 
-    @if (!$inlineForm)<div class="col-sm-9"> @endif
+    @if(!$inline)
+        <div class="col-sm-9">
+    @endif
 
         <div class="checkbox checkbox-alt checkbox-{{ isset($type) ? $type : 'base' }}">
             <label>
-                <input type="checkbox" value="1" name="{{ $field }}" {{ isset($isChecked) && $isChecked == true ? 'checked' : '' }}>
+                <input type="checkbox" value="1" name="{{ $field }}"{{ $checked ? ' checked' : '' }}>
                 <i></i>
             </label>
         </div>
 
-    @if (!$inlineForm)</div> @endif
+    @if(!$inline)
+        </div>
+    @endif
 
 </div>

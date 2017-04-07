@@ -1,4 +1,4 @@
-@if (session()->has('flash_message'))
+@if(session()->has('flash_message'))
     <script>
         toastr.options = {
             "closeButton": true,
@@ -22,7 +22,7 @@
     </script>
 @endif
 
-@if (session()->has('flash_message_overlay'))
+@if(session()->has('flash_message_overlay'))
     <script>
         toastr.options = {
             "closeButton": true,

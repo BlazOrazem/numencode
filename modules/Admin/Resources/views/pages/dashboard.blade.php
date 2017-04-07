@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @if (config('numencode.analytics'))
+    @if(config('numencode.analytics'))
         @include('admin::pages.analytics.chart')
         @include('admin::pages.analytics.data')
     @else
@@ -88,7 +88,7 @@
 
 @section('scripts')
 
-    @if (config('numencode.analytics'))
+    @if(config('numencode.analytics'))
         @include('admin::pages.analytics.script')
     @endif
 

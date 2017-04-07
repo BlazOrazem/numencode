@@ -20,29 +20,29 @@
                     <form method="POST" action="{{ route('permissions.update', [$permission]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::permissions.placeholder.name'),
                             'entity' => $permission,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.label'),
                             'field' => 'label',
                             'placeholder' => trans('admin::permissions.placeholder.label'),
                             'entity' => $permission,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $permission->sort_order
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => 'Is admin?',
                             'field' => 'is_admin',
-                            'isChecked' => $permission->is_admin,
+                            'checked' => $permission->is_admin,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::permissions.update')
                         ])
                     </form>
@@ -72,7 +72,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($permissions as $item)
+                    @foreach($permissions as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->label }}</td>
@@ -82,12 +82,12 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('permissions.edit', compact('item'))
                                 ])
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.delete', [
+                                @include('admin::components.button.delete', [
                                     'action' => route('permissions.destroy', compact('item'))
                                 ])
                             </td>

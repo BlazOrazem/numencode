@@ -20,7 +20,7 @@
                     <form method="POST" action="{{ route('codelist.item.update', [$codelistItem]) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
                             'placeholder' => trans('admin::codelist.placeholder.item_title'),
@@ -28,7 +28,7 @@
                             'errors' => $errors->itemErrors,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.code'),
                             'field' => 'code',
                             'placeholder' => trans('admin::codelist.placeholder.item_code'),
@@ -36,11 +36,11 @@
                             'entity' => $codelistItem,
                             'required' => true,
                         ])
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $codelistItem->sort_order,
                             'errors' => $errors->itemErrors,
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::codelist.item_update')
                         ])
                     </form>
@@ -65,14 +65,14 @@
                         <th>@lang('admin::tables.title')</th>
                         <th>@lang('admin::tables.code')</th>
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
-                        @if ($admin->can('manage_codelist'))
+                        @if($admin->can('manage_codelist'))
                             <th width="60" class="no-sort text-center">@lang('admin::tables.edit')</th>
                             <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($codelistGroup->items as $item)
+                    @foreach($codelistGroup->items as $item)
                         <tr>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->code }}</td>
@@ -81,14 +81,14 @@
                                     {{ $item->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('manage_codelist'))
+                            @if($admin->can('manage_codelist'))
                                 <td class="text-center">
-                                    @include ('admin::components.button.edit', [
+                                    @include('admin::components.button.edit', [
                                         'action' => route('codelist.item.edit', compact('item'))
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @include ('admin::components.button.delete', [
+                                    @include('admin::components.button.delete', [
                                         'action' => route('codelist.item.destroy', compact('item'))
                                     ])
                                 </td>

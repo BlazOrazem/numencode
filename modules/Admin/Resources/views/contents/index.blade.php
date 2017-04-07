@@ -28,14 +28,14 @@
                     <tr>
                         <th>@lang('admin::tables.title')</th>
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
-                        @if ($admin->can('manage_contents'))
+                        @if($admin->can('manage_contents'))
                             <th width="60" class="no-sort text-center">@lang('admin::tables.manage')</th>
                             <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($contents as $content)
+                    @foreach($contents as $content)
                         <tr>
                             <td>{{ $content->title }}</td>
                             <td class="text-right">
@@ -43,15 +43,15 @@
                                     {{ $content->sort_order }}
                                 </span>
                             </td>
-                            @if ($admin->can('manage_contents'))
+                            @if($admin->can('manage_contents'))
                                 <td class="text-center">
-                                    @include ('admin::components.button.edit', [
+                                    @include('admin::components.button.edit', [
                                         'action' => route('contents.edit', compact('content')),
                                         'icon' => 'zmdi-collection-text',
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @include ('admin::components.button.delete', [
+                                    @include('admin::components.button.delete', [
                                         'action' => route('contents.destroy', compact('content')),
                                     ])
                                 </td>

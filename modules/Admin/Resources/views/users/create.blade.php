@@ -20,34 +20,34 @@
                 <div class="content">
                     <form method="POST" action="{{ route('users.store') }}" class="form-horizontal form-validate" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::users.name'),
                             'field' => 'name',
                             'placeholder' => trans('admin::users.placeholder.name'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::users.nickname'),
                             'field' => 'nickname',
                             'placeholder' => trans('admin::users.placeholder.nickname'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::users.email'),
                             'field' => 'email',
                             'placeholder' => trans('admin::users.placeholder.email'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::users.password'),
                             'field' => 'password',
                             'required' => true,
                         ])
-                        @include ('admin::components.form.image', [
+                        @include('admin::components.form.image', [
                             'label' => trans('admin::users.avatar'),
                             'field' => 'avatar',
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::users.create')
                         ])
                     </form>

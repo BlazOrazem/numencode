@@ -18,7 +18,7 @@
                 </div>
                 <div class="content">
                     <ul class="nav nav-tabs">
-                        @foreach ($menus as $menu)
+                        @foreach($menus as $menu)
                             <li class="{{ $loop->first ? 'active' : '' }}">
                                 <a href="#tab-structure-{{ $menu->id }}" data-toggle="tab">
                                     <i class="zmdi zmdi-menu"></i>{{ $menu->title }}
@@ -27,7 +27,7 @@
                         @endforeach
                     </ul>
                     <div class="tab-content">
-                        @foreach ($menus as $menu)
+                        @foreach($menus as $menu)
                             <div class="tab-pane fade {{ $loop->first ? 'in active' : '' }}" id="tab-structure-{{ $menu->id }}">
                                 <div class="p-15">
                                     <table class="display datatable non-sortable middle-align datatable-striped table">

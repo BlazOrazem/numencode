@@ -19,12 +19,12 @@
                 <div id="content-component" class="content">
                     <form method="POST" action="{{ route('contents.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
                             'placeholder' => trans('admin::contents.placeholder.title'),
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::forms.lead'),
                             'field' => 'lead',
                             'placeholder' => trans('admin::contents.placeholder.lead'),
@@ -54,10 +54,10 @@
                             </div>
                         </plugin-params>
 
-                        @include ('admin::components.form.order', [
+                        @include('admin::components.form.order', [
                             'sortOrder' => $contents->max('sort_order') + 10
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::contents.create')
                         ])
                     </form>

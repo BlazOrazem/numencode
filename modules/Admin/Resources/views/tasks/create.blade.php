@@ -20,23 +20,23 @@
                 <div class="content">
                     <form method="POST" action="{{ route('tasks.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::tasks.name'),
                             'field' => 'title',
                             'placeholder' => trans('admin::tasks.placeholder.title'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.text', [
+                        @include('admin::components.form.text', [
                             'label' => trans('admin::tasks.body'),
                             'field' => 'body',
                             'placeholder' => trans('admin::tasks.placeholder.body'),
                             'required' => true,
                         ])
-                        @include ('admin::components.form.checkbox', [
+                        @include('admin::components.form.checkbox', [
                             'label' => trans('admin::tasks.completed'),
                             'field' => 'completed',
                         ])
-                        @include ('admin::components.form.submit', [
+                        @include('admin::components.form.submit', [
                             'button' => trans('admin::tasks.create')
                         ])
                         <div class="form-group">

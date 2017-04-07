@@ -29,7 +29,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($tasks as $task)
+                    @foreach($tasks as $task)
                         <tr>
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->body }}</td>
@@ -46,18 +46,18 @@
                             </td>
                             <td>{{ $task->created_at->format(config('numencode.dates.date')) }}</td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('tasks.show', compact('task')),
                                     'icon' => 'zmdi-search'
                                 ])
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.edit', [
+                                @include('admin::components.button.edit', [
                                     'action' => route('tasks.edit', compact('task')),
                                 ])
                             </td>
                             <td class="text-center">
-                                @include ('admin::components.button.delete', [
+                                @include('admin::components.button.delete', [
                                     'action' => route('tasks.destroy', compact('task'))
                                 ])
                             </td>

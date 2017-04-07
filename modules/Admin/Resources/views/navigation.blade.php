@@ -20,7 +20,7 @@
         <li>
             <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
         </li>
-        @if ($admin->can('view_pages'))
+        @if($admin->can('view_pages'))
             <li>
                 <a href="{{ route('pages.index') }}"><i class="zmdi zmdi-format-list-bulleted"></i>Page Structure</a>
             </li>
@@ -29,7 +29,7 @@
             <a href="#"><i class="zmdi zmdi-collection-text"></i>Contents<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Contents</li>
-                @if ($admin->can('manage_contents'))
+                @if($admin->can('manage_contents'))
                     <li><a href="{{ route('contents.index') }}">Always displayed contents</a></li>
                 @endif
                 <li><a href="{{ route('admin.dashboard') }}">Dictionary</a></li>
@@ -43,26 +43,26 @@
                 <li><a href="{{ route('tasks.create') }}">Add new task</a></li>
             </ul>
         </li>
-        @if ($admin->can('view_managers') || $admin->can('manage_managers'))
+        @if($admin->can('view_managers') || $admin->can('manage_managers'))
             <li>
                 <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
                 <ul class="nav nav-inside collapse">
                     <li class="inside-title">Managers</li>
                     <li><a href="{{ route('managers.index') }}">List managers</a></li>
-                    @if ($admin->can('manage_managers'))
+                    @if($admin->can('manage_managers'))
                         <li><a href="{{ route('managers.create') }}">Add manager</a></li>
                     @endif
                     <li><a href="{{ route('managers.profile') }}">My profile</a></li>
                 </ul>
             </li>
         @endif
-        @if ($admin->can('view_users') || $admin->can('manage_users'))
+        @if($admin->can('view_users') || $admin->can('manage_users'))
             <li>
                 <a href="#"><i class="zmdi zmdi-account-circle"></i>Users<span class="zmdi arrow"></span></a>
                 <ul class="nav nav-inside collapse">
                     <li class="inside-title">Users</li>
                     <li><a href="{{ route('users.index') }}">List users</a></li>
-                    @if ($admin->can('manage_users'))
+                    @if($admin->can('manage_users'))
                         <li><a href="{{ route('users.create') }}">Add new user</a></li>
                     @endif
                 </ul>
@@ -72,19 +72,19 @@
             <a href="#"><i class="zmdi zmdi-settings"></i>Settings<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Settings</li>
-                @if ($admin->can('manage_menus'))
+                @if($admin->can('manage_menus'))
                     <li><a href="{{ route('menus.index') }}">Menu types</a></li>
                 @endif
-                @if ($admin->can('view_codelist') || $admin->can('manage_codelist'))
+                @if($admin->can('view_codelist') || $admin->can('manage_codelist'))
                     <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
                 @endif
-                @if ($admin->can('view_plugins') || $admin->can('manage_plugins'))
+                @if($admin->can('view_plugins') || $admin->can('manage_plugins'))
                     <li><a href="{{ route('plugins.index') }}">Plugins</a></li>
                 @endif
-                @if ($admin->can('view_roles') || $admin->can('manage_roles'))
+                @if($admin->can('view_roles') || $admin->can('manage_roles'))
                     <li><a href="{{ route('roles.index') }}">Roles</a></li>
                 @endif
-                @if ($admin->can('manage_permissions'))
+                @if($admin->can('manage_permissions'))
                     <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
                 @endif
                 <li><a href="{{ route('log.viewer') }}" target="_blank">Log Viewer</a></li>

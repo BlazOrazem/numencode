@@ -1,8 +1,8 @@
-@foreach ($elements as $item)
+@foreach($elements as $item)
 
-    @php ($itemName = $item->name)
+    @php($itemName = $item->name)
 
-    @if ($item->type == 'text')
+    @if($item->type == 'text')
         <div class="form-group">
             <label class="control-label col-sm-3">
                 {{ $item->label }}
@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    @if ($item->type == 'select')
+    @if($item->type == 'select')
         <div class="form-group">
             <label class="control-label col-sm-3">
                 {{ $item->label }}
@@ -28,7 +28,7 @@
         </div>
     @endif
 
-    @if ($item->type == 'radio')
+    @if($item->type == 'radio')
         <div class="form-group">
             <label class="control-label col-sm-3">
                 {{ $item->label }}
@@ -51,7 +51,7 @@
         </div>
     @endif
 
-    @if ($item->type == 'checkbox')
+    @if($item->type == 'checkbox')
         <div class="form-group">
             <label class="control-label col-sm-3">
                 {{ $item->label }}
