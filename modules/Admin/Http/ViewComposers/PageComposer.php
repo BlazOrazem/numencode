@@ -30,7 +30,6 @@ class PageComposer
         );
     }
 
-
     /**
      * Return all menus with page tree structure.
      *

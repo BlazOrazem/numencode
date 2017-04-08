@@ -1,5 +1,5 @@
 <ul class="nestable-list">
-    @forelse($collection as $item)
+    @forelse($collection as $page)
         @include('admin::pages.structure-item')
     @empty
         <li class="nestable-item">
@@ -12,7 +12,7 @@
                     <div></div>
                     <div>
                         @include('admin::components.button.new', [
-                            'action' => route('home'),
+                            'action' => route('menus.create'),
                             'icon' => 'zmdi-file-plus'
                         ])
                     </div>

@@ -2,8 +2,11 @@
 
 namespace Admin\Http;
 
+use Illuminate\Support\Facades\Input;
 use Numencode\Models\Menu;
+use Numencode\Models\Page;
 use Illuminate\Validation\Rule;
+use Numencode\Models\CodelistGroup;
 
 class PageController extends BaseController
 {
@@ -18,28 +21,44 @@ class PageController extends BaseController
     }
 
     /**
-     * Show the form for creating a new page.
+     * Show the form for creating a new page for a selected menu type.
      *
      * @param Menu $menu Menu
      *
      * @return \Illuminate\View\View
      */
-    public function create(Menu $menu)
+    public function createForMenu(Menu $menu)
     {
-        $menus = Menu::all();
+        $layouts = CodelistGroup::find(1)->items;
+        $pages = Page::whereNull('parent_id')->where('menu', $menu->code)->get();
 
-        return view('admin::pages.create', compact('menu', 'menus'));
+        return view('admin::pages.create', compact('pages', 'menu', 'layouts'));
     }
 
     /**
-     * Store a newly created menu.
+     * Show the form for creating a new page for a selected parent page.
+     *
+     * @param Page $page Page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function createForPage(Page $page)
+    {
+        $layouts = CodelistGroup::find(1)->items;
+
+        return view('admin::pages.create', compact('page', 'layouts'));
+    }
+
+    /**
+     * Store a newly created page.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store()
     {
         $this->validate(request(), [
-            'code'       => 'required|unique:menus',
+            'layout'     => 'required',
+            'menu'       => 'required',
             'title'      => 'required',
             'sort_order' => 'required|integer',
         ]);
@@ -48,9 +67,13 @@ class PageController extends BaseController
             return success();
         }
 
-        if (Menu::create([
-                'code'       => snake_slug(request()->code),
-                'title'      => ucfirst(request()->title),
+        if ($page = Page::create([
+                'parent_id'  => request()->has('parent_id') ? request()->parent_id : null,
+                'menu'       => request()->menu,
+                'layout'     => request()->layout,
+                'title'      => request()->title,
+                'lead'       => request()->lead,
+                'body'       => request()->body,
                 'sort_order' => request()->sort_order,
             ])
         ) {
@@ -60,21 +83,25 @@ class PageController extends BaseController
             );
         }
 
-        return redirect()->route('menus.index');
+        if (request()->subject == 'save') {
+            return redirect()->route('pages.edit', compact('page'));
+        }
+
+        return redirect()->route('pages.index');
     }
 
     /**
-     * Show the menu edit form.
+     * Show the page edit form.
      *
-     * @param Menu $menu Menu type
+     * @param Page $page Page
      *
      * @return \Illuminate\View\View
      */
-    public function edit(Menu $menu)
+    public function edit(Page $page)
     {
-        $menus = Menu::all();
+        $layouts = CodelistGroup::find(1)->items;
 
-        return view('admin::menus.edit', compact('menus', 'menu'));
+        return view('admin::pages.edit', compact('page', 'layouts'));
     }
 
     /**
@@ -112,14 +139,16 @@ class PageController extends BaseController
     }
 
     /**
-     * Delete the menu type.
+     * Delete the page.
      *
-     * @param Menu $menu Menu type
+     * @param Page $page Page
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Menu $menu)
+    public function destroy(Page $page)
     {
-        return $this->deleteThe($menu, 'menus.deleted');
+        // TODO delete page plugins
+
+        return $this->deleteThe($page, 'pages.deleted');
     }
 }

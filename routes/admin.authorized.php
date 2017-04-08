@@ -26,7 +26,11 @@ Route::delete('contents/{content}', 'ContentController@destroy')->name('contents
 //Route::resource('pages', 'PageController');
 Route::post('pages', 'PageController@store')->name('pages.store');
 Route::get('pages', 'PageController@index')->name('pages.index');
-Route::get('pages/create/{menu?}', 'PageController@create')->name('pages.create');
+Route::get('pages/create_menu/{menu?}', 'PageController@createForMenu')->name('pages.create.menu');
+Route::get('pages/create_page/{page?}', 'PageController@createForPage')->name('pages.create.page');
+Route::get('pages/{page}/edit', 'PageController@edit')->name('pages.edit');
+Route::match(['PUT', 'PATCH'], 'pages/{page}', 'PageController@update')->name('pages.update');
+Route::delete('pages/{page}', 'PageController@destroy')->name('pages.destroy');
 
 // Managers
 Route::post('managers/tasks', 'ManagerController@saveTasks')->name('managers.tasks.save');

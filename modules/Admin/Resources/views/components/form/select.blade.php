@@ -22,13 +22,24 @@
                     {!! $dataAttribute !!}
                 @endif
                 >
+
             @if(isset($placeholder))
                 <option value="">{{ $placeholder }}</option>
             @endif
+
+            @if(isset($params))
+                @php($selectItemValue = reset($params))
+                @php($selectItemTitle = end($params))
+            @else
+                @php($selectItemValue = 'id')
+                @php($selectItemTitle = 'title')
+            @endif
+
             @foreach($data as $selectItem)
-                <option value="{{ $selectItem->id }}">{{ $selectItem->title }}</option>
+                <option value="{{ $selectItem->$selectItemValue }}">{{ $selectItem->$selectItemTitle }}</option>
             @endforeach
         </select>
+
         @if($required)
             <span class="zmdi zmdi-star-outline f-s-18 form-icon"></span>
         @endif

@@ -2,9 +2,13 @@
 
 return [
 
-    'title' => 'Page Management',
+    'structure' => 'Page Structure',
+    'title'     => 'Page Management',
 
-    'create'  => 'Create new page',
+    'create'  => [
+        'menu'   => 'Create new page on',
+        'page'   => 'Create new sub page for',
+    ],
     'created' => 'Page :name created.',
 
     'update'  => 'Update page',
@@ -14,17 +18,25 @@ return [
 
     'index' => 'Back to list',
 
+    'parent'    => 'Parent page',
     'menu'      => 'Menu',
+    'layout'    => 'Page layout',
     'name'      => 'Title',
     'lead'      => 'Lead',
-    'body'      => 'Description',
-    'completed' => 'Completed',
+    'body'      => 'Content',
 
     'placeholder' => [
-        'menu'  => 'Select menu type',
-        'title' => 'Enter page title',
-        'lead'  => 'Enter short description',
-        'body'  => 'Enter page description',
+        'parent'  => 'Select parent page',
+        'menu'    => 'Select menu type',
+        'layout'  => 'Select page layout',
+        'title'   => 'Enter page title',
+        'lead'    => 'Enter short description',
+        'body'    => 'Enter page content',
+    ],
+
+    'submit'  => [
+        'save'   => 'Save page',
+        'return' => 'Save and return',
     ],
 
 ];

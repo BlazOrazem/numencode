@@ -900,7 +900,14 @@ var Form = (function () {
         validateForm: function (form) {
             http.post(form.attr('action'), Form.serialize(form))
                 .success(function() {
-                    form[0].submit();
+                    var postForm = form[0];
+                    $("button.submit", postForm).eq(0).each(function(){
+                        $(postForm).find('input[name="' + this.name + '"]').remove();
+                        if ($(this).attr('name') !== undefined) {
+                            $("<input type='hidden'/>").attr("name", this.name).val($(this).val()).appendTo(postForm);
+                        }
+                    });
+                    postForm.submit();
                 })
                 .error(function(data) {
                     $.each(Form.errors(data), function(fieldName, error) {
