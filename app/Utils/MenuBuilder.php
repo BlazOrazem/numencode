@@ -2,8 +2,8 @@
 
 namespace Numencode\Utils;
 
-use Cache;
-use Numencode\Models\Page;
+use Numencode\Models\Page\Page;
+use Illuminate\Support\Facades\Cache;
 
 class MenuBuilder
 {

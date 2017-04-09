@@ -3,7 +3,7 @@
 namespace Admin\Http\ViewComposers;
 
 use Illuminate\View\View;
-use Numencode\Models\Page;
+use Numencode\Models\Page\Page;
 use Numencode\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 

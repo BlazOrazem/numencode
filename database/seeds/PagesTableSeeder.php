@@ -1,6 +1,6 @@
 <?php
 
-use Numencode\Models\Page;
+use Numencode\Models\Page\Page;
 use Illuminate\Database\Seeder;
 
 class PagesTableSeeder extends Seeder

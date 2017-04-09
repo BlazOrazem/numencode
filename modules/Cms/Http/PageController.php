@@ -2,7 +2,7 @@
 
 namespace Cms\Http;
 
-use Numencode\Models\Page;
+use Numencode\Models\Page\Page;
 
 class PageController extends BaseController
 {

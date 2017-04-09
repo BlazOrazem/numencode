@@ -2,9 +2,8 @@
 
 namespace Admin\Http;
 
-use Illuminate\Support\Facades\Input;
 use Numencode\Models\Menu;
-use Numencode\Models\Page;
+use Numencode\Models\Page\Page;
 use Illuminate\Validation\Rule;
 use Numencode\Models\CodelistGroup;
 

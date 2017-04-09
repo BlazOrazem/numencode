@@ -1,10 +1,10 @@
 <?php
 
-namespace Numencode\Models\Attributes;
+namespace Numencode\Models\Page;
 
 use Numencode\Models\Menu;
 
-trait PageAttributes
+trait Attributes
 {
     /**
      * Return URL hyperlink.
