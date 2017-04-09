@@ -5,6 +5,7 @@ namespace Admin\Http;
 use Numencode\Models\Plugin;
 use Numencode\Models\Content;
 use Admin\Repositories\PluginRepository;
+use Numencode\Models\Codelist\CodelistGroup;
 
 class ContentController extends BaseController
 {
@@ -45,10 +46,11 @@ class ContentController extends BaseController
     public function create()
     {
         $contents = Content::whereNull('page_id')->get();
+        $positions = CodelistGroup::find(2)->items;
 
         js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
-        return view('admin::contents.create', compact('contents'));
+        return view('admin::contents.create', compact('contents', 'positions'));
     }
 
     /**
@@ -59,6 +61,7 @@ class ContentController extends BaseController
     public function store()
     {
         $this->validate(request(), [
+            'position'   => 'required',
             'sort_order' => 'required|integer',
         ]);
 
@@ -93,6 +96,7 @@ class ContentController extends BaseController
     public function edit(Content $content)
     {
         $plugin = Plugin::find($content->plugin_id);
+        $positions = CodelistGroup::find(2)->items;
 
         if ($content->plugin_id) {
             js(['plugin_id' => $content->plugin_id]);
@@ -103,6 +107,7 @@ class ContentController extends BaseController
 
         return view('admin::contents.edit', [
             'content' => $content,
+            'positions' => $positions,
             'pluginForm' => isset($pluginForm) ? $pluginForm : null]
         );
     }

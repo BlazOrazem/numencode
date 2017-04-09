@@ -12,6 +12,11 @@ class CodelistTableSeeder extends Seeder
                 'title'      => 'Page Layout',
                 'sort_order' => '10',
             ],
+            [
+                'id'         => 2,
+                'title'      => 'Content Position',
+                'sort_order' => '20',
+            ],
         ];
 
         DB::table('codelist_group')->insert($items);
@@ -30,6 +35,13 @@ class CodelistTableSeeder extends Seeder
                 'code'              => 'contact',
                 'title'             => 'Contact page',
                 'sort_order'        => '20',
+            ],
+            [
+                'id'                => 3,
+                'codelist_group_id' => 2,
+                'code'              => 'center',
+                'title'             => 'Center',
+                'sort_order'        => '10',
             ],
         ];
 

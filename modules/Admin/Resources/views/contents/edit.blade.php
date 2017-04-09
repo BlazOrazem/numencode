@@ -17,8 +17,9 @@
                     </div>
                 </div>
                 <div id="content-component" class="content">
-                    <form method="POST" action="{{ route('contents.update', [$content]) }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('contents.update', compact('content')) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
+                        {{ method_field('patch') }}
                         @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
@@ -40,6 +41,15 @@
                                 <textarea name="body" class="form-control" id="my-editor">{{ old('body', $content->body) }}</textarea>
                             </div>
                         </div>
+
+                        @include('admin::components.form.select', [
+                            'label'      => trans('admin::contents.position'),
+                            'field'      => 'position',
+                            'data'       => $positions,
+                            'parameters' => ['code', 'title'],
+                            'selected'   => $content->position,
+                            'required'   => true,
+                        ])
 
                         <plugin-params route="{{ route('plugins.api') }}" inline-template>
                             <div>

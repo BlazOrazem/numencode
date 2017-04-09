@@ -4,6 +4,8 @@ return [
 
     'title' => 'Always displayed contents',
 
+    'position' => 'Select placement',
+
     'placeholder' => [
         'title'  => 'Enter title',
         'lead'   => 'Enter short lead text',
