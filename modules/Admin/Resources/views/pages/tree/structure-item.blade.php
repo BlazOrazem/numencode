@@ -6,7 +6,7 @@
         </div>
         <div class="right hidden-xs">
             <div class="checkbox checkbox-primary">
-                <label><input type="checkbox" checked><i></i></label>
+                <label><input type="checkbox" {{ $page->is_hidden ? '' : 'checked' }}><i></i></label>
             </div>
             <div>
                 @if(config('numencode.page.max_depth') >= $level)

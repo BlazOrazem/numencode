@@ -11,9 +11,11 @@ trait HiddenFilter
      */
     public static function bootHiddenFilter()
     {
-        static::addGlobalScope('hidden', function ($builder) {
-            $table = $builder->getModel()->getTable();
-            $builder->whereNull($table . '.is_hidden');
-        });
+        if (!in_array('isAdmin', request()->route()->middleware())) {
+            static::addGlobalScope('hidden', function ($builder) {
+                $table = $builder->getModel()->getTable();
+                $builder->whereNull($table . '.is_hidden');
+            });
+        }
     }
 }
