@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 */
 
-$factory->define(Numencode\Models\Manager::class, function (Faker\Generator $faker) {
+$factory->define(Numencode\Models\User\Manager::class, function (Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
         'email'          => $faker->email,
@@ -18,7 +18,7 @@ $factory->define(Numencode\Models\Manager::class, function (Faker\Generator $fak
     ];
 });
 
-$factory->define(Numencode\Models\User::class, function (Faker\Generator $faker) {
+$factory->define(Numencode\Models\User\User::class, function (Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
         'nickname'       => $faker->name,
