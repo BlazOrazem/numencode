@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'analytics' => true,
+    'analytics' => env('GOOGLE_ANALYTICS', 'false'),
 
     /*
     |--------------------------------------------------------------------------
