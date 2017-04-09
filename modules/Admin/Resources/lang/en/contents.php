@@ -11,9 +11,12 @@ return [
         'lead'   => 'Enter short lead text',
         'body'   => 'Enter description',
         'plugin' => '- select a plugin -',
+        'page'   => '- all pages -',
     ],
 
     'plugin' => 'Custom plugin',
+
+    'page' => 'Display on',
 
     'update' => 'Update content',
 

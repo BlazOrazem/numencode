@@ -38,4 +38,6 @@ return [
         'return' => 'Save and return',
     ],
 
+    'contents' => 'Page Contents',
+
 ];

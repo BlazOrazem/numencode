@@ -78,7 +78,7 @@ class PageController extends BaseController
         ) {
             flash()->success(
                 trans('admin::messages.success'),
-                trans('admin::menus.created', ['name' => request()->title])
+                trans('admin::pages.created', ['name' => request()->title])
             );
         }
 
@@ -105,16 +105,17 @@ class PageController extends BaseController
     }
 
     /**
-     * Update the menu.
+     * Update the page.
      *
-     * @param Menu $menu Menu type
+     * @param Page $page Page
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Menu $menu)
+    public function update(Page $page)
     {
         $this->validate(request(), [
-            'code'       => ['required', Rule::unique('menus')->ignore($menu->id)],
+            'layout'     => 'required',
+            'menu'       => 'required',
             'title'      => 'required',
             'sort_order' => 'required|integer',
         ]);
@@ -123,19 +124,26 @@ class PageController extends BaseController
             return success();
         }
 
-        if ($menu->update([
-                'code'       => snake_slug(request()->code),
-                'title'      => ucfirst(request()->title),
+        if ($page->update([
+                'parent_id'  => request()->parent_id,
+                'layout'     => request()->layout,
+                'title'      => request()->title,
+                'lead'       => request()->lead,
+                'body'       => request()->body,
                 'sort_order' => request()->sort_order,
             ])
         ) {
             flash()->success(
                 trans('admin::messages.success'),
-                trans('admin::menus.updated', ['name' => request()->title])
+                trans('admin::pages.created', ['name' => request()->title])
             );
         }
 
-        return redirect()->route('menus.index');
+        if (request()->subject == 'save') {
+            return redirect()->route('pages.edit', compact('page'));
+        }
+
+        return redirect()->route('pages.index');
     }
 
     /**

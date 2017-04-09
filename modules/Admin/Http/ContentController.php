@@ -4,6 +4,7 @@ namespace Admin\Http;
 
 use Numencode\Models\Plugin;
 use Numencode\Models\Content;
+use Numencode\Models\Page\Page;
 use Admin\Repositories\PluginRepository;
 use Numencode\Models\Codelist\CodelistGroup;
 
@@ -41,16 +42,19 @@ class ContentController extends BaseController
     /**
      * Show the always displayed content create form.
      *
+     * @param Page $page Content can belong to a page.
+     *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Page $page = null)
     {
         $contents = Content::whereNull('page_id')->get();
         $positions = CodelistGroup::find(2)->items;
+        $pages = Page::tree();
 
         js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
-        return view('admin::contents.create', compact('contents', 'positions'));
+        return view('admin::contents.create', compact('contents', 'positions', 'page', 'pages'));
     }
 
     /**
@@ -70,6 +74,7 @@ class ContentController extends BaseController
         }
 
         if (Content::create([
+            'page_id'       => isset(request()->page_id) ? request()->page_id : null,
             'title'         => request()->title,
             'lead'          => request()->lead,
             'body'          => request()->body,
@@ -97,6 +102,7 @@ class ContentController extends BaseController
     {
         $plugin = Plugin::find($content->plugin_id);
         $positions = CodelistGroup::find(2)->items;
+        $pages = Page::tree();
 
         if ($content->plugin_id) {
             js(['plugin_id' => $content->plugin_id]);
@@ -106,8 +112,9 @@ class ContentController extends BaseController
         js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
         return view('admin::contents.edit', [
-            'content' => $content,
-            'positions' => $positions,
+            'content'    => $content,
+            'positions'  => $positions,
+            'pages'      => $pages,
             'pluginForm' => isset($pluginForm) ? $pluginForm : null]
         );
     }

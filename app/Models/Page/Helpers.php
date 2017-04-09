@@ -25,9 +25,13 @@ trait Helpers
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function tree($menu)
+    protected function tree($menu = null)
     {
-        $items = static::where('menu', $menu)->get()->groupBy('parent_id');
+        if ($menu) {
+            $items = static::where('menu', $menu)->get()->groupBy('parent_id');
+        } else {
+            $items = static::get()->groupBy('parent_id');
+        }
 
         if ($items->count()) {
             $items['root'] = $items[''];

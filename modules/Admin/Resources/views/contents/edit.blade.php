@@ -1,7 +1,11 @@
 @extends('admin::layout')
 
 @section('title')
-    @lang('admin::contents.title')
+    @if($content->page_id)
+        @lang('admin::pages.title')
+    @else
+        @lang('admin::contents.title')
+    @endif
 @endsection
 
 @section('content')
@@ -20,6 +24,28 @@
                     <form method="POST" action="{{ route('contents.update', compact('content')) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
+                        @if($content->page_id)
+                            <div class="form-group">
+                                <label for="pageID" class="control-label col-sm-3">
+                                    @lang('admin::contents.page')
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="page_id"
+                                            id="pageID"
+                                            class="form-control selectpicker"
+                                            data-style="btn-info"
+                                            >
+                                        <option value="">@lang('admin::contents.placeholder.page')</option>
+                                        @include('admin::pages.tree.option-list', [
+                                            'pageCollection' => $pages['root'],
+                                            'pageStructure' => $pages,
+                                            'selected' => $content->page_id,
+                                            'level' => 1,
+                                        ])
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
                         @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',

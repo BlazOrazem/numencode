@@ -160,15 +160,6 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
-            [
-                'id'         => '18',
-                'name'       => 'manage_contents',
-                'label'      => 'Admin can manage contents',
-                'is_admin'   => true,
-                'sort_order' => 180,
-                'created_at' => new DateTime,
-                'updated_at' => new DateTime,
-            ],
 
 //            [
 //                'id'         => '5',

@@ -14,13 +14,13 @@ Route::get('/elements', 'DashboardController@elements')->name('admin.elements');
 Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 
 // Always displayed contents
-Route::post('contents', 'ContentController@store')->name('contents.store')->middleware('permission:manage_contents');
-Route::get('contents', 'ContentController@index')->name('contents.index')->middleware('permission:manage_contents');
-Route::get('contents/create', 'ContentController@create')->name('contents.create')->middleware('permission:manage_contents');
-Route::get('contents/{content}', 'ContentController@show')->name('contents.show')->middleware('permission:manage_contents');
-Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit')->middleware('permission:manage_contents');
-Route::match(['PUT', 'PATCH'], 'contents/{content}', 'ContentController@update')->name('contents.update')->middleware('permission:manage_contents');
-Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy')->middleware('permission:manage_contents');
+Route::post('contents', 'ContentController@store')->name('contents.store');
+Route::get('contents', 'ContentController@index')->name('contents.index');
+Route::get('contents/create/{page?}', 'ContentController@create')->name('contents.create');
+Route::get('contents/{content}', 'ContentController@show')->name('contents.show');
+Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
+Route::match(['PUT', 'PATCH'], 'contents/{content}', 'ContentController@update')->name('contents.update');
+Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
 
 // Pages
 //Route::resource('pages', 'PageController');

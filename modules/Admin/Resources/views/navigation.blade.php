@@ -29,9 +29,7 @@
             <a href="#"><i class="zmdi zmdi-collection-text"></i>Contents<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Contents</li>
-                @if($admin->can('manage_contents'))
-                    <li><a href="{{ route('contents.index') }}">Always displayed contents</a></li>
-                @endif
+                <li><a href="{{ route('contents.index') }}">Always displayed contents</a></li>
                 <li><a href="{{ route('admin.dashboard') }}">Dictionary</a></li>
             </ul>
         </li>
