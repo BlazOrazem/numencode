@@ -62,7 +62,7 @@
                             'placeholder' => trans('admin::pages.placeholder.body'),
                         ])
                         @include('admin::components.form.order', [
-                            'sortOrder' => $page->items->max('sort_order') + 10,
+                            'sortOrder' => isset($page) ? $page->items->max('sort_order') + 10 : 10,
                         ])
                         @include('admin::components.form.submit', [
                             'button'  => trans('admin::pages.submit.save'),

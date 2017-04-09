@@ -6,10 +6,11 @@ use Laraplus\Data\Translatable;
 use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Numencode\Models\Traits\HiddenFilter;
+use Numencode\Models\Attributes\PageAttributes;
 
 class Page extends Model
 {
-    use Translatable, Sortable, HiddenFilter;
+    use HiddenFilter, PageAttributes, Sortable, Translatable;
 
     /**
      * The attributes that are mass assignable.
@@ -53,16 +54,6 @@ class Page extends Model
     public function items()
     {
         return $this->hasMany(static::class, 'parent_id');
-    }
-
-    /**
-     * Return URL hyperlink.
-     *
-     * @return string
-     */
-    public function getLinkAttribute()
-    {
-        return $this->url ? $this->url->uri : '#';
     }
 
     /**

@@ -100,8 +100,9 @@ class PageController extends BaseController
     public function edit(Page $page)
     {
         $layouts = CodelistGroup::find(1)->items;
+        $pages = Page::where('menu', $page->menu)->get();
 
-        return view('admin::pages.edit', compact('page', 'layouts'));
+        return view('admin::pages.edit', compact('page', 'layouts', 'pages'));
     }
 
     /**

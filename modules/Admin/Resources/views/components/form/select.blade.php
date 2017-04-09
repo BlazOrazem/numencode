@@ -36,7 +36,9 @@
             @endif
 
             @foreach($data as $selectItem)
-                <option value="{{ $selectItem->$selectItemValue }}">{{ $selectItem->$selectItemTitle }}</option>
+                <option value="{{ $selectItem->$selectItemValue }}"
+                        {{ isset($selected) && $selected == $selectItem->$selectItemValue ? 'selected' : '' }}
+                        >{{ $selectItem->$selectItemTitle }}</option>
             @endforeach
         </select>
 
