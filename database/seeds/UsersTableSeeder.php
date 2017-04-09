@@ -1,7 +1,7 @@
 <?php
 
-use Numencode\Models\User;
 use Faker\Factory as Faker;
+use Numencode\Models\User\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder

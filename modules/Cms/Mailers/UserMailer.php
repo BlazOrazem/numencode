@@ -2,7 +2,7 @@
 
 namespace Cms\Mailers;
 
-use Numencode\Models\User;
+use Numencode\Models\User\User;
 use Illuminate\Contracts\Mail\Mailer;
 
 class UserMailer

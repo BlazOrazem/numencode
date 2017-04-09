@@ -2,9 +2,9 @@
 
 namespace Cms\Mail;
 
-use Numencode\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Numencode\Models\User\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

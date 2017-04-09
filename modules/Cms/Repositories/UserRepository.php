@@ -2,8 +2,8 @@
 
 namespace Cms\Repositories;
 
-use Numencode\Models\User;
 use Illuminate\Http\Request;
+use Numencode\Models\User\User;
 use Cms\Http\Auth\AvatarController;
 use Laravel\Socialite\AbstractUser as SocialiteUser;
 

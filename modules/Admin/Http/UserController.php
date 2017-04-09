@@ -2,9 +2,9 @@
 
 namespace Admin\Http;
 
-use Numencode\Models\User;
-use Numencode\Models\Role;
 use Illuminate\Validation\Rule;
+use Numencode\Models\User\User;
+use Numencode\Models\User\Role;
 use Admin\Repositories\UserRepository;
 
 class UserController extends BaseController

@@ -70,11 +70,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model'  => Numencode\Models\User::class,
+            'model'  => Numencode\Models\User\User::class,
         ],
         'managers' => [
             'driver' => 'eloquent',
-            'model'  => Numencode\Models\Manager::class,
+            'model'  => Numencode\Models\User\Manager::class,
         ],
 
         // 'users' => [

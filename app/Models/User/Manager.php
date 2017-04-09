@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Models;
+namespace Numencode\Models\User;
 
 use Illuminate\Notifications\Notifiable;
 use Numencode\Models\Traits\ManagerRoles;

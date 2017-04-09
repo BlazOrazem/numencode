@@ -2,8 +2,8 @@
 
 namespace Admin\Repositories;
 
-use Numencode\Models\User;
 use Numencode\Utils\Imageable;
+use Numencode\Models\User\User;
 
 class UserRepository
 {

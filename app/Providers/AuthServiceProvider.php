@@ -2,8 +2,8 @@
 
 namespace Numencode\Providers;
 
-use Numencode\Models\Permission;
 use Illuminate\Support\Facades\Gate;
+use Numencode\Models\User\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

@@ -2,7 +2,7 @@
 
 namespace Numencode\Models\Traits;
 
-use Numencode\Models\Role;
+use Numencode\Models\User\Role;
 
 trait UserRoles
 {

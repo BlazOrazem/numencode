@@ -2,8 +2,8 @@
 
 namespace Admin\Repositories;
 
-use Numencode\Models\Manager;
 use Numencode\Utils\Imageable;
+use Numencode\Models\User\Manager;
 use Illuminate\Support\Facades\Auth;
 
 class ManagerRepository

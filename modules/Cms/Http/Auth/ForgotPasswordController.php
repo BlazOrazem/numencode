@@ -2,11 +2,11 @@
 
 namespace Cms\Http\Auth;
 
-use Mail;
-use Numencode\Models\User;
 use Cms\Mail\PasswordReset;
 use Cms\Http\BaseController;
 use Illuminate\Http\Request;
+use Numencode\Models\User\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 
 class ForgotPasswordController extends BaseController

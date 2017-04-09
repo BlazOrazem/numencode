@@ -2,11 +2,11 @@
 
 namespace Cms\Http\Auth;
 
-use Mail;
-use Validator;
-use Numencode\Models\User;
 use Cms\Http\BaseController;
 use Cms\Mail\EmailVerification;
+use Numencode\Models\User\User;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends BaseController

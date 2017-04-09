@@ -2,9 +2,9 @@
 
 namespace Admin\Http;
 
-use Numencode\Models\Role;
-use Numencode\Models\Manager;
 use Illuminate\Validation\Rule;
+use Numencode\Models\User\Role;
+use Numencode\Models\User\Manager;
 use Admin\Repositories\ManagerRepository;
 
 class ManagerController extends BaseController

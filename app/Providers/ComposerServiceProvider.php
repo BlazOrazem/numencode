@@ -2,8 +2,8 @@
 
 namespace Numencode\Providers;
 
-use View;
-use Blade;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider

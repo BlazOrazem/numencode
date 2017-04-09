@@ -1,11 +1,11 @@
 <?php
 
-namespace Numencode\Models;
+namespace Numencode\Models\User;
 
 use Cms\Http\Auth\AvatarController;
-use Cms\Http\Auth\ForgotPasswordController;
 use Numencode\Models\Traits\UserRoles;
 use Illuminate\Notifications\Notifiable;
+use Cms\Http\Auth\ForgotPasswordController;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable

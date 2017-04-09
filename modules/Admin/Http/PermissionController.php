@@ -3,7 +3,7 @@
 namespace Admin\Http;
 
 use Illuminate\Validation\Rule;
-use Numencode\Models\Permission;
+use Numencode\Models\User\Permission;
 
 class PermissionController extends BaseController
 {
