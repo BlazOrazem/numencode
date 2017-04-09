@@ -5,7 +5,7 @@ namespace Admin\Http;
 use Numencode\Models\Menu;
 use Numencode\Models\Page\Page;
 use Illuminate\Validation\Rule;
-use Numencode\Models\CodelistGroup;
+use Numencode\Models\Codelist\CodelistGroup;
 
 class PageController extends BaseController
 {

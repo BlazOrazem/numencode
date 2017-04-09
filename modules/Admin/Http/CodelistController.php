@@ -3,8 +3,8 @@
 namespace Admin\Http;
 
 use Illuminate\Validation\Rule;
-use Numencode\Models\CodelistItem;
-use Numencode\Models\CodelistGroup;
+use Numencode\Models\Codelist\CodelistItem;
+use Numencode\Models\Codelist\CodelistGroup;
 
 class CodelistController extends BaseController
 {

@@ -2,6 +2,7 @@
 
 namespace Numencode\Models;
 
+use Numencode\Models\Page\Page;
 use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
 
