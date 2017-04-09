@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Models;
+namespace Numencode\Models\System;
 
 use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;

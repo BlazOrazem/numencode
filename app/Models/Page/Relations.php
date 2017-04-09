@@ -2,8 +2,8 @@
 
 namespace Numencode\Models\Page;
 
-use Numencode\Models\Url;
 use Numencode\Models\Content;
+use Numencode\Models\System\Url;
 
 trait Relations
 {

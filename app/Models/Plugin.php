@@ -2,9 +2,9 @@
 
 namespace Numencode\Models;
 
-use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
-use Numencode\Models\Traits\HiddenFilter;
+use Numencode\Models\System\Traits\Sortable;
+use Numencode\Models\System\Traits\HiddenFilter;
 
 class Plugin extends Model
 {

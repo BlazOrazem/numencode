@@ -1,7 +1,7 @@
 <?php
 
-use Numencode\Models\Url;
 use Illuminate\Database\Seeder;
+use Numencode\Models\System\Url;
 
 class RoutesTableSeeder extends Seeder
 {

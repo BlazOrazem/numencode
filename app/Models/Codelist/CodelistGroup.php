@@ -2,8 +2,8 @@
 
 namespace Numencode\Models\Codelist;
 
-use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Numencode\Models\System\Traits\Sortable;
 
 class CodelistGroup extends Model
 {

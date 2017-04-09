@@ -1,9 +1,9 @@
 <?php
 
-namespace Numencode\Models\Traits;
+namespace Numencode\Models\System\Traits;
 
 use Exception;
-use Numencode\Models\Scopes\SortableScope;
+use Numencode\Models\System\Scopes\SortableScope;
 
 /**
  * Sortable model trait

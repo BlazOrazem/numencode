@@ -2,15 +2,15 @@
 
 namespace Numencode\Models\User;
 
-use Cms\Http\Auth\AvatarController;
-use Numencode\Models\Traits\UserRoles;
 use Illuminate\Notifications\Notifiable;
+use Numencode\Models\User\Traits\UserRoles;
 use Cms\Http\Auth\ForgotPasswordController;
+use Numencode\Models\User\Traits\UserHelpers;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use UserRoles, Notifiable;
+    use UserHelpers, UserRoles, Notifiable;
 
     /**
      * The database table used by the model.
@@ -59,37 +59,5 @@ class User extends Authenticatable
             }
             $user->token = str_random(30);
         });
-    }
-
-    /**
-     * Verify users' email address.
-     *
-     * @return void
-     */
-    public function verifyEmail()
-    {
-        $this->is_verified = true;
-        $this->token = null;
-
-        $this->save();
-    }
-
-    /**
-     * Get avatar
-     *
-     * @param int  $width  Avatar width
-     * @param null $height Avatar height
-     *
-     * @return \Intervention\Image\Image|null
-     */
-    public function avatar($width = 100, $height = null)
-    {
-        $height = $height ?: $width;
-
-        if (!$this->avatar) {
-            return;
-        }
-
-        return AvatarController::getAvatarImageUrl($this->avatar, $width, $height);
     }
 }

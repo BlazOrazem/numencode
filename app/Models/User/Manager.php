@@ -3,8 +3,8 @@
 namespace Numencode\Models\User;
 
 use Illuminate\Notifications\Notifiable;
-use Numencode\Models\Traits\ManagerRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Numencode\Models\User\Traits\ManagerRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Manager extends Authenticatable

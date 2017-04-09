@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Models\Scopes;
+namespace Numencode\Models\System\Scopes;
 
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model as ModelBase;

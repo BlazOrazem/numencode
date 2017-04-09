@@ -3,9 +3,9 @@
 namespace Numencode\Models\Page;
 
 use Laraplus\Data\Translatable;
-use Numencode\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
-use Numencode\Models\Traits\HiddenFilter;
+use Numencode\Models\System\Traits\Sortable;
+use Numencode\Models\System\Traits\HiddenFilter;
 
 class Page extends Model
 {

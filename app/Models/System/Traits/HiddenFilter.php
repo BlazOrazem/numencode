@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Models\Traits;
+namespace Numencode\Models\System\Traits;
 
 trait HiddenFilter
 {
