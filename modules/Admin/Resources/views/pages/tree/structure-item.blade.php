@@ -5,8 +5,16 @@
             <a href="{{ route('pages.edit', compact('page')) }}">{{ $page->title }}</a>
         </div>
         <div class="right hidden-xs">
-            <div class="checkbox checkbox-primary">
-                <label><input type="checkbox" {{ $page->is_hidden ? '' : 'checked' }}><i></i></label>
+            <div class="text-right">
+                <label>
+                    <input class="toggle toggle-info"
+                           type="checkbox"
+                           name="toggle"
+                           data-toggle="{{ route('pages.active', [$page->id]) }}"
+                            {{ $page->is_hidden ? '' : 'checked' }}
+                            >
+                    <i></i>
+                </label>
             </div>
             <div>
                 @if(config('numencode.page.max_depth') >= $level)

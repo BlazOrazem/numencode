@@ -23,7 +23,7 @@ Route::match(['PUT', 'PATCH'], 'contents/{content}', 'ContentController@update')
 Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
 
 // Pages
-//Route::resource('pages', 'PageController');
+Route::post('pages/active/{page}', 'PageController@active')->name('pages.active');
 Route::post('pages', 'PageController@store')->name('pages.store');
 Route::get('pages', 'PageController@index')->name('pages.index');
 Route::get('pages/create_menu/{menu?}', 'PageController@createForMenu')->name('pages.create.menu');

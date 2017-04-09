@@ -147,6 +147,17 @@ class PageController extends BaseController
     }
 
     /**
+     * Activate the page.
+     *
+     * @param Page $page Page
+     */
+    public function active(Page $page)
+    {
+        $page->is_hidden = $page->is_hidden ? null : true;
+        $page->save();
+    }
+
+    /**
      * Delete the page.
      *
      * @param Page $page Page

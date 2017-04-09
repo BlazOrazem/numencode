@@ -118,7 +118,7 @@ class TaskController extends BaseController
      */
     public function complete(Task $task)
     {
-        $task->completed = !$task->completed;
+        $task->completed = $task->completed ? null : true;
         $task->save();
     }
 
