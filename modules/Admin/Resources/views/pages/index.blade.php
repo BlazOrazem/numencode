@@ -42,7 +42,7 @@
                                     <li>Delete</li>
                                 </ul>
                             </div>
-                            @include('admin::pages.structure-list', [
+                            @include('admin::pages.tree.structure-list', [
                                 'collection' => $menu->tree['root'],
                                 'menu' => $menu->tree,
                                 'level' => 1,

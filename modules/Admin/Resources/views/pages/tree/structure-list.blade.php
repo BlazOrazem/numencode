@@ -1,6 +1,6 @@
 <ul class="nestable-list">
     @forelse($collection as $page)
-        @include('admin::pages.structure-item')
+        @include('admin::pages.tree.structure-item')
     @empty
         <li class="nestable-item">
             <div class="nestable-handle">

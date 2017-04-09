@@ -22,6 +22,6 @@
         <div class="right visible-xs"></div>
     </div>
     @if(isset($menu[$page->id]))
-        @include('admin::pages.structure-list', ['collection' => $menu[$page->id], 'level' => ++$level])
+        @include('admin::pages.tree.structure-list', ['collection' => $menu[$page->id], 'level' => ++$level])
     @endif
 </li>

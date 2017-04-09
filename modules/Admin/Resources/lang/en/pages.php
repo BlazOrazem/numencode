@@ -28,7 +28,6 @@ return [
     'placeholder' => [
         'parent'  => 'Select parent page',
         'menu'    => 'Select menu type',
-        'layout'  => 'Select page layout',
         'title'   => 'Enter page title',
         'lead'    => 'Enter short description',
         'body'    => 'Enter page content',

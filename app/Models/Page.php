@@ -67,4 +67,25 @@ class Page extends Model
 
         return $generalContents->merge($this->contents()->get())->sortBy('sort_order');
     }
+
+    /**
+     * Build tree structure for pages.
+     *
+     * @param string $menu Menu type
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function tree($menu)
+    {
+        $items = static::where('menu', $menu)->get()->groupBy('parent_id');
+
+        if ($items->count()) {
+            $items['root'] = $items[''];
+            unset($items['']);
+        } else {
+            $items = collect(['root' => collect()]);
+        }
+
+        return $items;
+    }
 }

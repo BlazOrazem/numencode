@@ -26,13 +26,25 @@
                         {{ csrf_field() }}
                         @if(isset($pages))
                             <input type="hidden" name="menu" value="{{ $menu->code }}">
-                            @include('admin::components.form.select', [
-                                'label' => trans('admin::pages.parent'),
-                                'field' => 'parent_id',
-                                'placeholder' => trans('admin::pages.placeholder.parent'),
-                                'data' => $pages,
-                                'required' => true,
-                            ])
+                            <div class="form-group">
+                                <label for="parentPageID" class="control-label col-sm-3">
+                                    @lang('admin::pages.parent')
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="parent_id"
+                                            id="parentPageID"
+                                            class="form-control selectpicker"
+                                            data-style="btn-info"
+                                            >
+                                        <option value="">@lang('admin::pages.placeholder.parent')</option>
+                                        @include('admin::pages.tree.option-list', [
+                                            'pageCollection' => $pages['root'],
+                                            'pageStructure' => $pages,
+                                            'level' => 1,
+                                        ])
+                                    </select>
+                                </div>
+                            </div>
                         @else
                             <input type="hidden" name="menu" value="{{ $page->menu }}">
                             <input type="hidden" name="parent_id" value="{{ $page->id }}">
@@ -40,10 +52,8 @@
                         @include('admin::components.form.select', [
                             'label' => trans('admin::pages.layout'),
                             'field' => 'layout',
-                            'placeholder' => trans('admin::pages.placeholder.layout'),
                             'data' => $layouts,
                             'params' => ['code', 'title'],
-                            'required' => true,
                         ])
                         @include('admin::components.form.text', [
                             'label' => trans('admin::pages.name'),
@@ -64,14 +74,24 @@
                         @include('admin::components.form.order', [
                             'sortOrder' => isset($page) ? $page->items->max('sort_order') + 10 : 10,
                         ])
-                        @include('admin::components.form.submit', [
-                            'button'  => trans('admin::pages.submit.save'),
-                            'subject' => 'save'
-                        ])
-                        @include('admin::components.form.submit', [
-                            'button'  => trans('admin::pages.submit.return'),
-                            'subject' => 'return'
-                        ])
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button type="submit"
+                                        class="btn btn-md btn-success submit"
+                                        name="subject"
+                                        value="save"
+                                        >
+                                    @lang('admin::pages.submit.save')
+                                </button>
+                                <button type="submit"
+                                        class="btn btn-md btn-info submit"
+                                        name="subject"
+                                        value="return"
+                                        >
+                                    @lang('admin::pages.submit.return')
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

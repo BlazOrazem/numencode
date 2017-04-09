@@ -30,7 +30,7 @@ class PageController extends BaseController
     public function createForMenu(Menu $menu)
     {
         $layouts = CodelistGroup::find(1)->items;
-        $pages = Page::whereNull('parent_id')->where('menu', $menu->code)->get();
+        $pages = Page::tree($menu->code);
 
         return view('admin::pages.create', compact('pages', 'menu', 'layouts'));
     }
@@ -100,7 +100,7 @@ class PageController extends BaseController
     public function edit(Page $page)
     {
         $layouts = CodelistGroup::find(1)->items;
-        $pages = Page::where('menu', $page->menu)->get();
+        $pages = Page::tree($page->menu);
 
         return view('admin::pages.edit', compact('page', 'layouts', 'pages'));
     }
