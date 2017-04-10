@@ -76,18 +76,10 @@
                         ])
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">
-                                <button type="submit"
-                                        class="btn btn-md btn-success submit"
-                                        name="subject"
-                                        value="save"
-                                        >
+                                <button type="submit" value="save" class="btn btn-md btn-success submit">
                                     @lang('admin::pages.submit.save')
                                 </button>
-                                <button type="submit"
-                                        class="btn btn-md btn-info submit"
-                                        name="subject"
-                                        value="return"
-                                        >
+                                <button type="submit" class="btn btn-md btn-info submit">
                                     @lang('admin::pages.submit.return')
                                 </button>
                             </div>

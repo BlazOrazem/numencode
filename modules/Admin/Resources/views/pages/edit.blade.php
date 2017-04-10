@@ -17,8 +17,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('pages.store') }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('pages.update', compact('page')) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
+                        {{ method_field('patch') }}
                         <div class="form-group">
                             <label for="parentPageID" class="control-label col-sm-3">
                                 @lang('admin::pages.parent')
@@ -70,15 +71,11 @@
                         ])
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">
-                                <button type="submit"
-                                        class="btn btn-md btn-success submit"
-                                        name="subject" value="save">
-                                    {{ trans('admin::pages.submit.save') }}
+                                <button type="submit" value="save" class="btn btn-md btn-success submit">
+                                    @lang('admin::pages.submit.save')
                                 </button>
-                                <button type="submit"
-                                        class="btn btn-md btn-info submit"
-                                        name="subject" value="return">
-                                    {{ trans('admin::pages.submit.return') }}
+                                <button type="submit" class="btn btn-md btn-info submit">
+                                    @lang('admin::pages.submit.return')
                                 </button>
                             </div>
                         </div>

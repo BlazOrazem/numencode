@@ -12,9 +12,13 @@ var Form = (function () {
 
     return {
         init: function () {
-            $('.' + formValidate).bind('submit', function(e) {
-                e.preventDefault(e);
-                Form.validateForm($(this));
+            $('form.' + formValidate + ' button.submit').on("click", function(event){
+                event.preventDefault();
+
+                var redirect = $(event.target.attributes['value']).val();
+                var form = $(this).closest('form.' + formValidate);
+
+                Form.validateForm(form, redirect);
             });
 
             $('.' + formValidate + ' input').bind('blur', function() {
@@ -59,16 +63,13 @@ var Form = (function () {
             item.find('.' + helpBlock).html('');
         },
 
-        validateForm: function (form) {
+        validateForm: function (form, redirect) {
             http.post(form.attr('action'), Form.serialize(form))
                 .success(function() {
                     var postForm = form[0];
-                    $("button.submit", postForm).eq(0).each(function(){
-                        $(postForm).find('input[name="' + this.name + '"]').remove();
-                        if ($(this).attr('name') !== undefined) {
-                            $("<input type='hidden'/>").attr("name", this.name).val($(this).val()).appendTo(postForm);
-                        }
-                    });
+                    if (typeof redirect !== 'undefined') {
+                        $("<input type='hidden'/>").attr("name", 'redirect').val(redirect).appendTo(postForm);
+                    }
                     postForm.submit();
                 })
                 .error(function(data) {
@@ -81,7 +82,7 @@ var Form = (function () {
         validateInputField: function (field) {
             var form = field.closest('form');
             var fieldName = field.attr('name');
-            
+
             if ($(field).hasClass('uri-slug')) {
                 $(field).val(Form.slugify($(field).val()));
             }

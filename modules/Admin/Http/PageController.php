@@ -4,7 +4,6 @@ namespace Admin\Http;
 
 use Numencode\Models\Menu;
 use Numencode\Models\Page\Page;
-use Illuminate\Validation\Rule;
 use Numencode\Models\Codelist\CodelistGroup;
 
 class PageController extends BaseController
@@ -67,14 +66,14 @@ class PageController extends BaseController
         }
 
         if ($page = Page::create([
-                'parent_id'  => request()->has('parent_id') ? request()->parent_id : null,
-                'menu'       => request()->menu,
-                'layout'     => request()->layout,
-                'title'      => request()->title,
-                'lead'       => request()->lead,
-                'body'       => request()->body,
-                'sort_order' => request()->sort_order,
-            ])
+            'parent_id'  => request()->has('parent_id') ? request()->parent_id : null,
+            'menu'       => request()->menu,
+            'layout'     => request()->layout,
+            'title'      => request()->title,
+            'lead'       => request()->lead,
+            'body'       => request()->body,
+            'sort_order' => request()->sort_order,
+        ])
         ) {
             flash()->success(
                 trans('admin::messages.success'),
@@ -82,7 +81,7 @@ class PageController extends BaseController
             );
         }
 
-        if (request()->subject == 'save') {
+        if (request()->has('redirect') && request()->redirect == 'save') {
             return redirect()->route('pages.edit', compact('page'));
         }
 
@@ -115,7 +114,6 @@ class PageController extends BaseController
     {
         $this->validate(request(), [
             'layout'     => 'required',
-            'menu'       => 'required',
             'title'      => 'required',
             'sort_order' => 'required|integer',
         ]);
@@ -125,21 +123,21 @@ class PageController extends BaseController
         }
 
         if ($page->update([
-                'parent_id'  => request()->parent_id,
-                'layout'     => request()->layout,
-                'title'      => request()->title,
-                'lead'       => request()->lead,
-                'body'       => request()->body,
-                'sort_order' => request()->sort_order,
-            ])
+            'parent_id'  => request()->parent_id,
+            'layout'     => request()->layout,
+            'title'      => request()->title,
+            'lead'       => request()->lead,
+            'body'       => request()->body,
+            'sort_order' => request()->sort_order,
+        ])
         ) {
             flash()->success(
                 trans('admin::messages.success'),
-                trans('admin::pages.created', ['name' => request()->title])
+                trans('admin::pages.updated', ['name' => request()->title])
             );
         }
 
-        if (request()->subject == 'save') {
+        if (request()->has('redirect') && request()->redirect == 'save') {
             return redirect()->route('pages.edit', compact('page'));
         }
 
@@ -150,6 +148,8 @@ class PageController extends BaseController
      * Activate the page.
      *
      * @param Page $page Page
+     *
+     * @return void
      */
     public function active(Page $page)
     {
