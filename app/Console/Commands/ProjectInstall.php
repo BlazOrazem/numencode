@@ -3,6 +3,7 @@
 namespace Numencode\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 
 class ProjectInstall extends Command
 {
@@ -27,13 +28,13 @@ class ProjectInstall extends Command
      */
     public function handle()
     {
-        if (!$this->confirm('Do you have Composer installed on your system? [y|N]', 'yes')) {
-            $this->error(PHP_EOL . 'Install Composer first and run this installer again.' . PHP_EOL);
-            exit();
-        }
-
-        $this->comment(PHP_EOL . 'Running composer install...' . PHP_EOL);
-        shell_exec('composer install');
+//        if (!$this->confirm('Do you have Composer installed on your system? [y|N]', 'yes')) {
+//            $this->error(PHP_EOL . 'Install Composer first and run this installer again.' . PHP_EOL);
+//            exit();
+//        }
+//
+//        $this->comment(PHP_EOL . 'Running composer install...' . PHP_EOL);
+//        shell_exec('composer install');
 
         $env = fopen(".env", "w");
 
@@ -71,8 +72,29 @@ class ProjectInstall extends Command
         $this->comment(PHP_EOL . 'Setting up application key...' . PHP_EOL);
         $this->call('key:generate');
 
+//        $app = require $this->laravel->bootstrapPath().'/app.php';
+//        $app->make(ConsoleKernelContract::class)->bootstrap();
+
+        $app = $this->getFreshApplication()['artisan'];
+        $app::call('project:setup');
+
+//        $exitCode = $app::call('project:setup');
+//        $this->info($exitCode);
+
 //        $this->call('project:setup');
 
 //        $this->comment(PHP_EOL . 'You can now login to admin dashboard: ' . $appUrl . '/admin' . PHP_EOL);
+    }
+
+    /**
+     * Get a fresh application instance.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    protected function getFreshApplication()
+    {
+        return tap(require $this->laravel->bootstrapPath().'/app.php', function ($app) {
+            $app->make(ConsoleKernelContract::class)->bootstrap();
+        });
     }
 }
