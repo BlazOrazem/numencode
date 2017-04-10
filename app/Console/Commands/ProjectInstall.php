@@ -2,6 +2,7 @@
 
 namespace Numencode\Console\Commands;
 
+use Dotenv\Dotenv;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 
@@ -35,6 +36,26 @@ class ProjectInstall extends Command
 //
 //        $this->comment(PHP_EOL . 'Running composer install...' . PHP_EOL);
 //        shell_exec('composer install');
+
+//        require __DIR__.'/vendor/autoload.php';
+
+//        $app = require_once __DIR__.'/bootstrap/app.php';
+//        $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+//        $app = $this->getFreshApplication();
+//
+//        $dotenv = new Dotenv($app->environmentPath());
+//        $dotenv->load($app->environmentPath(), $app->environmentFile());
+//        dd(env('DB_DATABASE'));
+//
+//        $app = $this->getFreshApplication()['env'];
+//        dd($app);
+//
+//        $app = $this->getFreshApplication()['db'];
+//
+//        $app->statement("UPDATE `managers` SET `name` = 'TEST' WHERE `id` = 10");
+//        dd('done');
+//        dd($app);
 
         $env = fopen(".env", "w");
 
@@ -71,6 +92,37 @@ class ProjectInstall extends Command
 
         $this->comment(PHP_EOL . 'Setting up application key...' . PHP_EOL);
         $this->call('key:generate');
+
+        // MIGRATE & SEED
+
+        $app = $this->getFreshApplication();
+
+        $dotenv = new Dotenv($app->environmentPath());
+        $dotenv->load($app->environmentPath(), $app->environmentFile());
+        dd(env('DB_DATABASE'));
+
+        $columnName = 'Tables_in_' . env('DB_DATABASE');
+
+        $dropList = [];
+        foreach (DB::select('SHOW TABLES') as $table) {
+            $dropList[] = $table->$columnName;
+        }
+
+        if (!empty($dropList)) {
+            $dropList = implode(',', $dropList);
+
+            if (!$this->confirm('ARE YOU SURE you want to DROP ALL TABLES in the current database (' . env('DB_DATABASE') .')? [y|N]')) {
+                exit('Drop tables command aborted.');
+            }
+
+            $this->info('Dropping all tables...');
+
+            DB::beginTransaction();
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            DB::statement("DROP TABLE $dropList");
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+            DB::commit();
+        }
 
 //        $app = require $this->laravel->bootstrapPath().'/app.php';
 //        $app->make(ConsoleKernelContract::class)->bootstrap();
