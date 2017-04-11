@@ -18,7 +18,6 @@ class Kernel extends ConsoleKernel
         \Numencode\Console\Commands\MigrateFresh::class,
         \Numencode\Console\Commands\Npm::class,
         \Numencode\Console\Commands\ProjectInstall::class,
-        \Numencode\Console\Commands\ProjectSetup::class,
         \Numencode\Console\Commands\TruncateTable::class,
         \Numencode\Console\Commands\Yarn::class,
     ];

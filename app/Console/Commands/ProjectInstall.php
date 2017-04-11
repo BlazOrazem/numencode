@@ -29,33 +29,23 @@ class ProjectInstall extends Command
      */
     public function handle()
     {
-//        if (!$this->confirm('Do you have Composer installed on your system? [y|N]', 'yes')) {
-//            $this->error(PHP_EOL . 'Install Composer first and run this installer again.' . PHP_EOL);
-//            exit();
-//        }
-//
-//        $this->comment(PHP_EOL . 'Running composer install...' . PHP_EOL);
-//        shell_exec('composer install');
+        // Welcome user
 
-//        require __DIR__.'/vendor/autoload.php';
+        $this->comment(PHP_EOL . '--------------------------------------');
+        $this->comment('| Welcome to NumencodeCMS installer! |');
+        $this->comment('--------------------------------------' . PHP_EOL);
 
-//        $app = require_once __DIR__.'/bootstrap/app.php';
-//        $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+        $this->line('This wizard will guide you through the setup process.' . PHP_EOL);
+        $this->info('If any errors appear during the setup process, repair');
+        $this->info('them according to error messages and run installer again.' . PHP_EOL);
 
-//        $app = $this->getFreshApplication();
-//
-//        $dotenv = new Dotenv($app->environmentPath());
-//        $dotenv->load($app->environmentPath(), $app->environmentFile());
-//        dd(env('DB_DATABASE'));
-//
-//        $app = $this->getFreshApplication()['env'];
-//        dd($app);
-//
-//        $app = $this->getFreshApplication()['db'];
-//
-//        $app->statement("UPDATE `managers` SET `name` = 'TEST' WHERE `id` = 10");
-//        dd('done');
-//        dd($app);
+        $this->line('Make sure you have an empty database prepared before continuing.' . PHP_EOL);
+
+        if (!$this->confirm('Everything is ready to go, shall we continue? [Y|n]')) {
+            $this->comment('Sorry to see you go :(' . PHP_EOL);
+        }
+
+        // Create .env file
 
         $env = fopen(".env", "w");
 
@@ -64,25 +54,29 @@ class ProjectInstall extends Command
         fwrite($env, 'APP_DEBUG=true' . PHP_EOL);
         fwrite($env, 'APP_LOG_LEVEL=debug' . PHP_EOL);
 
-        $this->comment(PHP_EOL . 'Application settings');
+        $this->comment(PHP_EOL . '------------------------');
+        $this->comment('| Application settings |');
+        $this->comment('------------------------');
 
-        $appUrl = $this->ask('Enter the URL of your application (eg. http://www.numencode.app):');
+        $appUrl = $this->ask('Enter the URL of your application without trailing slash (eg. http://www.numencode.app)');
         fwrite($env, 'APP_URL=' . $appUrl . PHP_EOL);
         fwrite($env, PHP_EOL);
 
-        $this->comment(PHP_EOL . 'Database settings');
+        $this->comment(PHP_EOL . '---------------------');
+        $this->comment('| Database settings |');
+        $this->comment('---------------------');
 
-        $dbConn = $this->choice('Select your DB connection type:', ['mysql', 'sqlite', 'pgsql'], 0);
+        $dbConn = $this->choice('Select your DB connection type - press Enter for', ['mysql', 'sqlite', 'pgsql'], 0);
         fwrite($env, 'DB_CONNECTION=' . $dbConn . PHP_EOL);
-        $dbHost = $this->anticipate('Enter the DB hostname:', ['localhost'], 'localhost');
+        $dbHost = $this->anticipate('Enter the DB hostname - press Enter for', ['localhost'], 'localhost');
         fwrite($env, 'DB_HOST=' . $dbHost . PHP_EOL);
-        $dbPort = $this->anticipate('Enter the DB port:', ['3306'], '3306');
+        $dbPort = $this->anticipate('Enter the DB port - press Enter for default MySQL port', ['3306'], '3306');
         fwrite($env, 'DB_PORT=' . $dbPort . PHP_EOL);
-        $dbName = $this->ask('Enter the DB name:');
+        $dbName = $this->ask('Enter the DB name');
         fwrite($env, 'DB_DATABASE=' . $dbName . PHP_EOL);
-        $dbUser = $this->ask('Enter the DB username:');
+        $dbUser = $this->ask('Enter the DB username');
         fwrite($env, 'DB_USERNAME=' . $dbUser . PHP_EOL);
-        $dbPass = $this->ask('Enter the DB password:');
+        $dbPass = $this->ask('Enter the DB password');
         fwrite($env, 'DB_PASSWORD=' . $dbPass . PHP_EOL);
 
         fwrite($env, PHP_EOL);
@@ -90,52 +84,92 @@ class ProjectInstall extends Command
 
         fclose($env);
 
+        // Setup the application key
+
+        $this->comment(PHP_EOL . '-------------------');
+        $this->comment('| Application key |');
+        $this->comment('-------------------');
+
         $this->comment(PHP_EOL . 'Setting up application key...' . PHP_EOL);
         $this->call('key:generate');
 
-        // MIGRATE & SEED
+        // Boot up a new application
 
         $app = $this->getFreshApplication();
+        $db = $app['db'];
+        $artisan = $app['artisan'];
 
-        $dotenv = new Dotenv($app->environmentPath());
-        $dotenv->load($app->environmentPath(), $app->environmentFile());
-        dd(env('DB_DATABASE'));
+        // Load newly generated .env variables
+
+        $dotEnv = new Dotenv($app->environmentPath());
+        $dotEnv->load($app->environmentPath(), $app->environmentFile());
+
+        // Run migrations and seed database
+
+        $this->comment(PHP_EOL . PHP_EOL . '-----------------------------------');
+        $this->comment('| Database migrations and seeding |');
+        $this->comment('-----------------------------------');
 
         $columnName = 'Tables_in_' . env('DB_DATABASE');
 
         $dropList = [];
-        foreach (DB::select('SHOW TABLES') as $table) {
+        foreach ($db->select("SHOW TABLES") as $table) {
             $dropList[] = $table->$columnName;
         }
 
         if (!empty($dropList)) {
             $dropList = implode(',', $dropList);
 
+            $this->line(PHP_EOL . 'Your selected database (' . env('DB_DATABASE') .') is not empty!');
+
             if (!$this->confirm('ARE YOU SURE you want to DROP ALL TABLES in the current database (' . env('DB_DATABASE') .')? [y|N]')) {
-                exit('Drop tables command aborted.');
+                $this->comment('You can run installer again anytime!' . PHP_EOL);
+                $this->error('Drop tables command aborted.' . PHP_EOL);
+                exit();
             }
 
             $this->info('Dropping all tables...');
 
-            DB::beginTransaction();
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-            DB::statement("DROP TABLE $dropList");
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-            DB::commit();
+            $db->beginTransaction();
+            $db->statement('SET FOREIGN_KEY_CHECKS = 0');
+            $db->statement("DROP TABLE $dropList");
+            $db->statement('SET FOREIGN_KEY_CHECKS = 1');
+            $db->commit();
         }
 
-//        $app = require $this->laravel->bootstrapPath().'/app.php';
-//        $app->make(ConsoleKernelContract::class)->bootstrap();
+        $this->comment(PHP_EOL . 'Running database migrations...' . PHP_EOL);
+        $artisan::call('migrate');
+        $this->info('Database tables were successfully migrated.' . PHP_EOL);
 
-        $app = $this->getFreshApplication()['artisan'];
-        $app::call('project:setup');
+        $this->comment('Running database seeders...' . PHP_EOL);
+        $artisan::call('db:seed');
+        $this->info('Database seeding was successfully completed.' . PHP_EOL);
 
-//        $exitCode = $app::call('project:setup');
-//        $this->info($exitCode);
+        // Setup the admin manager account
 
-//        $this->call('project:setup');
+        $this->comment(PHP_EOL . '-------------------------');
+        $this->comment('| Admin manager account |');
+        $this->comment('-------------------------');
 
-//        $this->comment(PHP_EOL . 'You can now login to admin dashboard: ' . $appUrl . '/admin' . PHP_EOL);
+        $email = $this->ask('Enter the email address for the admin account');
+        $password = bcrypt($this->secret('Enter the password for the admin account'));
+
+        $db->statement("UPDATE `managers` SET `email` = '{$email}', `password` = '{$password}' WHERE `id` = 1");
+
+        // Complete the installation
+
+        $this->comment(PHP_EOL . '-------------------');
+        $this->comment('| Admin dashboard |');
+        $this->comment('-------------------' . PHP_EOL);
+
+        $this->line('You can now login to admin dashboard with your username and password.');
+        $this->comment(PHP_EOL . 'Admin dashboard URL: ' . $appUrl . '/admin' . PHP_EOL);
+
+        $this->comment(PHP_EOL . 'Project is successfully installed.');
+
+        $this->comment(PHP_EOL . '----------------------------------');
+        $this->comment('| Thanks for using NumencodeCMS! |');
+        $this->comment('----------------------------------' . PHP_EOL);
     }
 
     /**
