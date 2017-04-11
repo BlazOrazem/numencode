@@ -23,32 +23,32 @@ Documentation for the **Numencode** can be found on the [Numencode website](http
 
 Follow [@blazorazem](https://twitter.com/blazorazem) on Twitter.
 
-## Installation in three steps
+# Installation in three steps
 
 Clone this repository to your project directory:
 ```bash
 $ git clone https://github.com/BlazOrazem/numencode.git
 ```
 
-Make sure, you have [Composer](https://getcomposer.org/) installed on your system and run:
+Make sure you have [Composer](https://getcomposer.org/) installed on your system and run:
+```bash
+$ composer install
+```
+
+And finally run Numencode installer:
 ```bash
 $ php artisan project:install
 ```
 
-Now it's time to run database migration and seeders:
-```bash
-$ php artisan project:setup
-```
-
 You're done.
 
-## Configuration
+# Configuration
 
 Check file .env.example for more configurations and copy desired settings to your .env file.
 
 Be sure to check /config/numencode.php file for some more application settings.
 
-## Admin Dashboard
+# Admin Dashboard
 
 The URL for the admin dashboard should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
 
@@ -118,7 +118,7 @@ After the changes in styles and/or scripts run Gulp in directory 'modules/Admin/
 $ gulp
 ```
 
-## License
+# License
 
 The Numencode is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
