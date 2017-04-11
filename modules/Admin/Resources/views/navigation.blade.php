@@ -76,6 +76,7 @@
                 @if($admin->can('view_codelist') || $admin->can('manage_codelist'))
                     <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
                 @endif
+                <li><a href="{{ route('dictionary.index') }}">Dictionary</a></li>
                 @if($admin->can('view_plugins') || $admin->can('manage_plugins'))
                     <li><a href="{{ route('plugins.index') }}">Plugins</a></li>
                 @endif

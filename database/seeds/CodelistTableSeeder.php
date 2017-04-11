@@ -17,6 +17,11 @@ class CodelistTableSeeder extends Seeder
                 'title'      => 'Content Position',
                 'sort_order' => '20',
             ],
+            [
+                'id'         => 3,
+                'title'      => 'Dictionary Group',
+                'sort_order' => '30',
+            ],
         ];
 
         DB::table('codelist_group')->insert($items);
@@ -41,6 +46,13 @@ class CodelistTableSeeder extends Seeder
                 'codelist_group_id' => 2,
                 'code'              => 'center',
                 'title'             => 'Center',
+                'sort_order'        => '10',
+            ],
+            [
+                'id'                => 4,
+                'codelist_group_id' => 3,
+                'code'              => 'header',
+                'title'             => 'Header',
                 'sort_order'        => '10',
             ],
         ];

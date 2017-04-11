@@ -86,6 +86,14 @@ Route::get('codelist/{codelist}/edit', 'CodelistController@edit')->name('codelis
 Route::match(['PUT', 'PATCH'], 'codelist/{codelist}', 'CodelistController@update')->name('codelist.update')->middleware('permission:manage_codelist');
 Route::delete('codelist/{codelist}', 'CodelistController@destroy')->name('codelist.destroy')->middleware('permission:manage_codelist');
 
+// Dictionary
+Route::post('dictionary', 'DictionaryController@store')->name('dictionary.store');
+Route::get('dictionary', 'DictionaryController@index')->name('dictionary.index');
+Route::get('dictionary/create', 'DictionaryController@create')->name('dictionary.create');
+Route::get('dictionary/{dictionary}/edit', 'DictionaryController@edit')->name('dictionary.edit');
+Route::match(['PUT', 'PATCH'], 'dictionary/{dictionary}', 'DictionaryController@update')->name('dictionary.update');
+Route::delete('dictionary/{dictionary}', 'DictionaryController@destroy')->name('dictionary.destroy');
+
 // Roles and Permissions
 Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign.permissions')->middleware('permission:manage_roles|assign_permissions|manage_permissions');
 Route::post('roles/manager/{manager}/{role}', 'RoleController@assignManagerRole')->name('roles.assign.manager')->middleware('permission:manage_roles');
