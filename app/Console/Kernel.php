@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \Numencode\Console\Commands\Bower::class,
         \Numencode\Console\Commands\Gulp::class,
+        \Numencode\Console\Commands\Lang::class,
         \Numencode\Console\Commands\MigrateFresh::class,
         \Numencode\Console\Commands\Npm::class,
         \Numencode\Console\Commands\ProjectInstall::class,

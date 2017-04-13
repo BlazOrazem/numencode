@@ -51,8 +51,8 @@ class CodelistTableSeeder extends Seeder
             [
                 'id'                => 4,
                 'codelist_group_id' => 3,
-                'code'              => 'header',
-                'title'             => 'Header',
+                'code'              => 'messages',
+                'title'             => 'Messages',
                 'sort_order'        => '10',
             ],
         ];

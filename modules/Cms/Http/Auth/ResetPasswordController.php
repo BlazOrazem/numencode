@@ -42,8 +42,8 @@ class ResetPasswordController extends BaseController
     protected function sendResetResponse($response)
     {
         flash()->overlay(
-            trans('theme::messages.password_reset.title'),
-            trans('theme::messages.password_reset.success'),
+            trans('theme::messages.password_reset_title'),
+            trans('theme::messages.password_reset_success'),
             'success'
         );
 

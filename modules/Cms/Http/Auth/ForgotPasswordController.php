@@ -53,8 +53,8 @@ class ForgotPasswordController extends BaseController
 
         if (!$user) {
             flash()->overlay(
-                trans('theme::messages.password_reset.forgotten'),
-                trans('theme::messages.password_reset.invalid_user'), 'error'
+                trans('theme::messages.password_reset_forgotten'),
+                trans('theme::messages.password_reset_invalid_user'), 'error'
             );
 
             return redirect(route('password.forget'));
@@ -63,8 +63,8 @@ class ForgotPasswordController extends BaseController
         Mail::to($user)->send(new PasswordReset($this->tokens->create($user)));
 
         flash()->overlay(
-            trans('theme::messages.password_reset.forgotten'),
-            trans('theme::messages.password_reset.link_sent', ['email' => $request->email]), 'success'
+            trans('theme::messages.password_reset_forgotten'),
+            trans('theme::messages.password_reset_link_sent', ['email' => $request->email]), 'success'
         );
 
         return redirect(get_route('login'));

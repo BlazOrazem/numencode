@@ -54,6 +54,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Dictionary
+    |--------------------------------------------------------------------------
+    |
+    | Codelist must contain a Dictionary Group entry for Dictionary to work.
+    | Here you must specify the ID of that entry, which is used to import
+    | and export translation from files to database and back.
+    |
+    */
+
+    'dictionary_codelist_group_id' => 3,
+
+    /*
+    |--------------------------------------------------------------------------
     | Max depth for page structure node
     |--------------------------------------------------------------------------
     |
