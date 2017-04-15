@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         \Numencode\Console\Commands\Dictionary\LangClean::class,
         \Numencode\Console\Commands\Dictionary\LangExport::class,
         \Numencode\Console\Commands\Dictionary\LangImport::class,
+        \Numencode\Console\Commands\Dictionary\LangSync::class,
         \Numencode\Console\Commands\Database\MigrateFresh::class,
         \Numencode\Console\Commands\Database\TruncateTable::class,
         \Numencode\Console\Commands\ProjectInstall::class,
