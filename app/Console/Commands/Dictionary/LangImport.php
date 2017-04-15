@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Console\Commands;
+namespace Numencode\Console\Commands\Dictionary;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -8,7 +8,7 @@ use Numencode\Models\System\Dictionary;
 use Numencode\Models\Codelist\CodelistItem;
 use Numencode\Models\Codelist\CodelistGroup;
 
-class Lang extends Command
+class LangImport extends Command
 {
     /**
      * The name and signature of the console command.

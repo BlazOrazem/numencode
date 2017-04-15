@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Console\Commands;
+namespace Numencode\Console\Commands\Admin;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;

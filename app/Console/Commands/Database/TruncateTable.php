@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Console\Commands;
+namespace Numencode\Console\Commands\Database;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +28,11 @@ class TruncateTable extends Command
      */
     public function handle()
     {
+        if (!$this->confirm('ARE YOU SURE you want to DELETE everything from database table "' . $this->argument('table_name') . '"? [y|N]')) {
+            $this->error('Truncate table command aborted.' . PHP_EOL);
+            exit();
+        }
+
         DB::beginTransaction();
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table($this->argument('table_name'))->truncate();

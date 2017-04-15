@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Console\Commands;
+namespace Numencode\Console\Commands\Database;
 
 use DB;
 use Illuminate\Console\Command;

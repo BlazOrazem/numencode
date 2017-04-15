@@ -13,14 +13,14 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Numencode\Console\Commands\Bower::class,
-        \Numencode\Console\Commands\Gulp::class,
-        \Numencode\Console\Commands\Lang::class,
-        \Numencode\Console\Commands\MigrateFresh::class,
-        \Numencode\Console\Commands\Npm::class,
+        \Numencode\Console\Commands\Admin\Bower::class,
+        \Numencode\Console\Commands\Admin\Gulp::class,
+        \Numencode\Console\Commands\Admin\Npm::class,
+        \Numencode\Console\Commands\Admin\Yarn::class,
+        \Numencode\Console\Commands\Dictionary\LangImport::class,
+        \Numencode\Console\Commands\Database\MigrateFresh::class,
+        \Numencode\Console\Commands\Database\TruncateTable::class,
         \Numencode\Console\Commands\ProjectInstall::class,
-        \Numencode\Console\Commands\TruncateTable::class,
-        \Numencode\Console\Commands\Yarn::class,
     ];
 
     /**
