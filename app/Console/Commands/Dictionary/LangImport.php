@@ -97,17 +97,17 @@ class LangImport extends Command
                     ]);
                 }
 
-                foreach ($this->parseLangFile($filename) as $code => $title) {
-                    if (!Dictionary::where('locale', $locale)->where('group', $group)->where('code', $code)->exists()) {
+                foreach ($this->parseLangFile($filename) as $key => $value) {
+                    if (!Dictionary::where('locale', $locale)->where('group', $group)->where('key', $key)->exists()) {
                         Dictionary::forceCreate([
                             'locale' => $locale,
                             'group' => $group,
-                            'code' => $code,
-                            'title' => $title,
+                            'key' => $key,
+                            'value' => $value,
                         ]);
                     } else {
-                        Dictionary::where('locale', $locale)->where('group', $group)->where('code', $code)->update([
-                            'title' => $title,
+                        Dictionary::where('locale', $locale)->where('group', $group)->where('key', $key)->update([
+                            'value' => $value,
                         ]);
                     }
                 }

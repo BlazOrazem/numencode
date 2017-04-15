@@ -17,8 +17,8 @@ class CreateDictionaryTable extends Migration
             $table->increments('id');
             $table->string('locale', 6);
             $table->string('group')->nullable();
-            $table->string('code');
-            $table->text('title')->nullable();
+            $table->string('key');
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }
