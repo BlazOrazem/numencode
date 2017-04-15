@@ -4,6 +4,7 @@ namespace Admin\Http;
 
 use Illuminate\Validation\Rule;
 use Numencode\Models\System\Dictionary;
+use Numencode\Models\Codelist\CodelistItem;
 
 class DictionaryController extends BaseController
 {
@@ -14,9 +15,24 @@ class DictionaryController extends BaseController
      */
     public function index()
     {
-        $dictionary = Dictionary::all();
+        $groups = CodelistItem::where('codelist_group_id', config('numencode.dictionary_codelist_group_id'))
+            ->orderBy('title')
+            ->pluck('title', 'code');
 
-        return view('admin::dictionary.index', compact('dictionary'));
+        $dictionary = Dictionary::get()->groupBy('locale');
+
+        $tree = [];
+        foreach ($dictionary as $locale => $translations) {
+            foreach ($translations->groupBy('group') as $key => $translation) {
+                foreach ($translation as $item) {
+                    array_set($tree[$locale][$groups[$key]], $item->id, $item);
+                }
+            }
+        }
+
+//        dd($tree);
+
+        return view('admin::dictionary.index', compact('tree'));
     }
 
     /**
