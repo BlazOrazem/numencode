@@ -19,7 +19,7 @@ class Gulp extends Command
      *
      * @var string
      */
-    protected $description = 'Run Gulp for admin theme';
+    protected $description = 'Run Gulp for the admin theme.';
 
     /**
      * Execute the console command.
@@ -37,9 +37,9 @@ class Gulp extends Command
         }
 
         if ($process->isSuccessful()) {
-            $this->info('Gulp for the admin theme executed successfully.' . "\n");
+            $this->info('Gulp for the admin theme executed successfully.' . PHP_EOL);
         } else {
-            $this->error('Error executing Gulp for the admin theme.' . "\n");
+            $this->error('Error executing Gulp for the admin theme.' . PHP_EOL);
         }
     }
 

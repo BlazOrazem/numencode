@@ -12,7 +12,7 @@ class TruncateTable extends Command
      *
      * @var string
      */
-    protected $signature = 'db:truncate {table_name} {--force}';
+    protected $signature = 'db:truncate {table_name} {--force : Truncate without confirmation}';
 
     /**
      * The console command description.

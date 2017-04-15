@@ -19,7 +19,7 @@ class Bower extends Command
      *
      * @var string
      */
-    protected $description = 'Run Bower update for admin theme';
+    protected $description = 'Run Bower update for the admin theme.';
 
     /**
      * Execute the console command.
@@ -35,9 +35,9 @@ class Bower extends Command
         $this->comment($process->getOutput());
 
         if ($process->isSuccessful()) {
-            $this->info('Bower update for the admin theme executed successfully.' . "\n");
+            $this->info('Bower update for the admin theme executed successfully.' . PHP_EOL);
         } else {
-            $this->error('Error executing Bower update for the admin theme.' . "\n");
+            $this->error('Error executing Bower update for the admin theme.' . PHP_EOL);
         }
     }
 }

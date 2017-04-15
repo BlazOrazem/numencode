@@ -22,7 +22,7 @@ class LangImport extends Command
      *
      * @var string
      */
-    protected $description = 'Import translations from php language files to database dictionary.';
+    protected $description = 'Import translations from PHP language files to database Dictionary.';
 
     /**
      * Laravel Filesystem
@@ -115,7 +115,7 @@ class LangImport extends Command
 
         }
 
-        $this->info('Import of the language files is completed.');
+        $this->info('Import of the language files is completed.' . PHP_EOL);
     }
 
     /**

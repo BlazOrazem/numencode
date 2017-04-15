@@ -2,8 +2,8 @@
 
 namespace Numencode\Console\Commands\Database;
 
-use DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class MigrateFresh extends Command
 {
@@ -12,7 +12,7 @@ class MigrateFresh extends Command
      *
      * @var string
      */
-    protected $signature = 'migrate:fresh {--seed}';
+    protected $signature = 'migrate:fresh {--seed : Whether the database seeding should be executed}';
 
     /**
      * The console command description.
@@ -28,7 +28,7 @@ class MigrateFresh extends Command
      */
     public function handle()
     {
-        if (!$this->confirm('CONFIRM DROP ALL TABLES IN THE CURRENT DATABASE? [y|N]')) {
+        if (!$this->confirm('ARE YOU SURE you want to DROP ALL TABLES in the current database? [y|N]')) {
             exit('Drop tables command aborted.');
         }
 

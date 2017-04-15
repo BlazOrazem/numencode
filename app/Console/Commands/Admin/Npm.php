@@ -19,7 +19,7 @@ class Npm extends Command
      *
      * @var string
      */
-    protected $description = 'Run NPM update for admin theme';
+    protected $description = 'Run NPM update for the admin theme.';
 
     /**
      * Execute the console command.
@@ -35,9 +35,9 @@ class Npm extends Command
         $this->comment($process->getOutput());
 
         if ($process->isSuccessful()) {
-            $this->info('NPM update for the admin theme executed successfully.' . "\n");
+            $this->info('NPM update for the admin theme executed successfully.' . PHP_EOL);
         } else {
-            $this->error('Error executing NPM update for the admin theme.' . "\n");
+            $this->error('Error executing NPM update for the admin theme.' . PHP_EOL);
         }
     }
 }

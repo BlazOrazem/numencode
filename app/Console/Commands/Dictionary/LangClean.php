@@ -12,14 +12,14 @@ class LangClean extends Command
      *
      * @var string
      */
-    protected $signature = 'lang:clean {--lang= : Whether only specific language should be cleaned}';
+    protected $signature = 'lang:clean {--locale= : Whether only specific locale translations should be deleted}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Delete all translations from database dictionary.';
+    protected $description = 'Delete translations from database dictionary.';
 
     /**
      * Execute the console command.
@@ -28,13 +28,12 @@ class LangClean extends Command
      */
     public function handle()
     {
-        if ($selectedLang = $this->option('lang')) {
-            Dictionary::where('locale', $selectedLang)->delete();
+        if ($locale = $this->option('locale')) {
+            Dictionary::where('locale', $locale)->delete();
         } else {
             $this->call('db:truncate', ['table_name' => 'dictionary', '--force' => true]);
         }
 
-
-        $this->info('Translations are deleted from the database.');
+        $this->info('Translations are deleted from the database.' . PHP_EOL);
     }
 }
