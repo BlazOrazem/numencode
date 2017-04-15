@@ -12,7 +12,7 @@ class TruncateTable extends Command
      *
      * @var string
      */
-    protected $signature = 'db:truncate {table_name}';
+    protected $signature = 'db:truncate {table_name} {--force}';
 
     /**
      * The console command description.
@@ -28,7 +28,7 @@ class TruncateTable extends Command
      */
     public function handle()
     {
-        if (!$this->confirm('ARE YOU SURE you want to DELETE everything from database table "' . $this->argument('table_name') . '"? [y|N]')) {
+        if (!$this->option('force') && !$this->confirm('ARE YOU SURE you want to DELETE everything from database table "' . $this->argument('table_name') . '"? [y|N]')) {
             $this->error('Truncate table command aborted.' . PHP_EOL);
             exit();
         }
