@@ -31,9 +31,9 @@ class ProjectInstall extends Command
     {
         // Welcome user
 
-        $this->comment(PHP_EOL . '--------------------------------------');
-        $this->comment('| Welcome to NumencodeCMS installer! |');
-        $this->comment('--------------------------------------' . PHP_EOL);
+        $this->comment(PHP_EOL . '-------------------------------------');
+        $this->comment('| Welcome to NumencodeCMS installer |');
+        $this->comment('-------------------------------------' . PHP_EOL);
 
         $this->line('This wizard will guide you through the setup process.' . PHP_EOL);
         $this->info('If any errors appear during the setup process, repair');
@@ -145,6 +145,16 @@ class ProjectInstall extends Command
         $artisan::call('db:seed');
         $this->info('Database seeding was successfully completed.' . PHP_EOL);
 
+        // Import translations to database
+
+        $this->comment(PHP_EOL . '--------------------');
+        $this->comment('| Dictionary setup |');
+        $this->comment('--------------------');
+
+        $this->comment('Importing translations to database...' . PHP_EOL);
+        $artisan::call('lang:import');
+        $this->info('Dictionary was successfully imported.' . PHP_EOL);
+
         // Setup the admin manager account
 
         $this->comment(PHP_EOL . '-------------------------');
@@ -155,6 +165,8 @@ class ProjectInstall extends Command
         $password = bcrypt($this->secret('Enter the password for the admin account'));
 
         $db->statement("UPDATE `managers` SET `email` = '{$email}', `password` = '{$password}' WHERE `id` = 1");
+
+        $this->info('Admin manager was successfully created.' . PHP_EOL);
 
         // Complete the installation
 
@@ -167,9 +179,9 @@ class ProjectInstall extends Command
 
         $this->comment(PHP_EOL . 'Project is successfully installed.');
 
-        $this->comment(PHP_EOL . '----------------------------------');
-        $this->comment('| Thanks for using NumencodeCMS! |');
-        $this->comment('----------------------------------' . PHP_EOL);
+        $this->comment(PHP_EOL . '------------------------------------');
+        $this->comment('| Thank you for using NumencodeCMS |');
+        $this->comment('------------------------------------' . PHP_EOL);
     }
 
     /**

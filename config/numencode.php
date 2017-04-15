@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'dictionary_codelist_group_id' => 3,
+    'dictionary_codelist_group_id' => 1,
 
     /*
     |--------------------------------------------------------------------------

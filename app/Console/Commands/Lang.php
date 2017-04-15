@@ -17,7 +17,6 @@ class Lang extends Command
      */
     protected $signature = 'lang:import';
 
-
     /**
      * The console command description.
      *
@@ -25,8 +24,19 @@ class Lang extends Command
      */
     protected $description = 'Import translations from php language files to database dictionary.';
 
+    /**
+     * Laravel Filesystem
+     *
+     * @var Filesystem
+     */
     protected $files;
-    protected $codelistGroupID;
+
+    /**
+     * Codelist Group for dictionary
+     *
+     * @var CodelistGroup
+     */
+    protected $codelistGroup;
 
     /**
      * Create a new Lang command instance.
@@ -38,8 +48,26 @@ class Lang extends Command
         parent::__construct();
 
         $this->files = $files;
+    }
 
-        $this->codelistGroup = CodelistGroup::findOrFail(config('numencode.dictionary_codelist_group_id'));
+    /**
+     * Get Codelist Group
+     *
+     * @return CodelistGroup
+     */
+    public function getCodelistGroup()
+    {
+        return $this->codelistGroup;
+    }
+
+    /**
+     * Set Codelist Group
+     *
+     * @param CodelistGroup $codelistGroup Codelist Group
+     */
+    public function setCodelistGroup(CodelistGroup $codelistGroup)
+    {
+        $this->codelistGroup = $codelistGroup;
     }
 
     /**
@@ -49,6 +77,8 @@ class Lang extends Command
      */
     public function handle()
     {
+        $this->setCodelistGroup(CodelistGroup::find(config('numencode.dictionary_codelist_group_id')));
+
         foreach ($this->files->directories($this->getLangPath()) as $langPath){
             $locale = basename($langPath);
 
@@ -58,12 +88,12 @@ class Lang extends Command
                 $group = $info['filename'];
 
                 // Dictionary group
-                if (!CodelistItem::where('codelist_group_id', $this->codelistGroup->id)->where('code', $group)->exists()) {
+                if (!CodelistItem::where('codelist_group_id', $this->getCodelistGroup()->id)->where('code', $group)->exists()) {
                     CodelistItem::forceCreate([
-                        'codelist_group_id' => $this->codelistGroup->id,
+                        'codelist_group_id' => $this->getCodelistGroup()->id,
                         'code' => $group,
                         'title' => ucfirst($group),
-                        'sort_order' => CodelistItem::where('codelist_group_id', $this->codelistGroup->id)->get()->max('sort_order') + 10,
+                        'sort_order' => CodelistItem::where('codelist_group_id', $this->getCodelistGroup()->id)->get()->max('sort_order') + 10,
                     ]);
                 }
 
