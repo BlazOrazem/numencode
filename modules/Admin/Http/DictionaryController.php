@@ -19,7 +19,7 @@ class DictionaryController extends BaseController
             ->orderBy('title')
             ->pluck('title', 'code');
 
-        $dictionary = Dictionary::get()->groupBy('locale');
+        $dictionary = Dictionary::orderBy('group')->orderBy('key')->get()->groupBy('locale');
 
         $tree = [];
         foreach ($dictionary as $locale => $translations) {

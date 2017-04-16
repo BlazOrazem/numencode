@@ -26,11 +26,11 @@
             </li>
         @endif
         <li>
-            <a href="#"><i class="zmdi zmdi-collection-text"></i>Contents<span class="zmdi arrow"></span></a>
+            <a href="#"><i class="zmdi zmdi-collection-text"></i>Content<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
-                <li class="inside-title">Contents</li>
-                <li><a href="{{ route('contents.index') }}">Always displayed contents</a></li>
-                <li><a href="{{ route('admin.dashboard') }}">Dictionary</a></li>
+                <li class="inside-title">Content</li>
+                <li><a href="{{ route('contents.index') }}">Always displayed content</a></li>
+                <li><a href="{{ route('dictionary.index') }}">Dictionary</a></li>
             </ul>
         </li>
         <li>
@@ -76,7 +76,6 @@
                 @if($admin->can('view_codelist') || $admin->can('manage_codelist'))
                     <li><a href="{{ route('codelist.index') }}">Codelist</a></li>
                 @endif
-                <li><a href="{{ route('dictionary.index') }}">Dictionary</a></li>
                 @if($admin->can('view_plugins') || $admin->can('manage_plugins'))
                     <li><a href="{{ route('plugins.index') }}">Plugins</a></li>
                 @endif

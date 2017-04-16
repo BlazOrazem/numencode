@@ -53,16 +53,16 @@ elixir(function(mix) {
      | Application Styles and Scripts
      |--------------------------------------------------------------------------
      */
-    //mix.sass([
-    //    '../sass/style.scss'
-    //], publicPath + 'css/app.css');
+    mix.sass([
+        '../sass/style.scss'
+    ], publicPath + 'css/app.css');
 
-    mix.scripts([
-        '../js/http.js',
-        '../js/app.js',
-        '../js/form.js',
-        '../js/init.js'
-    ], publicPath + 'js/app.js');
+    //mix.scripts([
+    //    '../js/http.js',
+    //    '../js/app.js',
+    //    '../js/form.js',
+    //    '../js/init.js'
+    //], publicPath + 'js/app.js');
 
     /*
      |--------------------------------------------------------------------------
@@ -82,7 +82,9 @@ elixir(function(mix) {
     //    'bower_components/toastr/toastr.css',
     //    'bower_components/DataTables/media/css/jquery.dataTables.min.css',
     //    'bower_components/bootstrap-select/dist/css/bootstrap-select.css',
-    //    'bower_components/bootstrap-sweetalert/lib/sweet-alert.css'
+    //    'bower_components/bootstrap-sweetalert/lib/sweet-alert.css',
+    //    'bower_components/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css',
+    //    'bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css',
     //], publicPath + 'css/libs.css');
 
     /*
@@ -111,7 +113,10 @@ elixir(function(mix) {
     //    'bower_components/bootstrap-select/dist/js/bootstrap-select.js',
     //    'bower_components/bootstrap-sweetalert/lib/sweet-alert.js',
     //    'bower_components/jquery-ui-sortable-min/jquery-ui-sortable-min.js',
-    //    'bower_components/tinymce/tinymce.min.js'
+    //    'bower_components/tinymce/tinymce.min.js',
+    //    'bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js',
+    //    'bower_components/x-editable/dist/inputs-ext/wysihtml5/wysihtml5.js',
+    //    'bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js'
     //], publicPath + 'js/libs.js');
 
 	/*

@@ -6893,7 +6893,7 @@ ol.list li:before {
 
 /*Tabs*/
 .nav-tabs {
-  border-bottom: 2px solid #ffbb33;
+  border-bottom: 2px solid #49ceff;
   margin-bottom: 20px;
 }
 
@@ -6910,11 +6910,11 @@ ol.list li:before {
   font-weight: 500;
   color: #333;
   border-color: #eee;
-  border-bottom-color: #ffbb33;
+  border-bottom-color: #49ceff;
 }
 
 .nav-tabs > li > a:hover {
-  border-bottom-color: #ffbb33;
+  border-bottom-color: #49ceff;
   background: #fff;
 }
 
@@ -7089,8 +7089,8 @@ ol.list li:before {
 .panel-heading {
   border: 0;
   border-radius: 0;
-  background-image: -webkit-linear-gradient(#ffbb33, #ffbb33), -webkit-linear-gradient(#d2d2d2, #d2d2d2);
-  background-image: linear-gradient(#ffbb33, #ffbb33), linear-gradient(#d2d2d2, #d2d2d2);
+  background-image: -webkit-linear-gradient(#49ceff, #49ceff), -webkit-linear-gradient(#d2d2d2, #d2d2d2);
+  background-image: linear-gradient(#49ceff, #49ceff), linear-gradient(#d2d2d2, #d2d2d2);
   background-size: 0 2px,100% 1px;
   background-repeat: no-repeat;
   background-position: center bottom, center calc(100% - 1px);
@@ -7104,6 +7104,30 @@ ol.list li:before {
 .panel-heading.active {
   -webkit-animation: "input-highlight" .3s forwards;
   animation: "input-highlight" .3s forwards;
+}
+
+.panel-heading h4.panel-title {
+  text-transform: none;
+}
+
+/*Editable*/
+.editable-input ul.wysihtml5-toolbar .btn-default {
+  background: #49ceff;
+  color: white;
+}
+
+.editable-input ul.wysihtml5-toolbar a[data-wysihtml5-command="formatBlock"] {
+  display: none !important;
+}
+
+.editable-buttons .btn-primary {
+  background: #2196F3;
+  color: white;
+}
+
+.editable-buttons .btn-default {
+  background: #49ceff;
+  color: white;
 }
 
 @-webkit-keyframes 'input-highlight' {
