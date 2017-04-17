@@ -3,6 +3,7 @@
 namespace Numencode\Providers;
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -32,5 +33,9 @@ class EventServiceProvider extends ServiceProvider
             'user.update_profile',
             'Numencode\Listeners\UserEventListener@onProfileUpdate'
         );
+
+        Event::listen('dictionary.update', function ($group) {
+            Artisan::call('lang:export', ['--group' => $group]);
+        });
     }
 }

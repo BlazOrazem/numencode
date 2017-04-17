@@ -7110,14 +7110,44 @@ ol.list li:before {
   text-transform: none;
 }
 
+.panel-heading h4.panel-title a {
+  display: block;
+}
+
+.panel-table .btn-danger {
+  min-width: 40px !important;
+}
+
+.panel-table .btn-danger i {
+  margin-left: 0;
+}
+
 /*Editable*/
+a.editable {
+  color: #333;
+}
+
+a.editable:hover {
+  color: #2196F3;
+}
+
 .editable-input ul.wysihtml5-toolbar .btn-default {
   background: #49ceff;
   color: white;
 }
 
-.editable-input ul.wysihtml5-toolbar a[data-wysihtml5-command="formatBlock"] {
+.editable-input ul.wysihtml5-toolbar .dropdown-menu li a {
+  color: #333;
+  padding: 4px 10px;
+}
+
+.editable-input ul.wysihtml5-toolbar a[data-wysihtml5-command-value="blockquote"] {
   display: none !important;
+}
+
+.editable-input .modal-footer .btn-primary {
+  background: #2196F3;
+  color: white;
 }
 
 .editable-buttons .btn-primary {

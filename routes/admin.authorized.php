@@ -89,9 +89,7 @@ Route::delete('codelist/{codelist}', 'CodelistController@destroy')->name('codeli
 // Dictionary
 Route::post('dictionary', 'DictionaryController@store')->name('dictionary.store');
 Route::get('dictionary', 'DictionaryController@index')->name('dictionary.index');
-Route::get('dictionary/create', 'DictionaryController@create')->name('dictionary.create');
-Route::get('dictionary/{dictionary}/edit', 'DictionaryController@edit')->name('dictionary.edit');
-Route::match(['PUT', 'PATCH'], 'dictionary/{dictionary}', 'DictionaryController@update')->name('dictionary.update');
+Route::match(['PUT', 'PATCH'], 'dictionary', 'DictionaryController@update')->name('dictionary.update');
 Route::delete('dictionary/{dictionary}', 'DictionaryController@destroy')->name('dictionary.destroy');
 
 // Roles and Permissions

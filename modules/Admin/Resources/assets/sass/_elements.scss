@@ -667,7 +667,6 @@ ol.list li{
     border: 0 !important;
   }
 }
-
 .panel-heading{
   border: 0;
   border-radius: 0;
@@ -684,20 +683,47 @@ ol.list li{
   }
   h4.panel-title {
     text-transform: none;
+    a {
+      display: block;
+    }
+  }
+}
+.panel-table {
+  .btn-danger {
+    min-width: 40px !important;
+    i {
+      margin-left: 0;
+    }
   }
 }
 
 
 /*Editable*/
+a.editable {
+  color: $text-color;
+  &:hover {
+    color: $base-color;
+  }
+}
 .editable-input {
   ul.wysihtml5-toolbar {
     .btn-default {
       background: $info-color;
       color: white;
     }
-    a[data-wysihtml5-command="formatBlock"] {
+    .dropdown-menu {
+      li a {
+        color: $text-color;
+        padding: 4px 10px;
+      }
+    }
+    a[data-wysihtml5-command-value="blockquote"] {
       display:none !important;
     }
+  }
+  .modal-footer .btn-primary {
+    background: $base-color;
+    color: white;
   }
 }
 .editable-buttons {

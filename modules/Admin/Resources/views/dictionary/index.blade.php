@@ -20,28 +20,28 @@
                 <div class="content">
                     <div class="m-b-20">
                         <ul class="nav nav-tabs">
-                            @foreach($tree as $locale => $groups)
+                            @foreach($tree as $locale => $localeGroups)
                                 <li @if ($loop->first) class="active" @endif>
                                     <a href="#dictionary-{{ $locale }}" data-toggle="tab">
                                         {{ $locale }}
                                     </a>
                                 </li>
                             @endforeach
-                            <li><a href="#dictionary-add" data-toggle="tab">Add new</a></li>
+                            <li><a href="#dictionary-add" data-toggle="tab">@lang('admin::dictionary.add')</a></li>
                         </ul>
                         <div class="tab-content">
-                            @foreach($tree as $locale => $groups)
+                            @foreach($tree as $locale => $localeGroups)
                             <div class="tab-pane fade @if ($loop->first) in active @endif" id="dictionary-{{ $locale }}">
                                 <div class="panel-group">
                                     <div class="controls m-b-10">
-                                        <button class="btn btn-info open-button" type="button">
-                                            Open all
+                                        <button class="btn btn-info open-all-panels" type="button">
+                                            @lang('admin::forms.open_all')
                                         </button>
-                                        <button class="btn btn-info close-button" type="button">
-                                            Close all
+                                        <button class="btn btn-info close-all-panels" type="button">
+                                            @lang('admin::forms.close_all')
                                         </button>
                                     </div>
-                                    @foreach($groups as $title => $group)
+                                    @foreach($localeGroups as $title => $group)
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
@@ -49,12 +49,23 @@
                                             </h4>
                                         </div>
                                         <div id="collapse-{{ $locale }}-{{ $loop->iteration }}" class="panel-collapse collapse">
-                                            <table class="table middle-align">
-                                                @foreach($group as $item)
+                                            <table class="table panel-table middle-align">
+                                                @foreach($group as $dictionary)
                                                 <tr>
-                                                    <td class="f-12" width="20%">{{ $item->key }}</td>
+                                                    <td class="f-12" width="20%">{{ $dictionary->key }}</td>
                                                     <td>
-                                                        <a href="#" class="editable" data-type="wysihtml5" data-pk="{{ $item->id }}" data-url="/post" data-title="{{ $item->key }}">{{ $item->value }}</a>
+                                                        <a href="#"
+                                                           class="editable"
+                                                           data-pk="{{ $dictionary->id }}"
+                                                           data-url="{{ route('dictionary.update') }}"
+                                                           data-title="{{ $dictionary->key }}"
+                                                            >{!! $dictionary->value !!}</a>
+                                                    </td>
+                                                    <td class="text-right" width="50">
+                                                        @include('admin::components.button.delete', [
+                                                            'action' => route('dictionary.destroy', compact('dictionary')),
+                                                            'noAjax' => true
+                                                        ])
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -66,7 +77,33 @@
                             </div>
                             @endforeach
                             <div class="tab-pane fade" id="dictionary-add">
-                                add new form
+                                <form method="POST" action="{{ route('dictionary.store') }}" class="form-horizontal form-validate">
+                                    {{ csrf_field() }}
+                                    @include('admin::components.form.select', [
+                                        'label' => trans('admin::dictionary.group'),
+                                        'field' => 'group',
+                                        'params' => ['code', 'title'],
+                                        'data' => $groups,
+                                        'required' => true,
+                                    ])
+                                    @include('admin::components.form.text', [
+                                        'label' => trans('admin::forms.key'),
+                                        'field' => 'key',
+                                        'placeholder' => trans('admin::dictionary.placeholder.key'),
+                                        'class' => 'snake-slug',
+                                        'required' => true,
+                                    ])
+                                    @foreach(config('app.locales') as $locale)
+                                        @include('admin::components.form.text', [
+                                            'label' => strtoupper($locale) . ' ' . strtolower(trans('admin::forms.value')),
+                                            'field' => 'value_' . $locale,
+                                            'placeholder' => trans('admin::dictionary.placeholder.value', ['lang' => strtoupper($locale)]),
+                                        ])
+                                    @endforeach
+                                    @include('admin::components.form.submit', [
+                                        'button' => trans('admin::dictionary.create')
+                                    ])
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -79,30 +116,35 @@
 
 @section('scripts')
     <script>
-        $(".open-button").on("click", function() {
-            $(this).closest('.panel-group').find('.collapse').collapse('show');
-        });
-
-        $(".close-button").on("click", function() {
-            $(this).closest('.panel-group').find('.collapse').collapse('hide');
-        });
-
-        $.fn.editable.defaults.mode = 'inline';
         $(document).ready(function() {
+            $.fn.editable.defaults.mode = 'inline';
+
+            $.fn.editable.defaults.params = function (params)
+            {
+                params._token = $('meta[name="_token"]').attr('content');
+                return params;
+            };
 
             $('.editable').editable({
                 showbuttons: 'right',
+                placement: 'top',
                 onblur: 'ignore',
+                type: 'wysihtml5',
+                send:'always',
                 wysihtml5: {
                     toolbar: {
-                        "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
-                        "emphasis": true, //Italics, bold, etc. Default true
-                        "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-                        "link": true, //Button to insert a link. Default true
-                        "html": true, //Button which allows you to edit the generated HTML. Default false
-                        "image": false, //Button to insert an image. Default true,
-                        "color": false //Button to change color of font
+                        "font-styles": true, // Font styling, e.g. h1, h2, etc. Default true
+                        "emphasis": true,    // Italics, bold, etc. Default true
+                        "lists": true,       // (Un)ordered lists, e.g. Bullets, Numbers. Default true
+                        "link": true,        // Button to insert a link. Default true
+                        "html": true,        // Button which allows you to edit the generated HTML. Default false
+                        "image": false,      // Button to insert an image. Default true,
+                        "color": false       // Button to change color of font
                     }
+                },
+                ajaxOptions: {
+                    dataType: 'json',
+                    type: 'patch'
                 }
             });
         });

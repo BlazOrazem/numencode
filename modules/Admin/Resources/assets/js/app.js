@@ -11,7 +11,7 @@ var PreLoader = (function () {
             //});
             $(window).on('load', function(){
                 $('body').css("overflow-y","visible");
-                $('#preloader').fadeOut(200);
+                $('#preloader').fadeOut(100);
             });
         }
     }
@@ -635,9 +635,24 @@ var Popover = (function () {
     }
 })();
 
-var CollapseFix = (function () {
+var Collapse = (function () {
     return {
         init: function () {
+            Collapse.buttons();
+            Collapse.fix();
+        },
+
+        buttons: function () {
+            $(".open-all-panels").on("click", function() {
+                $(this).closest('.panel-group').find('.collapse').collapse('show');
+            });
+
+            $(".close-all-panels").on("click", function() {
+                $(this).closest('.panel-group').find('.collapse').collapse('hide');
+            });
+        },
+
+        fix: function () {
             if ($('.collapse')[0]) {
 
                 //Add active class for opened items

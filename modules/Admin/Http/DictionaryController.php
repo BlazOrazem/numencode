@@ -2,7 +2,6 @@
 
 namespace Admin\Http;
 
-use Illuminate\Validation\Rule;
 use Numencode\Models\System\Dictionary;
 use Numencode\Models\Codelist\CodelistItem;
 
@@ -15,9 +14,10 @@ class DictionaryController extends BaseController
      */
     public function index()
     {
-        $groups = CodelistItem::where('codelist_group_id', config('numencode.dictionary_codelist_group_id'))
-            ->orderBy('title')
-            ->pluck('title', 'code');
+        $codelistGroups = CodelistItem::where('codelist_group_id', config('numencode.dictionary_codelist_group_id'))->orderBy('title');
+        $groups = $codelistGroups->get();
+
+        $groupArray = $codelistGroups->pluck('title', 'code');
 
         $dictionary = Dictionary::orderBy('group')->orderBy('key')->get()->groupBy('locale');
 
@@ -25,14 +25,12 @@ class DictionaryController extends BaseController
         foreach ($dictionary as $locale => $translations) {
             foreach ($translations->groupBy('group') as $key => $translation) {
                 foreach ($translation as $item) {
-                    array_set($tree[$locale][$groups[$key]], $item->id, $item);
+                    array_set($tree[$locale][$groupArray[$key]], $item->id, $item);
                 }
             }
         }
 
-//        dd($tree);
-
-        return view('admin::dictionary.index', compact('tree'));
+        return view('admin::dictionary.index', compact('tree', 'groups'));
     }
 
     /**
@@ -42,31 +40,49 @@ class DictionaryController extends BaseController
      */
     public function store()
     {
-        //
-    }
+        $this->validate(request(), [
+            'group' => 'required',
+            'key'   => 'required',
+        ]);
 
-    /**
-     * Show the dictionary edit form.
-     *
-     * @param Dictionary $dictionary Dictionary item
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit(Dictionary $dictionary)
-    {
-        //
+        if (request()->ajax()) {
+            return success();
+        }
+
+        foreach (config('app.locales') as $locale) {
+            $value = 'value_' . $locale;
+            Dictionary::create([
+                'locale' => $locale,
+                'group'  => request()->group,
+                'key'    => snake_slug(request()->key),
+                'value'  => request()->$value,
+            ]);
+        }
+
+        event('dictionary.update', request()->group);
+
+        flash()->success(
+            trans('admin::messages.success'),
+            trans('admin::dictionary.created', ['name' => snake_slug(request()->key)])
+        );
+
+        return redirect()->route('dictionary.index');
     }
 
     /**
      * Update the dictionary item.
      *
-     * @param Dictionary $dictionary Dictionary item
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return array
      */
-    public function update(Dictionary $dictionary)
+    public function update()
     {
-        //
+        $dictionary = Dictionary::find(request()->pk);
+        $dictionary->value = request()->value;
+        $dictionary->save();
+
+        event('dictionary.update', $dictionary->group);
+
+        return success();
     }
 
     /**
@@ -78,6 +94,10 @@ class DictionaryController extends BaseController
      */
     public function destroy(Dictionary $dictionary)
     {
-        return $this->deleteThe($dictionary, 'dictionary.deleted');
+        Dictionary::where('group', $dictionary->group)->where('key', $dictionary->key)->delete();
+
+        event('dictionary.update', $dictionary->group);
+
+        return redirect()->route('dictionary.index');
     }
 }

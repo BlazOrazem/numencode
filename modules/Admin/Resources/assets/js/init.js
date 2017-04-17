@@ -34,7 +34,7 @@ $(document).ready(function() {
 
     Popover.init();
 
-    CollapseFix.init();
+    Collapse.init();
 
     SidePanel.init();
 

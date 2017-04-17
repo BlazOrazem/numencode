@@ -18,5 +18,5 @@ class Dictionary extends Model
      *
      * @var array
      */
-    protected $fillable = ['group', 'code', 'title'];
+    protected $fillable = ['locale', 'group', 'key', 'value'];
 }
