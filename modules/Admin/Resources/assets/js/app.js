@@ -790,3 +790,114 @@ var MenuToggle = (function () {
         }
     }
 })();
+
+var Nestable = (function () {
+    return {
+        init: function () {
+            $.fn.NestableList = function () {
+                if (! this.length) return;
+                if (typeof $.fn.nestable != 'undefined') {
+                    this.nestable({
+                        rootClass: 'nestable',
+                        listNodeName: 'ul',
+                        listClass: 'nestable-list',
+                        itemClass: 'nestable-item',
+                        dragClass: 'nestable-drag',
+                        handleClass: 'nestable-handle-off',
+                        collapsedClass: 'nestable-collapsed',
+                        placeClass: 'nestable-placeholder',
+                        emptyClass: 'nestable-empty'
+                    });
+                }
+            };
+
+            Nestable.bind();
+        },
+
+        bind: function () {
+            $('.nestable').NestableList();
+        }
+    }
+})();
+
+var Editable = (function () {
+    return {
+        init: function () {
+            $.fn.editable.defaults.mode = 'inline';
+
+            $.fn.editable.defaults.params = function (params)
+            {
+                params._token = $('meta[name="_token"]').attr('content');
+                return params;
+            };
+
+            Editable.bind();
+        },
+
+        bind: function () {
+            $('.editable').editable({
+                showbuttons: 'right',
+                placement: 'top',
+                onblur: 'ignore',
+                type: 'wysihtml5',
+                send:'always',
+                wysihtml5: {
+                    toolbar: {
+                        "font-styles": true, // Font styling, e.g. h1, h2, etc. Default true
+                        "emphasis": true,    // Italics, bold, etc. Default true
+                        "lists": true,       // (Un)ordered lists, e.g. Bullets, Numbers. Default true
+                        "link": true,        // Button to insert a link. Default true
+                        "html": true,        // Button which allows you to edit the generated HTML. Default false
+                        "image": false,      // Button to insert an image. Default true,
+                        "color": false       // Button to change color of font
+                    }
+                },
+                ajaxOptions: {
+                    dataType: 'json',
+                    type: 'patch'
+                }
+            });
+        }
+    }
+})();
+
+var Wysiwyg = (function () {
+    return {
+        init: function () {
+            var editor_config = {
+                path_absolute : "/admin/",
+                selector: "textarea.wysiwyg-editor",
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor colorpicker textpattern"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+                relative_urls: false,
+                file_browser_callback : function(field_name, url, type, win) {
+                    var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                    var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+                    var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+                    if (type == 'image') {
+                        cmsURL = cmsURL + "&type=Images";
+                    } else {
+                        cmsURL = cmsURL + "&type=Files";
+                    }
+
+                    tinyMCE.activeEditor.windowManager.open({
+                        file : cmsURL,
+                        title : 'Filemanager',
+                        width : x * 0.8,
+                        height : y * 0.8,
+                        resizable : "yes",
+                        close_previous : "no"
+                    });
+                }
+            };
+
+            tinymce.init(editor_config);
+        }
+    }
+})();

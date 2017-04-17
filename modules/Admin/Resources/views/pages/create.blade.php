@@ -66,13 +66,18 @@
                             'field' => 'lead',
                             'placeholder' => trans('admin::pages.placeholder.lead'),
                         ])
-                        @include('admin::components.form.textarea', [
-                            'label' => trans('admin::pages.body'),
-                            'field' => 'body',
-                            'placeholder' => trans('admin::pages.placeholder.body'),
-                        ])
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">
+                                @lang('admin::pages.body')
+                            </label>
+                            <div class="col-sm-9">
+                                <textarea name="body" class="wysiwyg-editor">{{ old('body') }}</textarea>
+                            </div>
+                        </div>
+
                         @include('admin::components.form.order', [
-                            'sortOrder' => isset($page) ? $page->items->max('sort_order') + 10 : 10,
+                            'sortOrder' => (isset($page) ? $page->items->max('sort_order') : $pages['root']->max('sort_order')) + 10,
                         ])
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">

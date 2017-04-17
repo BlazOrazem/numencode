@@ -25,7 +25,12 @@
                 @endif
             </div>
             <div>@include('admin::components.button.edit', ['action' => route('pages.edit', compact('page'))])</div>
-            <div>@include('admin::components.button.delete', ['action' => route('pages.destroy', compact('page'))])</div>
+            <div>
+                @include('admin::components.button.delete', [
+                    'action' => route('pages.destroy', compact('page')),
+                    'htmlItem' => 'li.nestable-item',
+                ])
+            </div>
         </div>
         <div class="right visible-xs"></div>
     </div>

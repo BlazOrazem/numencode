@@ -60,12 +60,16 @@
                             'entity' => $page,
                             'placeholder' => trans('admin::pages.placeholder.lead'),
                         ])
-                        @include('admin::components.form.textarea', [
-                            'label' => trans('admin::pages.body'),
-                            'field' => 'body',
-                            'entity' => $page,
-                            'placeholder' => trans('admin::pages.placeholder.body'),
-                        ])
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">
+                                @lang('admin::pages.body')
+                            </label>
+                            <div class="col-sm-9">
+                                <textarea name="body" class="wysiwyg-editor">{{ old('body', $page->body) }}</textarea>
+                            </div>
+                        </div>
+
                         @include('admin::components.form.order', [
                             'sortOrder' => $page->sort_order,
                         ])

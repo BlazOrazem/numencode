@@ -27,7 +27,7 @@ class PageController extends BaseController
      */
     public function createForMenu(Menu $menu)
     {
-        $layouts = CodelistGroup::find(1)->items;
+        $layouts = CodelistGroup::find(2)->items;
         $pages = Page::tree($menu->code);
 
         return view('admin::pages.create', compact('pages', 'menu', 'layouts'));
@@ -42,7 +42,7 @@ class PageController extends BaseController
      */
     public function createForPage(Page $page)
     {
-        $layouts = CodelistGroup::find(1)->items;
+        $layouts = CodelistGroup::find(2)->items;
 
         return view('admin::pages.create', compact('page', 'layouts'));
     }
@@ -97,7 +97,7 @@ class PageController extends BaseController
      */
     public function edit(Page $page)
     {
-        $layouts = CodelistGroup::find(1)->items;
+        $layouts = CodelistGroup::find(2)->items;
         $pages = Page::tree($page->menu);
 
         return view('admin::pages.edit', compact('page', 'layouts', 'pages'));

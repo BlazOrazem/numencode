@@ -38,7 +38,10 @@
     "vue": "^2.1.10",
     "vue-resource": "^1.2.0",
     "tinymce": "^4.5.3",
-    "jquery-ui-sortable-min": "*"
+    "jquery-ui-sortable-min": "*",
+    "nestable": "*",
+    "wysihtml": "wysihtml5x#^0.5.5",
+    "bootstrap3-wysihtml5-bower": "^0.3.3"
   },
   "overrides": {
     "bootstrap": {

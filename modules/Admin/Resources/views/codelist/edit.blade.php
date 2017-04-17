@@ -139,16 +139,16 @@
             </div>
         </div>
     @endif
-        <div class="row">
-            <div class="content-box">
-                <div class="content text-center">
-                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.index') }}">
-                        <i class="zmdi zmdi-caret-left-circle left"></i>
-                        @lang('admin::codelist.index')
-                    </a>
-                </div>
+
+    <div class="row">
+        <div class="content-box">
+            <div class="content text-center">
+                <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.index') }}">
+                    <i class="zmdi zmdi-caret-left-circle left"></i>
+                    @lang('admin::codelist.index')
+                </a>
             </div>
         </div>
-
+    </div>
 
 @endsection

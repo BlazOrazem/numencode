@@ -40,4 +40,10 @@ $(document).ready(function() {
 
     MenuToggle.init();
 
+    Nestable.init();
+
+    Editable.init();
+
+    Wysiwyg.init();
+
 });

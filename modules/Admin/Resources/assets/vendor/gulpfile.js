@@ -118,7 +118,8 @@ elixir(function(mix) {
         'bower_components/tinymce/tinymce.min.js',
         'bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js',
         'bower_components/x-editable/dist/inputs-ext/wysihtml5/wysihtml5.js',
-        'bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js'
+        'bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js',
+        'bower_components/nestable/jquery.nestable.js'
     ], adminThemePath + 'js/libs.js');
 
 	/*
