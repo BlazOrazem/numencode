@@ -48,15 +48,18 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'            => \Numencode\Http\Middleware\Authenticate::class,
-        'auth.basic'      => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings'        => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can'             => \Illuminate\Auth\Middleware\Authorize::class,
-        'throttle'        => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'isAdmin'         => \Admin\Http\Middleware\IsAdmin::class,
-        'permission'      => \Admin\Http\Middleware\CheckPermission::class,
-        'isGuest'         => \Cms\Http\Middleware\IsGuest::class,
-        'isAuthenticated' => \Cms\Http\Middleware\IsAuthenticated::class,
-        'localization'    => \Cms\Http\Middleware\Localization::class,
+        'auth'             => \Numencode\Http\Middleware\Authenticate::class,
+        'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings'         => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can'              => \Illuminate\Auth\Middleware\Authorize::class,
+        'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        'is_admin'         => \Admin\Http\Middleware\IsAdmin::class,
+        'permission'       => \Admin\Http\Middleware\CheckPermission::class,
+        'translation'      => \Admin\Http\Middleware\Translation::class,
+
+        'is_authenticated' => \Cms\Http\Middleware\IsAuthenticated::class,
+        'is_guest'         => \Cms\Http\Middleware\IsGuest::class,
+        'localization'     => \Cms\Http\Middleware\Localization::class,
     ];
 }

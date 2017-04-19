@@ -2,7 +2,7 @@
 
 namespace Numencode\Providers;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -85,7 +85,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthGuestRoutes()
     {
-        Route::middleware(['localization', 'isGuest'])
+        Route::middleware(['localization', 'is_guest'])
             ->namespace($this->cmsNamespace . 'Auth')
             ->group(base_path('routes/auth.guest.php'));
     }
@@ -97,7 +97,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthAuthorizedRoutes()
     {
-        Route::middleware('isAuthenticated')
+        Route::middleware('is_authenticated')
             ->namespace($this->cmsNamespace . 'Auth')
             ->group(base_path('routes/auth.authorized.php'));
     }
@@ -109,7 +109,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthSocialiteRoutes()
     {
-        Route::middleware('isGuest')
+        Route::middleware('is_guest')
             ->namespace($this->cmsNamespace . 'Auth')
             ->group(base_path('routes/auth.socialite.php'));
     }
@@ -134,7 +134,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminAuthorizedRoutes()
     {
-        Route::middleware('isAdmin')
+        Route::middleware(['translation', 'is_admin'])
             ->namespace($this->adminNamespace)
             ->prefix('admin')
             ->group(base_path('routes/admin.authorized.php'));

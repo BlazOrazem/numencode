@@ -11,7 +11,7 @@ trait HiddenFilter
      */
     public static function bootHiddenFilter()
     {
-        if (request()->route() && !in_array('isAdmin', request()->route()->middleware())) {
+        if (request()->route() && !in_array('is_admin', request()->route()->middleware())) {
             static::addGlobalScope('hidden', function ($builder) {
                 $table = $builder->getModel()->getTable();
                 $builder->whereNull($table . '.is_hidden');

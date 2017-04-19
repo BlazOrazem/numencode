@@ -2,8 +2,8 @@
 
 namespace Admin\Http;
 
-use Auth;
 use Numencode\Http\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseController extends Controller

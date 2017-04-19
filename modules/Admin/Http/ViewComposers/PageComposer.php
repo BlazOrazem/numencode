@@ -3,8 +3,8 @@
 namespace Admin\Http\ViewComposers;
 
 use Illuminate\View\View;
-use Numencode\Models\Page\Page;
 use Numencode\Models\Menu;
+use Numencode\Models\Page\Page;
 use Illuminate\Support\Facades\Auth;
 
 class PageComposer
