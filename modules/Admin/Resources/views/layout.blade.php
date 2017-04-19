@@ -63,6 +63,13 @@
                     </form>
                 </div>
 
+                <div class="pull-left">
+                    <select name="locale">
+                        <option value="en">English</option>
+                        <option value="sl">Slovensko</option>
+                    </select>
+                </div>
+
                 <ul class="nav pull-right right-menu">
                     <li class="more-options dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">

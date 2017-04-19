@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         'role_manager',
 
         'menus',
+        'languages',
 
         'pages',
         'pages_i18n',
@@ -67,6 +68,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TasksTableSeeder::class);
         $this->call(CodelistTableSeeder::class);
         $this->call(MenusTableSeeder::class);
+        $this->call(LanguagesTableSeeder::class);
     }
 
     /**
