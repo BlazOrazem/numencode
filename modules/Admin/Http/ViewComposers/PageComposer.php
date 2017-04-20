@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use Numencode\Models\Menu;
 use Numencode\Models\Page\Page;
 use Illuminate\Support\Facades\Auth;
+use Numencode\Models\System\Language;
 
 class PageComposer
 {
@@ -28,6 +29,11 @@ class PageComposer
             (request()->segment(2) ? '/' . request()->segment(2) : '') .
             ((request()->segment(3) && !is_numeric(request()->segment(3))) ? '/' . request()->segment(3) : '')
         );
+
+        js([
+            'all_languages'     => Language::orderBy('locale')->get()->toArray(),
+            'selected_language' => config('app.locale'),
+        ]);
     }
 
     /**

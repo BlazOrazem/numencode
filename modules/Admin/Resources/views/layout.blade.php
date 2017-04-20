@@ -63,11 +63,14 @@
                     </form>
                 </div>
 
-                <div class="pull-left">
-                    <select name="locale">
-                        <option value="en">English</option>
-                        <option value="sl">Slovensko</option>
-                    </select>
+                <div id="languages" class="pull-left">
+                    <languages route="{{ route('admin.language') }}" inline-template>
+                        <div>
+                            <select v-on:change="changed" name="language_locale" v-model="selected.language_locale" class="form-control selectpicker">
+                                <option v-for="language in languages" :value="language.locale">@{{ language.label }}</option>
+                            </select>
+                        </div>
+                    </languages>
                 </div>
 
                 <ul class="nav pull-right right-menu">
@@ -154,6 +157,32 @@
 </div>
 
 @include('admin::footer')
+
+<script>
+    Vue.component('languages', {
+        props: ['route'],
+        data: function() {
+            return {
+                languages: vars.all_languages,
+                selected: {
+                    language_locale: vars.selected_language
+                }
+            }
+        },
+        methods: {
+            changed: function() {
+                http.postHtml(this.route, {language: this.selected.language_locale})
+                    .success(function() {
+                        location.reload();
+                    });
+            }
+        }
+    });
+
+    new Vue({
+        el: '#languages'
+    });
+</script>
 
 </body>
 </html>

@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class BaseController extends Controller
 {
     /**
+     * Create a new BaseController instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
      * Return logged in manager.
      *
      * @return \Numencode\Models\Manager

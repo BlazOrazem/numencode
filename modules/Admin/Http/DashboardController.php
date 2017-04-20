@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Illuminate\Support\Facades\Session;
 use Admin\Repositories\DashboardRepository;
 
 class DashboardController extends BaseController
@@ -20,6 +21,8 @@ class DashboardController extends BaseController
      */
     public function __construct(DashboardRepository $dashboardRepository)
     {
+        parent::__construct();
+
         $this->dashboardRepository = $dashboardRepository;
     }
 
@@ -37,6 +40,18 @@ class DashboardController extends BaseController
         js(['manager_tasks' => $this->admin()->tasks]);
 
         return view('admin::pages.dashboard');
+    }
+
+    /**
+     * Change working language.
+     *
+     * @return array
+     */
+    public function language()
+    {
+        Session::put('locale', request()->language);
+
+        return success();
     }
 
     /**

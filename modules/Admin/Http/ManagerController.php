@@ -23,6 +23,8 @@ class ManagerController extends BaseController
      */
     public function __construct(ManagerRepository $managerRepository)
     {
+        parent::__construct();
+
         $this->managerRepository = $managerRepository;
     }
 

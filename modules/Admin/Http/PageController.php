@@ -97,6 +97,8 @@ class PageController extends BaseController
      */
     public function edit(Page $page)
     {
+        $page = Page::find($page->id);
+
         $layouts = CodelistGroup::find(2)->items;
         $pages = Page::tree($page->menu);
 

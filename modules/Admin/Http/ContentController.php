@@ -24,6 +24,8 @@ class ContentController extends BaseController
      */
     public function __construct(PluginRepository $pluginRepository)
     {
+        parent::__construct();
+
         $this->pluginRepository = $pluginRepository;
     }
 
