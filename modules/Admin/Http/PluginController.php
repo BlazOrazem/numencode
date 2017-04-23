@@ -2,8 +2,8 @@
 
 namespace Admin\Http;
 
-use Numencode\Models\Plugin;
 use Illuminate\Validation\Rule;
+use Numencode\Models\Content\Plugin;
 use Admin\Repositories\PluginRepository;
 
 class PluginController extends BaseController

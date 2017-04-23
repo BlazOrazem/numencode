@@ -2,8 +2,8 @@
 
 namespace Admin\Http;
 
-use Numencode\Models\Menu;
 use Numencode\Models\Page\Page;
+use Numencode\Models\Content\Menu;
 use Numencode\Models\Codelist\CodelistGroup;
 
 class PageController extends BaseController

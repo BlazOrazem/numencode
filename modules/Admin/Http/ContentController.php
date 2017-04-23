@@ -2,9 +2,9 @@
 
 namespace Admin\Http;
 
-use Numencode\Models\Plugin;
-use Numencode\Models\Content;
 use Numencode\Models\Page\Page;
+use Numencode\Models\Content\Plugin;
+use Numencode\Models\Content\Content;
 use Admin\Repositories\PluginRepository;
 use Numencode\Models\Codelist\CodelistGroup;
 

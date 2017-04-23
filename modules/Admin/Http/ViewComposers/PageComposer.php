@@ -3,8 +3,8 @@
 namespace Admin\Http\ViewComposers;
 
 use Illuminate\View\View;
-use Numencode\Models\Menu;
 use Numencode\Models\Page\Page;
+use Numencode\Models\Content\Menu;
 use Illuminate\Support\Facades\Auth;
 use Numencode\Models\System\Language;
 

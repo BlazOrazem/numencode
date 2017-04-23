@@ -2,7 +2,7 @@
 
 namespace Numencode\Models\Page;
 
-use Numencode\Models\Content;
+use Numencode\Models\Content\Content;
 
 trait Helpers
 {

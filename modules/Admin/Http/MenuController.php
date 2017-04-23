@@ -2,8 +2,8 @@
 
 namespace Admin\Http;
 
-use Numencode\Models\Menu;
 use Illuminate\Validation\Rule;
+use Numencode\Models\Content\Menu;
 
 class MenuController extends BaseController
 {

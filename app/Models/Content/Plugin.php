@@ -1,6 +1,6 @@
 <?php
 
-namespace Numencode\Models;
+namespace Numencode\Models\Content;
 
 use Illuminate\Database\Eloquent\Model;
 use Numencode\Models\System\Traits\Sortable;

@@ -2,7 +2,7 @@
 
 namespace Numencode\Models\Page;
 
-use Numencode\Models\Menu;
+use Numencode\Models\Content\Menu;
 
 trait Attributes
 {

@@ -2,7 +2,7 @@
 
 namespace Admin\Repositories;
 
-use Numencode\Models\Plugin;
+use Numencode\Models\Content\Plugin;
 
 class PluginRepository
 {

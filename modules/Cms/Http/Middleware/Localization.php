@@ -31,7 +31,7 @@ class Localization
      */
     public function getLocaleFromRequest(Request $request)
     {
-        $locales = Language::getAllLocales()->keys();
+        $locales = Language::getAllLocales()->keys()->toArray();
         $locale = $request->segment(1);
 
         return in_array($locale, $locales) ? $locale : null;

@@ -1,7 +1,7 @@
 <?php
 
-use Numencode\Models\Plugin;
 use Illuminate\Database\Seeder;
+use Numencode\Models\Content\Plugin;
 
 class PluginsTableSeeder extends Seeder
 {
