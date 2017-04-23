@@ -133,6 +133,8 @@ class PageController extends BaseController
             'sort_order' => request()->sort_order,
         ])
         ) {
+            $page->url->saveUnique(request()->link, request()->title);
+
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::pages.updated', ['name' => request()->title])

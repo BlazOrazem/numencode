@@ -70,6 +70,11 @@
                             </div>
                         </div>
 
+                        @include('admin::components.form.text', [
+                            'label' => trans('admin::pages.url'),
+                            'field' => 'link',
+                            'entity' => $page,
+                        ])
                         @include('admin::components.form.order', [
                             'sortOrder' => $page->sort_order,
                         ])

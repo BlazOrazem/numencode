@@ -24,6 +24,7 @@ return [
     'name'      => 'Title',
     'lead'      => 'Lead',
     'body'      => 'Content',
+    'url'       => 'URL',
 
     'placeholder' => [
         'parent'  => 'Select parent page',

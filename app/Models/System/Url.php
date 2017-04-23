@@ -46,4 +46,28 @@ class Url extends Model
     {
         return 'route_id';
     }
+
+    public function saveUnique($url = null, $title)
+    {
+        $url = $url ?: str_slug($title);
+
+        $this->uri = $this->handleLocalizationAndDuplication($url);
+        $this->save();
+    }
+
+    // TODO handle url duplication
+    protected function handleLocalizationAndDuplication($url)
+    {
+        if (app()->getLocale() != Language::getDefault()->locale) {
+            $url = app()->getLocale() . '/' . ltrim($url, app()->getLocale() . '/');
+        }
+
+        if ($this->where('uri', $url)->exists()) {
+//            dd($url);
+        }
+
+        return $url;
+
+//        dd(app()->getLocale());
+    }
 }
