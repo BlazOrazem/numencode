@@ -23,6 +23,8 @@ class PageComposer
 
         $view->with('menus', $this->getAllWithTree());
 
+        $view->with('locales', Language::getAllLocales()->keys());
+
         $view->with('activeUrl',
             url('/') . '/' .
             request()->segment(1) .
@@ -31,7 +33,7 @@ class PageComposer
         );
 
         js([
-            'all_languages'     => Language::orderBy('locale')->get()->toArray(),
+            'all_languages'     => Language::getAll()->toArray(),
             'selected_language' => config('app.locale'),
         ]);
     }

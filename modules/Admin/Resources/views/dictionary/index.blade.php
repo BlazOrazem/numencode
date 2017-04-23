@@ -93,7 +93,7 @@
                                         'class' => 'snake-slug',
                                         'required' => true,
                                     ])
-                                    @foreach(config('app.locales') as $locale)
+                                    @foreach($locales as $locale)
                                         @include('admin::components.form.text', [
                                             'label' => strtoupper($locale) . ' ' . strtolower(trans('admin::forms.value')),
                                             'field' => 'value_' . $locale,

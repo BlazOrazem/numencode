@@ -27,6 +27,8 @@ class TaskController extends BaseController
      */
     public function show(Task $task)
     {
+        $task = Task::find($task->id);
+
         return view('admin::tasks.show', compact('task'));
     }
 
@@ -75,6 +77,8 @@ class TaskController extends BaseController
      */
     public function edit(Task $task)
     {
+        $task = Task::find($task->id);
+
         return view('admin::tasks.edit', compact('task'));
     }
 

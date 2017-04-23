@@ -4,6 +4,7 @@ namespace Cms\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Numencode\Models\System\Language;
 
 class Localization
 {
@@ -30,7 +31,7 @@ class Localization
      */
     public function getLocaleFromRequest(Request $request)
     {
-        $locales = config('app.locales');
+        $locales = Language::getAllLocales()->keys();
         $locale = $request->segment(1);
 
         return in_array($locale, $locales) ? $locale : null;

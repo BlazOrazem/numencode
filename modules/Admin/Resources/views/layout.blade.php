@@ -63,10 +63,10 @@
                     </form>
                 </div>
 
-                <div id="languages" class="pull-left">
+                <div class="pull-left language-container" id="js-languages">
                     <languages route="{{ route('admin.language') }}" inline-template>
-                        <div>
-                            <select v-on:change="changed" name="language_locale" v-model="selected.language_locale" class="form-control selectpicker">
+                        <div class="languagebox">
+                            <select v-on:change="changed" name="language_locale" v-model="selected.language_locale" class="form-control selectpicker languagebox-select">
                                 <option v-for="language in languages" :value="language.locale">@{{ language.label }}</option>
                             </select>
                         </div>
@@ -180,7 +180,7 @@
     });
 
     new Vue({
-        el: '#languages'
+        el: '#js-languages'
     });
 </script>
 

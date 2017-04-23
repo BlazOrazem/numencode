@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Numencode\Models\System\Language;
 use Numencode\Models\System\Dictionary;
 use Numencode\Models\Codelist\CodelistItem;
 
@@ -49,7 +50,7 @@ class DictionaryController extends BaseController
             return success();
         }
 
-        foreach (config('app.locales') as $locale) {
+        foreach (Language::getAllLocales()->keys() as $locale) {
             $value = 'value_' . $locale;
             Dictionary::create([
                 'locale' => $locale,

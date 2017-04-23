@@ -469,6 +469,31 @@ $tl: 0.5s; //transition length
 }
 
 
+/*Language selector*/
+
+.languagebox {
+  margin: 13px 0 0 13px;
+  height: 45px;
+  float: right;
+  border-radius: $border-radius;
+  .languagebox-select.open {
+    .btn {
+      background: $base-color !important;
+    }
+    ul li {
+      a {
+        font-size: 18px;
+        line-height: 30px;
+        padding: 2px 40px 0 10px;
+        .check-mark {
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+
 .menu-overlay{
   position: fixed;
   top: 0;

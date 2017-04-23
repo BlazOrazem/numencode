@@ -17,6 +17,9 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('locale', 6);
             $table->string('label');
+            $table->boolean('is_default')->nullable()->default(NULL);
+            $table->integer('sort_order')->default(0);
+            $table->boolean('is_hidden')->nullable()->default(NULL);
         });
     }
 

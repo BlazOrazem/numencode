@@ -102,6 +102,7 @@ class ContentController extends BaseController
      */
     public function edit(Content $content)
     {
+        $content = Content::find($content->id);
         $plugin = Plugin::find($content->plugin_id);
         $positions = CodelistGroup::find(2)->items;
         $pages = Page::tree();

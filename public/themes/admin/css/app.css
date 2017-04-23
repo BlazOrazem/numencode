@@ -2244,6 +2244,28 @@ aside.sidebar li.active:before {
   transition: background .1s;
 }
 
+/*Language selector*/
+.languagebox {
+  margin: 13px 0 0 13px;
+  height: 45px;
+  float: right;
+  border-radius: 3px;
+}
+
+.languagebox .languagebox-select.open .btn {
+  background: #2196F3 !important;
+}
+
+.languagebox .languagebox-select.open ul li a {
+  font-size: 18px;
+  line-height: 30px;
+  padding: 2px 40px 0 10px;
+}
+
+.languagebox .languagebox-select.open ul li a .check-mark {
+  right: 0;
+}
+
 .menu-overlay {
   position: fixed;
   top: 0;
