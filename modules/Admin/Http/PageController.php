@@ -2,6 +2,7 @@
 
 namespace Admin\Http;
 
+use Admin\Repositories\RouteRepository;
 use Numencode\Models\Page\Page;
 use Numencode\Models\Content\Menu;
 use Numencode\Models\Codelist\CodelistGroup;
@@ -50,9 +51,11 @@ class PageController extends BaseController
     /**
      * Store a newly created page.
      *
+     * @param RouteRepository $route Route repository
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store()
+    public function store(RouteRepository $route)
     {
         $this->validate(request(), [
             'layout'     => 'required',
@@ -75,6 +78,9 @@ class PageController extends BaseController
             'sort_order' => request()->sort_order,
         ])
         ) {
+            $page->route_id = $route->saveUrl(null, request()->title, 'PageController@index', ['id' => $page->id]);
+            $page->save();
+
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::pages.created', ['name' => request()->title])
@@ -108,11 +114,12 @@ class PageController extends BaseController
     /**
      * Update the page.
      *
-     * @param Page $page Page
+     * @param Page            $page  Page
+     * @param RouteRepository $route Route repository
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Page $page)
+    public function update(Page $page, RouteRepository $route)
     {
         $this->validate(request(), [
             'layout'     => 'required',
@@ -133,7 +140,8 @@ class PageController extends BaseController
             'sort_order' => request()->sort_order,
         ])
         ) {
-            $page->url->saveUnique(request()->link, request()->title);
+            $page->route_id = $route->saveUrl(request()->link, request()->title, 'PageController@index', ['id' => $page->id]);
+            $page->save();
 
             flash()->success(
                 trans('admin::messages.success'),
