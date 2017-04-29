@@ -2,9 +2,9 @@
 
 namespace Admin\Http;
 
-use Admin\Repositories\RouteRepository;
 use Numencode\Models\Page\Page;
 use Numencode\Models\Content\Menu;
+use Admin\Repositories\RouteRepository;
 use Numencode\Models\Codelist\CodelistGroup;
 
 class PageController extends BaseController
@@ -178,7 +178,7 @@ class PageController extends BaseController
      */
     public function destroy(Page $page)
     {
-        // TODO delete page plugins
+        // TODO delete page contents, route and page children
 
         return $this->deleteThe($page, 'pages.deleted');
     }

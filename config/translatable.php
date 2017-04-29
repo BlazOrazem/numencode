@@ -28,8 +28,8 @@ return [
     |
     */
     'defaults' => [
-        'only_translated' => false,
-        'with_fallback'   => true,
+        'only_translated' => true,
+        'with_fallback'   => false,
     ],
 
 ];
