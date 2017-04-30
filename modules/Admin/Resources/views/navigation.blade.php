@@ -70,6 +70,9 @@
             <a href="#"><i class="zmdi zmdi-settings"></i>Settings<span class="zmdi arrow"></span></a>
             <ul class="nav nav-inside collapse">
                 <li class="inside-title">Settings</li>
+                @if($admin->can('manage_languages'))
+                    <li><a href="{{ route('languages.index') }}">Languages</a></li>
+                @endif
                 @if($admin->can('manage_menus'))
                     <li><a href="{{ route('menus.index') }}">Menu types</a></li>
                 @endif

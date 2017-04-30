@@ -160,6 +160,15 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id'         => '18',
+                'name'       => 'manage_languages',
+                'label'      => 'Admin can manage languages',
+                'is_admin'   => true,
+                'sort_order' => 180,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
 
 //            [
 //                'id'         => '5',

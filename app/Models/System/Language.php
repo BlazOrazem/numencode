@@ -26,6 +26,20 @@ class Language extends Model
     protected $table = 'languages';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['locale', 'label', 'is_default', 'sort_order', 'is_hidden'];
+
+    /**
+     * Disable timestamps for this table.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * Return default language.
      *
      * @return string

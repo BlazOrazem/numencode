@@ -93,6 +93,12 @@ Route::get('dictionary', 'DictionaryController@index')->name('dictionary.index')
 Route::match(['PUT', 'PATCH'], 'dictionary', 'DictionaryController@update')->name('dictionary.update');
 Route::delete('dictionary/{dictionary}', 'DictionaryController@destroy')->name('dictionary.destroy');
 
+// Languages
+Route::post('languages', 'LanguageController@store')->name('languages.store')->middleware('permission:manage_languages');
+Route::get('languages', 'LanguageController@index')->name('languages.index')->middleware('permission:manage_languages');
+Route::match(['PUT', 'PATCH'], 'languages/{language}', 'LanguageController@update')->name('languages.update')->middleware('permission:manage_languages');
+Route::delete('languages/{language}', 'LanguageController@destroy')->name('languages.destroy')->middleware('permission:manage_languages');
+
 // Roles and Permissions
 Route::post('roles/assign/{role}/{permission}', 'RoleController@assignPermission')->name('roles.assign.permissions')->middleware('permission:manage_roles|assign_permissions|manage_permissions');
 Route::post('roles/manager/{manager}/{role}', 'RoleController@assignManagerRole')->name('roles.assign.manager')->middleware('permission:manage_roles');

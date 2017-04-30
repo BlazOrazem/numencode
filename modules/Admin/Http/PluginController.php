@@ -123,7 +123,6 @@ class PluginController extends BaseController
             'params' => isset(request()->params) ? request()->params : null,
             'is_hidden' => isset(request()->is_hidden) ?: null,
         ]))) {
-
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::plugins.updated', ['name' => request()->title])
