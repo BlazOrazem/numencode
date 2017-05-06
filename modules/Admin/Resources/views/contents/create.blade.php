@@ -89,7 +89,7 @@
                         </plugin-params>
 
                         @include('admin::components.form.order', [
-                            'sortOrder' => $contents->max('sort_order') + 10
+                            'sortOrder' => $order
                         ])
                         @include('admin::components.form.submit', [
                             'button' => trans('admin::contents.create')

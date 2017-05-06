@@ -1543,6 +1543,9 @@ textarea{
       color: $white;
       background: $default-color;
     }
+    li a.nested-option .check-mark{
+      display: none !important;
+    }
   }
   .notify{
     background: rgba($danger-color, 0.9) !important;

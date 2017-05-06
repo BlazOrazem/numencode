@@ -16,7 +16,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'layout', 'title', 'lead', 'body', 'sort_order', 'is_hidden'];
+    protected $fillable = ['parent_id', 'menu', 'layout', 'title', 'lead', 'body', 'sort_order', 'is_hidden'];
 
     /**
      * Eager load selected relations.

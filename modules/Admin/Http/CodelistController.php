@@ -49,26 +49,26 @@ class CodelistController extends BaseController
     /**
      * Show the codelist group edit form and codelist items for this group.
      *
-     * @param CodelistGroup $codelist Codelist group
+     * @param CodelistGroup $codelistGroup Codelist group
      *
      * @return \Illuminate\View\View
      */
-    public function edit(CodelistGroup $codelist)
+    public function edit(CodelistGroup $codelistGroup)
     {
-        return view('admin::codelist.edit', ['codelistGroup' => $codelist->with('items')->first()]);
+        return view('admin::codelist.edit', compact('codelistGroup'));
     }
 
     /**
      * Update the codelist group.
      *
-     * @param CodelistGroup $codelist Codelist group
+     * @param CodelistGroup $codelistGroup Codelist group
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(CodelistGroup $codelist)
+    public function update(CodelistGroup $codelistGroup)
     {
         $this->validateWithBag('groupErrors', request(), [
-            'title'      => ['required', Rule::unique('codelist_group')->ignore($codelist->id)],
+            'title'      => ['required', Rule::unique('codelist_group')->ignore($codelistGroup->id)],
             'sort_order' => 'required|integer',
         ]);
 
@@ -76,7 +76,7 @@ class CodelistController extends BaseController
             return success();
         }
 
-        if ($codelist->update(request()->all())) {
+        if ($codelistGroup->update(request()->all())) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::codelist.group_updated', ['name' => request()->title])
@@ -89,30 +89,30 @@ class CodelistController extends BaseController
     /**
      * Delete the codelist group.
      *
-     * @param CodelistGroup $codelist Codelist group
+     * @param CodelistGroup $codelistGroup Codelist group
      *
      * @return array
      * @throws \Exception
      */
-    public function destroy(CodelistGroup $codelist)
+    public function destroy(CodelistGroup $codelistGroup)
     {
-        return $this->deleteThe($codelist, 'codelist.group_deleted');
+        return $this->deleteThe($codelistGroup, 'codelist.group_deleted');
     }
 
     /**
      * Store a newly created codelist item.
      *
-     * @param CodelistGroup $codelist Codelist group
+     * @param CodelistGroup $codelistGroup Codelist group
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeItem(CodelistGroup $codelist)
+    public function storeItem(CodelistGroup $codelistGroup)
     {
         $this->validateWithBag('itemErrors', request(), [
             'code' => [
                 'required',
-                Rule::unique('codelist_item')->where(function ($query) use ($codelist) {
-                    $query->where('codelist_group_id', $codelist->id);
+                Rule::unique('codelist_item')->where(function ($query) use ($codelistGroup) {
+                    $query->where('codelist_group_id', $codelistGroup->id);
                 }),
             ],
             'title'      => 'required',
@@ -123,7 +123,7 @@ class CodelistController extends BaseController
             return success();
         }
 
-        if (CodelistItem::forGroup($codelist)->fill(request()->all())->save()) {
+        if (CodelistItem::forGroup($codelistGroup)->fill(request()->all())->save()) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::codelist.item_created', ['name' => request()->title])

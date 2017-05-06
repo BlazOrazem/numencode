@@ -1,12 +1,12 @@
 <li class="nestable-item">
     <div class="nestable-handle">
-        <div class="left{{ isset($menu[$page->id]) ? ' drop' : '' }}">
-            <i class="zmdi zmdi-{{ isset($menu[$page->id]) ? 'folder' : 'file-text' }}"></i>
+        <div class="left{{ isset($tree[$page->id]) ? ' drop' : '' }}">
+            <i class="zmdi zmdi-{{ isset($tree[$page->id]) ? 'folder' : 'file-text' }}"></i>
             <a href="{{ route('pages.edit', compact('page')) }}">{{ $page->title }}</a>
         </div>
         <div class="right hidden-xs">
             <div class="text-right">
-                <label>
+                <label class="switch">
                     <input class="toggle toggle-info"
                            type="checkbox"
                            name="toggle"
@@ -34,7 +34,7 @@
         </div>
         <div class="right visible-xs"></div>
     </div>
-    @if(isset($menu[$page->id]))
-        @include('admin::pages.tree.structure-list', ['collection' => $menu[$page->id], 'level' => ++$level])
+    @if(isset($tree[$page->id]))
+        @include('admin::pages.tree.structure-list', ['collection' => $tree[$page->id], 'level' => ++$level])
     @endif
 </li>

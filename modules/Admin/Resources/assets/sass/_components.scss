@@ -2043,7 +2043,6 @@ table.display{
         text-align: center;
         text-transform: uppercase;
         font-size: 12px;
-        line-height: 36px;
         color: $grey;
         font-weight: 600;
       }
@@ -2053,6 +2052,14 @@ table.display{
           width: auto;
           text-align: left;
           margin-right: 10px;
+          &.add-new {
+            line-height: 30px;
+          }
+        }
+      }
+      &.pull-right {
+        li {
+          line-height: 30px;
         }
       }
     }
@@ -2103,9 +2110,11 @@ table.display{
           width: 54px;
           margin: 5px 0 5px 0;
           text-align: center;
-          &.checkbox i {
-            top: 3px;
+          .switch {
+            margin-top: 6px;
+            margin-bottom: 0;
           }
+          .btn-base,
           .btn-info,
           .btn-success,
           .btn-danger {
@@ -2113,7 +2122,7 @@ table.display{
             text-align: center;
           }
           .btn-danger {
-            background: lighten($danger-color, 10%);
+            background: $danger-color;
             min-width: auto;
           }
           .btn i {

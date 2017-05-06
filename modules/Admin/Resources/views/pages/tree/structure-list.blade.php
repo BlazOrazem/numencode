@@ -12,7 +12,7 @@
                     <div></div>
                     <div>
                         @include('admin::components.button.new', [
-                            'action' => route('menus.create'),
+                            'action' => route('pages.create.menu', ['menu' => $menu]),
                             'icon' => 'zmdi-file-plus'
                         ])
                     </div>

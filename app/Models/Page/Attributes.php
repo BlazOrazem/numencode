@@ -13,7 +13,7 @@ trait Attributes
      */
     public function getLinkAttribute()
     {
-        return $this->url ? $this->url->uri : '#';
+        return $this->url ? $this->url->uri : '';
     }
 
     /**

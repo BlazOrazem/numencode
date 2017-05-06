@@ -31,6 +31,13 @@ class CodelistGroup extends Model
     public $timestamps = false;
 
     /**
+     * Eager load selected relations.
+     *
+     * @var array
+     */
+    protected $with = ['items'];
+
+    /**
      * Codelist group has many items.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

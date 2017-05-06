@@ -23,10 +23,10 @@ return [
     'index' => 'Back to Contents list',
 
     'create'  => 'Create new content',
-    'created' => 'Always displayed content created.',
+    'created' => 'Content successfully created.',
 
     'update'  => 'Update content',
-    'updated' => 'Always displayed content updated.',
+    'updated' => 'Content successfully updated.',
 
     'deleted' => 'Content has been successfully deleted.',
 

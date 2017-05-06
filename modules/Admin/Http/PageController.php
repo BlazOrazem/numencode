@@ -3,7 +3,9 @@
 namespace Admin\Http;
 
 use Numencode\Models\Page\Page;
+use Numencode\Models\System\Url;
 use Numencode\Models\Content\Menu;
+use Numencode\Models\Content\Content;
 use Admin\Repositories\RouteRepository;
 use Numencode\Models\Codelist\CodelistGroup;
 
@@ -104,7 +106,6 @@ class PageController extends BaseController
     public function edit(Page $page)
     {
         $page = Page::find($page->id);
-
         $layouts = CodelistGroup::find(2)->items;
         $pages = Page::tree($page->menu);
 
@@ -121,6 +122,8 @@ class PageController extends BaseController
      */
     public function update(Page $page, RouteRepository $route)
     {
+        $page = Page::find($page->id);
+
         $this->validate(request(), [
             'layout'     => 'required',
             'title'      => 'required',
@@ -178,8 +181,36 @@ class PageController extends BaseController
      */
     public function destroy(Page $page)
     {
-        // TODO delete page contents, route and page children
+        Url::where('id', $page->route_id)->delete();
+        Content::where('page_id', $page->id)->delete();
 
-        return $this->deleteThe($page, 'pages.deleted');
+        $result = $this->deleteThe($page, 'pages.deleted');
+
+        $this->cleanUnusedItems();
+
+        return $result;
     }
+
+    /**
+     * Delete unused pages with related routes and contents.
+     *
+     * @return bool
+     */
+    protected function cleanUnusedItems()
+    {
+        $pages = Page::whereNotIn('parent_id', Page::get()->pluck('id'))->get();
+
+        if (!$pages->count()) {
+            return true;
+        }
+
+        foreach ($pages as $page) {
+            Url::where('id', $page->route_id)->delete();
+            Content::where('page_id', $page->id)->delete();
+            $page->delete();
+        }
+
+        $this->cleanUnusedItems();
+    }
+
 }

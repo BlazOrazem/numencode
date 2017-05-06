@@ -53,10 +53,11 @@ class ContentController extends BaseController
         $contents = Content::whereNull('page_id')->get();
         $positions = CodelistGroup::find(2)->items;
         $pages = Page::tree();
+        $order = ($page ? Content::where('page_id', $page->id)->get()->max('sort_order') : $contents->max('sort_order')) + 10;
 
         js(['plugins' => Plugin::orderBy('title')->get()->toArray()]);
 
-        return view('admin::contents.create', compact('contents', 'positions', 'page', 'pages'));
+        return view('admin::contents.create', compact('contents', 'positions', 'page', 'pages', 'order'));
     }
 
     /**
@@ -88,6 +89,10 @@ class ContentController extends BaseController
                 trans('admin::messages.success'),
                 trans('admin::contents.created')
             );
+        }
+
+        if (isset(request()->page_id)) {
+            return redirect()->route('pages.edit', [Page::find(request()->page_id)]);
         }
 
         return redirect()->route('contents.index');
@@ -147,7 +152,11 @@ class ContentController extends BaseController
             );
         }
 
-        return redirect()->back();
+        if (isset(request()->page_id)) {
+            return redirect()->route('pages.edit', [Page::find(request()->page_id)]);
+        }
+
+        return redirect()->route('contents.index');
     }
 
     /**

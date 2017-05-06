@@ -29,7 +29,7 @@
                                             'icon' => 'zmdi-file-plus',
                                         ])
                                     </li>
-                                    <li>
+                                    <li class="add-new">
                                         <a href="{{ route('pages.create.menu', ['menu' => $menu]) }}">
                                             Add new page
                                         </a>
@@ -44,7 +44,8 @@
                             </div>
                             @include('admin::pages.tree.structure-list', [
                                 'collection' => $menu->tree['root'],
-                                'menu' => $menu->tree,
+                                'tree' => $menu->tree,
+                                'menu' => $menu,
                                 'level' => 1,
                             ])
                         </div>

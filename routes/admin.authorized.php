@@ -18,7 +18,6 @@ Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 Route::post('contents', 'ContentController@store')->name('contents.store');
 Route::get('contents', 'ContentController@index')->name('contents.index');
 Route::get('contents/create/{page?}', 'ContentController@create')->name('contents.create');
-Route::get('contents/{content}', 'ContentController@show')->name('contents.show');
 Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 Route::match(['PUT', 'PATCH'], 'contents/{content}', 'ContentController@update')->name('contents.update');
 Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
@@ -75,17 +74,16 @@ Route::match(['PUT', 'PATCH'], 'plugins/{plugin}', 'PluginController@update')->n
 Route::delete('plugins/{plugin}', 'PluginController@destroy')->name('plugins.destroy')->middleware('permission:manage_plugins');
 
 // Codelist
-Route::post('codelist/item/{group}', 'CodelistController@storeItem')->name('codelist.item.create')->middleware('permission:manage_codelist');
+Route::post('codelist/item/{codelistGroup}', 'CodelistController@storeItem')->name('codelist.item.create')->middleware('permission:manage_codelist');
 Route::get('codelist/item/{item}/edit', 'CodelistController@editItem')->name('codelist.item.edit')->middleware('permission:manage_codelist');
 Route::match(['PUT', 'PATCH'], 'codelist/item/{item}', 'CodelistController@updateItem')->name('codelist.item.update')->middleware('permission:manage_codelist');
 Route::delete('codelist/item/{item}', 'CodelistController@destroyItem')->name('codelist.item.destroy')->middleware('permission:manage_codelist');
 Route::post('codelist', 'CodelistController@store')->name('codelist.store')->middleware('permission:manage_codelist');
 Route::get('codelist', 'CodelistController@index')->name('codelist.index')->middleware('permission:view_codelist');
 Route::get('codelist/create', 'CodelistController@create')->name('codelist.create')->middleware('permission:manage_codelist');
-Route::get('codelist/{codelist}', 'CodelistController@show')->name('codelist.show')->middleware('permission:view_codelist');
-Route::get('codelist/{codelist}/edit', 'CodelistController@edit')->name('codelist.edit')->middleware('permission:manage_codelist');
-Route::match(['PUT', 'PATCH'], 'codelist/{codelist}', 'CodelistController@update')->name('codelist.update')->middleware('permission:manage_codelist');
-Route::delete('codelist/{codelist}', 'CodelistController@destroy')->name('codelist.destroy')->middleware('permission:manage_codelist');
+Route::get('codelist/{codelistGroup}/edit', 'CodelistController@edit')->name('codelist.edit')->middleware('permission:manage_codelist');
+Route::match(['PUT', 'PATCH'], 'codelist/{codelistGroup}', 'CodelistController@update')->name('codelist.update')->middleware('permission:manage_codelist');
+Route::delete('codelist/{codelistGroup}', 'CodelistController@destroy')->name('codelist.destroy')->middleware('permission:manage_codelist');
 
 // Dictionary
 Route::post('dictionary', 'DictionaryController@store')->name('dictionary.store');

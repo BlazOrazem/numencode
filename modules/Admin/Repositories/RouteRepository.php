@@ -24,9 +24,10 @@ class RouteRepository
             'params' => json_encode($params),
         ]);
 
-        $url->params = $params;
         $url->uri = $this->buildUri($uri ?: $keyword, $url->id ? $url : null);
         $url->save();
+
+        Url::whereId($url->id)->update(['params' => json_encode($params)]);
 
         return $url->id;
     }
