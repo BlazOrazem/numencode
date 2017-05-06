@@ -25,12 +25,7 @@ class PageComposer
 
         $view->with('locales', Language::getAllLocales()->keys());
 
-        $view->with('activeUrl',
-            url('/') . '/' .
-            request()->segment(1) .
-            (request()->segment(2) ? '/' . request()->segment(2) : '') .
-            ((request()->segment(3) && !is_numeric(request()->segment(3))) ? '/' . request()->segment(3) : '')
-        );
+        $view->with('activeUrl', $this->buildActiveUrl());
 
         js([
             'all_languages'     => Language::getAll()->toArray(),
@@ -73,5 +68,28 @@ class PageComposer
         }
 
         return $items;
+    }
+
+    /**
+     * Build active URL from segments.
+     *
+     * @return string
+     */
+    protected function buildActiveUrl()
+    {
+        $activeUrl = url('/') . '/' . request()->segment(1);
+
+        if (request()->segment(2)) {
+            $activeUrl .= '/' . request()->segment(2);
+        }
+
+        if (request()->segment(3) && !is_numeric(request()->segment(3))) {
+            $activeUrl .= '/' . request()->segment(3);
+            if (request()->segment(4) && !is_numeric(request()->segment(4))) {
+                $activeUrl .= '/' . request()->segment(4);
+            }
+        }
+
+        return $activeUrl;
     }
 }

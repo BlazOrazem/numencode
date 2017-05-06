@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('codelist.item.update', [$codelistItem]) }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('codelist.item.update', $codelistItem) }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         @include('admin::components.form.text', [
@@ -53,7 +53,7 @@
         <div class="col-lg-12">
             <div class="data-table data-info content-box">
                 <div class="head base-bg clearfix">
-                    <h5 class="content-title pull-left">{{ $codelistGroup->title }} @lang('admin::codelist.items')</h5>
+                    <h5 class="content-title pull-left">{{ $codelistItem->group->title }} @lang('admin::codelist.items')</h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
@@ -67,12 +67,11 @@
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
                         @if($admin->can('manage_codelist'))
                             <th width="60" class="no-sort text-center">@lang('admin::tables.edit')</th>
-                            <th width="60" class="no-sort text-center">@lang('admin::tables.delete')</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($codelistGroup->items as $item)
+                    @foreach($codelistItem->group->items as $item)
                         <tr>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->code }}</td>
@@ -87,11 +86,6 @@
                                         'action' => route('codelist.item.edit', compact('item'))
                                     ])
                                 </td>
-                                <td class="text-center">
-                                    @include('admin::components.button.delete', [
-                                        'action' => route('codelist.item.destroy', compact('item'))
-                                    ])
-                                </td>
                             @endif
                         </tr>
                     @endforeach
@@ -100,7 +94,7 @@
             </div>
             <div class="content-box">
                 <div class="content text-center">
-                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.edit', $codelistGroup) }}">
+                    <a class="btn btn-default btn-link btn-md btn-full" href="{{ route('codelist.edit', $codelistItem->group) }}">
                         <i class="zmdi zmdi-caret-left-circle left"></i>
                         @lang('admin::codelist.index_group')
                     </a>

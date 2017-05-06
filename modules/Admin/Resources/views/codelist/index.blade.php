@@ -28,25 +28,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($codelistGroups as $group)
+                    @foreach($codelistGroups as $codelistGroup)
                         <tr>
-                            <td>{{ $group->title }}</td>
+                            <td>{{ $codelistGroup->title }}</td>
                             <td class="text-right">
                                 <span class="badge badge-base f-s-14">
-                                    {{ $group->sort_order }}
+                                    {{ $codelistGroup->sort_order }}
                                 </span>
                             </td>
                             @if($admin->can('manage_codelist'))
                                 <td class="text-center">
                                     @include('admin::components.button.edit', [
-                                        'action' => route('codelist.edit', compact('group')),
+                                        'action' => route('codelist.edit', compact('codelistGroup')),
                                         'icon' => 'zmdi-collection-text',
                                     ])
                                 </td>
                                 <td class="text-center">
-                                    @if(!$group->items->count())
+                                    @if(!$codelistGroup->items->count())
                                         @include('admin::components.button.delete', [
-                                            'action' => route('codelist.destroy', compact('group')),
+                                            'action' => route('codelist.destroy', compact('codelistGroup')),
                                         ])
                                     @endif
                                 </td>
@@ -81,7 +81,7 @@
                             ])
                             @include('admin::components.form.order', [
                                 'sortOrder' => $codelistGroups->max('sort_order') + 10,
-                                'errors' => $errors->roleErrors,
+                                'errors' => $errors->groupErrors,
                             ])
                             @include('admin::components.form.submit', [
                                 'button' => trans('admin::codelist.group_create'),

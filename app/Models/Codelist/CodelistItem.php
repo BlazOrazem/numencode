@@ -31,6 +31,16 @@ class CodelistItem extends Model
     public $timestamps = false;
 
     /**
+     * Item belongs to a group.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(CodelistGroup::class, 'codelist_group_id');
+    }
+
+    /**
      * Create a new instance and associate it with the given codelist group.
      *
      * @param CodelistGroup $codelistGroup Codelist group

@@ -75,9 +75,9 @@ Route::delete('plugins/{plugin}', 'PluginController@destroy')->name('plugins.des
 
 // Codelist
 Route::post('codelist/item/{codelistGroup}', 'CodelistController@storeItem')->name('codelist.item.create')->middleware('permission:manage_codelist');
-Route::get('codelist/item/{item}/edit', 'CodelistController@editItem')->name('codelist.item.edit')->middleware('permission:manage_codelist');
-Route::match(['PUT', 'PATCH'], 'codelist/item/{item}', 'CodelistController@updateItem')->name('codelist.item.update')->middleware('permission:manage_codelist');
-Route::delete('codelist/item/{item}', 'CodelistController@destroyItem')->name('codelist.item.destroy')->middleware('permission:manage_codelist');
+Route::get('codelist/item/{codelistItem}/edit', 'CodelistController@editItem')->name('codelist.item.edit')->middleware('permission:manage_codelist');
+Route::match(['PUT', 'PATCH'], 'codelist/item/{codelistItem}', 'CodelistController@updateItem')->name('codelist.item.update')->middleware('permission:manage_codelist');
+Route::delete('codelist/item/{codelistItem}', 'CodelistController@destroyItem')->name('codelist.item.destroy')->middleware('permission:manage_codelist');
 Route::post('codelist', 'CodelistController@store')->name('codelist.store')->middleware('permission:manage_codelist');
 Route::get('codelist', 'CodelistController@index')->name('codelist.index')->middleware('permission:view_codelist');
 Route::get('codelist/create', 'CodelistController@create')->name('codelist.create')->middleware('permission:manage_codelist');
@@ -123,3 +123,21 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->n
 // Tasks Plugin
 Route::post('tasks/complete/{task}', 'TaskController@complete')->name('tasks.complete');
 Route::resource('tasks', 'TaskController');
+
+// Blog Plugin
+Route::post('blog/item/comment/{comment}', 'BlogController@publishComment')->name('blog.comment.publish')->middleware('permission:manage_blog');
+Route::match(['PUT', 'PATCH'], 'blog/item/comment', 'BlogController@updateComment')->name('blog.comment.update')->middleware('permission:manage_blog');
+Route::delete('blog/item/comment/{comment}', 'BlogController@destroyComment')->name('blog.comment.destroy')->middleware('permission:manage_blog');
+Route::post('blog/item', 'BlogController@storeItem')->name('blog.item.store')->middleware('permission:manage_blog');
+Route::get('blog/item/create/{blogCategory?}', 'BlogController@createItem')->name('blog.item.create')->middleware('permission:manage_blog');
+Route::get('blog/item/{blogItem}/edit', 'BlogController@editItem')->name('blog.item.edit')->middleware('permission:manage_blog');
+Route::get('blog/item/{blogItem}/comments', 'BlogController@comments')->name('blog.item.comments')->middleware('permission:manage_blog');
+Route::match(['PUT', 'PATCH'], 'blog/item/{blogItem}', 'BlogController@updateItem')->name('blog.item.update')->middleware('permission:manage_blog');
+Route::delete('blog/item/{blogItem}', 'BlogController@destroyItem')->name('blog.item.destroy')->middleware('permission:manage_blog');
+Route::post('blog', 'BlogController@store')->name('blog.store')->middleware('permission:manage_blog');
+Route::get('blog', 'BlogController@index')->name('blog.index')->middleware('permission:manage_blog');
+Route::get('blog/create', 'BlogController@create')->name('blog.create')->middleware('permission:manage_blog');
+Route::get('blog/{blogCategory}/edit', 'BlogController@edit')->name('blog.edit')->middleware('permission:manage_blog');
+Route::get('blog/{blogCategory}/items', 'BlogController@items')->name('blog.items')->middleware('permission:manage_blog');
+Route::match(['PUT', 'PATCH'], 'blog/{blogCategory}', 'BlogController@update')->name('blog.update')->middleware('permission:manage_blog');
+Route::delete('blog/{blogCategory}', 'BlogController@destroy')->name('blog.destroy')->middleware('permission:manage_blog');

@@ -15,9 +15,7 @@ class CodelistController extends BaseController
      */
     public function index()
     {
-        $codelistGroups = CodelistGroup::with('items')->get();
-
-        return view('admin::codelist.index', compact('codelistGroups'));
+        return view('admin::codelist.index', ['codelistGroups' => CodelistGroup::all()]);
     }
 
     /**
@@ -136,32 +134,30 @@ class CodelistController extends BaseController
     /**
      * Edit the codelist item.
      *
-     * @param CodelistItem $item Codelist item
+     * @param CodelistItem $codelistItem Codelist item
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
-    public function editItem(CodelistItem $item)
+    public function editItem(CodelistItem $codelistItem)
     {
-        $codelistGroup = CodelistGroup::with('items')->find($item->codelist_group_id);
-
-        return view('admin::codelist.item', ['codelistItem' => $item, 'codelistGroup' => $codelistGroup]);
+        return view('admin::codelist.item', compact('codelistItem'));
     }
 
     /**
      * Update the codelist item.
      *
-     * @param CodelistItem $item Codelist item
+     * @param CodelistItem $codelistItem Codelist item
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateItem(CodelistItem $item)
+    public function updateItem(CodelistItem $codelistItem)
     {
         $this->validate(request(), [
             'code' => [
                 'required',
-                Rule::unique('codelist_item')->where(function ($query) use ($item) {
-                    $query->where('codelist_group_id', $item->codelist_group_id);
-                }),
+                Rule::unique('codelist_item')->where(function ($query) use ($codelistItem) {
+                    $query->where('codelist_group_id', $codelistItem->codelist_group_id);
+                })->ignore($codelistItem->id),
             ],
             'title'      => 'required',
             'sort_order' => 'required|integer',
@@ -171,7 +167,7 @@ class CodelistController extends BaseController
             return success();
         }
 
-        if ($item->update(request()->all())) {
+        if ($codelistItem->update(request()->all())) {
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::codelist.item_updated', ['name' => request()->title])
@@ -184,12 +180,12 @@ class CodelistController extends BaseController
     /**
      * Delete the codelist item.
      *
-     * @param CodelistItem $item Codelist item
+     * @param CodelistItem $codelistItem Codelist item
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroyItem(CodelistItem $item)
+    public function destroyItem(CodelistItem $codelistItem)
     {
-        return $this->deleteThe($item, 'codelist.item_deleted');
+        return $this->deleteThe($codelistItem, 'codelist.item_deleted');
     }
 }

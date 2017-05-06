@@ -24,7 +24,6 @@ return [
     'name'      => 'Title',
     'lead'      => 'Lead',
     'body'      => 'Content',
-    'url'       => 'URL',
 
     'placeholder' => [
         'parent'  => 'Select parent page',
@@ -32,11 +31,6 @@ return [
         'title'   => 'Enter page title',
         'lead'    => 'Enter short description',
         'body'    => 'Enter page content',
-    ],
-
-    'submit'  => [
-        'save'   => 'Save page',
-        'return' => 'Save and return',
     ],
 
     'contents' => 'Page Contents',

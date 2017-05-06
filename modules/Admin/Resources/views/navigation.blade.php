@@ -41,6 +41,17 @@
                 <li><a href="{{ route('tasks.create') }}">Add new task</a></li>
             </ul>
         </li>
+        @if($admin->can('manage_blog'))
+            <li>
+                <a href="#"><i class="zmdi zmdi-view-subtitles"></i>Blog<span class="zmdi arrow"></span></a>
+                <ul class="nav nav-inside collapse">
+                    <li class="inside-title">Blog</li>
+                    <li><a href="{{ route('blog.index') }}">List categories</a></li>
+                    <li><a href="{{ route('blog.create') }}">Add new category</a></li>
+                    <li><a href="{{ route('blog.item.create') }}">Add new entry</a></li>
+                </ul>
+            </li>
+        @endif
         @if($admin->can('view_managers') || $admin->can('manage_managers'))
             <li>
                 <a href="#"><i class="zmdi zmdi-account"></i>Managers<span class="zmdi arrow"></span></a>
@@ -91,9 +102,9 @@
                 <li><a href="{{ route('log.viewer') }}" target="_blank">Log Viewer</a></li>
             </ul>
         </li>
-        <li>
-            <a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-case-check"></i>TPL Elements</a>
-        </li>
+        {{--<li>--}}
+            {{--<a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-case-check"></i>TPL Elements</a>--}}
+        {{--</li>--}}
     </ul>
     <input id="activeUrl" type="hidden" value="{{ $activeUrl }}">
 </aside>

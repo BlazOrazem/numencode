@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="content">
-                        <form method="POST" action="{{ route('codelist.update', [$codelistGroup]) }}" class="form-inline form-validate">
+                        <form method="POST" action="{{ route('codelist.update', $codelistGroup) }}" class="form-inline form-validate">
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
                             @include('admin::components.form.text', [
@@ -69,24 +69,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($codelistGroup->items as $item)
+                    @foreach($codelistGroup->items as $codelistItem)
                         <tr>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->code }}</td>
+                            <td>{{ $codelistItem->title }}</td>
+                            <td>{{ $codelistItem->code }}</td>
                             <td class="text-right">
                                 <span class="badge badge-base">
-                                    {{ $item->sort_order }}
+                                    {{ $codelistItem->sort_order }}
                                 </span>
                             </td>
                             @if($admin->can('manage_codelist'))
                                 <td class="text-center">
                                     @include('admin::components.button.edit', [
-                                        'action' => route('codelist.item.edit', compact('item'))
+                                        'action' => route('codelist.item.edit', $codelistItem)
                                     ])
                                 </td>
                                 <td class="text-center">
                                     @include('admin::components.button.delete', [
-                                        'action' => route('codelist.item.destroy', compact('item'))
+                                        'action' => route('codelist.item.destroy', $codelistItem)
                                     ])
                                 </td>
                             @endif
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="content">
-                        <form method="POST" action="{{ route('codelist.item.create', [$codelistGroup]) }}" class="form-horizontal form-validate">
+                        <form method="POST" action="{{ route('codelist.item.create', $codelistGroup) }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
                             @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.title'),

@@ -10,15 +10,17 @@ return [
     'action'      => 'Action',
     'description' => 'Description',
 
+    'user'     => 'User',
     'picture'  => 'Picture',
     'email'    => 'E-mail',
     'phone'    => 'Phone',
     'nickname' => 'Nickname',
 
-    'show'   => 'View',
-    'edit'   => 'Edit',
-    'manage' => 'Manage',
-    'delete' => 'Delete',
+    'show'    => 'View',
+    'edit'    => 'Edit',
+    'publish' => 'Publish',
+    'manage'  => 'Manage',
+    'delete'  => 'Delete',
 
     'date'    => 'Date',
     'created' => 'Created at',

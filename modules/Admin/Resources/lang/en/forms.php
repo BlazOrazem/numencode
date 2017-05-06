@@ -11,6 +11,8 @@ return [
     'value'       => 'Value',
     'action'      => 'Action',
     'description' => 'Description',
+    'url'         => 'URL',
+    'select'      => '- select one -',
 
     'order'             => 'Order',
     'order_label'       => 'Order',
@@ -20,5 +22,11 @@ return [
 
     'open_all'  => 'Open all',
     'close_all' => 'Close all',
+
+    'buttons' => [
+        'save'   => 'Save',
+        'return' => 'Save and return',
+        'cancel' => 'Cancel',
+    ],
 
 ];

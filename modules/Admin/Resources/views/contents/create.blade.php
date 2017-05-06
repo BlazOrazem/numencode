@@ -58,7 +58,7 @@
 
                         <div class="form-group">
                             <label class="control-label col-sm-3">
-                                Description
+                                @lang('admin::forms.description')
                             </label>
                             <div class="col-sm-9">
                                 <textarea name="body" class="wysiwyg-editor">{{ old('body') }}</textarea>

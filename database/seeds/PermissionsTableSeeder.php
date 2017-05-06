@@ -169,6 +169,15 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id'         => '19',
+                'name'       => 'manage_blog',
+                'label'      => 'Admin can manage blog',
+                'is_admin'   => true,
+                'sort_order' => 190,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
 
 //            [
 //                'id'         => '5',
