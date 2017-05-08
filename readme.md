@@ -11,13 +11,11 @@ that displays content or interacts with the user.
 
 **Numencode** contains built-in back-office administration panel for managing content and structure on a specific website.
 
-## Official Documentation
+# Official Documentation
 
-Documentation for the **Numencode** can be found on the [Numencode website](http://www.numencode.com/page/docs/).
+Documentation for the **Numencode** is currently under development.
 
-**The application is still in development mode.**
-
-## About the Author
+# About the Author
 
 **Numencode** was created by and is maintained by [Blaz Orazem](http://www.orazem.si/).
 
@@ -52,9 +50,9 @@ Be sure to check /config/numencode.php file for some more application settings.
 
 The URL for the admin dashboard should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
 
-The manager credentials are set by the php artisan project:setup command.
+The manager credentials are set by the php artisan project:install command.
 
-## Front-end workflow with Laravel Mix
+# Front-end workflow with Laravel Mix
 
 Install [Node.js](https://nodejs.org/) on your system.
 
@@ -88,7 +86,7 @@ Watch mode (runs in the background and watches files for changes):
 ```bash
 $ npm run watch
 ```
-## Back-end workflow with Laravel Elixir
+# Back-end workflow with Laravel Elixir
 
 Install [Node.js](https://nodejs.org/) and [Bower](https://bower.io/#install-bower) on your system.
 

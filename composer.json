@@ -1,13 +1,20 @@
 {
-    "name": "numencode/numencode",
-    "description": "Numencode Content Management System",
-    "keywords": ["numencode", "laravel"],
-    "license": "MIT",
+    "name": "numencode/cms",
     "type": "project",
+    "description": "Numencode - Content Management System",
+    "keywords": ["numencode", "laravel"],
+    "homepage": "https://github.com/BlazOrazem/numencode",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Blaz Orazem",
+        "email": "blaz@orazem.si",
+        "homepage": "http://www.orazem.si",
+        "role": "Developer"
+      }
+    ],
     "require": {
         "php": ">=5.6.4",
-        "barryvdh/laravel-debugbar": "~2.0@dev",
-        "barryvdh/laravel-ide-helper": "^2.1",
         "guzzlehttp/guzzle": "^6.2",
         "intervention/image": "^2.3",
         "intervention/imagecache": "^2.3",
@@ -17,14 +24,16 @@
         "laravel/framework": "5.4.*",
         "laravel/socialite": "~3.0",
         "laravel/tinker": "~1.0",
+        "rap2hpoutre/laravel-log-viewer": "^0.8.0",
         "spatie/laravel-analytics": "^1.4",
         "unisharp/laravel-filemanager": "^1.7"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "~2.0@dev",
+        "barryvdh/laravel-ide-helper": "^2.1",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
-        "rap2hpoutre/laravel-log-viewer": "^0.8.0"
+        "phpunit/phpunit": "~5.0"
     },
     "autoload": {
         "classmap": [
