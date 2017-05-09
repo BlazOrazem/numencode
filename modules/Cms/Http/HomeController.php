@@ -11,10 +11,11 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        if ($this->user()) {
-            return view('theme::pages.home');
-        }
-
-        return view('theme::auth.login');
+        return view('theme::pages.home');
+//        if ($this->user()) {
+//            return view('theme::pages.home');
+//        }
+//
+//        return view('theme::auth.login');
     }
 }

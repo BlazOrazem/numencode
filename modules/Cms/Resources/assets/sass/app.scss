@@ -13,8 +13,17 @@
 // Font Awesome
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
-// Login Form
+// Login and Register Form
 @import "login-register-form";
+
+// Flags
+@import "flags";
+
+// Components
+@import "components";
+
+// Navbar
+@import "navbar";
 
 body {
   padding-top: 40px;

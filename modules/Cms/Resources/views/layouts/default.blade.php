@@ -20,45 +20,7 @@
 
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Numencode</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                @if ($signedIn)
-                    <li><a href="{{ route('profile') }}">My Profile</a></li>
-                    @can('manage_posts')
-                        <li><a href="#">My posts</a></li>
-                    @endcan
-                @else
-                    <li><a href="{{ get_route('register') }}">Register</a></li>
-                @endif
-            </ul>
-            @if ($signedIn)
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
-                </ul>
-                <p class="navbar-text navbar-right">
-                    Logged in as {{ $user->name }} @if ($user->nickname)<small>({{ $user->nickname }})</small>@endif
-                </p>
-                @if ($user->avatar)
-                    <img src="{{ $user->avatar }}" height="40" class="navbar-right user-avatar-small">
-                @endif
-            @endif
-        </div>
-    </div>
-</nav>
-
-<hr>
+@menu('sidebar')
 
 @menu('main')
 
@@ -69,10 +31,6 @@
         @yield('plugins')
     </div>
 </div>
-
-<hr>
-
-@menu('corpo')
 
 <script src="{{ mix('/themes/default/js/manifest.js') }}"></script>
 <script src="{{ mix('/themes/default/js/vendor.js') }}"></script>

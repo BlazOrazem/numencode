@@ -15,8 +15,8 @@ class MenusTableSeeder extends Seeder
             ],
             [
                 'id'         => 2,
-                'code'       => 'corpo',
-                'title'      => 'Corpo Menu',
+                'code'       => 'sidebar',
+                'title'      => 'Sidebar Menu',
                 'sort_order' => '20',
             ],
         ];

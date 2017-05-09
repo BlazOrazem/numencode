@@ -81,7 +81,7 @@
                         <div class="more-opt-container dropdown-menu">
                             <a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a>
                             <a href="{{ route('managers.profile') }}"><i class="zmdi zmdi-account-o"></i>Account</a>
-                            <a href="{{ route('home') }}" target="_blank"><i class="zmdi zmdi-view-web"></i>Website</a>
+                            <a href="{{ get_route('home') }}" target="_blank"><i class="zmdi zmdi-view-web"></i>Website</a>
                             <a href="{{ route('log.viewer') }}" target="_blank"><i class="zmdi zmdi-developer-board"></i>Log Viewer</a>
                             <a href="#"><i class="zmdi zmdi-info-outline"></i>About</a>
                             <a href="{{ route('admin.logout') }}" class="btn-logout"><i class="zmdi zmdi-power"></i>Logout</a>

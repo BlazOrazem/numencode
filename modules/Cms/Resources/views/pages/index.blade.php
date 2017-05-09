@@ -5,7 +5,7 @@
     <div class="jumbotron">
         <h1>{{ $page->title }}</h1>
         <p>{{ $page->lead }}</p>
-        <p>{{ $page->body }}</p>
+        <p>{!! $page->body !!}</p>
     </div>
 
 @endsection

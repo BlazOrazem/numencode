@@ -19,9 +19,22 @@ class TaskController extends BaseController
     }
 
     /**
-     * Show a single task.
+     * Display a random task.
      *
-     * @param $params
+     * @return \Illuminate\View\View
+     */
+    public function random()
+    {
+        $task = Task::inRandomOrder()->first();
+
+        return view('theme::tasks.show', compact('task'));
+    }
+
+    /**
+     * Display a specific task.
+     *
+     * @param object $params Data parameters
+     *
      * @return \Illuminate\View\View
      */
     public function show($params)

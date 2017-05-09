@@ -6,7 +6,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h4>Hello {{ $data->first_name }} {{ $data->last_name }}!</h4>
-        <p>{{ $task->body }}</p>
+        <p>{!! $task->body !!}</p>
     </div>
 </div>

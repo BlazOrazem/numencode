@@ -153,11 +153,7 @@ class PluginController extends BaseController
     {
         $plugin = Plugin::findOrFail(request()->id);
 
-        if (!$plugin->params) {
-            return success();
-        }
-
-        return $this->pluginRepository->renderPluginForm($plugin);
+        return $plugin->params ? $this->pluginRepository->renderPluginForm($plugin) : null;
     }
 
     public function testRender()
