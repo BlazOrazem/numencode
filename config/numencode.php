@@ -58,12 +58,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Codelist must contain a Dictionary Group entry for Dictionary to work.
-    | Here you must specify the ID of that entry, which is used to import
-    | and export translation from files to database and back.
+    | Here you must specify the code of that entry, which is used to
+    | import and export translation from files to database and back.
     |
     */
 
-    'dictionary_codelist_group_id' => 1,
+    'dictionary_codelist_group' => 'dictionary_group',
 
     /*
     |--------------------------------------------------------------------------

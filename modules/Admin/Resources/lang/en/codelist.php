@@ -6,6 +6,7 @@ return [
 
     'placeholder' => [
         'group_title' => 'Enter group title',
+        'group_code'  => 'Enter group code',
         'item_title'  => 'Enter title',
         'item_code'   => 'Enter code',
     ],

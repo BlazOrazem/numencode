@@ -22,6 +22,16 @@
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
                             @include('admin::components.form.text', [
+                                'label' => trans('admin::forms.code'),
+                                'field' => 'code',
+                                'placeholder' => trans('admin::codelist.placeholder.group_code'),
+                                'class' => 'snake-slug',
+                                'entity' => $codelistGroup,
+                                'errors' => $errors->groupErrors,
+                                'inline' => true,
+                                'required' => true,
+                            ])
+                            @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.title'),
                                 'field' => 'title',
                                 'placeholder' => trans('admin::codelist.placeholder.group_title'),

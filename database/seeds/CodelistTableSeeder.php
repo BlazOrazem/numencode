@@ -9,16 +9,19 @@ class CodelistTableSeeder extends Seeder
         $items = [
             [
                 'id'         => 1,
+                'code'       => 'dictionary_group',
                 'title'      => 'Dictionary Group',
                 'sort_order' => '10',
             ],
             [
                 'id'         => 2,
+                'code'       => 'page_layout',
                 'title'      => 'Page Layout',
                 'sort_order' => '20',
             ],
             [
                 'id'         => 3,
+                'code'       => 'content_position',
                 'title'      => 'Content Position',
                 'sort_order' => '30',
             ],

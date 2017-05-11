@@ -83,7 +83,7 @@
                             <a href="{{ route('managers.profile') }}"><i class="zmdi zmdi-account-o"></i>Account</a>
                             <a href="{{ get_route('home') }}" target="_blank"><i class="zmdi zmdi-view-web"></i>Website</a>
                             <a href="{{ route('log.viewer') }}" target="_blank"><i class="zmdi zmdi-developer-board"></i>Log Viewer</a>
-                            <a href="#"><i class="zmdi zmdi-info-outline"></i>About</a>
+                            <a href="#" class="swal-info"><i class="zmdi zmdi-info-outline"></i>About</a>
                             <a href="{{ route('admin.logout') }}" class="btn-logout"><i class="zmdi zmdi-power"></i>Logout</a>
                         </div>
                     </li>
@@ -181,6 +181,16 @@
 
     new Vue({
         el: '#js-languages'
+    });
+
+    $(".swal-info").on("click", function (e) {
+        e.preventDefault();
+        swal({
+            title: "Numencode CMS",
+            text: "Numencode is a web application, based on Laravel framework 5.4, that allows publishing, editing and modifying content, organizing, deleting as well as maintenance from a central interface. Numencode was created by and is maintained by Blaz Orazem.",
+            html: true,
+            confirmButtonClass: 'btn-base'
+        });
     });
 </script>
 

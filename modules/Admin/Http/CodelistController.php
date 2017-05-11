@@ -26,7 +26,8 @@ class CodelistController extends BaseController
     public function store()
     {
         $this->validate(request(), [
-            'title'      => 'required|unique:codelist_group',
+            'code'       => 'required|unique:codelist_group',
+            'title'      => 'required',
             'sort_order' => 'required|integer',
         ]);
 
@@ -66,7 +67,8 @@ class CodelistController extends BaseController
     public function update(CodelistGroup $codelistGroup)
     {
         $this->validateWithBag('groupErrors', request(), [
-            'title'      => ['required', Rule::unique('codelist_group')->ignore($codelistGroup->id)],
+            'code'       => ['required', Rule::unique('codelist_group')->ignore($codelistGroup->id)],
+            'title'      => 'required',
             'sort_order' => 'required|integer',
         ]);
 

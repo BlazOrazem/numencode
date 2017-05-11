@@ -51,7 +51,7 @@ class ContentController extends BaseController
     public function create(Page $page = null)
     {
         $contents = Content::whereNull('page_id')->get();
-        $positions = CodelistGroup::find(2)->items;
+        $positions = CodelistGroup::itemsFor('content_position');
         $pages = Page::tree();
         $order = ($page ? Content::where('page_id', $page->id)->get()->max('sort_order') : $contents->max('sort_order')) + 10;
 
@@ -109,7 +109,7 @@ class ContentController extends BaseController
     {
         $content = Content::find($content->id);
         $plugin = Plugin::find($content->plugin_id);
-        $positions = CodelistGroup::find(2)->items;
+        $positions = CodelistGroup::itemsFor('content_position');
         $pages = Page::tree();
 
         if ($content->plugin_id) {

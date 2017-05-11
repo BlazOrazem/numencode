@@ -77,7 +77,7 @@ class LangImport extends Command
      */
     public function handle()
     {
-        $this->setCodelistGroup(CodelistGroup::find(config('numencode.dictionary_codelist_group_id')));
+        $this->setCodelistGroup(CodelistGroup::where('code', config('numencode.dictionary_codelist_group'))->first());
 
         foreach ($this->files->directories($this->getLangPath()) as $langPath){
             $locale = basename($langPath);

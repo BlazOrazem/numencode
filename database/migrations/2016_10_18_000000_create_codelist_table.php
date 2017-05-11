@@ -15,6 +15,7 @@ class CreateCodelistTable extends Migration
     {
 		Schema::create('codelist_group', function (Blueprint $table) {
 			$table->increments('id');
+            $table->string('code')->unique()->index();
             $table->string('title');
             $table->integer('sort_order')->default(0);
 		});

@@ -46,4 +46,16 @@ class CodelistGroup extends Model
     {
         return $this->hasMany(CodelistItem::class);
     }
+
+    /**
+     * Return items for a specific codelist group.
+     *
+     * @param string $code Codelist group code
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function itemsFor($code)
+    {
+        return static::where('code', $code)->first()->items;
+    }
 }

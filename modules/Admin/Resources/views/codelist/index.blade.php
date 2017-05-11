@@ -16,9 +16,10 @@
                         <a class="fullscreen-btn" href="#"><i class="zmdi zmdi-fullscreen"></i></a>
                     </div>
                 </div>
-                <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
+                <table class="display datatable middle-align datatable-striped table" data-order='[[ 3, "asc" ]]'>
                     <thead>
                     <tr>
+                        <th>@lang('admin::tables.code')</th>
                         <th>@lang('admin::tables.title')</th>
                         <th width="60" class="text-right">@lang('admin::tables.order')</th>
                         @if($admin->can('manage_codelist'))
@@ -30,6 +31,7 @@
                     <tbody>
                     @foreach($codelistGroups as $codelistGroup)
                         <tr>
+                            <td>{{ $codelistGroup->code }}</td>
                             <td>{{ $codelistGroup->title }}</td>
                             <td class="text-right">
                                 <span class="badge badge-base f-s-14">
@@ -73,6 +75,13 @@
                     <div class="content">
                         <form method="POST" action="{{ route('codelist.store') }}" class="form-horizontal form-validate">
                             {{ csrf_field() }}
+                            @include('admin::components.form.text', [
+                                'label' => trans('admin::forms.code'),
+                                'field' => 'code',
+                                'placeholder' => trans('admin::codelist.placeholder.group_code'),
+                                'class' => 'snake-slug',
+                                'required' => true,
+                            ])
                             @include('admin::components.form.text', [
                                 'label' => trans('admin::forms.title'),
                                 'field' => 'title',
