@@ -114,7 +114,7 @@ class PagesTableSeeder extends Seeder
                 'layout'     => 'map',
                 'title'      => 'Our location',
                 'lead'       => 'We are located in the center of the capital city.',
-                'body'       => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d692.2493657615338!2d14.505674029280371!3d46.051148848694524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47652d63b27f653d%3A0xd814b742356d4593!2sTromostovje%2C+Stritarjeva+ulica%2C+1000+Ljubljana!5e0!3m2!1ssl!2ssi!4v1494754048011" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>',
+                'body'       => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d692.2493657615338!2d14.505674029280371!3d46.051148848694524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47652d63b27f653d%3A0xd814b742356d4593!2sTromostovje%2C+Stritarjeva+ulica%2C+1000+Ljubljana!5e0!3m2!1ssl!2ssi!4v1494754048011" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>',
                 'sort_order' => 10,
                 'is_hidden'  => null,
                 'created_at' => new DateTime,
@@ -193,7 +193,7 @@ class PagesTableSeeder extends Seeder
         $translationPage->saveTranslation('sl', [
             'title' => 'Kje se nahajamo',
             'lead'  => 'Nahajamo se v centru glavnega mesta.',
-            'body'  => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d692.2493657615338!2d14.505674029280371!3d46.051148848694524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47652d63b27f653d%3A0xd814b742356d4593!2sTromostovje%2C+Stritarjeva+ulica%2C+1000+Ljubljana!5e0!3m2!1ssl!2ssi!4v1494754048011" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>',
+            'body'  => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d692.2493657615338!2d14.505674029280371!3d46.051148848694524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47652d63b27f653d%3A0xd814b742356d4593!2sTromostovje%2C+Stritarjeva+ulica%2C+1000+Ljubljana!5e0!3m2!1ssl!2ssi!4v1494754048011" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>',
         ]);
 
         $translationPage = Page::find(9);
