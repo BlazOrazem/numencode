@@ -10,10 +10,22 @@ class ContentsTableSeeder extends Seeder
         $items = [
             [
                 'id'            => 1,
+                'page_id'       => null,
+                'plugin_id'     => 4,
+                'plugin_params' => null,
+                'title'         => 'From our Blog',
+                'lead'          => null,
+                'body'          => null,
+                'position'      => 'bottom',
+                'sort_order'    => 10,
+                'is_hidden'     => null,
+            ],
+            [
+                'id'            => 2,
                 'page_id'       => 1,
                 'plugin_id'     => 1,
                 'plugin_params' => null,
-                'title'         => 'Task list plugin',
+                'title'         => 'Task List',
                 'lead'          => null,
                 'body'          => null,
                 'position'      => 'center',
@@ -21,91 +33,31 @@ class ContentsTableSeeder extends Seeder
                 'is_hidden'     => null,
             ],
             [
-                'id'            => 2,
-                'page_id'       => 1,
-                'plugin_id'     => 2,
-                'plugin_params' => [
-                                        'task_id'    => '10',
-                                        'first_name' => 'John',
-                                        'last_name'  => 'Doe',
-                                    ],
-                'title'         => 'Sample plugin',
-                'lead'          => 'Eng lead lorem ipsum.',
-                'body'          => 'EN Lorem ipsum dolor sit amet.',
-                'position'      => 'center',
-                'sort_order'    => 20,
-                'is_hidden'     => null,
-            ],
-            [
                 'id'            => 3,
-                'page_id'       => 1,
-                'plugin_id'     => null,
+                'page_id'       => 2,
+                'plugin_id'     => 2,
                 'plugin_params' => null,
-                'title'         => 'Some text here',
-                'lead'          => 'This is a content with some sample text.',
-                'body'          => 'EN Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in erat at enim egestas mattis sit amet mattis diam. Aliquam eu blandit sem. Fusce eget lobortis metus. Vestibulum laoreet magna at tellus eleifend convallis. Maecenas ac tristique magna. Aliquam tincidunt arcu sed quam rutrum, sit amet placerat tellus efficitur. Morbi semper libero augue, eget sodales nisi volutpat ut. Cras tincidunt libero id mi varius, ac ultrices nibh placerat. Vivamus porttitor dictum nisl a sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper sem augue, vel euismod orci convallis non. Sed nisl mauris, blandit eu finibus sed, tempor eget velit. Proin feugiat elementum felis, non viverra dui ornare at.',
+                'title'         => 'Random Task',
+                'lead'          => null,
+                'body'          => null,
                 'position'      => 'center',
-                'sort_order'    => 30,
+                'sort_order'    => 10,
                 'is_hidden'     => null,
             ],
             [
                 'id'            => 4,
-                'page_id'       => null,
-                'plugin_id'     => 2,
-                'plugin_params' => [
-                                        'task_id'    => '10',
-                                        'first_name' => 'John',
-                                        'last_name'  => 'Doe',
-                                    ],
-                'title'         => 'Sample standalone content with a select plugin',
-                'lead'          => 'Eng lead lorem ipsum.',
-                'body'          => 'EN Lorem ipsum dolor sit amet.',
-                'position'      => 'center',
-                'sort_order'    => 40,
-                'is_hidden'     => null,
-            ],
-            [
-                'id'            => 5,
-                'page_id'       => null,
-                'plugin_id'     => null,
-                'plugin_params' => null,
-                'title'         => 'Sample standalone content without a plugin',
-                'lead'          => 'Eng lead lorem ipsum.',
-                'body'          => 'EN Lorem ipsum dolor sit amet.',
-                'position'      => 'center',
-                'sort_order'    => 50,
-                'is_hidden'     => null,
-            ],
-            [
-                'id'            => 6,
-                'page_id'       => null,
+                'page_id'       => 3,
                 'plugin_id'     => 3,
                 'plugin_params' => [
                     'task_id'    => '10',
                     'first_name' => 'John',
                     'last_name'  => 'Doe',
                 ],
-                'title'         => 'Sample standalone content with a radio plugin',
-                'lead'          => 'Eng lead lorem ipsum.',
-                'body'          => 'EN Lorem ipsum dolor sit amet.',
+                'title'         => 'Specific Task',
+                'lead'          => null,
+                'body'          => null,
                 'position'      => 'center',
-                'sort_order'    => 60,
-                'is_hidden'     => null,
-            ],
-            [
-                'id'            => 7,
-                'page_id'       => null,
-                'plugin_id'     => 4,
-                'plugin_params' => [
-                    'task_id'    => '10',
-                    'first_name' => 'John',
-                    'last_name'  => 'Doe',
-                ],
-                'title'         => 'Sample standalone content with a checkbox plugin',
-                'lead'          => 'Eng lead lorem ipsum.',
-                'body'          => 'EN Lorem ipsum dolor sit amet.',
-                'position'      => 'center',
-                'sort_order'    => 80,
+                'sort_order'    => 10,
                 'is_hidden'     => null,
             ],
         ];
@@ -116,51 +68,30 @@ class ContentsTableSeeder extends Seeder
 
         $translationContent = Content::find(1);
         $translationContent->saveTranslation('sl', [
-            'title' => 'Seznam opravil plugin',
-            'lead'  => 'Slo lead lorem ipsum.',
-            'body'  => 'SL Non viverra dui ornare at.',
+            'title' => 'Iz našega bloga',
+            'lead'  => null,
+            'body'  => null,
         ]);
 
         $translationContent = Content::find(2);
         $translationContent->saveTranslation('sl', [
-            'title' => 'Testni plugin',
-            'lead'  => 'Slo lead lorem ipsum.',
-            'body'  => 'SL Lorem ipsum dolor sit amet.',
+            'title' => 'Seznam opravil',
+            'lead'  => null,
+            'body'  => null,
         ]);
 
         $translationContent = Content::find(3);
         $translationContent->saveTranslation('sl', [
-            'title' => 'Nekaj besedila tukaj',
-            'lead'  => 'To je vsebina s testnim besedilom.',
-            'body'  => 'SL Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in erat at enim egestas mattis sit amet mattis diam. Aliquam eu blandit sem. Fusce eget lobortis metus. Vestibulum laoreet magna at tellus eleifend convallis. Maecenas ac tristique magna. Aliquam tincidunt arcu sed quam rutrum, sit amet placerat tellus efficitur. Morbi semper libero augue, eget sodales nisi volutpat ut. Cras tincidunt libero id mi varius, ac ultrices nibh placerat. Vivamus porttitor dictum nisl a sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper sem augue, vel euismod orci convallis non. Sed nisl mauris, blandit eu finibus sed, tempor eget velit. Proin feugiat elementum felis, non viverra dui ornare at.',
+            'title' => 'Naključno opravilo',
+            'lead'  => null,
+            'body'  => null,
         ]);
 
         $translationContent = Content::find(4);
         $translationContent->saveTranslation('sl', [
-            'title' => 'Testna prosto stoječa vsebina z vtičnikom - select',
-            'lead'  => 'Slo lead lorem ipsum.',
-            'body'  => 'SL Lorem ipsum dolor sit amet.',
-        ]);
-
-        $translationContent = Content::find(5);
-        $translationContent->saveTranslation('sl', [
-            'title' => 'Testna prosto stoječa vsebina brez vtičnika',
-            'lead'  => 'Slo lead lorem ipsum.',
-            'body'  => 'SL Lorem ipsum dolor sit amet.',
-        ]);
-
-        $translationContent = Content::find(6);
-        $translationContent->saveTranslation('sl', [
-            'title' => 'Testna prosto stoječa vsebina z vtičnikom - radio',
-            'lead'  => 'Slo lead lorem ipsum.',
-            'body'  => 'SL Lorem ipsum dolor sit amet.',
-        ]);
-
-        $translationContent = Content::find(7);
-        $translationContent->saveTranslation('sl', [
-            'title' => 'Testna prosto stoječa vsebina z vtičnikom - checkbox',
-            'lead'  => 'Slo lead lorem ipsum.',
-            'body'  => 'SL Lorem ipsum dolor sit amet.',
+            'title' => 'Specifično opravilo',
+            'lead'  => null,
+            'body'  => null,
         ]);
     }
 }

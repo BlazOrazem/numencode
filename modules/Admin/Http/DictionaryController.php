@@ -4,7 +4,7 @@ namespace Admin\Http;
 
 use Numencode\Models\System\Language;
 use Numencode\Models\System\Dictionary;
-use Numencode\Models\Codelist\CodelistItem;
+use Numencode\Models\Codelist\CodelistGroup;
 
 class DictionaryController extends BaseController
 {
@@ -15,10 +15,8 @@ class DictionaryController extends BaseController
      */
     public function index()
     {
-        $codelistGroups = CodelistItem::where('codelist_group_id', config('numencode.dictionary_codelist_group_id'))->orderBy('title');
-        $groups = $codelistGroups->get();
-
-        $groupArray = $codelistGroups->pluck('title', 'code');
+        $groups = CodelistGroup::itemsFor(config('numencode.dictionary_codelist_group'));
+        $groupArray = $groups->pluck('title', 'code');
 
         $dictionary = Dictionary::orderBy('group')->orderBy('key')->get()->groupBy('locale');
 

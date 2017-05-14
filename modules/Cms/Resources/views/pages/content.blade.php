@@ -1,9 +1,21 @@
-<h4>{{ $content->title }}</h4>
-<p>{{ $content->lead }}</p>
-<p>{!! $content->body !!}</p>
+<div class="{{ $content->position }}">
 
-<div class="row">
-    {!! $content->renderPlugin() !!}
+    @if($content->title)
+        <h4>{{ $content->title }}</h4>
+    @endif
+
+    @if($content->lead)
+        <p>{{ $content->lead }}</p>
+    @endif
+
+    @if($content->body)
+        {!! $content->body !!}
+    @endif
+
+    @if($content->plugin_id)
+        <div class="row">
+            {!! $content->renderPlugin() !!}
+        </div>
+    @endif
+
 </div>
-
-<hr>

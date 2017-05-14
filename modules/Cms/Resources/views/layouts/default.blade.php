@@ -27,8 +27,14 @@
 <div class="container">
     @yield('content')
 
-    <div class="plugins">
-        @yield('plugins')
+    <div class="center-position">
+        @yield('plugins_center')
+    </div>
+
+    <hr>
+
+    <div class="bottom-position">
+        @yield('plugins_bottom')
     </div>
 </div>
 

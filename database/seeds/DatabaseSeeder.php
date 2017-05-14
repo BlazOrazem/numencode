@@ -34,6 +34,12 @@ class DatabaseSeeder extends Seeder
         'plugins',
         'tasks',
         'tasks_i18n',
+        'blog_category',
+        'blog_category_i18n',
+        'blog_item',
+        'blog_item_i18n',
+        'blog_item_comment',
+        'blog_item_comment_i18n',
     ];
 
     /**
@@ -99,5 +105,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CodelistTableSeeder::class);
         $this->call(MenusTableSeeder::class);
         $this->call(LanguagesTableSeeder::class);
+        $this->call(BlogTableSeeder::class);
     }
 }

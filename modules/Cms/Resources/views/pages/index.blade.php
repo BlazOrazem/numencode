@@ -10,6 +10,10 @@
 
 @endsection
 
-@section('plugins')
-    @each('theme::pages.content', $page->getContents(), 'content')
+@section('plugins_center')
+    @each('theme::pages.content', $page->getContents('center'), 'content')
+@endsection
+
+@section('plugins_bottom')
+    @each('theme::pages.content', $page->getContents('bottom'), 'content')
 @endsection

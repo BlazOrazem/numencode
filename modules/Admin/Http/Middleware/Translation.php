@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Session;
 class Translation
 {
     /**
-     * The available languages.
-     *
-     * @array $languages
-     */
-    protected $languages = ['en','sl'];
-
-    /**
      * Handle application locale.
      *
      * @param Request  $request Request

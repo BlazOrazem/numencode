@@ -9,13 +9,15 @@ trait Helpers
     /**
      * Merge general and page contents, sort the collection by order and return.
      *
+     * @param string $position Content position
+     *
      * @return mixed
      */
-    public function getContents()
+    public function getContents($position)
     {
-        $generalContents = Content::whereNull('page_id')->get();
+        $generalContents = Content::where('position', $position)->whereNull('page_id')->get();
 
-        return $generalContents->merge($this->contents()->get())->sortBy('sort_order');
+        return $generalContents->merge($this->contents()->where('position', $position)->get())->sortBy('sort_order');
     }
 
     /**
