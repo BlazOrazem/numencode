@@ -69,12 +69,12 @@
                         </div>
 
                         @include('admin::components.form.select', [
-                            'label'      => trans('admin::contents.position'),
-                            'field'      => 'position',
-                            'data'       => $positions,
-                            'parameters' => ['code', 'title'],
-                            'selected'   => $content->position,
-                            'required'   => true,
+                            'label' => trans('admin::contents.position'),
+                            'field' => 'position',
+                            'data' => $positions,
+                            'params' => ['code', 'title'],
+                            'selected' => $content->position,
+                            'required' => true,
                         ])
 
                         <plugin-params route="{{ route('plugins.api') }}" inline-template>
