@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('avatar', 255)->nullable();
-            $table->boolean('is_verified')->default(false);
+            $table->boolean('is_verified')->nullable()->default(NULL);
             $table->string('token', 30)->nullable();
             $table->string('social_provider_type', 100)->nullable();
             $table->string('social_provider_id')->nullable();

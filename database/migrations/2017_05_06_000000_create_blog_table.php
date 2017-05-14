@@ -55,7 +55,7 @@ class CreateBlogTable extends Migration
             $table->increments('id');
             $table->integer('blog_item_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
-            $table->boolean('is_published')->nullable();
+            $table->boolean('is_published')->nullable()->default(NULL);
             $table->timestamps();
         });
 
