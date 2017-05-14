@@ -43,9 +43,19 @@
                             'field' => 'is_admin',
                             'checked' => $role->is_admin,
                         ])
-                        @include('admin::components.form.submit', [
-                            'button' => trans('admin::roles.update')
-                        ])
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button type="submit" value="save" class="btn btn-md btn-success submit">
+                                    @lang('admin::forms.buttons.save')
+                                </button>
+                                <button type="submit" class="btn btn-md btn-info submit">
+                                    @lang('admin::forms.buttons.return')
+                                </button>
+                                <a href="{{ route('roles.index') }}" class="btn btn-md btn-default btn-link">
+                                    @lang('admin::forms.buttons.cancel')
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

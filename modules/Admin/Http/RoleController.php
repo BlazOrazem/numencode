@@ -101,7 +101,7 @@ class RoleController extends BaseController
                 'name' => snake_slug(request()->name),
                 'label' => ucfirst(request()->label),
                 'sort_order' => request()->sort_order,
-                'is_admin' => isset(request()->is_admin),
+                'is_admin' => isset(request()->is_admin) ?: null,
             ])
         ) {
             flash()->success(
@@ -110,7 +110,11 @@ class RoleController extends BaseController
             );
         }
 
-        return redirect()->back();
+        if (request()->has('redirect') && request()->redirect == 'save') {
+            return redirect()->route('roles.edit', compact('role'));
+        }
+
+        return redirect()->route('roles.index');
     }
 
     /**
