@@ -16,9 +16,11 @@ return [
     'phone'    => 'Phone',
     'nickname' => 'Nickname',
 
-    'show'    => 'View',
+    'new'     => 'New',
     'edit'    => 'Edit',
+    'show'    => 'View',
     'publish' => 'Publish',
+    'active'  => 'Active',
     'manage'  => 'Manage',
     'delete'  => 'Delete',
 

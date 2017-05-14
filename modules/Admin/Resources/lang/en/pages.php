@@ -5,16 +5,17 @@ return [
     'structure' => 'Page Structure',
     'title'     => 'Page Management',
 
+    'add'     => 'Add new page',
     'create'  => [
         'menu'   => 'Create new page on',
         'page'   => 'Create new sub page for',
     ],
     'created' => 'Page :name created.',
-
     'update'  => 'Update page',
     'updated' => 'Page :name updated.',
-
     'deleted' => 'Page has been successfully deleted.',
+
+    'empty' => 'Menu type has no elements.',
 
     'index' => 'Back to list',
 

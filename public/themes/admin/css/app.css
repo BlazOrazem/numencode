@@ -5078,7 +5078,7 @@ table.display tr:last-child td:last-child {
   text-align: center;
 }
 
-.nestable.page-structure .nestable-item .nestable-handle .right > div .switch, .nestable.page-structure .nestable-item .nestable-placeholder .right > div .switch {
+.nestable.page-structure .nestable-item .nestable-handle .right > div .switch, .nestable.page-structure .nestable-item .nestable-placeholder .right > div .switch, .nestable.page-structure .nestable-item .nestable-handle .right > div .badge, .nestable.page-structure .nestable-item .nestable-placeholder .right > div .badge {
   margin-top: 6px;
   margin-bottom: 0;
 }

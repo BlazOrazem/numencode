@@ -31,15 +31,16 @@
                                     </li>
                                     <li class="add-new">
                                         <a href="{{ route('pages.create.menu', ['menu' => $menu]) }}">
-                                            Add new page
+                                            @lang('admin::pages.add')
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="pull-right hidden-xs">
-                                    <li>Active</li>
-                                    <li>New</li>
-                                    <li>Edit</li>
-                                    <li>Delete</li>
+                                    <li>@lang('admin::tables.order')</li>
+                                    <li>@lang('admin::tables.active')</li>
+                                    <li>@lang('admin::tables.new')</li>
+                                    <li>@lang('admin::tables.edit')</li>
+                                    <li>@lang('admin::tables.delete')</li>
                                 </ul>
                             </div>
                             @include('admin::pages.tree.structure-list', [

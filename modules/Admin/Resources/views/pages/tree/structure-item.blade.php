@@ -6,6 +6,11 @@
         </div>
         <div class="right hidden-xs">
             <div class="text-right">
+                <span class="badge badge-info">
+                    {{ $page->sort_order }}
+                </span>
+            </div>
+            <div class="text-right">
                 <label class="switch">
                     <input class="toggle toggle-info"
                            type="checkbox"

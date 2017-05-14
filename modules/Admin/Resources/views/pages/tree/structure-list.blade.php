@@ -6,9 +6,10 @@
             <div class="nestable-handle">
                 <div class="left">
                     <i class="zmdi zmdi-folder-outline"></i>
-                    Menu type has no elements.
+                    @lang('admin::¸pages.empty')
                 </div>
                 <div class="right hidden-xs">
+                    <div></div>
                     <div></div>
                     <div>
                         @include('admin::components.button.new', [
