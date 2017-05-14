@@ -7,8 +7,7 @@
 @section('content')
 
     <div class="row">
-
-        <div class="col-md-8">
+        <div class="col-lg-12">
             <div class="content-box">
                 <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">@lang('admin::managers.update') : {{ $manager->name }}</h5>
@@ -59,9 +58,11 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        @if($admin->can('assign_manager_roles') && $admin->id != $manager->id)
-            <div class="col-md-4">
+    @if($admin->can('assign_manager_roles') && $admin->id != $manager->id)
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="data-table data-danger content-box">
                     <div class="head danger-bg clearfix">
                         <h5 class="content-title pull-left">Roles for {{ $manager->name }}</h5>
@@ -108,8 +109,7 @@
                     </div>
                 </div>
             </div>
-        @endif
-
-    </div>
+        </div>
+    @endif
 
 @endsection

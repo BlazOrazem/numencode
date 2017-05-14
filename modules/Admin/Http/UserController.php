@@ -87,7 +87,7 @@ class UserController extends BaseController
      */
     public function edit(User $user)
     {
-        $roles = $this->admin()->can('assign_user_roles') ? Role::where('is_admin', false)->get() : null;
+        $roles = $this->admin()->can('assign_user_roles') ? Role::whereNull('is_admin')->get() : null;
 
         return view('admin::users.edit', compact('user', 'roles'));
     }

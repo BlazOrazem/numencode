@@ -118,7 +118,7 @@
                     <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                         <thead>
                         <tr>
-                            <th class="no-sort">@lang('admin::tables.picture')</th>
+                            <th class="no-sort" width="50">@lang('admin::tables.picture')</th>
                             <th>@lang('admin::tables.name')</th>
                             <th>@lang('admin::tables.email')</th>
                             <th>@lang('admin::tables.phone')</th>
@@ -130,7 +130,11 @@
                                 <td>
                                     <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
                                 </td>
-                                <td>{{ $item->name }}</td>
+                                <td>
+                                    <a href="{{ route('managers.edit', ['manager' => $item]) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->phone }}</td>
                             </tr>
@@ -156,7 +160,7 @@
                     <table class="display datatable middle-align datatable-striped table" data-order='[[ 1, "asc" ]]'>
                         <thead>
                         <tr>
-                            <th class="no-sort">@lang('admin::tables.picture')</th>
+                            <th class="no-sort" width="50">@lang('admin::tables.picture')</th>
                             <th>@lang('admin::tables.name')</th>
                             <th>@lang('admin::tables.nickname')</th>
                             <th>@lang('admin::tables.email')</th>
@@ -168,7 +172,11 @@
                                 <td>
                                     <img src="{{ $item->avatar }}" width="50" height="50" class="img-circle">
                                 </td>
-                                <td>{{ $item->name }}</td>
+                                <td>
+                                    <a href="{{ route('users.edit', ['user' => $item]) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $item->nickname }}</td>
                                 <td>{{ $item->email }}</td>
                             </tr>
