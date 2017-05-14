@@ -1,12 +1,20 @@
 @extends('theme::layouts.' . $page->layout)
 
+@section('title')
+    @if($page->title)
+        {{ $page->title }}
+    @endif
+@endsection
+
 @section('content')
 
-    <div class="jumbotron">
-        <h1>{{ $page->title }}</h1>
+    @if($page->lead)
         <p>{{ $page->lead }}</p>
-        <p>{!! $page->body !!}</p>
-    </div>
+    @endif
+
+    @if($page->body)
+        {!! $page->body !!}
+    @endif
 
 @endsection
 

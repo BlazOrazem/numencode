@@ -7,7 +7,13 @@
     <meta name="description" content="Numencode">
     <meta name="author" content="Numencode.com">
 
-    <title>Numencode</title>
+    <title>
+        @hasSection('title')
+            @yield('title')
+        @else
+            Numencode Demo Website
+        @endif
+    </title>
 
     <base href="{{ env('app_url') }}">
     <link href="{{ mix('/themes/default/css/app.css') }}" rel="stylesheet" type="text/css">
@@ -25,17 +31,28 @@
 @menu('main')
 
 <div class="container">
-    @yield('content')
+    @hasSection('title')
+        <div class="jumbotron">
+            <h1>@yield('title')</h1>
+        </div>
+    @endif
 
-    <div class="center-position">
-        @yield('plugins_center')
-    </div>
+    @hasSection('content')
+        @yield('content')
+    @endif
 
-    <hr>
+    @hasSection('plugins_center')
+        <div class="center-position">
+            @yield('plugins_center')
+        </div>
+    @endif
 
-    <div class="bottom-position">
-        @yield('plugins_bottom')
-    </div>
+    @hasSection('plugins_bottom')
+        <hr>
+        <div class="bottom-position">
+            @yield('plugins_bottom')
+        </div>
+    @endif
 </div>
 
 <script src="{{ mix('/themes/default/js/manifest.js') }}"></script>
