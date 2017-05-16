@@ -41,6 +41,17 @@
                 <li><a href="{{ route('tasks.create') }}">Add new task</a></li>
             </ul>
         </li>
+        @if($admin->can('manage_promotions'))
+            <li>
+                <a href="#"><i class="zmdi zmdi-view-carousel"></i>Promotions<span class="zmdi arrow"></span></a>
+                <ul class="nav nav-inside collapse">
+                    <li class="inside-title">Promotions</li>
+                    <li><a href="{{ route('promotion.index') }}">List categories</a></li>
+                    <li><a href="{{ route('promotion.create') }}">Add new category</a></li>
+                    <li><a href="{{ route('promotion.item.create') }}">Add new item</a></li>
+                </ul>
+            </li>
+        @endif
         @if($admin->can('manage_blog'))
             <li>
                 <a href="#"><i class="zmdi zmdi-view-subtitles"></i>Blog<span class="zmdi arrow"></span></a>

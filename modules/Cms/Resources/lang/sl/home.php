@@ -1,5 +1,6 @@
 <?php
 
 return array (
-  'welcome' => 'Pozdravljeni na Numencode CMS demo predlogi!',
+  'welcome' => 'Numencode CMS Demo Predloga',
+  'read_more' => 'Preberite več',
 );

@@ -1,7 +1,7 @@
 @extends('admin::layout')
 
 @section('title')
-    @lang('admin::blog.title')
+    @lang('admin::promotion.title')
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="content-box">
                 <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">
-                        {{ $blogCategory->id ? trans('admin::blog.new_item_to') : trans('admin::blog.new_item') }} {{ $blogCategory->title }}
+                        {{ $promotionCategory->id ? trans('admin::promotion.new_item_to') : trans('admin::promotion.new_item') }} {{ $promotionCategory->title }}
                     </h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -19,17 +19,17 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('blog.item.store') }}" class="form-horizontal form-validate">
+                    <form method="POST" action="{{ route('promotion.item.store') }}" class="form-horizontal form-validate">
                         {{ csrf_field() }}
-                        @if($blogCategory->id)
-                            <input type="hidden" name="blog_category_id" value="{{ $blogCategory->id }}">
+                        @if($promotionCategory->id)
+                            <input type="hidden" name="promotion_category_id" value="{{ $promotionCategory->id }}">
                         @else
                             <div class="form-group has-icon">
                                 <label for="categoryID" class="control-label col-sm-3">
-                                    @lang('admin::blog.category')
+                                    @lang('admin::promotion.category')
                                 </label>
                                 <div class="col-sm-9">
-                                    <select name="blog_category_id"
+                                    <select name="promotion_category_id"
                                             id="categoryID"
                                             class="form-control selectpicker"
                                             data-style="btn-info"
@@ -46,14 +46,14 @@
                         @include('admin::components.form.text', [
                             'label' => trans('admin::forms.title'),
                             'field' => 'title',
-                            'placeholder' => trans('admin::blog.placeholder.item_title'),
+                            'placeholder' => trans('admin::promotion.placeholder.item_title'),
                             'errors' => $errors->itemErrors,
                             'required' => true,
                         ])
                         @include('admin::components.form.text', [
                             'label' => trans('admin::forms.lead'),
                             'field' => 'lead',
-                            'placeholder' => trans('admin::blog.placeholder.item_lead'),
+                            'placeholder' => trans('admin::promotion.placeholder.item_lead'),
                             'errors' => $errors->itemErrors,
                         ])
                         <div class="form-group">
@@ -64,6 +64,16 @@
                                 <textarea name="body" class="wysiwyg-editor">{{ old('body') }}</textarea>
                             </div>
                         </div>
+                        @include('admin::components.form.text', [
+                            'label' => trans('admin::forms.redirect'),
+                            'field' => 'link',
+                            'placeholder' => trans('admin::promotion.placeholder.item_link'),
+                            'errors' => $errors->itemErrors,
+                        ])
+                        @include('admin::components.form.order', [
+                            'sortOrder' => ($promotionCategory->id ? $promotionCategory->items->max('sort_order') : 0) + 10,
+                            'errors' => $errors->itemErrors,
+                        ])
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">
                                 <button type="submit" value="save" class="btn btn-md btn-success submit">
@@ -72,7 +82,7 @@
                                 <button type="submit" class="btn btn-md btn-info submit">
                                     @lang('admin::forms.buttons.return')
                                 </button>
-                                <a href="{{ route('blog.index') }}" class="btn btn-md btn-default btn-link">
+                                <a href="{{ route('promotion.index') }}" class="btn btn-md btn-default btn-link">
                                     @lang('admin::forms.buttons.cancel')
                                 </a>
                             </div>

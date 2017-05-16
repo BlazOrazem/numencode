@@ -12,6 +12,7 @@ return [
     'action'      => 'Action',
     'description' => 'Description',
     'url'         => 'URL',
+    'redirect'    => 'Redirect URL',
     'select'      => '- select one -',
 
     'order'             => 'Order',

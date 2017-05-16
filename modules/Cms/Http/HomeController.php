@@ -2,6 +2,8 @@
 
 namespace Cms\Http;
 
+use Numencode\Models\Promotion\PromotionCategory;
+
 class HomeController extends BaseController
 {
     /**
@@ -11,11 +13,8 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('theme::pages.home');
-//        if ($this->user()) {
-//            return view('theme::pages.home');
-//        }
-//
-//        return view('theme::auth.login');
+        $promotions = PromotionCategory::find(1)->items;
+
+        return view('theme::pages.home', compact('promotions'));
     }
 }

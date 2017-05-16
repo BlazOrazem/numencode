@@ -55,6 +55,11 @@ class BlogItem extends Model
         return $this->belongsTo(BlogCategory::class, 'blog_category_id');
     }
 
+    /**
+     * Blog item has many comments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
         return $this->hasMany(BlogItemComment::class);

@@ -1,5 +1,6 @@
 <?php
 
 return array (
-  'welcome' => 'Welcome on the Numencode CMS demo template!',
+  'welcome' => 'Numencode CMS Demo Template',
+  'read_more' => 'Read more',
 );

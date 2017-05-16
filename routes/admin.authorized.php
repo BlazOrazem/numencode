@@ -141,3 +141,17 @@ Route::get('blog/{blogCategory}/edit', 'BlogController@edit')->name('blog.edit')
 Route::get('blog/{blogCategory}/items', 'BlogController@items')->name('blog.items')->middleware('permission:manage_blog');
 Route::match(['PUT', 'PATCH'], 'blog/{blogCategory}', 'BlogController@update')->name('blog.update')->middleware('permission:manage_blog');
 Route::delete('blog/{blogCategory}', 'BlogController@destroy')->name('blog.destroy')->middleware('permission:manage_blog');
+
+// Promotion Plugin
+Route::post('promotion/item', 'PromotionController@storeItem')->name('promotion.item.store')->middleware('permission:manage_promotions');
+Route::get('promotion/item/create/{promotionCategory?}', 'PromotionController@createItem')->name('promotion.item.create')->middleware('permission:manage_promotions');
+Route::get('promotion/item/{promotionItem}/edit', 'PromotionController@editItem')->name('promotion.item.edit')->middleware('permission:manage_promotions');
+Route::match(['PUT', 'PATCH'], 'promotion/item/{promotionItem}', 'PromotionController@updateItem')->name('promotion.item.update')->middleware('permission:manage_promotions');
+Route::delete('promotion/item/{promotionItem}', 'PromotionController@destroyItem')->name('promotion.item.destroy')->middleware('permission:manage_promotions');
+Route::post('promotion', 'PromotionController@store')->name('promotion.store')->middleware('permission:manage_promotions');
+Route::get('promotion', 'PromotionController@index')->name('promotion.index')->middleware('permission:manage_promotions');
+Route::get('promotion/create', 'PromotionController@create')->name('promotion.create')->middleware('permission:manage_promotions');
+Route::get('promotion/{promotionCategory}/edit', 'PromotionController@edit')->name('promotion.edit')->middleware('permission:manage_promotions');
+Route::get('promotion/{promotionCategory}/items', 'PromotionController@items')->name('promotion.items')->middleware('permission:manage_promotions');
+Route::match(['PUT', 'PATCH'], 'promotion/{promotionCategory}', 'PromotionController@update')->name('promotion.update')->middleware('permission:manage_promotions');
+Route::delete('promotion/{promotionCategory}', 'PromotionController@destroy')->name('promotion.destroy')->middleware('permission:manage_promotions');

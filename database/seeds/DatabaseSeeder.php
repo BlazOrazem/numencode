@@ -40,6 +40,10 @@ class DatabaseSeeder extends Seeder
         'blog_item_i18n',
         'blog_item_comment',
         'blog_item_comment_i18n',
+        'promotion_category',
+        'promotion_category_i18n',
+        'promotion_item',
+        'promotion_item_i18n',
     ];
 
     /**
@@ -106,5 +110,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MenusTableSeeder::class);
         $this->call(LanguagesTableSeeder::class);
         $this->call(BlogTableSeeder::class);
+        $this->call(PromotionTableSeeder::class);
     }
 }

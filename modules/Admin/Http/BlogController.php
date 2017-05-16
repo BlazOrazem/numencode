@@ -204,7 +204,7 @@ class BlogController extends BaseController
     /**
      * Update the blog item.
      *
-     * @param BlogItem        $blogItem Codelist item
+     * @param BlogItem        $blogItem Blog item
      * @param RouteRepository $route    Route repository
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -244,7 +244,7 @@ class BlogController extends BaseController
     /**
      * Delete the blog item.
      *
-     * @param BlogItem $blogItem Codelist item
+     * @param BlogItem $blogItem Blog item
      *
      * @return \Illuminate\Http\RedirectResponse
      */
