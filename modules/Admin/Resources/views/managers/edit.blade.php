@@ -45,7 +45,7 @@
                             'field' => 'password',
                             'help' => trans('admin::managers.placeholder.password-help'),
                         ])
-                        @include('admin::components.form.image', [
+                        @include('admin::components.form.picture', [
                             'label' => trans('admin::managers.avatar'),
                             'field' => 'avatar',
                             'entity' => $manager,

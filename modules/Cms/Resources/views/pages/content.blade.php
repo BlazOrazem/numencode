@@ -13,9 +13,7 @@
     @endif
 
     @if($content->plugin_id)
-        <div class="row">
-            {!! $content->renderPlugin() !!}
-        </div>
+        {!! $content->renderPlugin() !!}
     @endif
 
 </div>

@@ -19,7 +19,11 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('promotion.item.store') }}" class="form-horizontal form-validate">
+                    <form method="POST"
+                          action="{{ route('promotion.item.store') }}"
+                          class="form-horizontal form-validate"
+                          enctype="multipart/form-data"
+                            >
                         {{ csrf_field() }}
                         @if($promotionCategory->id)
                             <input type="hidden" name="promotion_category_id" value="{{ $promotionCategory->id }}">
@@ -68,6 +72,11 @@
                             'label' => trans('admin::forms.redirect'),
                             'field' => 'link',
                             'placeholder' => trans('admin::promotion.placeholder.item_link'),
+                            'errors' => $errors->itemErrors,
+                        ])
+                        @include('admin::components.form.picture', [
+                            'label' => trans('admin::forms.picture'),
+                            'field' => 'picture',
                             'errors' => $errors->itemErrors,
                         ])
                         @include('admin::components.form.order', [

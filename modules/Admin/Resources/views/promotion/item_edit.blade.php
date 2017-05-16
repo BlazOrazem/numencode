@@ -17,7 +17,11 @@
                     </div>
                 </div>
                 <div class="content">
-                    <form method="POST" action="{{ route('promotion.item.update', $promotionItem) }}" class="form-horizontal form-validate">
+                    <form method="POST"
+                          action="{{ route('promotion.item.update', $promotionItem) }}"
+                          class="form-horizontal form-validate"
+                          enctype="multipart/form-data"
+                            >
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         <div class="form-group has-icon">
@@ -72,9 +76,22 @@
                             'errors' => $errors->itemErrors,
                             'entity' => $promotionItem,
                         ])
+                        @include('admin::components.form.picture', [
+                            'label' => trans('admin::forms.picture'),
+                            'field' => 'picture',
+                            'help' => trans('admin::promotion.placeholder.item_picture'),
+                            'errors' => $errors->itemErrors,
+                            'entity' => $promotionItem,
+                        ])
                         @include('admin::components.form.order', [
                             'sortOrder' => $promotionItem->sort_order,
                             'errors' => $errors->itemErrors,
+                        ])
+                        @include('admin::components.form.checkbox', [
+                            'label' => 'Is hidden?',
+                            'field' => 'is_hidden',
+                            'type' => 'warning',
+                            'checked' => $promotionItem->is_hidden,
                         ])
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">

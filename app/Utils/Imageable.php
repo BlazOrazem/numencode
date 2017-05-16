@@ -2,8 +2,8 @@
 
 namespace Numencode\Utils;
 
-use File;
-use Image;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Imageable

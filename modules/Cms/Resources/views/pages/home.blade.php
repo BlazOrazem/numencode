@@ -15,9 +15,11 @@
                         <h4><i class="fa fa-fw fa-{{ $promotion->lead ?: 'check' }}"></i> {{ $promotion->title }}</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/400x200" alt="" class="img-responsive center-block" />
-                        </div>
+                        @if($promotion->picture || true)
+                            <div class="thumbnail">
+                                <img src="{{ $promotion->picture ?: '/uploads/sample0' . rand(1, 3) . '_600x600.jpg' }}" alt="{{ $promotion->title }}" class="img-responsive center-block" />
+                            </div>
+                        @endif
                         {!! $promotion->body !!}
                         @if($promotion->link)
                             <a href="{{ $promotion->link }}" target="_blank" class="btn btn-default">@lang('theme::home.read_more')</a>

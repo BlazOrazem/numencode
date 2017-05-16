@@ -34,7 +34,9 @@ class CreatePromotionTable extends Migration
         {
             $table->increments('id');
             $table->integer('promotion_category_id')->unsigned()->index();
+            $table->string('picture')->nullable();
             $table->integer('sort_order')->default(0);
+            $table->boolean('is_hidden')->nullable()->default(NULL);
             $table->timestamps();
         });
 

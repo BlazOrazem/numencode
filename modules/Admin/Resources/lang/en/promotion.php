@@ -10,6 +10,7 @@ return [
         'item_title'     => 'Enter title',
         'item_lead'      => 'Enter lead text',
         'item_link'      => 'Enter redirect URL',
+        'item_picture'   => 'If no file is selected, picture will not be changed.',
     ],
 
     'category'   => 'Category',

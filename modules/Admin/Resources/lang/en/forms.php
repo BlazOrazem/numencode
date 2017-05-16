@@ -13,6 +13,8 @@ return [
     'description' => 'Description',
     'url'         => 'URL',
     'redirect'    => 'Redirect URL',
+    'picture'     => 'Picture',
+    'file'        => 'File',
     'select'      => '- select one -',
 
     'order'             => 'Order',

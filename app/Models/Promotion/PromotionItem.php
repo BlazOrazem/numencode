@@ -5,10 +5,11 @@ namespace Numencode\Models\Promotion;
 use Laraplus\Data\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Numencode\Models\System\Traits\Sortable;
+use Numencode\Models\System\Traits\HiddenFilter;
 
 class PromotionItem extends Model
 {
-    use Translatable, Sortable;
+    use HiddenFilter, Sortable, Translatable;
 
     /**
      * The database table used by the model.

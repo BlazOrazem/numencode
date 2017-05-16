@@ -40,7 +40,7 @@
 
 <div class="container">
     @hasSection('title')
-        <div class="jumbotron">
+        <div class="page-header">
             <h1>@yield('title')</h1>
         </div>
     @endif

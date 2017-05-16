@@ -4,6 +4,7 @@ namespace Admin\Http;
 
 use Numencode\Models\Promotion\PromotionItem;
 use Numencode\Models\Promotion\PromotionCategory;
+use Numencode\Utils\Imageable;
 
 class PromotionController extends BaseController
 {
@@ -148,6 +149,7 @@ class PromotionController extends BaseController
         $this->validateWithBag('itemErrors', request(), [
             'promotion_category_id' => 'required',
             'title'                 => 'required',
+            'picture'               => 'mimes:jpg,jpeg,png,gif,bmp',
             'sort_order'            => 'required|integer',
         ]);
 
@@ -158,6 +160,11 @@ class PromotionController extends BaseController
         $promotionCategory = PromotionCategory::find(request()->promotion_category_id);
 
         if ($promotionItem = PromotionItem::create(request()->all())) {
+            if (request()->picture) {
+                $promotionItem->picture = Imageable::createFromFile(request()->picture, 'uploads/promotions', 1200, 600);
+                $promotionItem->save();
+            }
+
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::promotion.item_created', ['name' => request()->title])
@@ -199,6 +206,7 @@ class PromotionController extends BaseController
         $this->validateWithBag('itemErrors', request(), [
             'promotion_category_id' => 'required',
             'title'                 => 'required',
+            'picture'               => 'mimes:jpg,jpeg,png,gif,bmp',
             'sort_order'            => 'required|integer',
         ]);
 
@@ -209,6 +217,15 @@ class PromotionController extends BaseController
         $promotionCategory = PromotionCategory::find(request()->promotion_category_id);
 
         if ($promotionItem->update(request()->all())) {
+            if (request()->picture) {
+                if ($promotionItem->picture) {
+                    Imageable::deleteFile($promotionItem->picture);
+                }
+
+                $promotionItem->picture = Imageable::createFromFile(request()->picture, 'uploads/promotions', 1200, 600);
+                $promotionItem->save();
+            }
+
             flash()->success(
                 trans('admin::messages.success'),
                 trans('admin::promotion.item_updated', ['name' => request()->title])

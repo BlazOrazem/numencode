@@ -4,8 +4,6 @@
 
     <div class="omb_login">
 
-        <h2 class="text-center">{{ trans('theme::general.welcome') }}</h2>
-
         <h3 class="omb_authTitle">Login or <a href="{{ get_route('register') }}">Sign up</a></h3>
 
         <div class="row omb_row-sm-offset-2 omb_socialButtons">
