@@ -42,11 +42,7 @@
     @endif
 </div>
 
-<script src="{{ mix('/themes/default/js/manifest.js') }}"></script>
-<script src="{{ mix('/themes/default/js/vendor.js') }}"></script>
-<script src="{{ mix('/themes/default/js/app.js') }}"></script>
-
-@include('theme::flash')
+@include('theme::footer')
 
 </body>
 </html>

@@ -15,6 +15,9 @@
                         <h4><i class="fa fa-fw fa-{{ $promotion->lead ?: 'check' }}"></i> {{ $promotion->title }}</h4>
                     </div>
                     <div class="panel-body">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/400x200" alt="" class="img-responsive center-block" />
+                        </div>
                         {!! $promotion->body !!}
                         @if($promotion->link)
                             <a href="{{ $promotion->link }}" target="_blank" class="btn btn-default">@lang('theme::home.read_more')</a>
