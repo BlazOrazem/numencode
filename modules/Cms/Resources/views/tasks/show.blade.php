@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <p>{!! $task->body !!}</p>
-        @if($data->first_name || $data->last_name)
+        @if(isset($data) && ($data->first_name || $data->last_name))
             <h5>@lang('theme::content.author'): {{ $data->first_name }} {{ $data->last_name }}</h5>
         @endif
     </div>
