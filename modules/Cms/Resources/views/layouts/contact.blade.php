@@ -38,8 +38,44 @@
     @endif
 
     @hasSection('content')
-        @yield('content')
+        <div class="text-center">
+            @yield('content')
+        </div>
     @endif
+
+    <div class="col-md-6 col-md-offset-3">
+        <form method="POST" action="{{ route('contact') }}" class="form-horizontal">
+            <div class="form-group">
+                <label for="inputName" class="col-sm-3 control-label">@lang('theme::contact.name')</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-3 control-label">@lang('theme::contact.email')</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="inputEmail">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPhone" class="col-sm-3 control-label">@lang('theme::contact.phone')</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputPhone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputMessage" class="col-sm-3 control-label">@lang('theme::contact.message')</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" rows="5" id="inputMessage"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">@lang('theme::contact.submit')</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 @include('theme::footer')

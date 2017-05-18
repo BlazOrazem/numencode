@@ -11,3 +11,14 @@
   margin-bottom: 10px;
   border-radius: 4px;
 }
+
+// Panels
+.bottom {
+  .panel {
+    .panel-body {
+      hr {
+        display: none;
+      }
+    }
+  }
+}

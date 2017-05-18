@@ -46,13 +46,13 @@
                         <li><a href="#">My posts</a></li>
                     @endcan
                 @else
-                    <li><a href="{{ get_route('login') }}">Login</a></li>
+                    <li><a href="{{ get_route('login') }}">@lang('theme::general.login')</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if ($signedIn)
                 <li><a href="{{ route('profile') }}">{{ $user->name }}</a></li>
-                <li><a href="{{ route('logout') }}">Logout</a></li>
+                <li><a href="{{ route('logout') }}">@lang('theme::general.logout')</a></li>
                 @endif
             </ul>
             @if ($signedIn && $user->avatar)

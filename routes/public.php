@@ -13,3 +13,6 @@ Route::get('sl/', 'HomeController@index')->name('sl:home');
 // Pages
 Route::get('page/{id}', 'PageController@index');
 Route::get('sl/stran/{id}', 'PageController@index');
+
+// Contact form
+Route::post('contact', 'PageController@contact')->name('contact');
