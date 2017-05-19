@@ -8,7 +8,7 @@
         <li class="sidebar-brand">
             <a href="#top" onclick=$("#menu-close").click();>@lang('theme::general.sidebar_menu')</a>
         </li>
-        @foreach ($menu as $page)
+        @foreach($menu as $page)
         <li>
             <a href="{{ $page->link }}">{{ $page->title }}</a>
         </li>

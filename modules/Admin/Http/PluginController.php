@@ -129,6 +129,10 @@ class PluginController extends BaseController
             );
         }
 
+        if (request()->has('redirect') && request()->redirect == 'save') {
+            return redirect()->route('plugins.edit', compact('plugin'));
+        }
+
         return redirect()->route('plugins.index');
     }
 

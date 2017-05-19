@@ -75,4 +75,14 @@ class BlogCategory extends Model
     {
         return $this->url ? $this->url->uri : '';
     }
+
+    /**
+     * Get all categories.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getSelection()
+    {
+        return static::get()->pluck('title', 'id');
+    }
 }

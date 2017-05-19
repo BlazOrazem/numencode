@@ -60,6 +60,20 @@ class ContentsTableSeeder extends Seeder
                 'sort_order'    => 10,
                 'is_hidden'     => null,
             ],
+            [
+                'id'            => 5,
+                'page_id'       => 10,
+                'plugin_id'     => 5,
+                'plugin_params' => [
+                    'category_id' => '1',
+                ],
+                'title'         => null,
+                'lead'          => null,
+                'body'          => null,
+                'position'      => 'center',
+                'sort_order'    => 10,
+                'is_hidden'     => null,
+            ],
         ];
 
         foreach ($items as $item) {
@@ -90,6 +104,13 @@ class ContentsTableSeeder extends Seeder
         $translationContent = Content::find(4);
         $translationContent->saveTranslation('sl', [
             'title' => 'Specifično opravilo',
+            'lead'  => null,
+            'body'  => null,
+        ]);
+
+        $translationContent = Content::find(5);
+        $translationContent->saveTranslation('sl', [
+            'title' => null,
             'lead'  => null,
             'body'  => null,
         ]);

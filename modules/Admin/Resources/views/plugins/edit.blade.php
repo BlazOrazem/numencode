@@ -91,9 +91,7 @@
                             'type' => 'warning',
                             'checked' => $plugin->is_hidden,
                         ])
-                        @include('admin::components.form.submit', [
-                            'button' => trans('admin::plugins.update')
-                        ])
+                        @include('admin::components.form.save')
                     </form>
                 </div>
             </div>

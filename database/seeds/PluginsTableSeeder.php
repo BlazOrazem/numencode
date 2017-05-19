@@ -61,6 +61,22 @@ class PluginsTableSeeder extends Seeder
                 'sort_order'  => 40,
                 'is_hidden'   => null,
             ],
+            [
+                'id'          => 5,
+                'title'       => 'Blog category',
+                'description' => 'Display a blog category',
+                'action'      => 'BlogController@category',
+                'params'      => [
+                    [
+                        'label'   => 'Category',
+                        'name'    => 'category_id',
+                        'type'    => 'select',
+                        'options' => 'Blog\\BlogCategory@getSelection',
+                    ],
+                ],
+                'sort_order'  => 50,
+                'is_hidden'   => null,
+            ],
         ];
 
         foreach ($items as $item) {

@@ -24,8 +24,8 @@ class PromotionTableSeeder extends Seeder
             PromotionCategory::forceCreate($item);
         }
 
-        $translationPage = PromotionCategory::find(1);
-        $translationPage->saveTranslation('sl', [
+        $translationPromotionCategory = PromotionCategory::find(1);
+        $translationPromotionCategory->saveTranslation('sl', [
             'title' => 'Promocije na prvi strani',
             'lead'  => null,
             'body'  => null,
@@ -68,24 +68,24 @@ class PromotionTableSeeder extends Seeder
             PromotionItem::forceCreate($item);
         }
 
-        $translationPage = PromotionItem::find(1);
-        $translationPage->saveTranslation('sl', [
+        $translationPromotionItem = PromotionItem::find(1);
+        $translationPromotionItem->saveTranslation('sl', [
             'title' => 'Numencode CMS',
             'lead'  => 'check',
             'body'  => "<p>Numencode je spletna aplikacija, postavljena na Laravel 5.4 ogrodju, ki omogoča tako objavo, urejanje in spreminjanje vsebine, organizacijo, brisanje, kot tudi vzdrževanje s centralnega vmesnika.</p>",
             'link'  => 'https://github.com/BlazOrazem/numencode',
         ]);
 
-        $translationPage = PromotionItem::find(2);
-        $translationPage->saveTranslation('sl', [
+        $translationPromotionItem = PromotionItem::find(2);
+        $translationPromotionItem->saveTranslation('sl', [
             'title' => 'Lastnosti',
             'lead'  => 'gift',
             'body'  => "<p>Namen aplikacije je pogon spletnih strani, ki vsebujejo strani, blog, novice, galerije, katalog in nakupovanje. Numencode je samostojna aplikacija za kreiranje, objavo, urejanje in shranjevanje vsebine za spletno stran.</p>",
             'link'  => 'https://github.com/BlazOrazem/numencode',
         ]);
 
-        $translationPage = PromotionItem::find(3);
-        $translationPage->saveTranslation('sl', [
+        $translationPromotionItem = PromotionItem::find(3);
+        $translationPromotionItem->saveTranslation('sl', [
             'title' => 'Spletne Vsebine',
             'lead'  => 'info',
             'body'  => "<p>Spletne vsebine vključujejo besedila, grafike, slike, video posnetke, avdio datoteke, izseke izvorne kode (npr. za prikaz dela kode neke aplikacije), ki se prikazujejo na strani ali omogočajo interakcijo z uporabnikom.</p>",

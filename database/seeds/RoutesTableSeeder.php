@@ -74,6 +74,12 @@ class RoutesTableSeeder extends Seeder
                 'uri'    => 'free-financial-workshops',
                 'params' => (object) ['id' => 1],
             ],
+            [
+                'id'     => '12',
+                'action' => 'PageController@index',
+                'uri'    => 'blog',
+                'params' => (object) ['id' => 10],
+            ],
         ];
 
         foreach ($items as $item) {
@@ -144,6 +150,12 @@ class RoutesTableSeeder extends Seeder
         $translationContent->saveTranslation('sl', [
             'uri'    => 'sl/brezplacne-financne-delavnice',
             'params' => (object) ['id' => 1],
+        ]);
+
+        $translationContent = Url::find(12);
+        $translationContent->saveTranslation('sl', [
+            'uri'    => 'sl/blog',
+            'params' => (object) ['id' => 10],
         ]);
     }
 }

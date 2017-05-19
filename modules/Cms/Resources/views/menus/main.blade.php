@@ -23,8 +23,8 @@
                     </ul>
                 </li>
                 <li><a href="/">@lang('theme::general.home')</a></li>
-                @foreach ($menu as $page)
-                    @if ($page->items->count())
+                @foreach($menu as $page)
+                    @if($page->items->count())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $page->title }} <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -41,21 +41,17 @@
                         </li>
                     @endif
                 @endforeach
-                @if ($signedIn)
-                    @can('manage_posts')
-                        <li><a href="#">My posts</a></li>
-                    @endcan
-                @else
+                @if(!$signedIn)
                     <li><a href="{{ get_route('login') }}">@lang('theme::general.login')</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if ($signedIn)
-                <li><a href="{{ route('profile') }}">{{ $user->name }}</a></li>
-                <li><a href="{{ route('logout') }}">@lang('theme::general.logout')</a></li>
+                @if($signedIn)
+                    <li><a href="{{ route('profile') }}">{{ $user->name }}</a></li>
+                    <li><a href="{{ route('logout') }}">@lang('theme::general.logout')</a></li>
                 @endif
             </ul>
-            @if ($signedIn && $user->avatar)
+            @if($signedIn && $user->avatar)
                 <img src="{{ $user->avatar }}" height="40" class="navbar-right user-avatar-small visible-lg">
             @endif
         </div>

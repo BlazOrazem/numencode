@@ -134,6 +134,20 @@ class PagesTableSeeder extends Seeder
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
             ],
+            [
+                'id'         => 10,
+                'parent_id'  => null,
+                'route_id'   => 12,
+                'menu'       => 'main',
+                'layout'     => 'default',
+                'title'      => 'Blog',
+                'lead'       => null,
+                'body'       => null,
+                'sort_order' => 50,
+                'is_hidden'  => null,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ],
         ];
 
         foreach ($items as $item) {
@@ -200,6 +214,13 @@ class PagesTableSeeder extends Seeder
         $translationPage->saveTranslation('sl', [
             'title' => 'Pišite nam',
             'lead'  => 'Izpolnite obrazec in nas kontaktirajte še danes.',
+            'body'  => null,
+        ]);
+
+        $translationPage = Page::find(10);
+        $translationPage->saveTranslation('sl', [
+            'title' => 'Blog',
+            'lead'  => null,
             'body'  => null,
         ]);
     }

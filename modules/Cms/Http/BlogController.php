@@ -3,9 +3,24 @@
 namespace Cms\Http;
 
 use Numencode\Models\Blog\BlogItem;
+use Numencode\Models\Blog\BlogCategory;
 
 class BlogController extends BaseController
 {
+    /**
+     * Display a blog category.
+     *
+     * @param object $params Parameters
+     *
+     * @return \Illuminate\View\View
+     */
+    public function category($params)
+    {
+        $blogCategory = BlogCategory::find($params->category_id);
+
+        return view('theme::blog.category', compact('blogCategory'));
+    }
+
     /**
      * Display a random blog entry.
      *

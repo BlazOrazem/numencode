@@ -52,19 +52,7 @@
                             'sortOrder' => $blogCategory->sort_order,
                             'errors' => $errors->categoryErrors,
                         ])
-                        <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3">
-                                <button type="submit" value="save" class="btn btn-md btn-success submit">
-                                    @lang('admin::forms.buttons.save')
-                                </button>
-                                <button type="submit" class="btn btn-md btn-info submit">
-                                    @lang('admin::forms.buttons.return')
-                                </button>
-                                <a href="{{ route('blog.index') }}" class="btn btn-md btn-default btn-link">
-                                    @lang('admin::forms.buttons.cancel')
-                                </a>
-                            </div>
-                        </div>
+                        @include('admin::components.form.save')
                     </form>
                 </div>
             </div>
