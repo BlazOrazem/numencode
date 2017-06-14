@@ -92,6 +92,7 @@ class ProjectInstall extends Command
 
         $this->comment(PHP_EOL . 'Setting up application key...' . PHP_EOL);
         $this->call('key:generate');
+        $this->call('config:cache');
 
         // Boot up a new application
 
