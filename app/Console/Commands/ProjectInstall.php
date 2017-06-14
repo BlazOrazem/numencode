@@ -50,7 +50,7 @@ class ProjectInstall extends Command
         $env = fopen(".env", "w");
 
         fwrite($env, 'APP_ENV=local' . PHP_EOL);
-        fwrite($env, 'APP_KEY=SomeRandomString' . PHP_EOL);
+        fwrite($env, 'APP_KEY=' . PHP_EOL);
         fwrite($env, 'APP_DEBUG=true' . PHP_EOL);
         fwrite($env, 'APP_LOG_LEVEL=debug' . PHP_EOL);
 
@@ -183,6 +183,13 @@ class ProjectInstall extends Command
         $this->comment(PHP_EOL . '------------------------------------');
         $this->comment('| Thank you for using NumencodeCMS |');
         $this->comment('------------------------------------' . PHP_EOL);
+
+        // Silently setup the application key again to prevent any errors
+
+        $appKey = $this->getFreshApplication();
+        $artisanKey = $appKey['artisan'];
+        $artisanKey::call('key:generate');
+        $artisanKey::call('config:cache');
     }
 
     /**
