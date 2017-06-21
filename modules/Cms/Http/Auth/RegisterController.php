@@ -55,6 +55,8 @@ class RegisterController extends BaseController
             'is_verified' => config('login.verification') ? false : true,
         ]);
 
+        $user->assignRoles(config('numencode.registration_roles'));
+
         if (config('login.verification')) {
             Mail::to($user)->send(new EmailVerification($user));
         }
@@ -85,6 +87,7 @@ class RegisterController extends BaseController
 
         if ($user) {
             $user->verifyEmail();
+            $user->assignRoles(config('numencode.verification_roles'));
 
             flash()->overlay(trans('messages.email_verified.title'),
                 trans('messages.email_verified.success', ['email' => $user->email]), 'success'

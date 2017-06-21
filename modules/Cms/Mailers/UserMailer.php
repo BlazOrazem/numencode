@@ -34,7 +34,7 @@ class UserMailer
      */
     public function sendEmailVerificationTo(User $user)
     {
-        $this->subject = 'Please, verify your e-mail!';
+        $this->subject = 'Please, verify your e-mail';
         $this->to = $user->email;
         $this->view = 'theme::emails.verification';
         $this->data = compact('user');

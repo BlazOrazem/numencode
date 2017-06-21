@@ -32,7 +32,7 @@ class PasswordReset extends Mailable
     public function build()
     {
         return $this->view('theme::emails.password')
-            ->subject('Please, verify your e-mail')
+            ->subject('Password reset request')
             ->with(['token' => $this->token]);
     }
 }

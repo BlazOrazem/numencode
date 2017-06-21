@@ -147,8 +147,10 @@ class RoleController extends BaseController
     /**
      * Assign or un-assign role to a given manager.
      *
-     * @param Manager $manager
-     * @param Role $role
+     * @param Manager $manager Manager
+     * @param Role    $role    Role
+     *
+     * @return void
      */
     public function assignManagerRole(Manager $manager, Role $role)
     {
@@ -158,8 +160,10 @@ class RoleController extends BaseController
     /**
      * Assign or un-assign role to a given user.
      *
-     * @param User $user
-     * @param Role $role
+     * @param User $user User
+     * @param Role $role Role
+     *
+     * @return void
      */
     public function assignUserRole(User $user, Role $role)
     {

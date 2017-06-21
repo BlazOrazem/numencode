@@ -43,6 +43,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group(function () {
                 $this->mapDatabaseDrivenRoutes();
                 $this->mapPublicRoutes();
+                $this->mapPublicAuthorizedRoutes();
                 $this->mapAuthRoutes();
                 $this->mapAuthGuestRoutes();
                 $this->mapAuthAuthorizedRoutes();
@@ -64,6 +65,18 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('localization')
             ->namespace($this->cmsNamespace)
             ->group(base_path('routes/public.php'));
+    }
+
+    /**
+     * Public Authorized routes
+     *
+     * @return void
+     */
+    protected function mapPublicAuthorizedRoutes()
+    {
+        Route::middleware('is_authenticated')
+            ->namespace($this->cmsNamespace)
+            ->group(base_path('routes/public.authorized.php'));
     }
 
     /**

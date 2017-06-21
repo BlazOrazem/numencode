@@ -12,8 +12,9 @@ class UserRepository
     /**
      * Find an existing user or create a new one with social provider.
      *
-     * @param SocialiteUser $socialiteUser
-     * @param $provider
+     * @param SocialiteUser $socialiteUser Socialite user
+     * @param string        $provider      Social provider
+     *
      * @return object
      */
     public function loginSocialiteUser(SocialiteUser $socialiteUser, $provider)
@@ -28,13 +29,14 @@ class UserRepository
     /**
      * Create a new user from social provider.
      *
-     * @param SocialiteUser $socialiteUser
-     * @param $provider
+     * @param SocialiteUser $socialiteUser Socialite user
+     * @param string        $provider      Social provider
+     *
      * @return User
      */
     protected function createSocialiteUser(SocialiteUser $socialiteUser, $provider)
     {
-        return User::create([
+        $user = User::create([
             'name' => $socialiteUser->name,
             'nickname' => $socialiteUser->nickname,
             'email' => $socialiteUser->email,
@@ -45,14 +47,19 @@ class UserRepository
             'social_provider_id' => $socialiteUser->getId(),
             'is_verified' => true,
         ]);
+
+        $user->assignRoles(config('numencode.verification_roles'));
+
+        return $user;
     }
 
     /**
      * Merge Socialite user with an existing user.
      *
-     * @param User $user
-     * @param SocialiteUser $socialiteUser
-     * @param $provider
+     * @param User          $user          User
+     * @param SocialiteUser $socialiteUser Socialite user
+     * @param string        $provider      Social provider
+     *
      * @return User
      */
     protected function mergeSocialiteUser(User $user, SocialiteUser $socialiteUser, $provider)
@@ -71,8 +78,9 @@ class UserRepository
     /**
      * Update user's profile.
      *
-     * @param User $user
-     * @param Request $request
+     * @param User    $user    User
+     * @param Request $request Request
+     *
      * @return User
      */
     public function updateUser(User $user, Request $request)

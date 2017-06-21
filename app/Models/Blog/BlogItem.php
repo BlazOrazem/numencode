@@ -66,6 +66,18 @@ class BlogItem extends Model
     }
 
     /**
+     * Blog item has published comments.
+     *
+     * @return object
+     */
+    public function publishedComments()
+    {
+        return $this->comments->filter(function ($value) {
+            return $value->is_published;
+        });
+    }
+
+    /**
      * Blog category belongs to url.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

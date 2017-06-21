@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default namespace for app models.
+    | Default Namespace For The App Models
     |--------------------------------------------------------------------------
     |
     | This is the default namespace for the application models.
@@ -17,7 +17,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Date formats.
+    | Date Formats
     |--------------------------------------------------------------------------
     |
     | Default date formats across the application.
@@ -43,7 +43,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Un-deletable managers.
+    | Initial User Roles
+    |--------------------------------------------------------------------------
+    |
+    | The roles which are initially assigned to a user
+    | upon registration and/or email verification.
+    |
+    */
+
+    'registration_roles' => [3],
+    'verification_roles' => [3, 4],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Un-deletable Managers
     |--------------------------------------------------------------------------
     |
     | Managers with ID's in this array cannot be deleted from the database.
@@ -67,7 +80,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Max depth for page structure node
+    | Max Depth For Page Structure Node
     |--------------------------------------------------------------------------
     |
     | The depth of a node is the number of edges from the node to the tree's

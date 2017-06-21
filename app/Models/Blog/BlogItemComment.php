@@ -22,7 +22,7 @@ class BlogItemComment extends Model
      *
      * @var array
      */
-    protected $fillable = ['comment'];
+    protected $fillable = ['user_id', 'is_published', 'comment'];
 
     /**
      * No fallback translation.

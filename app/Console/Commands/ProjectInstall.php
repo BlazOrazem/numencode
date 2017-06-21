@@ -58,6 +58,9 @@ class ProjectInstall extends Command
         $this->comment('| Application settings |');
         $this->comment('------------------------');
 
+        $appName = $this->ask('Enter your application name (eg. My Company)');
+        $appMail = $this->ask('Enter your application email (eg. info@test.com)');
+
         $appUrl = $this->ask('Enter the URL of your application without trailing slash (eg. http://www.numencode.app)');
         fwrite($env, 'APP_URL=' . $appUrl . PHP_EOL);
         fwrite($env, PHP_EOL);
@@ -78,6 +81,16 @@ class ProjectInstall extends Command
         fwrite($env, 'DB_USERNAME=' . $dbUser . PHP_EOL);
         $dbPass = $this->ask('Enter the DB password');
         fwrite($env, 'DB_PASSWORD=' . $dbPass . PHP_EOL);
+
+        fwrite($env, PHP_EOL);
+        fwrite($env, 'MAIL_DRIVER=log' . PHP_EOL);
+        fwrite($env, 'MAIL_HOST=' . PHP_EOL);
+        fwrite($env, 'MAIL_PORT=' . PHP_EOL);
+        fwrite($env, 'MAIL_USERNAME=' . PHP_EOL);
+        fwrite($env, 'MAIL_PASSWORD=' . PHP_EOL);
+        fwrite($env, 'MAIL_ENCRYPTION=null' . PHP_EOL);
+        fwrite($env, 'MAIL_FROM_ADDRESS=' . $appMail . PHP_EOL);
+        fwrite($env, 'MAIL_FROM_NAME="' . $appName . '"' . PHP_EOL);
 
         fwrite($env, PHP_EOL);
         fwrite($env, 'GOOGLE_ANALYTICS=');
@@ -186,6 +199,7 @@ class ProjectInstall extends Command
 
         // Silently setup the application key again to prevent any errors
 
+        sleep(3);
         $appKey = $this->getFreshApplication();
         $artisanKey = $appKey['artisan'];
         $artisanKey::call('key:generate');

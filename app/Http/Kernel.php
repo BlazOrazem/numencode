@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
 
         'is_authenticated' => \Cms\Http\Middleware\IsAuthenticated::class,
         'is_guest'         => \Cms\Http\Middleware\IsGuest::class,
+        'allowance'        => \Cms\Http\Middleware\CheckAllowance::class,
         'localization'     => \Cms\Http\Middleware\Localization::class,
     ];
 }

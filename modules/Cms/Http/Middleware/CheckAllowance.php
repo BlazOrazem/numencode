@@ -1,22 +1,22 @@
 <?php
 
-namespace Admin\Http\Middleware;
+namespace Cms\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CheckPermission
+class CheckAllowance
 {
     /**
      * The auth guard.
      *
      * @var $guard
      */
-    protected $guard = 'admin';
+    protected $guard = 'web';
 
     /**
-     * Check if manager has the permission/s although always allow manager to edit his own profile.
+     * Check if user has the permission/s to complete the action.
      *
      * Multiple permissions can be sent to the handle() method, divided with the pipe character:
      * Route::get('demo', 'DemoController@index')->middleware('permission:view_demo|edit_demo');
@@ -55,7 +55,8 @@ class CheckPermission
     protected function revoke()
     {
         $this->flashError();
-        return redirect()->route('admin.dashboard');
+
+        return redirect()->route('home');
     }
 
     /**
@@ -66,8 +67,8 @@ class CheckPermission
     protected function flashError()
     {
         flash()->error(
-            trans('admin::messages.error'),
-            trans('admin::messages.error_auth')
+            trans('theme::messages.error'),
+            trans('theme::messages.error')
         );
     }
 }

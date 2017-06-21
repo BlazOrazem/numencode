@@ -4,6 +4,7 @@ namespace Cms\Http;
 
 use Numencode\Models\Blog\BlogItem;
 use Numencode\Models\Blog\BlogCategory;
+use Numencode\Models\Blog\BlogItemComment;
 
 class BlogController extends BaseController
 {
@@ -45,5 +46,27 @@ class BlogController extends BaseController
         $randomBlog = BlogItem::inRandomOrder()->first();
 
         return view('theme::blog.random', compact('randomBlog'));
+    }
+
+    /**
+     * Add comment to a blog post.
+     *
+     * @param BlogItem $blogItem Blog entry
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addComment(BlogItem $blogItem)
+    {
+        $this->validate(request(), [
+            'comment' => 'required',
+        ]);
+
+        $blogItem->comments()->create([
+            'user_id' => auth()->user()->id,
+            'is_published' => true,
+            'comment' => request()->comment,
+        ]);
+
+        return redirect()->back();
     }
 }

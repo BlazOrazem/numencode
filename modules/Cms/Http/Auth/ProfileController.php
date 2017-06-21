@@ -21,12 +21,14 @@ class ProfileController extends BaseController
     /**
      * Update the user profile.
      *
-     * @param ProfileRequest $request
+     * @param ProfileRequest $request    Profile request
+     * @param UserRepository $repository User repository
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileRequest $request, UserRepository $repository)
     {
-        $repository->updateUser($this->user, $request);
+        $repository->updateUser(auth()->user(), $request);
 
         flash()->success(trans('messages.success'), trans('messages.user_profile.profile_success'));
 

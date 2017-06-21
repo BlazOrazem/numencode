@@ -34,9 +34,16 @@
                 @can('write_comments')
                     <div class="well">
                         <h4>@lang('theme::blog.leave_comment'):</h4>
-                        <form role="form">
+                        <form method="POST"
+                              role="form"
+                              action="{{ route('blog.comment', compact('blogItem')) }}"
+                                >
+                            {{ csrf_field() }}
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea name="comment" class="form-control" rows="3"></textarea>
+                                <span class="help-block">
+                                    {{ $errors->first('comment', ':message') }}
+                                </span>
                             </div>
                             <button type="submit" class="btn btn-primary">@lang('theme::blog.submit_comment')</button>
                         </form>
@@ -46,10 +53,10 @@
                 @endcan
             @endif
 
-            @if($blogItem->has('comments'))
+            @if($blogItem->publishedComments()->count())
                 <h3>@lang('theme::blog.comments')</h3>
 
-                @foreach($blogItem->comments as $comment)
+                @foreach($blogItem->publishedComments() as $comment)
                     <div class="media">
                         <a class="pull-left" href="#">
                             @if($comment->user->avatar)

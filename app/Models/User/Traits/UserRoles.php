@@ -2,12 +2,13 @@
 
 namespace Numencode\Models\User\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
 use Numencode\Models\User\Role;
 
 trait UserRoles
 {
     /**
-     * Return the entity's roles.
+     * User can have many roles.
      *
      * @return object
      */
@@ -17,23 +18,31 @@ trait UserRoles
     }
 
     /**
-     * Assign a role to the entity.
+     * Assign roles to the user.
      *
-     * @param string $role Role name
+     * @param array $roleIds Role IDs
      *
-     * @return mixed
+     * @return null
      */
-    public function assignRole($role)
+    public function assignRoles(array $roleIds)
     {
-        return $this->roles()->save(
-            Role::where($role)->firstOrFail()
-        );
+        foreach ($roleIds as $roleId) {
+            $role = Role::find($roleId);
+
+            if ($this->hasRole($role->name)) {
+                continue;
+            }
+
+            $this->roles()->save($role);
+        }
+
+        return true;
     }
 
     /**
      * Determine if the entity has a given role.
      *
-     * @param string|object $role Role name
+     * @param string|object|collection $role Role name
      *
      * @return bool
      */
@@ -43,6 +52,10 @@ trait UserRoles
             return $this->roles->contains('name', $role);
         }
 
-        return !!$role->intersect($this->roles)->count();
+        if ($role instanceof Collection) {
+            return !!$this->roles->intersect($role)->count();
+        }
+
+        return $this->roles->contains($role);
     }
 }
