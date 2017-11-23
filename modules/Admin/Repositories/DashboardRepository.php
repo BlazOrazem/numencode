@@ -3,26 +3,24 @@
 namespace Admin\Repositories;
 
 use Analytics;
-use Carbon\Carbon;
+use Spatie\Analytics\Period;
 
 class DashboardRepository
 {
     public function loadAnalytics()
     {
         // Weekly analytics
-        $weekAnalyticsData = Analytics::getVisitorsAndPageViews(7)->toArray();
-
-        list($startDate, $endDate) = $this->calculateNumberOfDays(7);
-        $weekVisitorCounter = Analytics::performQuery($startDate, $endDate, 'ga:users')->totalsForAllResults;
-        $weekPageviewCounter = Analytics::performQuery($startDate, $endDate, 'ga:pageviews')->totalsForAllResults;
-        $weekAvgSessionDuration = Analytics::performQuery($startDate, $endDate, 'ga:avgSessionDuration')->totalsForAllResults;
-        $weekNewVisitors = Analytics::performQuery($startDate, $endDate, 'ga:percentNewSessions')->totalsForAllResults;
+        $weekAnalyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(7))->toArray();
+        $weekVisitorCounter = Analytics::performQuery(Period::days(7), 'ga:users')->totalsForAllResults;
+        $weekPageviewCounter = Analytics::performQuery(Period::days(7), 'ga:pageviews')->totalsForAllResults;
+        $weekAvgSessionDuration = Analytics::performQuery(Period::days(7), 'ga:avgSessionDuration')->totalsForAllResults;
+        $weekNewVisitors = Analytics::performQuery(Period::days(7), 'ga:percentNewSessions')->totalsForAllResults;
 
         js([
-            'weekVisitorCounter' => (int)ceil(reset($weekVisitorCounter)),
-            'weekPageviewCounter' => (int)ceil(reset($weekPageviewCounter)),
-            'weekAvgSessionDuration' => gmdate("H:i:s", (int)ceil(reset($weekAvgSessionDuration))),
-            'weekVisitorsNewPercent' => (int)ceil(reset($weekNewVisitors)),
+            'weekVisitorCounter'        => (int)ceil(reset($weekVisitorCounter)),
+            'weekPageviewCounter'       => (int)ceil(reset($weekPageviewCounter)),
+            'weekAvgSessionDuration'    => gmdate("H:i:s", (int)ceil(reset($weekAvgSessionDuration))),
+            'weekVisitorsNewPercent'    => (int)ceil(reset($weekNewVisitors)),
             'weekVisitorsReturnPercent' => 100 - (int)ceil(reset($weekNewVisitors)),
         ]);
 
@@ -39,19 +37,17 @@ class DashboardRepository
         }, $weekAnalyticsData)]);
 
         // Monthly analytics
-        $monthAnalyticsData = Analytics::getVisitorsAndPageViews(30)->toArray();
-
-        list($startDate, $endDate) = $this->calculateNumberOfDays(30);
-        $monthVisitorCounter = Analytics::performQuery($startDate, $endDate, 'ga:users')->totalsForAllResults;
-        $monthPageviewCounter = Analytics::performQuery($startDate, $endDate, 'ga:pageviews')->totalsForAllResults;
-        $monthAvgSessionDuration = Analytics::performQuery($startDate, $endDate, 'ga:avgSessionDuration')->totalsForAllResults;
-        $monthNewVisitors = Analytics::performQuery($startDate, $endDate, 'ga:percentNewSessions')->totalsForAllResults;
+        $monthAnalyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::months(1))->toArray();
+        $monthVisitorCounter = Analytics::performQuery(Period::months(1), 'ga:users')->totalsForAllResults;
+        $monthPageviewCounter = Analytics::performQuery(Period::months(1), 'ga:pageviews')->totalsForAllResults;
+        $monthAvgSessionDuration = Analytics::performQuery(Period::months(1), 'ga:avgSessionDuration')->totalsForAllResults;
+        $monthNewVisitors = Analytics::performQuery(Period::months(1), 'ga:percentNewSessions')->totalsForAllResults;
 
         js([
-            'monthVisitorCounter' => (int)ceil(reset($monthVisitorCounter)),
-            'monthPageviewCounter' => (int)ceil(reset($monthPageviewCounter)),
-            'monthAvgSessionDuration' => gmdate("H:i:s", (int)ceil(reset($monthAvgSessionDuration))),
-            'monthVisitorsNewPercent' => (int)ceil(reset($monthNewVisitors)),
+            'monthVisitorCounter'        => (int)ceil(reset($monthVisitorCounter)),
+            'monthPageviewCounter'       => (int)ceil(reset($monthPageviewCounter)),
+            'monthAvgSessionDuration'    => gmdate("H:i:s", (int)ceil(reset($monthAvgSessionDuration))),
+            'monthVisitorsNewPercent'    => (int)ceil(reset($monthNewVisitors)),
             'monthVisitorsReturnPercent' => 100 - (int)ceil(reset($monthNewVisitors)),
         ]);
 
@@ -68,48 +64,37 @@ class DashboardRepository
         }, $monthAnalyticsData)]);
 
         // Yearly analytics
-        $yearAnalyticsData = Analytics::getVisitorsAndPageViews(365, 'yearMonth')->toArray();
-
-        list($startDate, $endDate) = $this->calculateNumberOfDays(365);
-        $yearVisitorCounter = Analytics::performQuery($startDate, $endDate, 'ga:users')->totalsForAllResults;
-        $yearPageviewCounter = Analytics::performQuery($startDate, $endDate, 'ga:pageviews')->totalsForAllResults;
-        $yearAvgSessionDuration = Analytics::performQuery($startDate, $endDate, 'ga:avgSessionDuration')->totalsForAllResults;
-        $yearNewVisitors = Analytics::performQuery($startDate, $endDate, 'ga:percentNewSessions')->totalsForAllResults;
+        $yearAnalyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::years(1))->toArray();
+        $yearVisitorCounter = Analytics::performQuery(Period::years(1), 'ga:users')->totalsForAllResults;
+        $yearPageviewCounter = Analytics::performQuery(Period::years(1), 'ga:pageviews')->totalsForAllResults;
+        $yearAvgSessionDuration = Analytics::performQuery(Period::years(1), 'ga:avgSessionDuration')->totalsForAllResults;
+        $yearNewVisitors = Analytics::performQuery(Period::years(1), 'ga:percentNewSessions')->totalsForAllResults;
 
         js([
-            'yearVisitorCounter' => (int)ceil(reset($yearVisitorCounter)),
-            'yearPageviewCounter' => (int)ceil(reset($yearPageviewCounter)),
-            'yearAvgSessionDuration' => gmdate("H:i:s", (int)ceil(reset($yearAvgSessionDuration))),
-            'yearVisitorsNewPercent' => (int)ceil(reset($yearNewVisitors)),
+            'yearVisitorCounter'        => (int)ceil(reset($yearVisitorCounter)),
+            'yearPageviewCounter'       => (int)ceil(reset($yearPageviewCounter)),
+            'yearAvgSessionDuration'    => gmdate("H:i:s", (int)ceil(reset($yearAvgSessionDuration))),
+            'yearVisitorsNewPercent'    => (int)ceil(reset($yearNewVisitors)),
             'yearVisitorsReturnPercent' => 100 - (int)ceil(reset($yearNewVisitors)),
         ]);
 
-        js(['yearLabels' => array_map(function ($item) {
-            return strtoupper($item['yearMonth']->format('M Y'));
-        }, $yearAnalyticsData)]);
+        js(['yearLabels' => array_values(array_unique(array_map(function ($item) {
+            return strtoupper($item['date']->format('M Y'));
+        }, $yearAnalyticsData)))]);
 
-        js(['yearVisitors' => array_map(function ($item) {
-            return $item['visitors'];
-        }, $yearAnalyticsData)]);
+        $yearVisitors = $yearPageViews = [];
+        foreach ($yearAnalyticsData as $item) {
+            $yearVisitors[$item['date']->format('M Y')] = isset($yearVisitors[$item['date']->format('M Y')]) ? $yearVisitors[$item['date']->format('M Y')] : 0;
+            $yearVisitors[$item['date']->format('M Y')] += $item['visitors'];
 
-        js(['yearPageViews' => array_map(function ($item) {
-            return $item['pageViews'];
-        }, $yearAnalyticsData)]);
+            $yearPageViews[$item['date']->format('M Y')] = isset($yearPageViews[$item['date']->format('M Y')]) ? $yearPageViews[$item['date']->format('M Y')] : 0;
+            $yearPageViews[$item['date']->format('M Y')] += $item['pageViews'];
+        }
 
-        js(['active_visitors' => (int)Analytics::getActiveUsers()]);
-    }
+        js(['yearVisitors' => array_values($yearVisitors)]);
 
-    /**
-     * Calculate start and end date for given number of days.
-     *
-     * @param $numberOfDays
-     * @return array
-     */
-    protected function calculateNumberOfDays($numberOfDays)
-    {
-        $endDate = Carbon::today();
-        $startDate = Carbon::today()->subDays($numberOfDays);
+        js(['yearPageViews' => array_values($yearPageViews)]);
 
-        return [$startDate, $endDate];
+        js(['active_visitors' => (int)Analytics::getAnalyticsService()->data_realtime->get('ga:' . env('ANALYTICS_VIEW_ID'), 'rt:activeVisitors')->totalsForAllResults['rt:activeVisitors']]);
     }
 }

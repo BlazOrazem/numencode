@@ -187,7 +187,7 @@
         e.preventDefault();
         swal({
             title: "Numencode CMS",
-            text: "Numencode is a web application, based on Laravel framework 5.4, that allows publishing, editing and modifying content, organizing, deleting as well as maintenance from a central interface. Numencode was created by and is maintained by Blaz Orazem.",
+            text: "Numencode is a web application, based on Laravel framework 5.5, that allows publishing, editing and modifying content, organizing, deleting as well as maintenance from a central interface. Numencode was created by and is maintained by Blaz Orazem.",
             html: true,
             confirmButtonClass: 'btn-base'
         });

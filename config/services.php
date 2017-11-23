@@ -63,7 +63,7 @@ return [
     ],
 
     /**
-     * Github App Dashboard @ https://github.com/settings/applications
+     * Github App Dashboard @ https://github.com/settings/developers
      */
     'github' => [
         'client_id'     => env('GITHUB_CLIENT_ID'),

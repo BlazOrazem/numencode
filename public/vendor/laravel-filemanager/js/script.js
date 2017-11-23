@@ -1,4 +1,5 @@
 var show_list;
+var sort_type = 'alphabetic';
 
 $(document).ready(function () {
   bootbox.setDefaults({locale:lang['locale-bootbox']});
@@ -14,6 +15,10 @@ $(document).ready(function () {
         );
       }
     });
+
+    $(window).on('dragenter', function(){
+      $('#uploadModal').modal('show');
+    });
 });
 
 // ======================
@@ -25,10 +30,7 @@ $('#nav-buttons a').click(function (e) {
 });
 
 $('#to-previous').click(function () {
-  var ds = '/';
-  var working_dir = $('#working_dir').val();
-  var last_ds = working_dir.lastIndexOf(ds);
-  var previous_dir = working_dir.substring(0, last_ds);
+  var previous_dir = getPreviousDir();
   if (previous_dir == '') return;
   goTo(previous_dir);
 });
@@ -38,6 +40,10 @@ $('#add-folder').click(function () {
     if (result == null) return;
     createFolder(result);
   });
+});
+
+$('#upload').click(function () {
+  $('#uploadModal').modal('show');
 });
 
 $('#upload-btn').click(function () {
@@ -56,10 +62,11 @@ $('#upload-btn').click(function () {
     success: function (data, statusText, xhr, $form) {
       resetUploadForm();
       refreshFoldersAndItems(data);
+      displaySuccessMessage(data);
     },
-    error: function () {
+    error: function (jqXHR, textStatus, errorThrown) {
+      displayErrorResponse(jqXHR);
       resetUploadForm();
-      notify('Action failed, due to server error.');
     }
   });
 });
@@ -74,9 +81,23 @@ $('#list-display').click(function () {
   loadItems();
 });
 
+$('#list-sort-alphabetic').click(function() {
+  sort_type = 'alphabetic';
+  loadItems();
+});
+
+$('#list-sort-time').click(function() {
+  sort_type = 'time';
+  loadItems();
+});
+
 // ======================
 // ==  Folder actions  ==
 // ======================
+
+$(document).on('click', '.file-item', function (e) {
+  useFile($(this).data('id'));
+});
 
 $(document).on('click', '.folder-item', function (e) {
   goTo($(this).data('id'));
@@ -85,6 +106,14 @@ $(document).on('click', '.folder-item', function (e) {
 function goTo(new_dir) {
   $('#working_dir').val(new_dir);
   loadItems();
+}
+
+function getPreviousDir() {
+  var ds = '/';
+  var working_dir = $('#working_dir').val();
+  var last_ds = working_dir.lastIndexOf(ds);
+  var previous_dir = working_dir.substring(0, last_ds);
+  return previous_dir;
 }
 
 function dir_starts_with(str) {
@@ -123,9 +152,25 @@ function performLfmRequest(url, parameter, type) {
     url: lfm_route + '/' + url,
     data: data,
     cache: false
-  }).fail(function () {
-    notify('Action failed, due to server error.');
+  }).fail(function (jqXHR, textStatus, errorThrown) {
+    displayErrorResponse(jqXHR);
   });
+}
+
+function displayErrorResponse(jqXHR) {
+  notify('<div style="max-height:50vh;overflow: scroll;">' + jqXHR.responseText + '</div>');
+}
+
+function displaySuccessMessage(data){
+  if(data == 'OK'){
+    var success = $('<div>').addClass('alert alert-success')
+      .append($('<i>').addClass('fa fa-check'))
+      .append(' File Uploaded Successfully.');
+    $('#alerts').append(success);
+    setTimeout(function () {
+      success.remove();
+    }, 2000);
+  }
 }
 
 var refreshFoldersAndItems = function (data) {
@@ -137,7 +182,7 @@ var refreshFoldersAndItems = function (data) {
 };
 
 var hideNavAndShowEditor = function (data) {
-  $('#nav-buttons').addClass('hidden');
+  $('#nav-buttons > ul').addClass('hidden');
   $('#content').html(data);
 }
 
@@ -150,14 +195,24 @@ function loadFolders() {
 }
 
 function loadItems() {
-  performLfmRequest('jsonitems', {show_list: show_list}, 'html')
+  $('#lfm-loader').show();
+  performLfmRequest('jsonitems', {show_list: show_list, sort_type: sort_type}, 'html')
     .done(function (data) {
       var response = JSON.parse(data);
       $('#content').html(response.html);
-      $('#nav-buttons').removeClass('hidden');
+      $('#nav-buttons > ul').removeClass('hidden');
       $('#working_dir').val(response.working_dir);
+      $('#current_dir').text(response.working_dir);
       console.log('Current working_dir : ' + $('#working_dir').val());
+      if (getPreviousDir() == '') {
+        $('#to-previous').addClass('hide');
+      } else {
+        $('#to-previous').removeClass('hide');
+      }
       setOpenFolders();
+    })
+    .always(function(){
+      $('#lfm-loader').hide();
     });
 }
 
@@ -209,7 +264,7 @@ function download(file_name) {
 // ==  Ckeditor, Bootbox, preview  ==
 // ==================================
 
-function useFile(file) {
+function useFile(file_url) {
 
   function getUrlParam(paramName) {
     var reParam = new RegExp('(?:[\?&]|&)' + paramName + '=([^&]+)', 'i');
@@ -263,7 +318,7 @@ function useFile(file) {
     window.opener.SetUrl(p,w,h);
   }
 
-  var url = getFileUrl(file);
+  var url = file_url;
   var field_name = getUrlParam('field_name');
   var is_ckeditor = getUrlParam('CKEditor');
   var is_fcke = typeof data != 'undefined' && data['Properties']['Width'] != '';
@@ -286,8 +341,8 @@ function useFile(file) {
       window.close();
     }
   } else {
-    // No WYSIWYG editor found, use custom method.
-    window.opener.SetUrl(url, file_path);
+    // No editor found, open/download file using browser's default method
+    window.open(url);
   }
 }
 //end useFile
@@ -300,36 +355,21 @@ function defaultParameters() {
 }
 
 function notImp() {
-  bootbox.alert('Not yet implemented!');;
+  notify('Not yet implemented!');
 }
 
 function notify(message) {
   bootbox.alert(message);
 }
 
-function getFileUrl(file) {
-  return $("[id=\"" + file + "\"]").data('url');
-}
-
-function fileView(file, timestamp) {
-  var rnd = makeRandom();
+function fileView(file_url, timestamp) {
   bootbox.dialog({
     title: lang['title-view'],
     message: $('<img>')
       .addClass('img img-responsive center-block')
-      .attr('src', getFileUrl(file) + '?timestamp=' + timestamp),
+      .attr('src', file_url + '?timestamp=' + timestamp),
     size: 'large',
     onEscape: true,
     backdrop: true
   });
-}
-
-function makeRandom() {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (var i = 0; i < 20; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
 }

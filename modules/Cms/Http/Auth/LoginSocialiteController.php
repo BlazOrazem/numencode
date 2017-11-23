@@ -49,7 +49,7 @@ class LoginSocialiteController extends BaseController
 
         $user = $repository->loginSocialiteUser($this->getSocialiteUser($provider), $provider);
 
-        $this->guard()->login($user);
+        $this->guard()->loginUsingId($user->id);
 
         flash()->success(trans('messages.login.title', ['name' => $user->name]), trans('messages.login.content'));
 

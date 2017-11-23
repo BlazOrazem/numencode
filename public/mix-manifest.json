@@ -1,7 +1,9 @@
 {
-  "/themes/default/js/app.js": "/themes/default/js/app.5ee448ca7c8f3975c423.js",
-  "/themes/default/js/vendor.js": "/themes/default/js/vendor.cc1031b474eedce33952.js",
-  "/mix.js": "/mix.c9eb1cabf5dcfd6f029c.js",
-  "/themes/default/css/app.css": "/themes/default/css/app.d20da78514ac97aa02521a6acce7a754.css",
-  "/themes/default/js/manifest.js": "/themes/default/js/manifest.d41d8cd98f00b204e980.js"
+    "/themes/default/js/app.js": "/themes/default/js/app.js?id=ba71de39e6584c975755",
+    "/themes/default/css/app.css": "/themes/default/css/app.css?id=fcda47467a38a234e6d4",
+    "/themes/default/css/app.css.map": "/themes/default/css/app.css.map?id=9433800f7ac378ca164c",
+    "/themes/default/js/vendor.js": "/themes/default/js/vendor.js?id=d7ee8be662d98f22953c",
+    "/themes/default/js/manifest.js": "/themes/default/js/manifest.js?id=d0aa1d99ab7aa8ed9d93",
+    "/themes/default/js/html5shiv.min.js": "/themes/default/js/html5shiv.min.js?id=d1759dea5987592f8b58",
+    "/themes/default/js/respond.min.js": "/themes/default/js/respond.min.js?id=4019c5f3493663439e6d"
 }
