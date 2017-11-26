@@ -2,6 +2,7 @@
 
 namespace Numencode\Providers;
 
+use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Auth\Passwords\TokenRepositoryInterface;
@@ -54,5 +55,10 @@ class AppServiceProvider extends ServiceProvider
 
             return new DbRepository($connection, app(Hasher::class), $table, $key, $expire);
         });
+
+        // Register Dusk service provider on local environment.
+        if ($this->app->environment('local')) {
+            $this->app->register(DuskServiceProvider::class);
+        }
     }
 }
