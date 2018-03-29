@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Register Dusk service provider on local environment.
-        if ($this->app->environment('local')) {
+        if ($this->app->environment('local', 'testing')) {
             $this->app->register(DuskServiceProvider::class);
         }
     }
