@@ -4,7 +4,6 @@ namespace Numencode\Models\User;
 
 use Illuminate\Notifications\Notifiable;
 use Numencode\Models\User\Traits\UserRoles;
-use Cms\Http\Auth\ForgotPasswordController;
 use Numencode\Models\User\Traits\UserHelpers;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
