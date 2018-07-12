@@ -113,7 +113,8 @@
   position: absolute;
   background: #f5f5f5;
   border: 1px solid #979797;
-  box-shadow: 2px 2px 2px #999999;
+  -webkit-box-shadow: 2px 2px 2px #999999;
+          box-shadow: 2px 2px 2px #999999;
 }
 .vakata-context ul {
   list-style: none;
@@ -145,7 +146,8 @@
 .vakata-context li > a:hover {
   position: relative;
   background-color: #e8eff7;
-  box-shadow: 0 0 2px #0a6aa1;
+  -webkit-box-shadow: 0 0 2px #0a6aa1;
+          box-shadow: 0 0 2px #0a6aa1;
 }
 .vakata-context li > a.vakata-context-parent {
   background-image: url("data:image/gif;base64,R0lGODlhCwAHAIAAACgoKP///yH5BAEAAAEALAAAAAALAAcAAAIORI4JlrqN1oMSnmmZDQUAOw==");
@@ -158,7 +160,8 @@
 .vakata-context .vakata-context-hover > a {
   position: relative;
   background-color: #e8eff7;
-  box-shadow: 0 0 2px #0a6aa1;
+  -webkit-box-shadow: 0 0 2px #0a6aa1;
+          box-shadow: 0 0 2px #0a6aa1;
 }
 .vakata-context .vakata-context-separator > a,
 .vakata-context .vakata-context-separator > a:hover {
@@ -172,7 +175,8 @@
   margin: 0 0 0 2.4em;
   border-left: 1px solid #e0e0e0;
   text-shadow: 0 0 0 transparent;
-  box-shadow: 0 0 0 transparent;
+  -webkit-box-shadow: 0 0 0 transparent;
+          box-shadow: 0 0 0 transparent;
   border-radius: 0;
 }
 .vakata-context .vakata-contextmenu-disabled a,
@@ -180,7 +184,8 @@
   color: silver;
   background-color: transparent;
   border: 0;
-  box-shadow: 0 0 0;
+  -webkit-box-shadow: 0 0 0;
+          box-shadow: 0 0 0;
 }
 .vakata-context li > a > i {
   text-decoration: none;
@@ -286,18 +291,22 @@
 }
 .jstree-default .jstree-anchor,
 .jstree-default .jstree-wholerow {
-  -webkit-transition: background-color 0.15s, box-shadow 0.15s;
+  -webkit-transition: background-color 0.15s, -webkit-box-shadow 0.15s;
+  transition: background-color 0.15s, -webkit-box-shadow 0.15s;
   transition: background-color 0.15s, box-shadow 0.15s;
+  transition: background-color 0.15s, box-shadow 0.15s, -webkit-box-shadow 0.15s;
 }
 .jstree-default .jstree-hovered {
   background: #e7f4f9;
   border-radius: 2px;
-  box-shadow: inset 0 0 1px #cccccc;
+  -webkit-box-shadow: inset 0 0 1px #cccccc;
+          box-shadow: inset 0 0 1px #cccccc;
 }
 .jstree-default .jstree-clicked {
   background: #beebff;
   border-radius: 2px;
-  box-shadow: inset 0 0 1px #999999;
+  -webkit-box-shadow: inset 0 0 1px #999999;
+          box-shadow: inset 0 0 1px #999999;
 }
 .jstree-default .jstree-no-icons .jstree-anchor > .jstree-themeicon {
   display: none;
@@ -308,14 +317,15 @@
 }
 .jstree-default .jstree-disabled.jstree-hovered {
   background: transparent;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .jstree-default .jstree-disabled.jstree-clicked {
   background: #efefef;
 }
 .jstree-default .jstree-disabled > .jstree-icon {
   opacity: 0.8;
-  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale");
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='jstree-grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#jstree-grayscale");
   /* Firefox 10+ */
   filter: gray;
   /* IE6-9 */
@@ -332,7 +342,8 @@
 }
 .jstree-default.jstree-checkbox-no-clicked .jstree-clicked {
   background: transparent;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .jstree-default.jstree-checkbox-no-clicked .jstree-clicked.jstree-hovered {
   background: #e7f4f9;
@@ -351,10 +362,12 @@
 .jstree-default > .jstree-wholerow-ul .jstree-hovered,
 .jstree-default > .jstree-wholerow-ul .jstree-clicked {
   background: transparent;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   border-radius: 0;
 }
 .jstree-default .jstree-wholerow {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 .jstree-default .jstree-wholerow-hovered {
@@ -362,7 +375,7 @@
 }
 .jstree-default .jstree-wholerow-clicked {
   background: #beebff;
-  background: -webkit-linear-gradient(top, #beebff 0%, #a8e4ff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#beebff), to(#a8e4ff));
   background: linear-gradient(to bottom, #beebff 0%, #a8e4ff 100%);
 }
 .jstree-default .jstree-node {
@@ -455,7 +468,7 @@
 }
 .jstree-default .jstree-checkbox-disabled {
   opacity: 0.8;
-  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale");
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='jstree-grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#jstree-grayscale");
   /* Firefox 10+ */
   filter: gray;
   /* IE6-9 */
@@ -628,7 +641,7 @@
 }
 .jstree-default-small .jstree-checkbox-disabled {
   opacity: 0.8;
-  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale");
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='jstree-grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#jstree-grayscale");
   /* Firefox 10+ */
   filter: gray;
   /* IE6-9 */
@@ -801,7 +814,7 @@
 }
 .jstree-default-large .jstree-checkbox-disabled {
   opacity: 0.8;
-  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale");
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='jstree-grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#jstree-grayscale");
   /* Firefox 10+ */
   filter: gray;
   /* IE6-9 */
@@ -1009,14 +1022,17 @@
     background: #beebff;
   }
   .jstree-default-responsive .jstree-children .jstree-last > .jstree-wholerow {
-    box-shadow: inset 0 -6px 3px -5px #666666;
+    -webkit-box-shadow: inset 0 -6px 3px -5px #666666;
+            box-shadow: inset 0 -6px 3px -5px #666666;
   }
   .jstree-default-responsive .jstree-children .jstree-open > .jstree-wholerow {
-    box-shadow: inset 0 6px 3px -5px #666666;
+    -webkit-box-shadow: inset 0 6px 3px -5px #666666;
+            box-shadow: inset 0 6px 3px -5px #666666;
     border-top: 0;
   }
   .jstree-default-responsive .jstree-children .jstree-open + .jstree-open {
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   .jstree-default-responsive .jstree-node,
   .jstree-default-responsive .jstree-icon,
@@ -1079,5 +1095,3 @@
 .jt-new:before {
   background-image: url("/themes/admin/images/jstree/new.png");
 }
-
-/*# sourceMappingURL=jstree.css.map */

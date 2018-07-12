@@ -6,7 +6,7 @@ var Json = (function () {
                 data: post,
                 url: url,
                 dataType: "json"
-            }).success(function(data){
+            }).then(function(data){
                 callback(data);
             });
         },
@@ -15,7 +15,7 @@ var Json = (function () {
             jQuery.ajax({
                 url: url,
                 dataType: "json"
-            }).success(function(data){
+            }).then(function(data){
                 callback(data);
             });
         }
@@ -29,7 +29,7 @@ var Ajax = (function () {
                 type: 'GET',
                 url: url,
                 dataType: "html"
-            }).success(function(data){
+            }).then(function(data){
                 callback(data);
             });
         }

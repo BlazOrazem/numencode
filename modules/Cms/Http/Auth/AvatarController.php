@@ -2,8 +2,8 @@
 
 namespace Cms\Http\Auth;
 
-use File;
-use Image;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AvatarController
@@ -28,7 +28,9 @@ class AvatarController
     /**
      * Set avatar filename.
      *
-     * @param string $avatarFileName
+     * @param string $avatarFileName Avatar file name.
+     *
+     * @return null
      */
     public static function setAvatarFileName($avatarFileName)
     {
@@ -38,7 +40,8 @@ class AvatarController
     /**
      * Create avatar image from uploaded file.
      *
-     * @param UploadedFile $file
+     * @param UploadedFile $file Uploaded file.
+     *
      * @return string
      */
     public static function makeAvatarFromFile(UploadedFile $file)
@@ -53,7 +56,8 @@ class AvatarController
     /**
      * Create avatar image from given image URL.
      *
-     * @param $avatarUrl
+     * @param string $avatarUrl Url of the avatar image.
+     *
      * @return string
      */
     public static function makeAvatarFromUrl($avatarUrl)
@@ -70,7 +74,8 @@ class AvatarController
     /**
      * Save avatar image file.
      *
-     * @param $image
+     * @param Image $image Image file.
+     *
      * @return string
      */
     public static function saveAvatarFile($image)
@@ -90,7 +95,9 @@ class AvatarController
     /**
      * Delete avatar image file.
      *
-     * @param null $fileName
+     * @param string|null $fileName Filename to be deleted.
+     *
+     * @return null
      */
     public static function deleteAvatarFile($fileName = null)
     {

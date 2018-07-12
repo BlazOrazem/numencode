@@ -1356,19 +1356,19 @@ table.display{
   height: 101px;
 }
 .farbtastic .wheel {
-  background: url(../images/wheel.png) no-repeat;
+  background: url($images-path + 'wheel.png') no-repeat;
   width: 195px;
   height: 195px;
 }
 .farbtastic .overlay {
-  background: url(../images/mask.png) no-repeat;
+  background: url($images-path + 'mask.png') no-repeat;
 }
 .farbtastic .marker {
   width: 17px;
   height: 17px;
   margin: -8px 0 0 -8px;
   overflow: hidden;
-  background: url(../images/marker.png) no-repeat;
+  background: url($images-path + 'marker.png') no-repeat;
 }
 
 
@@ -2076,7 +2076,7 @@ table.display{
       width: 100%;
       padding: 0 10px;
       margin-bottom: 5px;
-      
+
       .left {
         padding-left: 35px;
         a {
@@ -2103,7 +2103,7 @@ table.display{
           }
         }
       }
-      
+
       .right {
         > div {
           float: left;
@@ -2998,6 +2998,7 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
        -o-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
+
 @-webkit-keyframes checkbox-on {
   0% {
     -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
@@ -3012,6 +3013,7 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
             box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
   }
 }
+
 @-o-keyframes checkbox-on {
   0% {
     box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
@@ -3023,6 +3025,7 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
     box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
   }
 }
+
 @keyframes checkbox-on {
   0% {
     -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
@@ -3037,6 +3040,7 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
             box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
   }
 }
+
 @-webkit-keyframes checkbox-off {
   0% {
     -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
@@ -3101,6 +3105,7 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
       0px 0 0 0 inset;
   }
 }
+
 @-o-keyframes checkbox-off {
   0% {
     box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
@@ -3148,6 +3153,7 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
       0px 0 0 0 inset;
   }
 }
+
 @keyframes checkbox-off {
   0% {
     -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;

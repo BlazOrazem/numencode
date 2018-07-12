@@ -357,7 +357,7 @@ blockquote{
   }
   &:before, &:after{
     content: '';
-    background: url("../images/quote-left.png");
+    background: url($images-path + 'quote-left.png');
     background-size: cover;
     display: inline-block;
     width: 78px;
@@ -372,7 +372,7 @@ blockquote{
     }
   }
   &:after{
-    background: url("../images/quote-right.png");
+    background: url($images-path + 'quote-right.png');
     background-size: cover;
     float: right;
     margin-right: 10px;
@@ -738,7 +738,7 @@ a.editable {
 }
 
 
-@keyframes 'input-highlight'{
+@keyframes input-highlight {
   0% {
     background-size: 0 2px, 100% 1px;
   }
@@ -1304,7 +1304,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
   border-radius: 0;
   background-image: linear-gradient($primary-color,$primary-color),linear-gradient($default-color,$default-color);
   background-size: 0 3px,100% 1px;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-position: center bottom,center calc(100% - 1px);
   background-color: transparent;
   box-shadow: none;
@@ -1319,7 +1319,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
     opacity: 0.5;
     background-image: linear-gradient($primary-color,$primary-color),linear-gradient($default-color,$default-color);
     background-size: 0 3px,100% 1px;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-position: center bottom,center calc(100% - 1px);
     background-color: transparent;
   }
@@ -1355,7 +1355,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
   }
 }
 
-@keyframes(input-highlight){
+@keyframes input-highlight {
   0% {
     background-size: 0 3px, 100% 1px;
   }
@@ -1513,6 +1513,7 @@ textarea{
 .bootstrap-select{
   .btn{
     height: 43px;
+    line-height: 30px;
     background: $white;
     color: #999;
     border: 1px solid #c6c5c5 !important;

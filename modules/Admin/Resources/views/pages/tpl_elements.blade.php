@@ -5,6 +5,70 @@
 @endsection
 
 @section('content')
+    <style type="text/css">
+        .crop-tool {
+            max-width: 100%;
+        }
+        .crop-tool img {
+            width: 100%;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div style="width: 200px;">
+                <img src="uploads/sample01_600x600.jpg">
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cropModal" data-image-url="uploads/sample01_600x600.jpg">
+                Edit image
+            </button>
+        </div>
+        <div class="col-md-4">
+            <div style="width: 200px;">
+                <img src="uploads/sample02_600x600.jpg">
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cropModal" data-image-url="uploads/sample02_600x600.jpg">
+                Edit image
+            </button>
+        </div>
+        <div class="col-md-4">
+            <div style="width: 200px;">
+                <img src="uploads/sample03_600x600.jpg">
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cropModal" data-image-url="uploads/sample03_600x600.jpg">
+                Edit image
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="cropModalLabel">Edit image</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="crop-tool" style="background: lightgreen;"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="crop-preview" style="background: salmon;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><hr><br>
 
     <!-- BLOCK : Widgets -->
     <div class="row">
@@ -1031,7 +1095,54 @@
 
 @section('scripts')
     <script>
-        //Sweet alerts
+        // JS Cropper
+        $(function() {
+            $("#cropModal").on("hide.bs.modal", function() {
+                $(".crop-tool").empty();
+                $(".crop-preview").empty();
+            });
+
+            $('#cropModal').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget);
+                let imageUrl = button.data('image-url');
+                let modal = $(this);
+
+                let image = $('<img />', {
+                    id: 'croppedImage',
+                    src: imageUrl
+                });
+
+                modal.find('.modal-body .crop-tool').append(image);
+
+                let originalData = {};
+
+                image.cropper({
+                    aspectRatio: 4/3,
+                    resizable: true,
+                    zoomable: false,
+                    rotatable: false,
+                    multiple: true,
+                    viewMode:2,
+                    // minContainerWidth: '300',
+                    // minContainerHeight: '300',
+                    crop: function(event) {
+                        originalData = image.cropper("getCroppedCanvas");
+                        let cropPreview = originalData.toDataURL();
+                        $('.crop-preview').empty().append('<img src="' + cropPreview + '" width="400" height="300">');
+                        console.log(event.detail.x);
+                        console.log(event.detail.y);
+                        console.log(event.detail.width);
+                        console.log(event.detail.height);
+                        // console.log(event.detail.scaleX);
+                        // console.log(event.detail.scaleY);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // Sweet alerts
         $(".swal-default button").on("click", function () {
             swal("Here's a message!");
         });
@@ -1097,7 +1208,7 @@
             });
         });
 
-        //Auto Close Timer
+        // Auto Close Timer
         $('.swal-autoclose button').on("click", function () {
             swal({
                 title: "Auto close alert!",
@@ -1107,7 +1218,7 @@
             });
         });
 
-        //Primary
+        // Primary
         $('.swal-primary button').on("click", function () {
             swal({
                 title: "Are you sure?",
@@ -1120,7 +1231,7 @@
             });
         });
 
-        //Info
+        // Info
         $('.swal-info button').on("click", function () {
             swal({
                 title: "Are you sure?",
@@ -1132,7 +1243,7 @@
             });
         });
 
-        //Success
+        // Success
         $('.swal-success button').on("click", function () {
             swal({
                 title: "Are you sure?",
@@ -1144,7 +1255,7 @@
             });
         });
 
-        //Warning
+        // Warning
         $('.swal-warning button').on("click", function () {
             swal({
                 title: "Are you sure?",
@@ -1156,7 +1267,7 @@
             });
         });
 
-        //Danger
+        // Danger
         $('.swal-danger button').on("click", function () {
             swal({
                 title: "Are you sure?",

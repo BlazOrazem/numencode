@@ -21,6 +21,10 @@ body{
   position: relative;
 }
 
+img {
+  max-width: 100%;
+}
+
 .body-scroll{
   margin-top: 82px !important;
 }
@@ -321,7 +325,7 @@ body{
   min-height:100%;
   height:calc(100% - 80px)!important;
 //  height:auto!important;
-  .page-title {	
+  .page-title {
     font-size: 22px;
     color: $text-color;
     padding: 0 15px;
@@ -541,22 +545,22 @@ body{
     height: 100%;
   }
   .error-400{
-    background-image: url("../images/400.jpg");
+    background-image: url($images-path + '400.jpg');
   }
   .error-401{
-    background-image: url("../images/401.jpg");
+    background-image: url($images-path + '401.jpg');
   }
   .error-403{
-    background-image: url("../images/403.jpg");
+    background-image: url($images-path + '403.jpg');
   }
   .error-404{
-    background-image: url("../images/404.jpg");
+    background-image: url($images-path + '404.jpg');
   }
   .error-500{
-    background-image: url("../images/500.jpg");
+    background-image: url($images-path + '500.jpg');
   }
   .error-503{
-    background-image: url("../images/503.jpg");
+    background-image: url($images-path + '503.jpg');
   }
   &.login {
     background: no-repeat center center;
@@ -564,7 +568,7 @@ body{
   }
   &.coming-soon{
     .bg{
-      background-image: url("../images/coming-soon.jpg");
+      background-image: url($images-path + 'coming-soon.jpg');
     }
     .countdown-section{
       display: inline-block;
@@ -591,7 +595,7 @@ body{
   }
   &.confirm-email{
     .bg{
-      background-image: url("../images/confirm-email.jpg");
+      background-image: url($images-path + 'confirm-email.jpg');
     }
     i{
       font-size: 75px;
@@ -606,7 +610,7 @@ body{
   }
   &.lock-screen{
     .bg{
-      background-image: url("../images/lock-screen.jpg");
+      background-image: url($images-path + 'lock-screen.jpg');
     }
     img{
       max-width: 100px;

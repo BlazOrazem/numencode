@@ -52,7 +52,7 @@ The URL for the admin dashboard should be your APP_URL (in .env file) followed b
 
 The manager credentials are set by the php artisan project:install command.
 
-# Front-end workflow with Laravel Mix
+# Website frontend workflow with Laravel Mix for the default theme
 
 Install [Node.js](https://nodejs.org/) on your system.
 
@@ -86,9 +86,10 @@ Watch mode (runs in the background and watches files for changes):
 ```bash
 $ npm run watch
 ```
-# Back-end workflow with Laravel Elixir
 
-Install [Node.js](https://nodejs.org/) and [Bower](https://bower.io/#install-bower) on your system.
+# Admin frontend workflow with Laravel Mix for the admin theme
+
+Install [Node.js](https://nodejs.org/) on your system.
 
 From the project root directory navigate to:
 ```bash
@@ -101,19 +102,24 @@ $ npm install
 $ yarn install
 ```
 
-Install Bower dependencies:
-```bash
-$ bower install
-```
-
 Resources for the admin theme (styles and scripts) are stored in:
 ~~~
 /modules/Admin/Resources/assets/
 ~~~
 
-After the changes in styles and/or scripts run Gulp in directory 'modules/Admin/Resources/assets/vendor':
+After the changes in styles and/or scripts run in directory 'modules/Admin/Resources/assets', run Laravel Mix:
+
+Development mode (non-minified code):
 ```bash
-$ gulp
+$ npm run dev
+```
+Production mode (minified code):
+```bash
+$ npm run production
+```
+Watch mode (runs in the background and watches files for changes):
+```bash
+$ npm run watch
 ```
 
 # License

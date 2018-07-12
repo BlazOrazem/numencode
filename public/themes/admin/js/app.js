@@ -64,12 +64,6 @@ var PreLoader = (function () {
         init: function () {
             $('#preloader').height($(window).height() + "px");
 
-            //$(window).on('load', function(){
-            //    setTimeout(function(){
-            //        $('body').css("overflow-y","visible");
-            //        $('#preloader').fadeOut(200);
-            //    }, 600);
-            //});
             $(window).on('load', function(){
                 $('body').css("overflow-y","visible");
                 $('#preloader').fadeOut(100);
@@ -1030,14 +1024,14 @@ var Form = (function () {
 
         validateForm: function (form, redirect) {
             http.post(form.attr('action'), Form.serialize(form))
-                .success(function() {
+                .then(function() {
                     var postForm = form[0];
                     if (typeof redirect !== 'undefined') {
                         $("<input type='hidden'/>").attr("name", 'redirect').val(redirect).appendTo(postForm);
                     }
                     postForm.submit();
                 })
-                .error(function(data) {
+                .catch(function(data) {
                     $.each(Form.errors(data), function(fieldName, error) {
                         Form.failFor(Form.getGroupFor(form, fieldName), error);
                     });
@@ -1057,10 +1051,10 @@ var Form = (function () {
             }
 
             http.post(form.attr('action'), Form.serialize(form))
-                .success(function() {
+                .then(function() {
                     Form.successFor(Form.getGroupFor(form, fieldName));
                 })
-                .error(function(data) {
+                .catch(function(data) {
                     var item = Form.getGroupFor(form, fieldName);
 
                     if (item.hasClass(hasError)) {
@@ -1143,4 +1137,3 @@ $(document).ready(function() {
     Wysiwyg.init();
 
 });
-//# sourceMappingURL=app.js.map

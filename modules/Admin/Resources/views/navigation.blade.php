@@ -113,9 +113,9 @@
                 <li><a href="{{ route('log.viewer') }}" target="_blank">Log Viewer</a></li>
             </ul>
         </li>
-        {{--<li>--}}
-            {{--<a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-case-check"></i>TPL Elements</a>--}}
-        {{--</li>--}}
+        <li>
+            <a href="{{ route('admin.elements') }}"><i class="zmdi zmdi-case-check"></i>TPL Elements</a>
+        </li>
     </ul>
     <input id="activeUrl" type="hidden" value="{{ $activeUrl }}">
 </aside>

@@ -22,9 +22,9 @@
     <title>Admin Dashboard</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('themes/admin/css/libs.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('themes/admin/css/jstree.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="themes/admin/css/libs.css" rel="stylesheet" type="text/css">
+    <link href="themes/admin/css/jstree.css" rel="stylesheet" type="text/css">
+    <link href="themes/admin/css/app.css" rel="stylesheet" type="text/css">
 
     <link rel="icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
@@ -46,7 +46,7 @@
     <nav class="navbar navbar-blue">
         <div class="navbar-header container brand-blue">
             <a href="#" class="menu-toggle"><i class="zmdi zmdi-menu"></i></a>
-            <a href="{{ route('admin.dashboard') }}" class="logo">numencode<sup>&trade;</sup></a>
+            <a href="{{ route('admin.dashboard') }}" class="logo">numencode</a>
             <a href="{{ route('admin.dashboard') }}" class="icon-logo"></a>
         </div>
         <div class="navbar-container clearfix">
@@ -87,14 +87,13 @@
                             <a href="{{ route('admin.logout') }}" class="btn-logout"><i class="zmdi zmdi-power"></i>Logout</a>
                         </div>
                     </li>
-                    {{--
                     <li class="notification dropdown">
                         <a class="dropdown-toggle">
                             <i class="zmdi zmdi-notifications"></i>
                             <span class="badge badge-primary">8</span>
                         </a>
                         <div class="dropdown-menu">
-                            <h4 class="text-center info-color m-0">You have 19 new notifications</h4>
+                            <h4 class="text-center info-color m-0">TODO: 19 new notifications</h4>
                             <div class="notification-container">
                                 <a href="#"><i class="zmdi zmdi-email warning-color m-r-5"></i> You have 16 messages <span class="pull-right">4 minutes ago</span></a>
                                 <a href="#"><i class="zmdi zmdi-twitter info-color m-r-5"></i> 3 new followers <span class="pull-right">12 minutes ago</span></a>
@@ -108,7 +107,6 @@
                             </div>
                         </div>
                     </li>
-                    --}}
                     <li>
                         <a href="{{ route('admin.logout') }}" class="btn-logout">
                             <i class="zmdi zmdi-power"></i>
@@ -187,7 +185,9 @@
         e.preventDefault();
         swal({
             title: "Numencode CMS",
-            text: "Numencode is a web application, based on Laravel framework 5.5, that allows publishing, editing and modifying content, organizing, deleting as well as maintenance from a central interface. Numencode was created by and is maintained by Blaz Orazem.",
+            text: "Numencode is a web application, based on Laravel framework 5.6, that allows publishing, " +
+                "editing and modifying content, organizing, deleting as well as maintenance from a central " +
+                "interface. Numencode was created by and is maintained by Blaz Orazem.",
             html: true,
             confirmButtonClass: 'btn-base'
         });
