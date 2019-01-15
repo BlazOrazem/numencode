@@ -64,7 +64,7 @@
                                 <textarea name="body" class="wysiwyg-editor">{{ old('body') }}</textarea>
                             </div>
                         </div>
-                        @include('admin::components.form.save')
+                        @include('admin::components.form.save', ['cancel' => route('blog.items', compact('blogCategory'))])
                     </form>
                 </div>
             </div>

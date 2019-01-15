@@ -91,7 +91,7 @@
                             'type' => 'warning',
                             'checked' => $plugin->is_hidden,
                         ])
-                        @include('admin::components.form.save')
+                        @include('admin::components.form.save', ['cancel' => route('pages.index')])
                     </form>
                 </div>
             </div>

@@ -70,7 +70,7 @@
                             'field' => 'link',
                             'entity' => $blogItem,
                         ])
-                        @include('admin::components.form.save')
+                        @include('admin::components.form.save', ['cancel' => route('blog.items', ['blogCategory' => $blogItem->category])])])
                     </form>
                 </div>
             </div>

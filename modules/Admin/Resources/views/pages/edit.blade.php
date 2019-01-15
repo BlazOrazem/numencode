@@ -78,7 +78,7 @@
                         @include('admin::components.form.order', [
                             'sortOrder' => $page->sort_order,
                         ])
-                        @include('admin::components.form.save')
+                        @include('admin::components.form.save', ['cancel' => route('pages.index')])
                     </form>
                 </div>
             </div>

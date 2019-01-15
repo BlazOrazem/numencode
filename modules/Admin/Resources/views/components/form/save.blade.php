@@ -12,7 +12,7 @@
         <button type="submit" class="btn btn-md btn-info submit">
             @lang('admin::forms.buttons.return')
         </button>
-        <a href="{{ route('pages.index') }}" class="btn btn-md btn-default btn-link">
+        <a href="{{ $cancel ?? route('pages.index') }}" class="btn btn-md btn-default btn-link">
             @lang('admin::forms.buttons.cancel')
         </a>
 

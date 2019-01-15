@@ -52,7 +52,7 @@
                             'sortOrder' => $blogCategory->sort_order,
                             'errors' => $errors->categoryErrors,
                         ])
-                        @include('admin::components.form.save')
+                        @include('admin::components.form.save', ['cancel' => route('blog.index')])
                     </form>
                 </div>
             </div>
