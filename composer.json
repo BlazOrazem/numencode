@@ -2,7 +2,10 @@
     "name": "numencode/cms",
     "type": "project",
     "description": "Numencode - Content Management System",
-    "keywords": ["numencode", "laravel"],
+    "keywords": [
+        "numencode",
+        "laravel"
+    ],
     "homepage": "https://github.com/BlazOrazem/numencode",
     "license": "MIT",
     "authors": [
@@ -10,7 +13,7 @@
         "name": "Blaz Orazem",
         "email": "blaz@orazem.si",
         "homepage": "http://www.orazem.si",
-        "role": "Developer"
+        "role": "Head Developer"
       }
     ],
     "require": {
@@ -22,7 +25,7 @@
         "laracasts/utilities": "^3.0",
         "laraplus/translatable": "^1.0",
         "laravel/dusk": "^3.0",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.7.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "rap2hpoutre/laravel-log-viewer": "^0.14",
@@ -32,13 +35,29 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
         "barryvdh/laravel-ide-helper": "^2.4",
+        "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
     },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
     "autoload": {
+        "psr-4": {
+            "Numencode\\": "app/",
+            "Admin\\": "modules/Admin/",
+            "Cms\\": "modules/Cms/"
+        },
         "classmap": [
             "database/seeds",
             "database/factories"
@@ -46,41 +65,25 @@
         "files": [
             "app/Utils/helpers.php",
             "app/Utils/debug.php"
-        ],
-        "psr-4": {
-            "Numencode\\": "app/",
-            "Admin\\": "modules/Admin/",
-            "Cms\\": "modules/Cms/"
-        }
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": [
-            ]
-        }
-    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate"
-        ],
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan key:generate --ansi"
         ]
-    },
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    }
 }

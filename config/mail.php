@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'log'),
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@test.com'),
-        'name'    => env('MAIL_FROM_NAME', 'Numencode CMS'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Numencode CMS'),
     ],
 
     /*
@@ -90,6 +90,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Sendmail System Path
+    |--------------------------------------------------------------------------
+    |
+    | When using the "sendmail" driver to send e-mails, we will need to know
+    | the path to where Sendmail lives on this server. A default path has
+    | been provided here, which will work well on most of your systems.
+    |
+    */
+
+    'sendmail' => '/usr/sbin/sendmail -bs',
+
+    /*
+    |--------------------------------------------------------------------------
     | Markdown Mail Settings
     |--------------------------------------------------------------------------
     |
@@ -109,15 +122,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Sendmail System Path
+    | Log Channel
     |--------------------------------------------------------------------------
     |
-    | When using the "sendmail" driver to send e-mails, we will need to know
-    | the path to where Sendmail lives on this server. A default path has
-    | been provided here, which will work well on most of your systems.
+    | If you are using the "log" driver, you may specify the logging channel
+    | if you prefer to keep mail messages separate from other log entries
+    | for simpler reading. Otherwise, the default channel will be used.
     |
     */
 
-    'sendmail' => '/usr/sbin/sendmail -bs',
+    'log_channel' => env('MAIL_LOG_CHANNEL'),
 
 ];

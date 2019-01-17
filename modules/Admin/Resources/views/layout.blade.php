@@ -22,16 +22,16 @@
     <title>Admin Dashboard</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="themes/admin/css/libs.css" rel="stylesheet" type="text/css">
-    <link href="themes/admin/css/jstree.css" rel="stylesheet" type="text/css">
-    <link href="themes/admin/css/app.css" rel="stylesheet" type="text/css">
+    <link href="/themes/admin/css/libs.css" rel="stylesheet" type="text/css">
+    <link href="/themes/admin/css/jstree.css" rel="stylesheet" type="text/css">
+    <link href="/themes/admin/css/app.css" rel="stylesheet" type="text/css">
 
-    <link rel="icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/themes/admin/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/themes/admin/images/favicon.ico" type="image/x-icon" />
 
     <!--[if lt IE 9]>
-        <script src="themes/admin/js/html5shiv.min.js"></script>
-        <script src="themes/admin/js/respond.min.js"></script>
+        <script src="/themes/admin/js/html5shiv.min.js"></script>
+        <script src="/themes/admin/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -170,7 +170,7 @@
         methods: {
             changed: function() {
                 http.postHtml(this.route, {language: this.selected.language_locale})
-                    .success(function() {
+                    .done(function() {
                         location.reload();
                     });
             }

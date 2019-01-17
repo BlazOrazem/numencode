@@ -69,6 +69,8 @@ class BlogController extends BaseController
      */
     public function edit(BlogCategory $blogCategory)
     {
+        $blogCategory = $blogCategory->fresh();
+
         return view('admin::blog.category_edit', compact('blogCategory'));
     }
 
@@ -196,6 +198,7 @@ class BlogController extends BaseController
      */
     public function editItem(BlogItem $blogItem)
     {
+        $blogItem = $blogItem->fresh();
         $categories = BlogCategory::all();
 
         return view('admin::blog.item_edit', compact('blogItem', 'categories'));
@@ -212,7 +215,7 @@ class BlogController extends BaseController
     public function updateItem(BlogItem $blogItem, RouteRepository $route)
     {
         $blogItem = BlogItem::find($blogItem->id);
-        
+
         $this->validateWithBag('itemErrors', request(), [
             'blog_category_id' => 'required',
             'title'            => 'required',

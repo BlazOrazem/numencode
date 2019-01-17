@@ -22,8 +22,9 @@ class ResetPasswordController extends BaseController
      *
      * If no token is present, display the link request form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|null  $token
+     * @param \Illuminate\Http\Request $request Request
+     * @param string|null              $token   Token
+     *
      * @return \Illuminate\Http\Response
      */
     public function showResetForm(Request $request, $token = null)
@@ -36,10 +37,12 @@ class ResetPasswordController extends BaseController
     /**
      * Get the response for a successful password reset.
      *
-     * @param  string  $response
+     * @param Request $request  Request
+     * @param string  $response Response
+     *
      * @return \Illuminate\Http\Response
      */
-    protected function sendResetResponse($response)
+    protected function sendResetResponse(Request $request, $response)
     {
         flash()->overlay(
             trans('theme::messages.password_reset_title'),

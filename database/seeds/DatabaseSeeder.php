@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -47,7 +48,7 @@ class DatabaseSeeder extends Seeder
     ];
 
     /**
-     * Run the database seeds.
+     * Seed the application's database.
      *
      * @return void
      */
@@ -57,7 +58,7 @@ class DatabaseSeeder extends Seeder
         $this->command->line('---------------------------');
 
         $this->cleanDatabase();
-        
+
         $this->command->line(PHP_EOL . 'Database tables are truncated.' . PHP_EOL);
         $this->command->info('Running the seeders...');
         $this->command->line('----------------------');

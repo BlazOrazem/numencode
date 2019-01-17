@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, Mandrill, and others. This file provides a sane
+    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
@@ -17,12 +17,13 @@ return [
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
     'ses' => [
-        'key'    => env('SES_KEY'),
+        'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
-        'region' => 'us-east-1',
+        'region' => env('SES_REGION', 'us-east-1'),
     ],
 
     'sparkpost' => [
@@ -30,45 +31,46 @@ return [
     ],
 
     'stripe' => [
-        'model'  => Numencode\Models\User::class,
-        'key'    => env('STRIPE_KEY'),
+        'model' => Numencode\Models\User\User::class,
+        'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+        'webhook' => [
+            'secret' => env('STRIPE_WEBHOOK_SECRET'),
+            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
+        ],
     ],
 
-    /**
-     * Facebook App Dashboard @ https://developers.facebook.com/apps
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Social Network Services
+    |--------------------------------------------------------------------------
+    |
+    | Facebook App Dashboard @ https://developers.facebook.com/apps
+    | Twitter App Dashboard @ https://apps.twitter.com
+    | Google App Dashboard @ https://console.developers.google.com
+    | Github App Dashboard @ https://github.com/settings/developers
+    |
+    */
+
     'facebook' => [
-        'client_id'     => env('FACEBOOK_CLIENT_ID'),
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect'      => env('APP_URL') . '/socialite/facebook',
+        'redirect' => env('APP_URL') . '/socialite/facebook',
     ],
-
-    /**
-     * Twitter App Dashboard @ https://apps.twitter.com
-     */
     'twitter' => [
-        'client_id'     => env('TWITTER_CLIENT_ID'),
+        'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect'      => env('APP_URL') . '/socialite/twitter',
+        'redirect' => env('APP_URL') . '/socialite/twitter',
     ],
-
-    /**
-     * Google App Dashboard @ https://console.developers.google.com
-     */
     'google' => [
-        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect'      => env('APP_URL') . '/socialite/google',
+        'redirect' => env('APP_URL') . '/socialite/google',
     ],
-
-    /**
-     * Github App Dashboard @ https://github.com/settings/developers
-     */
     'github' => [
-        'client_id'     => env('GITHUB_CLIENT_ID'),
+        'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => env('APP_URL') . '/socialite/github',
+        'redirect' => env('APP_URL') . '/socialite/github',
     ],
 
 ];

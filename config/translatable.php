@@ -12,6 +12,7 @@ return [
    | as well as the name of the locale database column.
    |
    */
+
     'db_settings' => [
         'table_suffix' => '_i18n',
         'locale_field' => 'locale',
@@ -27,9 +28,10 @@ return [
     | You may configure the default query behavior below.
     |
     */
+
     'defaults' => [
         'only_translated' => false,
-        'with_fallback'   => true,
+        'with_fallback' => true,
     ],
 
 ];

@@ -14,31 +14,36 @@ return [
     */
 
     'success' => 'Success',
-    'error'   => 'Error',
+
+    'error' => 'Error',
 
     'login' => [
-        'title'   => 'Welcome :name!',
+        'title' => 'Welcome :name!',
         'content' => 'You have successfully logged in.',
     ],
+
     'logout' => [
-        'title'   => 'Logged out',
+        'title' => 'Logged out',
         'content' => "You have successfully logged out.\\nWe hope to see you again soon.",
     ],
+
     'email_verified' => [
-        'title'   => 'Email verified',
+        'title' => 'Email verified',
         'success' => 'You successfully verified your email address :email.',
-        'error'   => 'This email address has already been verified.',
+        'error' => 'This email address has already been verified.',
     ],
+
     'password_reset' => [
-        'title'     => 'Password reset',
+        'title' => 'Password reset',
         'forgotten' => 'Forgotten password',
         'link_sent' => "Password reset link was sent to your email address :email.\\nPlease check your inbox.",
     ],
+
     'user_profile' => [
-        'title'             => 'Profile updated',
-        'success'           => 'This email address has already been verified.',
-        'profile_success'   => 'Your profile was successfully updated.',
-        'password_success'  => 'Your password was successfully updated.',
+        'title' => 'Profile updated',
+        'success' => 'This email address has already been verified.',
+        'profile_success' => 'Your profile was successfully updated.',
+        'password_success' => 'Your password was successfully updated.',
         'verification_sent' => "Email verification link has been sent to your email address :email.\\nPlease check your inbox and click on the link.",
     ],
 

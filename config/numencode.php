@@ -59,7 +59,7 @@ return [
     | Un-deletable Managers
     |--------------------------------------------------------------------------
     |
-    | Managers with ID's in this array cannot be deleted from the database.
+    | Managers with IDs in this array cannot be deleted from the database.
     |
     */
 
@@ -113,7 +113,7 @@ return [
     |
     */
 
-    'upload_width'  => 1600,
+    'upload_width' => 1600,
     'upload_height' => 1200,
 
 ];

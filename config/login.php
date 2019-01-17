@@ -62,7 +62,7 @@ return [
     |
     */
 
-    'avatar_width'  => 1000,
+    'avatar_width' => 1000,
     'avatar_height' => 1000,
 
 ];

@@ -29,6 +29,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
+
         parent::boot();
     }
 
@@ -38,6 +40,35 @@ class RouteServiceProvider extends ServiceProvider
      * @return void
      */
     public function map()
+    {
+        $this->mapApiRoutes();
+
+        $this->mapWebRoutes();
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes()
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRoutes()
     {
         Route::middleware('web')
             ->group(function () {
@@ -52,6 +83,43 @@ class RouteServiceProvider extends ServiceProvider
                 }
                 $this->mapAdminGuestRoutes();
                 $this->mapAdminAuthorizedRoutes();
+            });
+    }
+
+    /**
+     * Database-driven routes
+     *
+     * @return void
+     */
+    protected function mapDatabaseDrivenRoutes()
+    {
+        Route::middleware('localization')
+            ->namespace($this->cmsNamespace)
+            ->group(function ($router) {
+                if (app()->runningInConsole()) {
+                    return;
+                }
+
+                $uri = substr(app()->request->getRequestUri(), 1);
+
+                $dbRoute = DB::table('routes')
+                    ->leftJoin('routes_i18n', 'routes.id', '=', 'routes_i18n.route_id')
+                    ->select('routes.*', 'routes_i18n.*')
+                    ->where('uri', $uri)
+                    ->first();
+
+                if (!$dbRoute) {
+                    return;
+                }
+
+                Route::get($uri, function () use ($dbRoute) {
+                    $action = explode('@', $dbRoute->action);
+                    $controller = app()->make($this->cmsNamespace . $action[0]);
+                    $method = isset($action[1]) ? $action[1] : 'index';
+                    $params = $dbRoute->params ? json_decode($dbRoute->params, true) : [];
+
+                    return call_user_func_array([$controller, $method], $params);
+                });
             });
     }
 
@@ -151,42 +219,5 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->adminNamespace)
             ->prefix('admin')
             ->group(base_path('routes/admin.authorized.php'));
-    }
-
-    /**
-     * Database-driven routes
-     *
-     * @return void
-     */
-    protected function mapDatabaseDrivenRoutes()
-    {
-        Route::middleware('localization')
-            ->namespace($this->cmsNamespace)
-            ->group(function ($router) {
-                if (app()->runningInConsole()) {
-                    return;
-                }
-
-                $uri = substr(app()->request->getRequestUri(), 1);
-
-                $dbRoute = DB::table('routes')
-                    ->leftJoin('routes_i18n', 'routes.id', '=', 'routes_i18n.route_id')
-                    ->select('routes.*', 'routes_i18n.*')
-                    ->where('uri', $uri)
-                    ->first();
-
-                if (!$dbRoute) {
-                    return;
-                }
-
-                Route::get($uri, function () use ($dbRoute) {
-                    $action = explode('@', $dbRoute->action);
-                    $controller = app()->make($this->cmsNamespace . $action[0]);
-                    $method = isset($action[1]) ? $action[1] : 'index';
-                    $params = $dbRoute->params ? json_decode($dbRoute->params, true) : [];
-
-                    return call_user_func_array([$controller, $method], $params);
-                });
-            });
     }
 }
