@@ -1,5 +1,5 @@
 @php($inline = isset($inline))
-@php($fieldId = 'sort_order-' . str_random(10))
+@php($fieldId = 'sort_order-' . Str::random(10))
 
 <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }} has-icon">
 

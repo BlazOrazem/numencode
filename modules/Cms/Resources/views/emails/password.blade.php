@@ -1,7 +1,7 @@
 @extends('theme::emails.partials.layout', [
     'action' => [
         'title' => 'Reset Password',
-        'url' => route("password", compact("token")),
+        'url'   => route("password", compact("token")),
         'color' => 'blue',
     ],
 ])

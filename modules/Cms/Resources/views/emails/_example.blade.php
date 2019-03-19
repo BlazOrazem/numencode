@@ -14,7 +14,7 @@ $style = [
 @extends('theme::emails.partials.new-layout', [
     'action' => [
         'title' => 'Visit our website!',
-        'url' => 'http://www.numencode.com',
+        'url'   => 'http://www.numencode.com',
         'color' => 'green',
     ],
 ])

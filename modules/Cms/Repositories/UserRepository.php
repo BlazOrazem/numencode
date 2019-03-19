@@ -2,6 +2,7 @@
 
 namespace Cms\Repositories;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Numencode\Models\User\User;
 use Cms\Http\Auth\AvatarController;
@@ -87,10 +88,10 @@ class UserRepository
     {
         if ($request->email != $user->email) {
             $user->email = $request->email;
-            $user->token = str_random(30);
+            $user->token = Str::random(30);
             $user->is_verified = false;
         }
-        
+
         if ($request->avatar) {
             AvatarController::deleteAvatarFile($user->avatar);
             $user->avatar = AvatarController::makeAvatarFromUrl($request->avatar);

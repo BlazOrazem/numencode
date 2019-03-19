@@ -56,14 +56,29 @@ class Kernel extends HttpKernel
         'can'              => \Illuminate\Auth\Middleware\Authorize::class,
         'signed'           => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-
+        'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_admin'         => \Admin\Http\Middleware\IsAdmin::class,
         'permission'       => \Admin\Http\Middleware\CheckPermission::class,
         'translation'      => \Admin\Http\Middleware\Translation::class,
-
         'is_authenticated' => \Cms\Http\Middleware\IsAuthenticated::class,
         'is_guest'         => \Cms\Http\Middleware\IsGuest::class,
         'allowance'        => \Cms\Http\Middleware\CheckAllowance::class,
         'localization'     => \Cms\Http\Middleware\Localization::class,
+    ];
+
+    /**
+     * The priority-sorted list of middleware.
+     *
+     * This forces non-global middleware to always be in the given order.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \Numencode\Http\Middleware\Authenticate::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
     ];
 }

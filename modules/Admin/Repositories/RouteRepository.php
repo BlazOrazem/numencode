@@ -2,6 +2,7 @@
 
 namespace Admin\Repositories;
 
+use Illuminate\Support\Str;
 use Numencode\Models\System\Url;
 use Numencode\Models\System\Language;
 
@@ -42,7 +43,7 @@ class RouteRepository
      */
     protected function buildUri($keyword = null, Url $url = null)
     {
-        $slug = $this->isSluggable($keyword) ? $keyword : str_slug($keyword);
+        $slug = $this->isSluggable($keyword) ? $keyword : Str::slug($keyword);
 
         if (!$keyword || app()->getLocale() != Language::getDefault()->locale) {
             $slug = app()->getLocale() . '/' . ltrim($slug, app()->getLocale() . '/');

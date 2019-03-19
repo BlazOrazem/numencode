@@ -13,12 +13,12 @@ class CreateBlogTable extends Migration
      */
     public function up()
     {
-		Schema::create('blog_category', function (Blueprint $table) {
-			$table->increments('id');
+        Schema::create('blog_category', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('route_id')->nullable()->index();
             $table->integer('sort_order')->default(0);
             $table->timestamps();
-		});
+        });
 
         Schema::create('blog_category_i18n', function(Blueprint $table)
         {

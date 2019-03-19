@@ -12,7 +12,7 @@
     "devDependencies": {
         "awesome-bootstrap-checkbox": "^0.3.7",
         "axios": "^0.18",
-        "bootstrap-sass": "^3.3.7",
+        "bootstrap-sass": "^3.4.1",
         "cross-env": "^5.1.5",
         "font-awesome": "^4.7.0",
         "html5shiv": "~3.7.3",

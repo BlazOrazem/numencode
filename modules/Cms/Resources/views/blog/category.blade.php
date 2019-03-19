@@ -19,7 +19,7 @@
 
             {{--<hr>--}}
 
-            <p>{!! str_limit($blogItem->body, 200) !!}</p>
+            <p>{!! Str::limit($blogItem->body, 200) !!}</p>
 
             <a class="btn btn-primary" href="{{ $blogItem->link }}">@lang('theme::home.read_more') <span class="glyphicon glyphicon-chevron-right"></span></a>
 

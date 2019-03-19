@@ -52,7 +52,6 @@ class ProjectInstall extends Command
         fwrite($env, 'APP_ENV=local' . PHP_EOL);
         fwrite($env, 'APP_KEY=' . PHP_EOL);
         fwrite($env, 'APP_DEBUG=true' . PHP_EOL);
-        fwrite($env, 'APP_LOG_LEVEL=debug' . PHP_EOL);
 
         $this->comment(PHP_EOL . '------------------------');
         $this->comment('| Application settings |');

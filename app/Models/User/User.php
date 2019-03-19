@@ -2,6 +2,7 @@
 
 namespace Numencode\Models\User;
 
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Numencode\Models\User\Traits\UserRoles;
 use Numencode\Models\User\Traits\UserHelpers;
@@ -35,11 +36,16 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes excluded from the models' JSON form.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'is_verified', 'token'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'is_verified',
+        'token',
+    ];
 
     /**
      * Bootstrap application services for user.
@@ -56,7 +62,8 @@ class User extends Authenticatable
             if ($user->is_verified) {
                 return;
             }
-            $user->token = str_random(30);
+
+            $user->token = Str::random(30);
         });
     }
 }

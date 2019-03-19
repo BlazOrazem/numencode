@@ -1,6 +1,6 @@
 @php($inline = isset($inline))
 @php($checked = isset($checked))
-@php($fieldId = camel_case($field) . '-' . str_random(10))
+@php($fieldId = Str::camel($field) . '-' . Str::random(10))
 
 <div class="form-group">
 

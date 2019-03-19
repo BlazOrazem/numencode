@@ -13,11 +13,11 @@ class CreatePromotionTable extends Migration
      */
     public function up()
     {
-		Schema::create('promotion_category', function (Blueprint $table) {
-			$table->increments('id');
+        Schema::create('promotion_category', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('sort_order')->default(0);
             $table->timestamps();
-		});
+        });
 
         Schema::create('promotion_category_i18n', function(Blueprint $table)
         {

@@ -1,6 +1,6 @@
 # Numencode - Content Management System
 
-**Numencode** is a web application, based on Laravel framework 5.7, that allows publishing, editing and modifying 
+**Numencode** is a web application, based on Laravel framework 5.8, that allows publishing, editing and modifying 
 content, organizing, deleting as well as maintenance from a central interface.
 
 It is used to run websites containing pages, blogs, news, galleries, catalogs and shopping.

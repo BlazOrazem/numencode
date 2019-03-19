@@ -13,12 +13,12 @@ class CreateCodelistTable extends Migration
      */
     public function up()
     {
-		Schema::create('codelist_group', function (Blueprint $table) {
-			$table->increments('id');
+        Schema::create('codelist_group', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('code')->unique()->index();
             $table->string('title');
             $table->integer('sort_order')->default(0);
-		});
+        });
 
         Schema::create('codelist_item', function(Blueprint $table)
         {
