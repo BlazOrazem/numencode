@@ -82,6 +82,7 @@
                             'help' => trans('admin::promotion.placeholder.item_picture'),
                             'errors' => $errors->itemErrors,
                             'entity' => $promotionItem,
+                            'plugin' => 'promotions',
                         ])
                         @include('admin::components.form.order', [
                             'sortOrder' => $promotionItem->sort_order,

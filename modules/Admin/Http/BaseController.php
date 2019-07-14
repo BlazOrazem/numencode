@@ -2,7 +2,9 @@
 
 namespace Admin\Http;
 
+use Illuminate\Http\Request;
 use Numencode\Http\Controller;
+use Numencode\Utils\Imageable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,6 +28,14 @@ class BaseController extends Controller
         return Auth::guard('admin')->user();
     }
 
+    public function saveImage(Request $request)
+    {
+        Imageable::createFromData(request()->image, $request->crop_path . '/' . basename($request->image_path));
+
+        return 'success';
+    }
+
+
     /**
      * Delete the given model entity.
      *
@@ -34,6 +44,8 @@ class BaseController extends Controller
      * @param string $title Title for a successful delete.
      *
      * @return array
+     *
+     * @throws \Exception
      */
     protected function deleteThe(Model $model, $msg = 'messages.deleted', $title = 'messages.success')
     {

@@ -60,12 +60,29 @@
             </span>
 
             @if(isset($entity) && $entity->$field)
-                <img src="{{ $entity->$field }}" class="img-responsive img-thumbnail" style="max-height: 300px;">
-                <br class="clearfix">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cropModal" data-image-url="{{ $entity->$field }}">
-                    Edit image
-                </button>
-                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ $entity->$field }}" class="img-responsive img-thumbnail">
+                    </div>
+                    <div class="col-md-6">
+                        <hr />
+                        @if(isset($plugin) && config("images.$plugin"))
+                            @foreach(config("images.$plugin.crops") as $cropPath => $dimensions)
+                                <button type="button"
+                                        class="btn btn-info"
+                                        data-toggle="modal"
+                                        data-target="#cropModal"
+                                        data-image-path="{{ $entity->$field }}"
+                                        data-crop-width="{{ $dimensions['width'] }}"
+                                        data-crop-height="{{ $dimensions['height'] }}"
+                                        data-crop-path="{{ $plugin . '/' . $cropPath }}">
+                                    Edit {{ str_replace('_', ' ', $cropPath) }}
+                                </button>
+                                <hr />
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
             @endif
         </div>
 
@@ -85,29 +102,20 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="crop-tool" style="background: lightgreen;"></div>
+                        <div class="crop-tool"></div>
                     </div>
                     <div class="col-md-6">
-                        <div class="crop-preview" style="background: salmon;"></div>
+                        <div class="crop-preview"></div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="jsCloseCrop">Close</button>
+                <button type="button" class="btn btn-success" id="jsSaveCrop">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-
-<style type="text/css">
-    .crop-tool {
-        max-width: 100%;
-    }
-    .crop-tool img {
-        width: 100%;
-    }
-</style>
 
 @section('scripts')
     <script>
@@ -119,39 +127,52 @@
             });
 
             $('#cropModal').on('show.bs.modal', function (event) {
-                let button = $(event.relatedTarget);
-                let imageUrl = button.data('image-url');
                 let modal = $(this);
+                let button = $(event.relatedTarget);
+                let imagePath = button.data('image-path');
+                let cropPath = button.data('crop-path');
+                let cropWidth = button.data('crop-width');
+                let cropHeight = button.data('crop-height');
 
                 let image = $('<img />', {
                     id: 'croppedImage',
-                    src: imageUrl
+                    src: imagePath
                 });
 
                 modal.find('.modal-body .crop-tool').append(image);
 
-                let originalData = {};
-
                 image.cropper({
-                    aspectRatio: 4/3,
+                    autoCrop : true,
+                    aspectRatio: cropWidth/cropHeight,
+                    strict: true,
                     resizable: true,
                     zoomable: false,
                     rotatable: false,
                     multiple: true,
                     viewMode: 2,
-                    minContainerWidth: '400',
-                    minContainerHeight: '300',
+                    minContainerWidth: '415',
+                    minContainerHeight: '415',
+                    highlight: true,
                     crop: function(event) {
-                        originalData = image.cropper("getCroppedCanvas");
+                        let originalData = image.cropper("getCroppedCanvas", {width: cropWidth, height: cropHeight});
                         let cropPreview = originalData.toDataURL();
-                        $('.crop-preview').empty().append('<img src="' + cropPreview + '" width="400" height="300">');
-                        // console.log(event.detail.x);
-                        // console.log(event.detail.y);
-                        // console.log(event.detail.width);
-                        // console.log(event.detail.height);
-                        // console.log(event.detail.scaleX);
-                        // console.log(event.detail.scaleY);
+                        $('.crop-preview').empty().append('<img src="' + cropPreview + '" width="415">');
                     }
+                });
+
+                modal.find('#jsSaveCrop').on('click', function() {
+                    let originalData = image.cropper("getCroppedCanvas", {width: cropWidth, height: cropHeight});
+                    let cropPreview = originalData.toDataURL();
+
+                    http.post('/admin/save-image', {
+                        crop_path: cropPath,
+                        image_path: imagePath,
+                        image: cropPreview
+                    }).catch(function(data) {
+                        swal('Picture saved', null, data.responseText);
+
+                        $('#cropModal #jsCloseCrop').click();
+                    });
                 });
             });
         });

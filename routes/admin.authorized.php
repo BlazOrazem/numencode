@@ -11,6 +11,9 @@ Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 Route::get('/elements', 'DashboardController@elements')->name('admin.elements');
 Route::post('/language', 'DashboardController@language')->name('admin.language');
 
+// General ajax requests
+Route::post('save-image', 'BaseController@saveImage')->name('admin.save.image');
+
 // Authentication logout
 Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 

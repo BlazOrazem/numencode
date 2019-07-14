@@ -11,7 +11,7 @@
             <div class="content-box">
                 <div class="head base-bg clearfix">
                     <h5 class="content-title pull-left">
-                        {{ $promotionCategory->id ? trans('admin::promotion.new_item_to') : trans('admin::promotion.new_item') }} {{ $promotionCategory->title }}
+                        {{ $promotionCategory ? trans('admin::promotion.new_item_to') . ' ' . $promotionCategory->title : trans('admin::promotion.new_item') }}
                     </h5>
                     <div class="functions-btns pull-right">
                         <a class="refresh-btn" href="#"><i class="zmdi zmdi-refresh"></i></a>
@@ -25,7 +25,7 @@
                           enctype="multipart/form-data"
                             >
                         {{ csrf_field() }}
-                        @if($promotionCategory->id)
+                        @if($promotionCategory)
                             <input type="hidden" name="promotion_category_id" value="{{ $promotionCategory->id }}">
                         @else
                             <div class="form-group has-icon">
@@ -80,7 +80,7 @@
                             'errors' => $errors->itemErrors,
                         ])
                         @include('admin::components.form.order', [
-                            'sortOrder' => ($promotionCategory->id ? $promotionCategory->items->max('sort_order') : 0) + 10,
+                            'sortOrder' => ($promotionCategory ? $promotionCategory->items->max('sort_order') : 0) + 10,
                             'errors' => $errors->itemErrors,
                         ])
                         <div class="form-group">

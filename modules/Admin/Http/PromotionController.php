@@ -2,9 +2,9 @@
 
 namespace Admin\Http;
 
+use Numencode\Utils\Imageable;
 use Numencode\Models\Promotion\PromotionItem;
 use Numencode\Models\Promotion\PromotionCategory;
-use Numencode\Utils\Imageable;
 
 class PromotionController extends BaseController
 {
@@ -32,6 +32,8 @@ class PromotionController extends BaseController
      * Store a newly created promotion category.
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store()
     {
@@ -72,6 +74,8 @@ class PromotionController extends BaseController
      * @param PromotionCategory $promotionCategory Promotion category
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(PromotionCategory $promotionCategory)
     {
@@ -143,6 +147,8 @@ class PromotionController extends BaseController
      * Store a newly created promotion item.
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function storeItem()
     {
@@ -161,9 +167,10 @@ class PromotionController extends BaseController
 
         if ($promotionItem = PromotionItem::create(request()->all())) {
             if (request()->picture) {
-                $promotionItem->picture = Imageable::createFromFile(request()->picture, 'uploads/promotions', 1200, 600);
-                $promotionItem->save();
+                $promotionItem->picture = Imageable::createFromFileForPlugin(request()->picture, 'promotions');
             }
+
+            $promotionItem->save();
 
             flash()->success(
                 trans('admin::messages.success'),
@@ -198,11 +205,13 @@ class PromotionController extends BaseController
      * @param PromotionItem $promotionItem Promotion item
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function updateItem(PromotionItem $promotionItem)
     {
         $promotionItem = PromotionItem::find($promotionItem->id);
-        
+
         $this->validateWithBag('itemErrors', request(), [
             'promotion_category_id' => 'required',
             'title'                 => 'required',
@@ -219,12 +228,13 @@ class PromotionController extends BaseController
         if ($promotionItem->update(request()->all())) {
             if (request()->picture) {
                 if ($promotionItem->picture) {
-                    Imageable::deleteFile($promotionItem->picture);
+                    Imageable::deleteFileForPlugin($promotionItem->picture, 'promotions');
                 }
 
-                $promotionItem->picture = Imageable::createFromFile(request()->picture, 'uploads/promotions', 1200, 600);
-                $promotionItem->save();
+                $promotionItem->picture = Imageable::createFromFileForPlugin(request()->picture, 'promotions');
             }
+
+            $promotionItem->save();
 
             flash()->success(
                 trans('admin::messages.success'),
@@ -245,9 +255,15 @@ class PromotionController extends BaseController
      * @param PromotionItem $promotionItem Promotion item
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Exception
      */
     public function destroyItem(PromotionItem $promotionItem)
     {
+        if ($promotionItem->picture) {
+            Imageable::deleteFileForPlugin($promotionItem->picture, 'promotions');
+        }
+
         return $this->deleteThe($promotionItem, 'promotion.item_deleted');
     }
 }
