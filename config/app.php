@@ -165,23 +165,23 @@ return [
         /**
          * Package Service Providers...
          */
-//        Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 //        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-//        Intervention\Image\ImageServiceProvider::class,
-//        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-//        Laraplus\Data\TranslatableServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Laraplus\Data\TranslatableServiceProvider::class,
 //        Laravel\Dusk\DuskServiceProvider::class,
-//        Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 //        Laravel\Tinker\TinkerServiceProvider::class,
-//        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-//        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         Numencode\Providers\AppServiceProvider::class,
         Numencode\Providers\AuthServiceProvider::class,
-        // Numencode\Providers\BroadcastServiceProvider::class,
+//        Numencode\Providers\BroadcastServiceProvider::class,
         Numencode\Providers\ComposerServiceProvider::class,
         Numencode\Providers\EventServiceProvider::class,
         Numencode\Providers\RouteServiceProvider::class,
