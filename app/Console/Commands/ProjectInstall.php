@@ -20,7 +20,7 @@ class ProjectInstall extends Command
      *
      * @var string
      */
-    protected $description = 'Install the NumencodeCMS project.';
+    protected $description = 'Install the Numencode CMS application.';
 
     /**
      * Execute the console command.
@@ -41,8 +41,11 @@ class ProjectInstall extends Command
 
         $this->line('Make sure you have an empty database prepared before continuing.' . PHP_EOL);
 
-        if (!$this->confirm('Everything is ready to go, shall we continue? [Y|n]')) {
+        if (!$this->confirm('Everything is ready to go, shall we continue? [Y|n]', true)) {
             $this->comment('Sorry to see you go :(' . PHP_EOL);
+            $this->error('Installer aborted.' . PHP_EOL);
+
+            exit();
         }
 
         // Create .env file
@@ -60,7 +63,7 @@ class ProjectInstall extends Command
         $appName = $this->ask('Enter your application name (eg. My Company)');
         $appMail = $this->ask('Enter your application email (eg. info@test.com)');
 
-        $appUrl = $this->ask('Enter the URL of your application without trailing slash (eg. https://www.numencode.com)');
+        $appUrl = $this->ask('Enter the URL of your application without a trailing slash (eg. https://www.numencode.com)');
         fwrite($env, 'APP_URL=' . $appUrl . PHP_EOL);
         fwrite($env, PHP_EOL);
 
@@ -70,14 +73,19 @@ class ProjectInstall extends Command
 
         $dbConn = $this->choice('Select your DB connection type - press Enter for', ['mysql', 'sqlite', 'pgsql'], 0);
         fwrite($env, 'DB_CONNECTION=' . $dbConn . PHP_EOL);
+
         $dbHost = $this->anticipate('Enter the DB hostname - press Enter for', ['localhost'], 'localhost');
         fwrite($env, 'DB_HOST=' . $dbHost . PHP_EOL);
+
         $dbPort = $this->anticipate('Enter the DB port - press Enter for default MySQL port', ['3306'], '3306');
         fwrite($env, 'DB_PORT=' . $dbPort . PHP_EOL);
+
         $dbName = $this->ask('Enter the DB name');
         fwrite($env, 'DB_DATABASE=' . $dbName . PHP_EOL);
+
         $dbUser = $this->ask('Enter the DB username');
         fwrite($env, 'DB_USERNAME=' . $dbUser . PHP_EOL);
+
         $dbPass = $this->ask('Enter the DB password');
         fwrite($env, 'DB_PASSWORD=' . $dbPass . PHP_EOL);
 
@@ -126,6 +134,7 @@ class ProjectInstall extends Command
         $columnName = 'Tables_in_' . env('DB_DATABASE');
 
         $dropList = [];
+
         foreach ($db->select("SHOW TABLES") as $table) {
             $dropList[] = $table->$columnName;
         }
@@ -138,6 +147,7 @@ class ProjectInstall extends Command
             if (!$this->confirm('ARE YOU SURE you want to DROP ALL TABLES in the current database (' . env('DB_DATABASE') .')? [y|N]')) {
                 $this->comment('You can run installer again anytime!' . PHP_EOL);
                 $this->error('Drop tables command aborted.' . PHP_EOL);
+
                 exit();
             }
 
@@ -193,14 +203,17 @@ class ProjectInstall extends Command
         $this->comment(PHP_EOL . 'Project is successfully installed.');
 
         $this->comment(PHP_EOL . '------------------------------------');
-        $this->comment('| Thank you for using NumencodeCMS |');
+        $this->comment('| Thank you for using Numencode CMS |');
         $this->comment('------------------------------------' . PHP_EOL);
 
         // Silently setup the application key again to prevent any errors
 
         sleep(3);
+
         $appKey = $this->getFreshApplication();
+
         $artisanKey = $appKey['artisan'];
+
         $artisanKey::call('key:generate');
         $artisanKey::call('config:cache');
     }
