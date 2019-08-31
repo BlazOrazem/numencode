@@ -49,9 +49,9 @@ class ProjectInstall extends Command
 
         $env = fopen(".env", "w");
 
-        fwrite($env, 'APP_ENV=local' . PHP_EOL);
+        fwrite($env, 'APP_ENV=production' . PHP_EOL);
         fwrite($env, 'APP_KEY=' . PHP_EOL);
-        fwrite($env, 'APP_DEBUG=true' . PHP_EOL);
+        fwrite($env, 'APP_DEBUG=false' . PHP_EOL);
 
         $this->comment(PHP_EOL . '------------------------');
         $this->comment('| Application settings |');
@@ -60,7 +60,7 @@ class ProjectInstall extends Command
         $appName = $this->ask('Enter your application name (eg. My Company)');
         $appMail = $this->ask('Enter your application email (eg. info@test.com)');
 
-        $appUrl = $this->ask('Enter the URL of your application without trailing slash (eg. http://www.numencode.app)');
+        $appUrl = $this->ask('Enter the URL of your application without trailing slash (eg. https://www.numencode.com)');
         fwrite($env, 'APP_URL=' . $appUrl . PHP_EOL);
         fwrite($env, PHP_EOL);
 

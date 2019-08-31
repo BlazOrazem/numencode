@@ -3,7 +3,7 @@
 **Numencode** is a web application, based on Laravel framework 5.8, that allows publishing, editing and modifying 
 content, organizing, deleting as well as maintenance from a central interface.
 
-It is used to run websites containing pages, blogs, news, galleries, catalogs and shopping.
+It is used to run websites containing pages, blog, news, galleries, catalogs and shopping.
 
 **Numencode** is a stand-alone application to create, deploy, manage and store content on web pages. 
 Web content includes text and embedded graphics, photos, video, audio and code (e.g., for applications) 
@@ -17,7 +17,7 @@ Documentation for the **Numencode** is currently under development.
 
 # About the Author
 
-**Numencode** was created by and is maintained by [Blaz Orazem](http://www.orazem.si/).
+**Numencode** was created by and is maintained by [Blaz Orazem](https://www.orazem.si/).
 
 Follow [@blazorazem](https://twitter.com/blazorazem) on Twitter.
 
@@ -48,7 +48,7 @@ Be sure to check /config/numencode.php file for some more application settings.
 
 # Admin Dashboard
 
-The URL for the admin dashboard should be your APP_URL (in .env file) followed by /admin, eg.: http://www.numencode.app/admin
+The URL for the admin dashboard should be your APP_URL (in .env file) followed by /admin, eg.: https://www.numencode.com/admin
 
 The manager credentials are set by the php artisan project:install command.
 
@@ -124,6 +124,6 @@ $ npm run watch
 
 # License
 
-The Numencode is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+The Numencode is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 [<img src="https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square" alt="MIT License">](LICENSE)
