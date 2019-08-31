@@ -114,8 +114,8 @@ class ProjectInstall extends Command
 
         // Load newly generated .env variables
 
-        $dotEnv = new Dotenv($app->environmentPath());
-        $dotEnv->load($app->environmentPath(), $app->environmentFile());
+        $dotEnv = Dotenv::create($app->environmentPath(), $app->environmentFile());
+        $dotEnv->load();
 
         // Run migrations and seed database
 
