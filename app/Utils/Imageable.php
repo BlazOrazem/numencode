@@ -10,24 +10,24 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Imageable
 {
     /**
-     * Filename.
+     * Filename with extension.
      *
      * @var string
      */
     protected static $fileName;
 
     /**
-     * Get filename.
+     * Get filename with extension.
      *
      * @return string
      */
     public static function getFileName()
     {
-        return self::$fileName;
+        return static::$fileName;
     }
 
     /**
-     * Set filename.
+     * Set filename with extension.
      *
      * @param string $fileName Filename
      *
@@ -35,65 +35,81 @@ class Imageable
      */
     public static function setFileName($fileName)
     {
-        self::$fileName = $fileName;
+        static::$fileName = $fileName;
     }
 
     /**
      * Create image from uploaded file.
      *
-     * @param UploadedFile $file       Uploaded file
-     * @param null         $uploadPath Upload path
-     * @param null         $width      Image width
-     * @param null         $height     Image height
-     * @param bool         $crop       Should image be cropped
+     * @param UploadedFile $file   Uploaded file
+     * @param null         $path   Upload path
+     * @param null         $width  Image width
+     * @param null         $height Image height
+     * @param bool         $crop   Should image be cropped
      *
      * @return string
      */
-    public static function createFromFile(UploadedFile $file, $uploadPath = null, $width = null, $height = null, $crop = true)
+    public static function createFromFile(UploadedFile $file, $path = null, $width = null, $height = null, $crop = false)
     {
         $image = Image::make($file);
 
-        self::setFileName(Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time()));
+        if (!static::getFileName()) {
+            static::setFileName(Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time()) . '.' . $file->getClientOriginalExtension());
+        }
 
-        return self::saveFile($image, $uploadPath, $width, $height, $crop);
+        return static::saveFile($image, $path, $width, $height, $crop);
     }
 
     /**
      * Create image from given image URL.
      *
-     * @param string $url        Image URL.
-     * @param null   $uploadPath Upload path
-     * @param null   $width      Image width
-     * @param null   $height     Image height
-     * @param bool   $crop       Should image be cropped
+     * @param string $url    Image URL
+     * @param null   $path   Upload path
+     * @param null   $width  Image width
+     * @param null   $height Image height
+     * @param bool   $crop   Should image be cropped
      *
      * @return string
      */
-    public static function createFromUrl($url, $uploadPath = null, $width = null, $height = null, $crop = true)
+    public static function createFromUrl($url, $path = null, $width = null, $height = null, $crop = false)
     {
+        $filename = basename(parse_url($url, PHP_URL_PATH));
+
         $image = Image::make(file_get_contents($url));
 
-        self::setFileName(Str::slug($url . '_' . time()));
+        if (!static::getFileName()) {
+            static::setFileName(Str::slug(pathinfo($filename, PATHINFO_FILENAME) . '_' . time()) . '.' . pathinfo($filename, PATHINFO_EXTENSION));
+        }
 
-        return self::saveFile($image, $uploadPath, $width, $height, $crop);
+        return static::saveFile($image, $path, $width, $height, $crop);
     }
 
     /**
-     * Create image from given encoded string.
+     * Create image from given base64 encoded string.
      *
-     * @param string $data       Image data in base64 encoded string.
-     * @param null   $uploadPath Upload path
+     * @param string $data   Image data in base64 encoded string
+     * @param string $name   Name of the image file
+     * @param null   $path   Upload path
+     * @param null   $width  Image width
+     * @param null   $height Image height
+     * @param bool   $crop   Should image be cropped
      *
      * @return string
      */
-    public static function createFromData($data, $uploadPath)
+    public static function createFromData($data, $name, $path = null, $width = null, $height = null, $crop = false)
     {
-        $filePath = config('numencode.upload_path') . '/' . $uploadPath;
+        if (!$extension = static::getImageExtension($data)) {
+            return null;
+        }
 
-        $image = Image::make($data);
-        $image->save($filePath);
+        if ($filename = static::getFileName()) {
+            $image = Image::make($data)->encode(pathinfo($filename, PATHINFO_EXTENSION), 100);
+        } else {
+            static::setFileName(Str::slug($name . '_' . time()) . '.' . $extension);
+            $image = Image::make($data);
+        }
 
-        return $filePath;
+        return static::saveFile($image, $path, $width, $height, $crop);
     }
 
     /**
@@ -108,61 +124,58 @@ class Imageable
     {
         $width = config("images.$plugin") ? config("images.$plugin.default.width") : config('images.default.width');
         $height = config("images.$plugin") ? config("images.$plugin.default.height") : config('images.default.height');
-        $uploadPath = config('numencode.upload_path') . (config("images.$plugin") ? '/' . config("images.$plugin.path") : '');
+        $path = config("images.$plugin") ? config("images.$plugin.path") : '';
 
-        $filename = self::createFromFile($file, $uploadPath, $width, $height);
+        $filename = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time()) . '.' . $file->getClientOriginalExtension();
+
+        static::setFileName($filename);
+
+        static::createFromFile($file, $path, $width, $height, true);
 
         if (config("images.$plugin.crops")) {
-            self::setFileName($filename);
-
             foreach (config("images.$plugin.crops") as $cropPath => $dimensions) {
-                $directory = $uploadPath . '/' . $cropPath;
+                $directory = $path . '/' . $cropPath;
 
                 if (!File::isDirectory($directory)) {
                     File::makeDirectory($directory, 0777, true, true);
                 }
 
-                self::createFromFile($file, $directory, $dimensions['width'], $dimensions['height']);
+                static::createFromFile($file, $directory, $dimensions['width'], $dimensions['height'], true);
             }
         }
 
-        return $filename;
+        return config('numencode.upload_path') . '/' . $path . '/' . $filename;
     }
 
     /**
      * Save image file.
      *
-     * @param Image $image      Image file
-     * @param null  $uploadPath Upload path
-     * @param null  $width      Image width
-     * @param null  $height     Image height
-     * @param bool  $crop       Should image be cropped
+     * @param Image $image  Image file
+     * @param null  $path   Upload path
+     * @param null  $width  Image width
+     * @param null  $height Image height
+     * @param bool  $crop   Should image be cropped
      *
      * @return string
      */
-    public static function saveFile($image, $uploadPath = null, $width = null, $height = null, $crop = true)
+    public static function saveFile($image, $path = null, $width = null, $height = null, $crop = false)
     {
-        $uploadPath = $uploadPath ?: config('numencode.upload_path');
+        $path = config('numencode.upload_path') . ($path ? '/' . trim($path, ' /') . '/' : '/');
+        $width = $width ?: config('images.default.width');
+        $height = $height ?: config('images.default.height');
 
         if ($crop) {
-            $width = $width ?: config('images.default.width');
-            $height = $height ?: config('images.default.height');
-
             $image->fit($width, $height, function ($constraint) {
                 $constraint->upsize();
             })->encode('jpg', 100);
         } else {
-            if (!$width && !$height) {
-                $width = config('images.default.width');
-            }
-
             $image->resize($width, $height, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->encode('jpg', 100);
         }
 
-        $filePath = $uploadPath . '/' . self::getFileName() . '.jpg';
+        $filePath = $path . static::getFileName();
 
         $image->save($filePath);
 
@@ -181,7 +194,7 @@ class Imageable
     {
         if (config("images.$plugin.crops")) {
             foreach (array_keys(config("images.$plugin.crops")) as $cropPath) {
-                self::deleteFile(
+                static::deleteFile(
                     config('numencode.upload_path') . '/' .
                     config("images.$plugin.path") . '/' .
                     $cropPath . '/' . basename($filename)
@@ -189,7 +202,7 @@ class Imageable
             }
         }
 
-        return self::deleteFile($filename);
+        return static::deleteFile($filename);
     }
 
     /**
@@ -206,5 +219,26 @@ class Imageable
         }
 
         return false;
+    }
+
+    /**
+     * Return image extension from base64 encoded string.
+     *
+     * @param string $data Image data in base64 encoded string
+     *
+     * @return bool|string
+     */
+    protected static function getImageExtension($data)
+    {
+        $encodedImageString = explode(',', $data, 2)[1];
+        $decodedImageString = base64_decode($encodedImageString);
+        $info = getimagesizefromstring($decodedImageString);
+        $extension = substr($info['mime'], 6);
+
+        if (!in_array($extension, ['png', 'gif', 'jpeg', 'jpg', 'bmp', 'webp'])) {
+            return false;
+        }
+
+        return $extension;
     }
 }

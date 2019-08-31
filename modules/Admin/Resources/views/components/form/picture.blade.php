@@ -141,7 +141,7 @@
 
                 modal.find('.modal-body .crop-tool').append(image);
 
-                image.cropper({
+                let instance = new Cropper(image[0], {
                     autoCrop : true,
                     aspectRatio: cropWidth/cropHeight,
                     strict: true,
@@ -154,23 +154,25 @@
                     minContainerHeight: '415',
                     highlight: true,
                     crop: function(event) {
-                        let originalData = image.cropper("getCroppedCanvas", {width: cropWidth, height: cropHeight});
+                        let originalData = instance.getCroppedCanvas({width: cropWidth, height: cropHeight});
                         let cropPreview = originalData.toDataURL();
                         $('.crop-preview').empty().append('<img src="' + cropPreview + '" width="415">');
                     }
                 });
 
-                modal.find('#jsSaveCrop').on('click', function() {
-                    let originalData = image.cropper("getCroppedCanvas", {width: cropWidth, height: cropHeight});
+                modal.find('#jsSaveCrop').unbind().on('click', function() {
+                    let originalData = instance.getCroppedCanvas({width: cropWidth, height: cropHeight});
                     let cropPreview = originalData.toDataURL();
 
                     http.post('/admin/save-image', {
-                        crop_path: cropPath,
+                        image_data: cropPreview,
+                        image_width: cropWidth,
+                        image_height: cropHeight,
                         image_path: imagePath,
-                        image: cropPreview
+                        crop_path: cropPath
                     }).catch(function(data) {
                         swal('Picture saved', null, data.responseText);
-
+                        instance.destroy();
                         $('#cropModal #jsCloseCrop').click();
                     });
                 });

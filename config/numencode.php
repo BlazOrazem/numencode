@@ -104,16 +104,4 @@ return [
 
     'upload_path' => 'uploads',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Image Dimensions
-    |--------------------------------------------------------------------------
-    |
-    | Default dimensions for images in pixels (px).
-    |
-    */
-
-    'upload_width' => 1600,
-    'upload_height' => 1200,
-
 ];

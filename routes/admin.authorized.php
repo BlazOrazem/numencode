@@ -6,13 +6,30 @@
 |--------------------------------------------------------------------------
 */
 
+use Numencode\Utils\Imageable;
+
 // Admin dashboard
 Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 Route::get('/elements', 'DashboardController@elements')->name('admin.elements');
 Route::post('/language', 'DashboardController@language')->name('admin.language');
 
 // General ajax requests
-Route::post('save-image', 'BaseController@saveImage')->name('admin.save.image');
+Route::post('save-image', function () {
+    Imageable::setFileName(basename(request()->image_path));
+
+    if (!Imageable::createFromData(
+        request()->image_data,
+        basename(request()->image_path),
+        request()->crop_path,
+        request()->image_width,
+        request()->image_height,
+        true
+    )) {
+        return 'error';
+    }
+
+    return 'success';
+})->name('admin.save.image');
 
 // Authentication logout
 Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
@@ -29,8 +46,8 @@ Route::delete('contents/{content}', 'ContentController@destroy')->name('contents
 Route::post('pages/active/{page}', 'PageController@active')->name('pages.active');
 Route::post('pages', 'PageController@store')->name('pages.store');
 Route::get('pages', 'PageController@index')->name('pages.index');
-Route::get('pages/create_menu/{menu?}', 'PageController@createForMenu')->name('pages.create.menu');
-Route::get('pages/create_page/{page?}', 'PageController@createForPage')->name('pages.create.page');
+Route::get('pages/create-menu/{menu?}', 'PageController@createForMenu')->name('pages.create.menu');
+Route::get('pages/create-page/{page?}', 'PageController@createForPage')->name('pages.create.page');
 Route::get('pages/{page}/edit', 'PageController@edit')->name('pages.edit');
 Route::match(['PUT', 'PATCH'], 'pages/{page}', 'PageController@update')->name('pages.update');
 Route::delete('pages/{page}', 'PageController@destroy')->name('pages.destroy');

@@ -54,14 +54,15 @@ class ManagerController extends BaseController
      * Store a newly created manager.
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store()
     {
         $this->validate(request(), [
-            'name'     => 'required|max:255|unique:managers',
-            'email'    => 'required|email|unique:managers',
-            'password' => 'required|min:6',
-            'avatar'   => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
+            'name'      => 'required|max:255|unique:managers',
+            'email'     => 'required|email|unique:managers',
+            'password'  => 'required|min:6',
+            'avatar'    => empty(request()->avatar) ? '' : 'mimes:jpg,jpeg,png,gif,bmp',
         ]);
 
         if (request()->ajax()) {
@@ -98,6 +99,7 @@ class ManagerController extends BaseController
      * @param Manager $manager Manager
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Manager $manager)
     {
@@ -136,6 +138,7 @@ class ManagerController extends BaseController
      * Update the profile.
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function updateProfile()
     {
@@ -165,13 +168,14 @@ class ManagerController extends BaseController
      *
      * @param Manager $manager Manager
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return array
+     * @throws \Exception
      */
     public function destroy(Manager $manager)
     {
         if (in_array($manager->id, config('numencode.protected_managers'))) {
             return [
-                'type' => 'error',
+                'type'  => 'error',
                 'title' => trans("admin::messages.error"),
                 'msg'   => trans("admin::managers.delete_failed"),
             ];
@@ -182,6 +186,8 @@ class ManagerController extends BaseController
 
     /**
      * Save managers tasks.
+     *
+     * @return void
      */
     public function saveTasks()
     {

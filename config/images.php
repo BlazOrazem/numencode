@@ -60,8 +60,8 @@ return [
     'promotions' => [
         'path' => 'promotions',
         'default' => [
-            'width' => 1200,
-            'height' => 800,
+            'width' => 1920,
+            'height' => 1080,
         ],
         'crops' => [
             'crop_small' => [
