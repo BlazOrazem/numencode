@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,20 +6,22 @@
 
 require('./bootstrap');
 
-$(document).ready(function() {
+window.Vue = require('vue');
 
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
+window.swal = require('sweetalert2');
 
-});
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,50 +29,24 @@ $(document).ready(function() {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//Vue.component('example', require('./components/Example.vue'));
-//
-//const app = new Vue({
-//    el: '#app'
-//});
+// const app = new Vue({
+//     el: '#app',
+// });
 
-//var SampleModule = (function () {
-//    // Let's initialize a public variable
-//    var sampleVariable = 42;
-//
-//    // We can operate with public variables
-//    sampleVariable *= 2.0;
-//
-//    // This is a private method
-//    var _doSomethingPrivately = function () {
-//        // We can use public variables in the private method
-//        var privateVariable = sampleVariable * 2;
-//        console.log('Private variable: ' + privateVariable);
-//
-//
-//        // Use function.apply to pass the called parameters along
-//        //GoogleAnalytics.pushOrSomething.apply(this, arguments);
-//    };
-//
-//    var simplePublicMethod = function () {
-//        _doSomethingPrivately('simple_action');
-//    };
-//
-//    var publicMethod = function (sampleVariable) {
-//        _doSomethingPrivately('action', sampleVariable);
-//    };
-//
-//    var getSampleVariable = function () {
-//        return sampleVariable;
-//    };
-//
-//    return {
-//        sampleVariable: sampleVariable,
-//        simplePublicMethod: simplePublicMethod,
-//        getSampleVariable: getSampleVariable,
-//        publicMethod: publicMethod
-//    };
-//})();
+/**
+ * Custom Javascript code
+ */
 
-// Let's call our variables and methods
-//console.log('Public variable: ' + SampleModule.sampleVariable);
-//console.log('Public variable getter: ' + SampleModule.getSampleVariable());
+$(document).ready(function() {
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+});

@@ -14,14 +14,21 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Your name">
+                                <input type="text"
+                                       class="form-control"
+                                       name="name" value="{{ old('name') }}"
+                                       placeholder="Your name">
                             </div>
                             <span class="help-block">{{ $errors->first('name', ':message') }}</span>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('nickname') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" placeholder="Your nickname">
+                                <input type="text"
+                                       class="form-control"
+                                       name="nickname"
+                                       value="{{ old('nickname') }}"
+                                       placeholder="Your nickname">
                             </div>
                             <span class="help-block">{{ $errors->first('nickname', ':message') }}</span>
                         </div>
@@ -34,7 +41,12 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('email') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address">
+                                <input type="email"
+                                       class="form-control"
+                                       name="email"
+                                       value="{{ old('email') }}"
+                                       placeholder="E-mail address"
+                                       autocomplete="username">
                             </div>
                             <span class="help-block">{{ $errors->first('email', ':message') }}</span>
                         </div>
@@ -54,14 +66,23 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('password') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password">
+                                <input type="password"
+                                       class="form-control"
+                                       name="password"
+                                       value="{{ old('password') }}"
+                                       placeholder="Password"
+                                       autocomplete="new-password">
                             </div>
                             <span class="help-block">{{ $errors->first('password', ':message') }}</span>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('password') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="Password again">
+                                <input type="password"
+                                       class="form-control"
+                                       name="password_confirmation"
+                                       placeholder="Password again"
+                                       autocomplete="new-password">
                             </div>
                             <span class="help-block"></span>
                         </div>

@@ -1,11 +1,10 @@
 {
-    "/themes/default/js/app.js": "/themes/default/js/app.js?id=3a962b0ef2dacf260a3f",
-    "/themes/default/css/app.css": "/themes/default/css/app.css?id=b71c8c5212b717d934d6",
-    "/themes/default/js/app.js.map": "/themes/default/js/app.js.map?id=73c3d4fbfc51775aadfb",
-    "/themes/default/js/manifest.js": "/themes/default/js/manifest.js?id=82c9adcdafd58f25453d",
-    "/themes/default/js/manifest.js.map": "/themes/default/js/manifest.js.map?id=c021cc455802b23f2969",
-    "/themes/default/js/vendor.js": "/themes/default/js/vendor.js?id=c68dbd946e8157f2c5a6",
-    "/themes/default/js/vendor.js.map": "/themes/default/js/vendor.js.map?id=e40baa9a76cf59db1500",
-    "/themes/default/js/html5shiv.min.js": "/themes/default/js/html5shiv.min.js?id=d1759dea5987592f8b58",
-    "/themes/default/js/respond.min.js": "/themes/default/js/respond.min.js?id=4019c5f3493663439e6d"
+    "/themes/default/js/app.js": "/themes/default/js/app.js?id=39d86d7e7d83f71e33dd",
+    "/themes/default/css/app.css": "/themes/default/css/app.css?id=84ce50a993c6c425f8ce",
+    "/themes/default/js/app.js.map": "/themes/default/js/app.js.map?id=13a7eb618e53e11af602",
+    "/themes/default/css/app.css.map": "/themes/default/css/app.css.map?id=5a0f647717cf9f5e36b5",
+    "/themes/default/js/manifest.js": "/themes/default/js/manifest.js?id=e53c90130454c7fbe101",
+    "/themes/default/js/manifest.js.map": "/themes/default/js/manifest.js.map?id=06fb1844fc969d96d364",
+    "/themes/default/js/vendor.js": "/themes/default/js/vendor.js?id=498f29601a0351ea5c47",
+    "/themes/default/js/vendor.js.map": "/themes/default/js/vendor.js.map?id=9aad226246226bcc8b98"
 }

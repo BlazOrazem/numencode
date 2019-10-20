@@ -8,7 +8,7 @@ use Numencode\Models\System\Traits\Sortable;
 
 class PromotionCategory extends Model
 {
-    use Translatable, Sortable;
+    use Sortable, Translatable;
 
     /**
      * The database table used by the model.

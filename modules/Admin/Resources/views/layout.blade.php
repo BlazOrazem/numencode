@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
 
@@ -15,8 +15,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <meta name="description" content="NumencodeCMS">
-    <meta name="author" content="Numencode.com">
+    <meta name="description" content="Numencode CMS">
+    <meta name="author" content="Blaz Orazem">
     <meta name="_token" content="{{ csrf_token() }}">
 
     <title>Admin Dashboard</title>
@@ -28,11 +28,6 @@
 
     <link rel="icon" href="/themes/admin/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/themes/admin/images/favicon.ico" type="image/x-icon" />
-
-    <!--[if lt IE 9]>
-        <script src="/themes/admin/js/html5shiv.min.js"></script>
-        <script src="/themes/admin/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body class="fixed-all fixed-sidebar p-blue s-blue n-blue">
@@ -51,7 +46,7 @@
         </div>
         <div class="navbar-container clearfix">
             <div class="pull-left">
-                <a href="{{ Request::url() }}" class="page-title">@yield('title')</a>
+                <a href="{{ request()->url() }}" class="page-title">@yield('title')</a>
             </div>
 
             <div class="pull-right">
@@ -126,7 +121,7 @@
 
     <div class="side-panel">
         <ul class="nav nav-tabs nav-justified m-0">
-            @foreach($menus as $menu)
+            @foreach ($menus as $menu)
                 <li class="{{ $loop->first ? 'active' : '' }}">
                     <a href="#tab-side-{{ $menu->id }}" data-toggle="tab">
                         <i class="zmdi zmdi-menu"></i>
@@ -136,7 +131,7 @@
             @endforeach
         </ul>
         <div class="tab-content">
-            @foreach($menus as $menu)
+            @foreach ($menus as $menu)
                 <div class="tab-pane fade {{ $loop->first ? 'in active' : '' }}" id="tab-side-{{ $menu->id }}">
                     <div class="side-title">{{ $menu->title }}</div>
                     <div class="p-15">
@@ -185,9 +180,9 @@
         e.preventDefault();
         swal({
             title: "Numencode CMS",
-            text: "Numencode is a web application, based on Laravel framework 5.6, that allows publishing, " +
-                "editing and modifying content, organizing, deleting as well as maintenance from a central " +
-                "interface. Numencode was created by and is maintained by Blaz Orazem.",
+            text: "Numencode CMS is a web application, based on Laravel framework 6, that allows " +
+                "publishing, editing and modifying content, organizing, deleting as well as maintenance " +
+                "from a central interface. Numencode CMS was created by and is maintained by Blaz Orazem.",
             html: true,
             confirmButtonClass: 'btn-base'
         });

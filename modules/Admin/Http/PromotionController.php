@@ -195,6 +195,7 @@ class PromotionController extends BaseController
     public function editItem(PromotionItem $promotionItem)
     {
         $categories = PromotionCategory::all();
+        $promotionItem = $promotionItem->fresh();
 
         return view('admin::promotion.item_edit', compact('promotionItem', 'categories'));
     }

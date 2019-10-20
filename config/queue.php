@@ -46,6 +46,7 @@ return [
             'host' => 'localhost',
             'queue' => 'default',
             'retry_after' => 90,
+            'block_for' => 0,
         ],
 
         'sqs' => [
@@ -79,6 +80,7 @@ return [
     */
 
     'failed' => [
+        'driver' => env('QUEUE_FAILED_DRIVER', 'database'),
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'failed_jobs',
     ],

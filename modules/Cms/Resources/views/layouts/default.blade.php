@@ -17,11 +17,6 @@
 
     <base href="{{ env('app_url') }}">
     <link href="{{ mix('/themes/default/css/app.css') }}" rel="stylesheet" type="text/css">
-
-    <!--[if lt IE 9]>
-        <script src="themes/default/js/html5shiv.min.js"></script>
-        <script src="themes/default/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>

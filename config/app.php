@@ -169,7 +169,7 @@ return [
 //        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-        Laraplus\Data\TranslatableServiceProvider::class,
+//        Laraplus\Data\TranslatableServiceProvider::class,
 //        Laravel\Dusk\DuskServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
 //        Laravel\Tinker\TinkerServiceProvider::class,

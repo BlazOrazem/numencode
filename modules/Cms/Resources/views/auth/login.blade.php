@@ -51,14 +51,22 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address">
+                                <input type="email"
+                                       class="form-control"
+                                       name="email" value="{{ old('email') }}"
+                                       placeholder="E-mail address"
+                                       autocomplete="username">
                             </div>
                             <span class="help-block">{{ $errors->first('email', ':message') }}</span>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="input-group {{ $errors->has('password') ? 'has-error' : '' }}">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                <input type="password"
+                                       class="form-control"
+                                       name="password"
+                                       placeholder="Password"
+                                       autocomplete="current-password">
                             </div>
                             <span class="help-block">{{ $errors->first('password', ':message') }}</span>
                         </div>

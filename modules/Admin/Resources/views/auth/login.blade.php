@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
 
@@ -15,23 +15,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <meta name="description" content="NumencodeCMS">
-    <meta name="author" content="Numencode.com">
+    <meta name="description" content="Numencode CMS">
+    <meta name="author" content="Blaz Orazem">
     <meta name="_token" content="{{ csrf_token() }}">
 
     <title>Numencode CMS</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="{{ elixir('themes/admin/css/libs.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ elixir('themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="/themes/admin/css/libs.css" rel="stylesheet" type="text/css">
+    <link href="/themes/admin/css/app.css" rel="stylesheet" type="text/css">
 
     <link rel="icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
-
-    <!--[if lt IE 9]>
-        <script src="themes/admin/js/html5shiv.min.js"></script>
-        <script src="themes/admin/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body class="user-page login" style="background-image: url('/themes/admin/images/background/{{ $season }}.jpg');">
@@ -48,15 +43,27 @@
                     <h4 class="text-center">numencode</h4>
                     <form method="POST" action="{{ route('admin.login.post') }}" role="form">
                         {{ csrf_field() }}
-                        @if(isset($ref))
+                        @if (isset($ref))
                             <input type="hidden" name="ref" value="{{ $ref }}">
                         @endif
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address" autofocus>
+                            <input id="email"
+                                   type="email"
+                                   class="form-control"
+                                   name="email"
+                                   value="{{ old('email') }}"
+                                   placeholder="E-mail address"
+                                   autocomplete="username"
+                                   autofocus>
                             <span class="help-block">{!! $errors->first('email', ':message') !!}</span>
                         </div>
                         <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                            <input id="password" type="password" class="form-control" name="password" placeholder="Password" value="">
+                            <input id="password"
+                                   type="password"
+                                   class="form-control"
+                                   name="password"
+                                   placeholder="Password"
+                                   autocomplete="current-password">
                             <span class="help-block">{!! $errors->first('password', ':message') !!}</span>
                         </div>
                         <div class="form-group text-left">
@@ -73,17 +80,7 @@
     </div>
 </div>
 
-<script src="{{ elixir('themes/admin/js/libs.js') }}"></script>
-
-<script>
-    $('#preloader').height($(window).height() + "px");
-    $(window).on('load', function(){
-        setTimeout(function(){
-            $('body').css("overflow-y","visible");
-            $('#preloader').fadeOut(400);
-        }, 800);
-    });
-</script>
+@include('admin::footer')
 
 </body>
 </html>

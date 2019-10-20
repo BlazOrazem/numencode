@@ -51,6 +51,8 @@ class DashboardController extends BaseController
     {
         Session::put('locale', request()->language);
 
+        app()->setLocale(request()->language);
+
         return success();
     }
 
