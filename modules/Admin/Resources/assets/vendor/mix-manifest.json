@@ -1,9 +1,8 @@
 {
     "/../../../../../public/themes/admin/css/jstree.css": "/../../../../../public/themes/admin/css/jstree.css",
     "/../../../../../public/themes/admin/css/app.css": "/../../../../../public/themes/admin/css/app.css",
+    "/mix.js.map": "/mix.js.map",
     "/E:/WWW/projects/numencode/public/themes/admin/js/app.js": "/E:/WWW/projects/numencode/public/themes/admin/js/app.js",
-    "/E:/WWW/projects/numencode/public/themes/admin/css/libs.css": "/E:/WWW/projects/numencode/public/themes/admin/css/libs.css",
-    "/E:/WWW/projects/numencode/public/themes/admin/js/libs.js": "/E:/WWW/projects/numencode/public/themes/admin/js/libs.js",
-    "/E:/WWW/projects/numencode/public/themes/admin/js/html5shiv.min.js": "/E:/WWW/projects/numencode/public/themes/admin/js/html5shiv.min.js",
-    "/E:/WWW/projects/numencode/public/themes/admin/js/respond.min.js": "/E:/WWW/projects/numencode/public/themes/admin/js/respond.min.js"
+    "/E:/WWW/projects/numencode/public/themes/admin/css/vendor.css": "/E:/WWW/projects/numencode/public/themes/admin/css/vendor.css",
+    "/E:/WWW/projects/numencode/public/themes/admin/js/vendor.js": "/E:/WWW/projects/numencode/public/themes/admin/js/vendor.js"
 }

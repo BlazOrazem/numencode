@@ -544,24 +544,6 @@ img {
     width: 100%;
     height: 100%;
   }
-  .error-400{
-    background-image: url($images-path + '400.jpg');
-  }
-  .error-401{
-    background-image: url($images-path + '401.jpg');
-  }
-  .error-403{
-    background-image: url($images-path + '403.jpg');
-  }
-  .error-404{
-    background-image: url($images-path + '404.jpg');
-  }
-  .error-500{
-    background-image: url($images-path + '500.jpg');
-  }
-  .error-503{
-    background-image: url($images-path + '503.jpg');
-  }
   &.login {
     background: no-repeat center center;
     background-size: cover;
@@ -637,8 +619,8 @@ img {
   .login{
     max-width: 300px;
     min-width: 300px;
-	padding: 20px;
-	background: rgba(0,0,0,0.6);
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
     border-radius: 10px;
     transform: translateX(-50%);
     margin-left: 50%;

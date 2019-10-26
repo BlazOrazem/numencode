@@ -34,6 +34,10 @@ Route::post('save-image', function () {
 // Authentication logout
 Route::get('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
 
+// Laravel file manager
+Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+
 // Always displayed contents
 Route::post('contents', 'ContentController@store')->name('contents.store');
 Route::get('contents', 'ContentController@index')->name('contents.index');

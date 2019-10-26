@@ -1,5 +1,5 @@
-<script src="/themes/admin/js/libs.js"></script>
-<script src="/themes/admin/js/app.js"></script>
+<script src="{{ asset('/themes/admin/js/vendor.js') }}"></script>
+<script src="{{ asset('/themes/admin/js/app.js') }}"></script>
 
 @include('admin::flash')
 

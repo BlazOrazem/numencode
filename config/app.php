@@ -174,7 +174,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
 //        Laravel\Tinker\TinkerServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+//        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
 
         /*
          * Application Service Providers...

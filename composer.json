@@ -30,7 +30,7 @@
         "intervention/image": "^2.5",
         "intervention/imagecache": "^2.4",
         "laracasts/utilities": "^3.0",
-        "laravel/framework": "^6.3",
+        "laravel/framework": "^6.4",
         "laravel/socialite": "^4.2",
         "laravel/tinker": "^1.0",
         "rap2hpoutre/laravel-log-viewer": "^1.3",
@@ -47,6 +47,30 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.4"
     },
+    "repositories": [{
+        "type": "package",
+        "package": {
+            "name": "unisharp/laravel-filemanager",
+            "version": "dev-master",
+            "source": {
+                "url": "git@github.com:BlazOrazem/laravel-filemanager.git",
+                "type": "git",
+                "reference": "laravel-64"
+            },
+            "autoload": {
+                "psr-4": {
+                    "UniSharp\\LaravelFilemanager\\": "src/"
+                }
+            },
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider"
+                    ]
+                }
+            }
+        }
+    }],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

@@ -22,8 +22,8 @@
     <title>Numencode CMS</title>
 
     <base href="{{ env('app_url') }}">
-    <link href="/themes/admin/css/libs.css" rel="stylesheet" type="text/css">
-    <link href="/themes/admin/css/app.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/themes/admin/css/vendor.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/themes/admin/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <link rel="icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="themes/admin/images/favicon.ico" type="image/x-icon" />

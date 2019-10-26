@@ -1,4 +1,4 @@
-var PreLoader = (function () {
+let PreLoader = (function () {
     return {
         init: function () {
             $('#preloader').height($(window).height() + "px");
@@ -11,7 +11,7 @@ var PreLoader = (function () {
     }
 })();
 
-var MetisMenu = (function () {
+let MetisMenu = (function () {
     return {
         init: function () {
             $('.metismenu').metisMenu({
@@ -22,27 +22,27 @@ var MetisMenu = (function () {
         },
 
         handleActive: function () {
-            var url = $('#activeUrl').val();
-            var item = $('.metismenu li a[href="'+ url +'"]');
-            var itemBlock = item.parentsUntil(".metismenu").last();
+            let url = $('#activeUrl').val();
+            let item = $('.metismenu li a[href="'+ url +'"]');
+            let itemBlock = item.parentsUntil(".metismenu").last();
 
             item.parent().addClass('active');
 
             itemBlock.addClass('active');
             itemBlock.find('ul.nav.collapse').addClass('in');
 
-            var locationHref = $(location).attr('pathname').replace("/", "");
-            var currentPage = $('a[href="' + locationHref + '"]');
+            let locationHref = $(location).attr('pathname').replace("/", "");
+            let currentPage = $('a[href="' + locationHref + '"]');
             $(".sidebar").find(currentPage).addClass("current-page");
             currentPage.closest("ul").parent().addClass("current-block");
         }
     }
 })();
 
-var JsTree = (function () {
+let JsTree = (function () {
     return {
         init: function () {
-            var tree = $('.jstree');
+            let tree = $('.jstree');
             tree.bind('loaded.jstree', function(event, data) {
                 data.instance.open_all();
             });
@@ -69,7 +69,7 @@ var JsTree = (function () {
     }
 })();
 
-var DataTables = (function () {
+let DataTables = (function () {
     return {
         init: function () {
             DataTables.initStandardTable();
@@ -132,14 +132,14 @@ var DataTables = (function () {
 
         handleSearchablePlaceholder: function () {
             $('.datatable.search').each(function() {
-                var dataTableInfo = $(this).closest('.data-table');
+                let dataTableInfo = $(this).closest('.data-table');
                 dataTableInfo.find('.dataTables_filter input').attr("placeholder", $(this).data('search'));
             });
         }
     }
 })();
 
-var Responsive = (function () {
+let Responsive = (function () {
     return {
         init: function () {
             Responsive.handleFullContentHeight();
@@ -158,7 +158,7 @@ var Responsive = (function () {
                 if ($(window).width() <= 1024) {
                     Responsive.changeTitlePosition();
                 } else {
-                    var title = $(".page-title").remove();
+                    let title = $(".page-title").remove();
                     $(".navbar-container > .pull-left").html(title);
                 }
             });
@@ -189,7 +189,7 @@ var Responsive = (function () {
         },
 
         changeTitlePosition: function () {
-            var title = $(".page-title").remove();
+            let title = $(".page-title").remove();
 
             if ($(".breadcrumb")[0]) {
                 $(".breadcrumb").eq(0).after(title);
@@ -200,7 +200,7 @@ var Responsive = (function () {
     }
 })();
 
-var ScrollBar = (function () {
+let ScrollBar = (function () {
     return {
         init: function () {
             ScrollBar.handleBodyScroll();
@@ -248,7 +248,7 @@ var ScrollBar = (function () {
     }
 })();
 
-var WavesEffect = (function () {
+let WavesEffect = (function () {
     return {
         init: function () {
             Waves.attach('.btn');
@@ -257,12 +257,12 @@ var WavesEffect = (function () {
     }
 })();
 
-var MenuSearchBar = (function () {
-    var submitIcon = $('.searchbox-icon');
+let MenuSearchBar = (function () {
+    let submitIcon = $('.searchbox-icon');
 
     return {
         init: function () {
-            var submitIcon = $('.searchbox-icon'),
+            let submitIcon = $('.searchbox-icon'),
                 inputBox = $('.searchbox-input'),
                 searchBox = $('.searchbox'),
                 isOpen = false;
@@ -298,7 +298,7 @@ var MenuSearchBar = (function () {
     }
 })();
 
-var DropDownMenu = (function () {
+let DropDownMenu = (function () {
     return {
         init: function () {
             if($('.dropdown')[0]) {
@@ -345,7 +345,7 @@ var DropDownMenu = (function () {
     }
 })();
 
-var FullScreenMode = (function () {
+let FullScreenMode = (function () {
     return {
         init: function () {
             function toggleFullScreen() {
@@ -417,19 +417,19 @@ var FullScreenMode = (function () {
     }
 })();
 
-var ContentBlock = (function () {
+let ContentBlock = (function () {
     return {
         init: function () {
             //Click to remove content-block
             $(".close-btn").on("click", function(e){
                 e.preventDefault();
-                var removedBlock = $(this).closest(".content-box").fadeOut(200, function(){
+                let removedBlock = $(this).closest(".content-box").fadeOut(200, function(){
                     $(this).remove();
                 });
             });
 
             //Click to collapse block
-            var collapsedBlock = false;
+            let collapsedBlock = false;
             $(".collapse-btn").on("click", function(e){
                 e.preventDefault();
                 if (!collapsedBlock){
@@ -446,11 +446,11 @@ var ContentBlock = (function () {
 
             //Click to refresh content-block
             $(".refresh-btn").on("click", function(e){
-                var refreshBox = $(this).closest('div.content-box');
+                let refreshBox = $(this).closest('div.content-box');
                 $("<div class='refresh-preloader'><div class='preloader'><i>.</i><i>.</i><i>.</i></div></div>").appendTo(refreshBox).fadeIn(200);
 
                 setTimeout(function(){
-                    var refreshPreloader = refreshBox.find('.refresh-preloader'),
+                    let refreshPreloader = refreshBox.find('.refresh-preloader'),
                         deletedRefreshBox = refreshPreloader.fadeOut(200, function(){
                             refreshPreloader.remove();
                         });
@@ -462,7 +462,7 @@ var ContentBlock = (function () {
     }
 })();
 
-var FormComponents = (function () {
+let FormComponents = (function () {
     return {
         init: function () {
             //selectpickers
@@ -480,8 +480,8 @@ var FormComponents = (function () {
                 });
 
                 $('body').on('blur', '.form-control', function(){
-                    var p = $(this).closest('.form-group');
-                    var i = p.find('.form-control').val();
+                    let p = $(this).closest('.form-group');
+                    let i = p.find('.form-control').val();
 
                     if (p.hasClass('fg-float')) {
                         if (i.length === 0) {
@@ -495,7 +495,7 @@ var FormComponents = (function () {
 
             if($('.fg-float')[0]) {
                 $('.fg-float .form-control').each(function(){
-                    var i = $(this).val();
+                    let i = $(this).val();
 
                     if (i.length !== 0) {
                         $(this).closest('.fg-input').addClass('fg-active');
@@ -511,7 +511,7 @@ var FormComponents = (function () {
                 // Get the field name
                 fieldName = $(this).attr('data-field');
                 // Get its current value
-                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                let currentVal = parseInt($('input[name='+fieldName+']').val());
                 // If is not undefined
                 if (!isNaN(currentVal)) {
                     // Increment
@@ -529,7 +529,7 @@ var FormComponents = (function () {
                 // Get the field nameg
                 fieldName = $(this).attr('data-field');
                 // Get its current value
-                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                let currentVal = parseInt($('input[name='+fieldName+']').val());
                 // If it isn't undefined or its greater than 0
                 if (!isNaN(currentVal) && currentVal > 0) {
                     // Decrement one
@@ -543,7 +543,7 @@ var FormComponents = (function () {
     }
 })();
 
-var Notifications = (function () {
+let Notifications = (function () {
     return {
         init: function () {
             $(".notification-container").mCustomScrollbar({
@@ -583,8 +583,8 @@ var Notifications = (function () {
     }
 })();
 
-var TimeDisplay = (function () {
-    var datetime = null,
+let TimeDisplay = (function () {
+    let datetime = null,
         time = null,
         date = null;
 
@@ -607,7 +607,7 @@ var TimeDisplay = (function () {
     }
 })();
 
-var Tooltips = (function () {
+let Tooltips = (function () {
     return {
         init: function () {
             if ($('[data-toggle="tooltip"]')[0]) {
@@ -619,7 +619,7 @@ var Tooltips = (function () {
     }
 })();
 
-var Popover = (function () {
+let Popover = (function () {
     return {
         init: function () {
             if ($('[data-toggle="popover"]')[0]) {
@@ -629,7 +629,7 @@ var Popover = (function () {
     }
 })();
 
-var Collapse = (function () {
+let Collapse = (function () {
     return {
         init: function () {
             Collapse.buttons();
@@ -667,7 +667,7 @@ var Collapse = (function () {
     }
 })();
 
-var SidePanel = (function () {
+let SidePanel = (function () {
     return {
         init: function () {
             $(".side-panel .tab-pane").mCustomScrollbar({
@@ -687,8 +687,8 @@ var SidePanel = (function () {
             $('body').on('click', '.menu-toggle', function(e){
                 e.preventDefault();
 
-                var $elem = '.sidebar';
-                var $elem2 = '.menu-toggle';
+                let $elem = '.sidebar';
+                let $elem2 = '.menu-toggle';
 
                 $(".side-panel").removeClass('open');
                 $('.sidepanel-toggle').parent().removeClass("open");
@@ -716,8 +716,8 @@ var SidePanel = (function () {
             $('body').on('click', '.sidepanel-toggle', function(e){
                 e.preventDefault();
 
-                var $elem = '.side-panel';
-                var $elem2 = '.sidepanel-toggle';
+                let $elem = '.side-panel';
+                let $elem2 = '.sidepanel-toggle';
 
                 $(".more-options, .notification").removeClass('open');
 
@@ -742,7 +742,7 @@ var SidePanel = (function () {
     }
 })();
 
-var MenuToggle = (function () {
+let MenuToggle = (function () {
     return {
         init: function () {
             $(".menu-toggle").on("click", function(){
@@ -785,7 +785,7 @@ var MenuToggle = (function () {
     }
 })();
 
-var Nestable = (function () {
+let Nestable = (function () {
     return {
         init: function () {
             $.fn.NestableList = function () {
@@ -814,7 +814,7 @@ var Nestable = (function () {
     }
 })();
 
-var Editable = (function () {
+let Editable = (function () {
     return {
         init: function () {
             $.fn.editable.defaults.mode = 'inline';
@@ -855,10 +855,10 @@ var Editable = (function () {
     }
 })();
 
-var Wysiwyg = (function () {
+let Wysiwyg = (function () {
     return {
         init: function () {
-            var editor_config = {
+            let config = {
                 path_absolute : "/admin/",
                 selector: "textarea.wysiwyg-editor",
                 plugins: [
@@ -869,11 +869,13 @@ var Wysiwyg = (function () {
                 ],
                 toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
                 relative_urls: false,
+                theme: 'modern',
                 file_browser_callback : function(field_name, url, type, win) {
-                    var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-                    var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                    let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                    let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
 
-                    var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+                    let cmsURL = config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+
                     if (type == 'image') {
                         cmsURL = cmsURL + "&type=Images";
                     } else {
@@ -882,7 +884,7 @@ var Wysiwyg = (function () {
 
                     tinyMCE.activeEditor.windowManager.open({
                         file : cmsURL,
-                        title : 'Filemanager',
+                        title : 'Media manager',
                         width : x * 0.8,
                         height : y * 0.8,
                         resizable : "yes",
@@ -891,7 +893,7 @@ var Wysiwyg = (function () {
                 }
             };
 
-            tinymce.init(editor_config);
+            tinymce.init(config);
         }
     }
 })();

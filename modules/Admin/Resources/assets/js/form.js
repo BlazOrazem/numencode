@@ -1,22 +1,22 @@
-var Form = (function () {
+let Form = (function () {
 
     /**
      * Define form classes, currently set for Bootstrap 3 admin theme.
      */
-    var formValidate = 'form-validate';
-    var successColor = 'success-color';
-    var inputSuccess = 'input-success';
-    var formGroup = 'form-group';
-    var helpBlock = 'help-block';
-    var hasError = 'has-error';
+    let formValidate = 'form-validate';
+    let successColor = 'success-color';
+    let inputSuccess = 'input-success';
+    let formGroup = 'form-group';
+    let helpBlock = 'help-block';
+    let hasError = 'has-error';
 
     return {
         init: function () {
             $('form.' + formValidate + ' button.submit').on("click", function(event){
                 event.preventDefault();
 
-                var redirect = $(event.target.attributes['value']).val();
-                var form = $(this).closest('form.' + formValidate);
+                let redirect = $(event.target.attributes['value']).val();
+                let form = $(this).closest('form.' + formValidate);
 
                 Form.validateForm(form, redirect);
             });
@@ -31,8 +31,8 @@ var Form = (function () {
         },
 
         serialize: function (form) {
-            var data = form.serializeArray();
-            var result = {};
+            let data = form.serializeArray();
+            let result = {};
 
             $.each(data, function(key, item) {
                 result[item.name] = item.value;
@@ -66,10 +66,12 @@ var Form = (function () {
         validateForm: function (form, redirect) {
             http.post(form.attr('action'), Form.serialize(form))
                 .then(function() {
-                    var postForm = form[0];
+                    let postForm = form[0];
+
                     if (typeof redirect !== 'undefined') {
                         $("<input type='hidden'/>").attr("name", 'redirect').val(redirect).appendTo(postForm);
                     }
+
                     postForm.submit();
                 })
                 .catch(function(data) {
@@ -80,8 +82,8 @@ var Form = (function () {
         },
 
         validateInputField: function (field) {
-            var form = field.closest('form');
-            var fieldName = field.attr('name');
+            let form = field.closest('form');
+            let fieldName = field.attr('name');
 
             if ($(field).hasClass('uri-slug')) {
                 $(field).val(Form.slugify($(field).val()));
@@ -96,7 +98,7 @@ var Form = (function () {
                     Form.successFor(Form.getGroupFor(form, fieldName));
                 })
                 .catch(function(data) {
-                    var item = Form.getGroupFor(form, fieldName);
+                    let item = Form.getGroupFor(form, fieldName);
 
                     if (item.hasClass(hasError)) {
                         Form.successFor(item);

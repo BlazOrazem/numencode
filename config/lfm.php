@@ -1,208 +1,189 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
-    | File Renaming
+    | Routing
     |--------------------------------------------------------------------------
-    |
-    | If true, the uploaded file will be renamed to uniqid() + file extension.
-    |
     */
 
-    'rename_file' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Alphanumeric Filenames
-    |--------------------------------------------------------------------------
-    |
-    | If rename_file set to false and alphanumeric_filename set to true,
-    | then non-alphanumeric characters in filename will be replaced.
-    |
-    */
-
-    'alphanumeric_filename' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Alphanumeric Directories
-    |--------------------------------------------------------------------------
-    |
-    | If true, non-alphanumeric folder name will not be allowed.
-    |
-    */
-
-    'alphanumeric_directory' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Package Routes
-    |--------------------------------------------------------------------------
-    |
-    | Include the pre-defined routes from package or not.
-    |
-    */
-
+    // Include to pre-defined routes from package or not. Middlewares
     'use_package_routes' => true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Middlewares
-    |--------------------------------------------------------------------------
-    |
-    | For laravel 5.1, please set to ['auth'].
-    |
-    */
-
+    // Middlewares which should be applied to all package routes.
+    // For laravel 5.1 and before, remove 'web' from the array.
     'middlewares' => ['web', 'translation', 'is_admin'],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Route Prefix
-    |--------------------------------------------------------------------------
-    |
-    | Add prefix for routes.
-    |
-    */
-
-    'prefix' => 'admin/laravel-filemanager',
+    // The url to this package. Change it if necessary.
+    'url_prefix' => 'admin/laravel-filemanager',
 
     /*
     |--------------------------------------------------------------------------
-    | Multi User Mode
+    | Multi-User Mode
     |--------------------------------------------------------------------------
-    |
-    | Allow multi_user mode or not. If true, laravel-filemanager
-    | creates private folders for each signed-in user.
-    |
     */
 
+    // If true, private folders will be created for each signed-in user.
     'allow_multi_user' => false,
+    // If true, share folder will be created when allow_multi_user is true.
+    'allow_share_folder' => false,
+
+    // Flexible way to customize client folders accessibility
+    // If you want to customize client folders, publish tag="lfm_handler"
+    // Then you can rewrite userField function in App\Handler\ConfigHander class
+    // And set 'user_field' to App\Handler\ConfigHander::class
+    // Ex: The private folder of user will be named as the user id.
+    'user_field' => UniSharp\LaravelFilemanager\Handlers\ConfigHandler::class,
 
     /*
     |--------------------------------------------------------------------------
-    | User ID
+    | Working Directory
     |--------------------------------------------------------------------------
-    |
-    | The database field to identify a user. When set to 'id',
-    | the private folder will be named as the user id.
-    |
-    | NOTE: make sure to use a unique field.
-    | When choosing a startup view you can fill either 'grid' or 'list'.
-    |
     */
 
-    'user_field' => 'id',
+    // Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on.
+    // You should create routes to serve images if it is not set to public.
+    'base_directory' => 'public',
+
+    'images_folder_name' => 'uploads/images',
+    'files_folder_name'  => 'uploads/files',
+
+    'shared_folder_name' => '',
+    'thumb_folder_name'  => 'thumbs',
 
     /*
     |--------------------------------------------------------------------------
-    | Folder Settings
+    | Startup Views
     |--------------------------------------------------------------------------
-    |
-    | Configure folder names.
-    |
     */
 
-    'shared_folder_name' => 'shares',
-    'thumb_folder_name' => 'thumbs',
-
-    'images_dir' => 'public/photos/',
-    'images_url' => '/photos/',
-    'images_startup_view' => 'list',
-
-    'files_dir' => 'public/files/',
-    'files_url' => '/files/',
-    'files_startup_view'    => 'grid',
+    // The default display type for items.
+    // Supported: "grid", "list"
+    'images_startup_view' => 'grid',
+    'files_startup_view' => 'list',
 
     /*
     |--------------------------------------------------------------------------
-    | File Size
+    | Upload / Validation
     |--------------------------------------------------------------------------
-    |
-    | Set max image and file size.
-    |
     */
 
-    'max_image_size' => 500,
-    'max_file_size' => 1000,
+    // If true, the uploaded file will be renamed to uniqid() + file extension.
+    'rename_file' => false,
 
-    /*
-    |--------------------------------------------------------------------------
-    | File Mime-types
-    |--------------------------------------------------------------------------
-    |
-    | Set valid image and file mime-types.
-    |
-    | NOTE: valid_file_mimetypes only when '/laravel-filemanager?type=Files'.
-    |
-    */
+    // If rename_file set to false and this set to true, then non-alphanumeric characters in filename will be replaced.
+    'alphanumeric_filename' => true,
 
+    // If true, non-alphanumeric folder name will be rejected.
+    'alphanumeric_directory' => true,
+
+    // If true, the uploading file's size will be verified for over than max_image_size/max_file_size.
+    'should_validate_size' => false,
+
+    'max_image_size' => 50000,
+    'max_file_size' => 50000,
+
+    // If true, the uploading file's mime type will be valid in valid_image_mimetypes/valid_file_mimetypes.
+    'should_validate_mime' => false,
+
+    // available since v1.3.0
     'valid_image_mimetypes' => [
         'image/jpeg',
         'image/pjpeg',
         'image/png',
-        'image/gif'
+        'image/gif',
+        'image/svg+xml',
     ],
 
+    // If true, image thumbnails would be created during upload
+    'should_create_thumbnails' => true,
+
+    // Create thumbnails automatically only for listed types.
+    'raster_mimetypes' => [
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+    ],
+
+    // permissions to be set when create a new folder or when it creates automatically with thumbnails
+    'create_folder_mode' => 0755,
+
+    // permissions to be set on file upload.
+    'create_file_mode' => 0644,
+
+    // If true, it will attempt to chmod the file after upload
+    'should_change_file_mode' => true,
+
+    // available since v1.3.0
+    // only when '/laravel-filemanager?type=Files'
     'valid_file_mimetypes' => [
         'image/jpeg',
         'image/pjpeg',
         'image/png',
         'image/gif',
+        'image/svg+xml',
         'application/pdf',
         'text/plain',
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | File Extensions
+    | Image / Folder Setting
     |--------------------------------------------------------------------------
-    |
-    | File type extensions array, only for showing file
-    | information, it won't affect the upload process.
-    |
+    */
+
+    'thumb_img_width' => 200,
+    'thumb_img_height' => 200,
+
+    /*
+    |--------------------------------------------------------------------------
+    | File Extension Information
+    |--------------------------------------------------------------------------
     */
 
     'file_type_array' => [
         'pdf'  => 'Adobe Acrobat',
-        'doc' => 'Microsoft Word',
+        'doc'  => 'Microsoft Word',
         'docx' => 'Microsoft Word',
-        'xls' => 'Microsoft Excel',
+        'xls'  => 'Microsoft Excel',
         'xlsx' => 'Microsoft Excel',
-        'zip' => 'Archive',
-        'gif' => 'GIF Image',
-        'jpg' => 'JPEG Image',
+        'zip'  => 'Archive',
+        'gif'  => 'GIF Image',
+        'jpg'  => 'JPEG Image',
         'jpeg' => 'JPEG Image',
-        'png' => 'PNG Image',
-        'ppt' => 'Microsoft PowerPoint',
+        'png'  => 'PNG Image',
+        'ppt'  => 'Microsoft PowerPoint',
         'pptx' => 'Microsoft PowerPoint',
+    ],
+
+    'file_icon_array' => [
+        'pdf'  => 'fa-file-pdf-o',
+        'doc'  => 'fa-file-word-o',
+        'docx' => 'fa-file-word-o',
+        'xls'  => 'fa-file-excel-o',
+        'xlsx' => 'fa-file-excel-o',
+        'zip'  => 'fa-file-archive-o',
+        'gif'  => 'fa-file-image-o',
+        'jpg'  => 'fa-file-image-o',
+        'jpeg' => 'fa-file-image-o',
+        'png'  => 'fa-file-image-o',
+        'ppt'  => 'fa-file-powerpoint-o',
+        'pptx' => 'fa-file-powerpoint-o',
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | File Icons
+    | php.ini override
     |--------------------------------------------------------------------------
     |
-    | File type extensions array, only for showing icons,
-    | it won't affect the upload process.
+    | These values override your php.ini settings before uploading files
+    | Set these to false to ingnore and apply your php.ini settings
     |
+    | Please note that the 'upload_max_filesize' & 'post_max_size'
+    | directives are not supported.
     */
-
-    'file_icon_array' => [
-        'pdf'  => 'fa-file-pdf-o',
-        'doc' => 'fa-file-word-o',
-        'docx' => 'fa-file-word-o',
-        'xls' => 'fa-file-excel-o',
-        'xlsx' => 'fa-file-excel-o',
-        'zip' => 'fa-file-archive-o',
-        'gif' => 'fa-file-image-o',
-        'jpg' => 'fa-file-image-o',
-        'jpeg' => 'fa-file-image-o',
-        'png' => 'fa-file-image-o',
-        'ppt' => 'fa-file-powerpoint-o',
-        'pptx' => 'fa-file-powerpoint-o',
+    'php_ini_overrides' => [
+        'memory_limit'        => '256M',
     ],
 
 ];
