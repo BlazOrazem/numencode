@@ -11,14 +11,12 @@
     ],
     "homepage": "https://github.com/BlazOrazem/numencode",
     "license": "MIT",
-    "authors": [
-      {
+    "authors": [{
         "name": "Blaz Orazem",
         "email": "blaz@orazem.si",
         "homepage": "https://www.orazem.si",
         "role": "Lead Developer"
-      }
-    ],
+    }],
     "require": {
         "php": "^7.3",
         "barryvdh/laravel-debugbar": "^3.2",
